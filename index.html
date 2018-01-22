@@ -18,8 +18,6 @@
     
 
     
-        <link rel="alternate" href="/" title="博客堂" type="application/atom+xml" />
-    
 
     
         <link rel="icon" href="/css/images/favicon.ico" />
@@ -186,8 +184,8 @@
                     </td>
                     
                     <td>
-                        <a href="/" target="_blank" title="facebook" class=tooltip>
-                            <i class="fa fa-facebook"></i>
+                        <a href="/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
                         </a>
                     </td>
                     
@@ -198,8 +196,8 @@
                     </td>
                     
                     <td>
-                        <a href="/" target="_blank" title="rss" class=tooltip>
-                            <i class="fa fa-rss"></i>
+                        <a href="/" target="_blank" title="wechat" class=tooltip>
+                            <i class="fa fa-wechat"></i>
                         </a>
                     </td>
                     
@@ -212,149 +210,6 @@
 
             
             <section id="main">
-    <article id="post-python结巴分词、jieba加载停用词表" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2018/01/18/python结巴分词、jieba加载停用词表/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/01/18/python结巴分词、jieba加载停用词表/">python结巴分词、jieba加载停用词表</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/01/18/python结巴分词、jieba加载停用词表/">
-            <time datetime="2018-01-18T07:22:04.000Z" itemprop="datePublished">2018-01-18</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/自然语言处理/">自然语言处理</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Python/">Python</a>, <a class="tag-link" href="/tags/jieba/">jieba</a>, <a class="tag-link" href="/tags/分词/">分词</a>, <a class="tag-link" href="/tags/自然语言处理/">自然语言处理</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><h1 id="python结巴分词"><a href="#python结巴分词" class="headerlink" title="python结巴分词"></a>python结巴分词</h1><h2 id="1-jieba中文分词简介"><a href="#1-jieba中文分词简介" class="headerlink" title="1 jieba中文分词简介"></a>1 jieba中文分词简介</h2><p>中文分词是中文NLP的第一步，一个优秀的分词系统取决于足够的语料和完善的模型，很多机构和公司也都会开发和维护自己的分词系统。</p></p>
-            <p class="article-more-link">
-                <a href="/2018/01/18/python结巴分词、jieba加载停用词表/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2018/01/18/python结巴分词、jieba加载停用词表/" data-id="cjcq91hjn0002kkjewb8hwjzf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://yoursite.com/2018/01/18/python结巴分词、jieba加载停用词表/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2018/01/18/python结巴分词、jieba加载停用词表/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -402,7 +257,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/01/11/hello-world/" data-id="cjcq91hiy0000kkjes3ucpwrh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/01/11/hello-world/" data-id="cjcq9bfyy0000n4je27przqqw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -479,6 +334,149 @@
 </article>
 
 
+
+    <article id="post-python结巴分词、jieba加载停用词表" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/2017/09/03/python结巴分词、jieba加载停用词表/" itemprop="url">
+            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/09/03/python结巴分词、jieba加载停用词表/">python结巴分词、jieba加载停用词表</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/09/03/python结巴分词、jieba加载停用词表/">
+            <time datetime="2017-09-03T13:07:04.000Z" itemprop="datePublished">2017-09-03</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/自然语言处理/">自然语言处理</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Python/">Python</a>, <a class="tag-link" href="/tags/jieba/">jieba</a>, <a class="tag-link" href="/tags/分词/">分词</a>, <a class="tag-link" href="/tags/自然语言处理/">自然语言处理</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><h1 id="python结巴分词"><a href="#python结巴分词" class="headerlink" title="python结巴分词"></a>python结巴分词</h1><h2 id="1-jieba中文分词简介"><a href="#1-jieba中文分词简介" class="headerlink" title="1 jieba中文分词简介"></a>1 jieba中文分词简介</h2><p>中文分词是中文NLP的第一步，一个优秀的分词系统取决于足够的语料和完善的模型，很多机构和公司也都会开发和维护自己的分词系统。</p></p>
+            <p class="article-more-link">
+                <a href="/2017/09/03/python结巴分词、jieba加载停用词表/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2017/09/03/python结巴分词、jieba加载停用词表/" data-id="cjcq9bfzb0002n4jeqa1e4iza" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2017/09/03/python结巴分词、jieba加载停用词表/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2017/09/03/python结巴分词、jieba加载停用词表/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
 </section>
             
                 
@@ -489,25 +487,6 @@
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2018/01/18/python结巴分词、jieba加载停用词表/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg)" alt="python结巴分词、jieba加载停用词表" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/自然语言处理/">自然语言处理</a></p>
-                            <p class="item-title"><a href="/2018/01/18/python结巴分词、jieba加载停用词表/" class="title">python结巴分词、jieba加载停用词表</a></p>
-                            <p class="item-date"><time datetime="2018-01-18T07:22:04.000Z" itemprop="datePublished">2018-01-18</time></p>
-                        </div>
-                    </li>
                 
                     <li>
                         
@@ -525,6 +504,25 @@
                             <p class="item-category"></p>
                             <p class="item-title"><a href="/2018/01/11/hello-world/" class="title">Hello World</a></p>
                             <p class="item-date"><time datetime="2018-01-11T03:11:11.000Z" itemprop="datePublished">2018-01-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/03/python结巴分词、jieba加载停用词表/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg)" alt="python结巴分词、jieba加载停用词表" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/自然语言处理/">自然语言处理</a></p>
+                            <p class="item-title"><a href="/2017/09/03/python结巴分词、jieba加载停用词表/" class="title">python结巴分词、jieba加载停用词表</a></p>
+                            <p class="item-date"><time datetime="2017-09-03T13:07:04.000Z" itemprop="datePublished">2017-09-03</time></p>
                         </div>
                     </li>
                 
@@ -546,7 +544,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
