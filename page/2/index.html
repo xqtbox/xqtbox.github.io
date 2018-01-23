@@ -159,11 +159,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                19
+                20
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                28
+                29
                 <span>标签</span>
             </div>
         </div>
@@ -280,7 +280,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2015/05/30/汽车之家口碑爬虫/" data-id="cjcr6pck8001c0sjedi4movhg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2015/05/30/汽车之家口碑爬虫/" data-id="cjcr6so87001e2vjexlqf3aey" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -424,7 +424,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2015/05/21/在win7环境下oracle10g安装问题/" data-id="cjcr6pcjx00150sjezduh5vua" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2015/05/21/在win7环境下oracle10g安装问题/" data-id="cjcr6so8100162vje2643qu4l" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -502,6 +502,152 @@
 
 
 
+    <article id="post-AttributeError:FeedExporter object has no attribute slot" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/2015/05/20/AttributeError:FeedExporter object has no attribute slot/" itemprop="url">
+            <img src="http://nkssai.qiniudn.com/JOJOJO.jpg" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2015/05/20/AttributeError:FeedExporter object has no attribute slot/">AttributeError:FeedExporter object has no attribute slot</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2015/05/20/AttributeError:FeedExporter object has no attribute slot/">
+            <time datetime="2015-05-20T04:07:04.000Z" itemprop="datePublished">2015-05-20</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/爬虫/">爬虫</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Python/">Python</a>, <a class="tag-link" href="/tags/scrapy/">scrapy</a>, <a class="tag-link" href="/tags/报错/">报错</a>, <a class="tag-link" href="/tags/爬虫/">爬虫</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>使用scrapy时候你报错：</p>
+<p>AttributeError: ‘FeedExporter’ object has no attribute ‘slot’</p>
+<p>因为当前需要写入的<strong>文件</strong>被占用，写不进去！</p>
+<p>解决方法，关闭打开的 csv文件</p></p>
+            <p class="article-more-link">
+                <a href="/2015/05/20/AttributeError:FeedExporter object has no attribute slot/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2015/05/20/AttributeError:FeedExporter object has no attribute slot/" data-id="cjcr6so5n00002vjezl5wkki4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2015/05/20/AttributeError:FeedExporter object has no attribute slot/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2015/05/20/AttributeError:FeedExporter object has no attribute slot/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-Python3 面向对象" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -569,7 +715,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2015/05/01/Python3 面向对象/" data-id="cjcr6pch200000sje5dkz95n7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2015/05/01/Python3 面向对象/" data-id="cjcr6so6100022vjeckriqr66" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -725,7 +871,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2015/04/27/python-慕课网-Python开发简单爬虫-蚂蚁-读书笔记/" data-id="cjcr6pcjm000r0sjem24tppzv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2015/04/27/python-慕课网-Python开发简单爬虫-蚂蚁-读书笔记/" data-id="cjcr6so7o000s2vje1e4yldn3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -870,7 +1016,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2015/03/28/The Myeclipse executable launcher was unable to locate its companion shared library/" data-id="cjcr6pcis000c0sjerpwddvsq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2015/03/28/The Myeclipse executable launcher was unable to locate its companion shared library/" data-id="cjcr6so6x000d2vjeh0ipzamo" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1015,7 +1161,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2015/03/27/破解myeclipse10时找不到myeclipse-Common-plusgin/" data-id="cjcr6pcka001f0sjekc87ipbv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2015/03/27/破解myeclipse10时找不到myeclipse-Common-plusgin/" data-id="cjcr6so8a001h2vjea9f8hrx9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1159,7 +1305,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2015/03/27/myeclipes配置tomecat时，一点击就报错89/" data-id="cjcr6pcjk000p0sjernwsfn79" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2015/03/27/myeclipes配置tomecat时，一点击就报错89/" data-id="cjcr6so7l000n2vjeii3c518y" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1304,7 +1450,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2015/03/08/Python之if判断语句与while和for循环/" data-id="cjcr6pci500060sjeq6v51bzy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2015/03/08/Python之if判断语句与while和for循环/" data-id="cjcr6so6o00082vjevxc4o8of" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1449,7 +1595,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2015/03/08/Python中的列表list/" data-id="cjcr6pchl00020sje21tkgxpr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2015/03/08/Python中的列表list/" data-id="cjcr6so6j00062vjeid0wldvw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1645,7 +1791,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习/">深度学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自然语言处理/">自然语言处理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/驱动开发/">驱动开发</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习/">深度学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自然语言处理/">自然语言处理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/驱动开发/">驱动开发</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1654,7 +1800,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">5</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">5</span></li></ul>
         </div>
     </div>
 
@@ -1663,7 +1809,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DevOps/">DevOps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DriverSttudio3-2/">DriverSttudio3.2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Editplus/">Editplus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBK/">GBK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/">Oracle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/">RNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/USB/">USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UTF-8/">UTF-8</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ddk/">ddk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jieba/">jieba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myeclipse/">myeclipse</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win7/">win7</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分词/">分词</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习路线/">学习路线</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/报错/">报错</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件操作/">文件操作</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汽车之家/">汽车之家</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/驱动程序/">驱动程序</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DevOps/">DevOps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DriverSttudio3-2/">DriverSttudio3.2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Editplus/">Editplus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBK/">GBK</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/">Oracle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/">RNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/USB/">USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UTF-8/">UTF-8</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ddk/">ddk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jieba/">jieba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myeclipse/">myeclipse</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scrapy/">scrapy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win7/">win7</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分词/">分词</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习路线/">学习路线</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/报错/">报错</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件操作/">文件操作</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汽车之家/">汽车之家</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/驱动程序/">驱动程序</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1672,7 +1818,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/CNN/" style="font-size: 10px;">CNN</a> <a href="/tags/DevOps/" style="font-size: 10px;">DevOps</a> <a href="/tags/DriverSttudio3-2/" style="font-size: 10px;">DriverSttudio3.2</a> <a href="/tags/Editplus/" style="font-size: 10px;">Editplus</a> <a href="/tags/GBK/" style="font-size: 10px;">GBK</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/USB/" style="font-size: 10px;">USB</a> <a href="/tags/UTF-8/" style="font-size: 10px;">UTF-8</a> <a href="/tags/ddk/" style="font-size: 10px;">ddk</a> <a href="/tags/eclipse/" style="font-size: 15px;">eclipse</a> <a href="/tags/jieba/" style="font-size: 10px;">jieba</a> <a href="/tags/myeclipse/" style="font-size: 15px;">myeclipse</a> <a href="/tags/win7/" style="font-size: 10px;">win7</a> <a href="/tags/分词/" style="font-size: 10px;">分词</a> <a href="/tags/学习路线/" style="font-size: 10px;">学习路线</a> <a href="/tags/报错/" style="font-size: 15px;">报错</a> <a href="/tags/文件操作/" style="font-size: 10px;">文件操作</a> <a href="/tags/汽车之家/" style="font-size: 10px;">汽车之家</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 12.5px;">爬虫</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/自然语言处理/" style="font-size: 10px;">自然语言处理</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/驱动程序/" style="font-size: 10px;">驱动程序</a>
+            <a href="/tags/CNN/" style="font-size: 10px;">CNN</a> <a href="/tags/DevOps/" style="font-size: 10px;">DevOps</a> <a href="/tags/DriverSttudio3-2/" style="font-size: 10px;">DriverSttudio3.2</a> <a href="/tags/Editplus/" style="font-size: 10px;">Editplus</a> <a href="/tags/GBK/" style="font-size: 10px;">GBK</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/USB/" style="font-size: 10px;">USB</a> <a href="/tags/UTF-8/" style="font-size: 10px;">UTF-8</a> <a href="/tags/ddk/" style="font-size: 10px;">ddk</a> <a href="/tags/eclipse/" style="font-size: 12.5px;">eclipse</a> <a href="/tags/jieba/" style="font-size: 10px;">jieba</a> <a href="/tags/myeclipse/" style="font-size: 12.5px;">myeclipse</a> <a href="/tags/scrapy/" style="font-size: 10px;">scrapy</a> <a href="/tags/win7/" style="font-size: 10px;">win7</a> <a href="/tags/分词/" style="font-size: 10px;">分词</a> <a href="/tags/学习路线/" style="font-size: 10px;">学习路线</a> <a href="/tags/报错/" style="font-size: 15px;">报错</a> <a href="/tags/文件操作/" style="font-size: 10px;">文件操作</a> <a href="/tags/汽车之家/" style="font-size: 10px;">汽车之家</a> <a href="/tags/深度学习/" style="font-size: 10px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 12.5px;">爬虫</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/自然语言处理/" style="font-size: 10px;">自然语言处理</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/驱动程序/" style="font-size: 10px;">驱动程序</a>
         </div>
     </div>
 
