@@ -3,18 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: 运维 | 博客堂</title>
+    <title>faial:refusing to merge unrelated histories | 博客堂</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Note">
-<meta property="og:type" content="website">
-<meta property="og:title" content="博客堂">
-<meta property="og:url" content="http://yoursite.com/tags/运维/index.html">
+    <meta name="description" content="本文解决在git中遇到的问题： faial: refusing to merge unrelated histories  原因： 在首次提交代码之前，必须首先pull一下。但是因为两个仓库不同，发现refusing to merge unrelated histories，无法pull。">
+<meta name="keywords" content="Git,GitHub,报错">
+<meta property="og:type" content="article">
+<meta property="og:title" content="faial:refusing to merge unrelated histories">
+<meta property="og:url" content="http://yoursite.com/2017/05/03/ faial:refusing to merge unrelated histories/index.html">
 <meta property="og:site_name" content="博客堂">
-<meta property="og:description" content="Note">
+<meta property="og:description" content="本文解决在git中遇到的问题： faial: refusing to merge unrelated histories  原因： 在首次提交代码之前，必须首先pull一下。但是因为两个仓库不同，发现refusing to merge unrelated histories，无法pull。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music2.jpg">
+<meta property="og:updated_time" content="2018-01-23T05:44:53.229Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博客堂">
-<meta name="twitter:description" content="Note">
+<meta name="twitter:title" content="faial:refusing to merge unrelated histories">
+<meta name="twitter:description" content="本文解决在git中遇到的问题： faial: refusing to merge unrelated histories  原因： 在首次提交代码之前，必须首先pull一下。但是因为两个仓库不同，发现refusing to merge unrelated histories，无法pull。">
+<meta name="twitter:image" content="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music2.jpg">
     
 
     
@@ -211,50 +215,185 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-tag"></i></span>
-        <h1 class="title">#运维</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post- faial:refusing to merge unrelated histories" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music2.jpg" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2016/09/20/运维团队(OPS)与技术团队有效沟通配合探讨/">运维团队(OPS)与技术团队有效沟通配合探讨</a>
+        <h1 class="article-title" itemprop="name">
+            faial:refusing to merge unrelated histories
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/09/20/运维团队(OPS)与技术团队有效沟通配合探讨/">
-            <time datetime="2016-09-20T13:07:04.000Z" itemprop="datePublished">2016-09-20</time>
+        <a href="/2017/05/03/ faial:refusing to merge unrelated histories/">
+            <time datetime="2017-05-03T02:27:24.000Z" itemprop="datePublished">2017-05-03</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/运维/">运维</a>
+        <a class="article-category-link" href="/categories/Git/">Git</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/DevOps/">DevOps</a>, <a class="tag-link" href="/tags/运维/">运维</a>
+        <a class="tag-link" href="/tags/Git/">Git</a>, <a class="tag-link" href="/tags/GitHub/">GitHub</a>, <a class="tag-link" href="/tags/报错/">报错</a>
     </div>
 
-                </div>
-            </div>
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><strong>本文解决在git中遇到的问题</strong>：</p>
+<p>faial: refusing to merge unrelated histories</p>
+<hr>
+<p><strong>原因</strong>：</p>
+<p>在首次提交代码之前，必须首先pull一下。但是因为两个仓库不同，发现refusing to merge unrelated histories，无法pull。</p>
+<a id="more"></a>
+<p>这是因为他们是两个不同的项目，要把两个不同的项目合并，git需要添加一句代码，在git pull后面。这句代码是在git 2.9.2版本发生的，最新的版本需要添加<code>--allow-unrelated-histories</code></p>
+<hr>
+<p><strong>解决</strong>：<br>所以我们想要pull的时候 ，应该写如下git命令：<br>假如我们的本地源是origin，github上的分支是master，那么我们 需要这样写：</p>
+<p><code>git pull origin master --allow-unrelated-histories</code><br>（一定要注意是两个减号！！！）</p>
+
+        
         </div>
-    
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
 </div>
+
+    <a data-url="http://yoursite.com/2017/05/03/ faial:refusing to merge unrelated histories/" data-id="cjcr7v3w20000nbje2uxvltne" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2017/05/03/ faial:refusing to merge unrelated histories/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2017/05/03/ faial:refusing to merge unrelated histories/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/05/13/scrapy的重要对象request和response/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    scrapy的重要对象request和response
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/05/03/将本地的项目上传到github上面的方法教程/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">破解myeclipse10时找不到myeclipse-Common-plusgin</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+    
+
 </section>
             
                 
@@ -439,11 +578,13 @@
     <script>
     var disqus_config = function () {
         
-        this.page.identifier = '';
+            this.page.url = 'http://yoursite.com/2017/05/03/ faial:refusing to merge unrelated histories/';
+        
+        this.page.identifier = ' faial:refusing to merge unrelated histories';
     };
     (function() { 
         var d = document, s = d.createElement('script');  
-        s.src = '//' + 'xqtbox' + '.disqus.com/count.js';
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
