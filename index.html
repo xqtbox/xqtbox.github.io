@@ -159,7 +159,7 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                51
+                55
                 <span>文章</span>
             </div>
             <div class="article-info-block">
@@ -269,7 +269,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/01/11/hello-world/" data-id="cjcre6xxv001snbjercuvi4zt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/01/11/hello-world/" data-id="cjcreggzy0023ssjebdt0d44k" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -347,6 +347,589 @@
 
 
 
+    <article id="post-coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/2017/12/21/coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统/" itemprop="url">
+            <img src="http://ent.163.com/photoview/0BOd0003/24411.html#p=58IOGIE80BOd0003" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/12/21/coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统/">coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/12/21/coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统/">
+            <time datetime="2017-12-21T03:36:54.000Z" itemprop="datePublished">2017-12-21</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><h2 id="1预测电影等级"><a href="#1预测电影等级" class="headerlink" title="1预测电影等级"></a>1预测电影等级</h2><p>推荐系统(recommender systems)，比如对像 Netflix 这样的公司 ，他们向用户推荐的电影 占了用户观看的电影的 相当大一部分 。</p>
+<p> 对于机器学习来说 特征量是重要的， 你选择的特征 对你学习算法的表现有很大影响。 在机器学习领域 有这么一个宏大的想法， 就是对于一些问题  存在一些算法， 能试图自动地替你学习到一组优良的特征量。 </p>
+<p> 而推荐系统 就是这种情形的一个例子。还有其他很多例子 但通过学习推荐系统 ，我们将能够 对这种学习特征量的想法 有一点理解。</p></p>
+            <p class="article-more-link">
+                <a href="/2017/12/21/coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2017/12/21/coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统/" data-id="cjcreggzw0020ssje7mm8kxn6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2017/12/21/coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2017/12/21/coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/2017/12/20/coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测/" itemprop="url">
+            <img src="http://img4.cache.netease.com/photo/0003/2009-05-05/58IOEADL0BOd0003.jpg" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/12/20/coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测/">coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/12/20/coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测/">
+            <time datetime="2017-12-20T03:31:54.000Z" itemprop="datePublished">2017-12-20</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><h2 id="1异常检测"><a href="#1异常检测" class="headerlink" title="1异常检测"></a>1异常检测</h2><p>异常检测(Anomaly detection)问题 是机器学习算法 的一个常见应用， 这种算法的一个有趣之处在于 ：它虽然主要用于 非监督学习问题 ，但从某些角度看 它又类似于一些监督学习问题 。</p>
+<h3 id="1-1引入"><a href="#1-1引入" class="headerlink" title="1.1引入"></a>1.1引入</h3><p>那么 什么是异常检测呢？ </p>
+<p>为了解释这个概念 ，让我举一个例子吧： 假想你是一个 飞机引擎制造商， 当你生产的飞机引擎 从生产线上流出时 你需要进行 QA (质量控制测试)， 而作为这个测试的一部分 你测量了飞机引擎的一些特征变量 ，比如 你可能测量了 引擎运转时产生的热量， 或者引擎的振动等等 。采集这些特征变量 这样一来 你就有了一个数据集 ，从x(1)到x(m)， 如果你生产了m个引擎的话 也许你会将这些数据绘制成图表。</p></p>
+            <p class="article-more-link">
+                <a href="/2017/12/20/coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2017/12/20/coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测/" data-id="cjcreggzt001yssjepzw1kcyd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2017/12/20/coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2017/12/20/coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/2017/12/19/coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习/" itemprop="url">
+            <img src="http://img3.cache.netease.com/photo/0003/2009-05-05/58IOE7C80BOd0003.jpg" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/12/19/coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习/">coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/12/19/coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习/">
+            <time datetime="2017-12-19T02:31:54.000Z" itemprop="datePublished">2017-12-19</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>对于无监督学习我们主要学习两种算法：聚类（K-means）和维度约简（PCA法）。</p>
+<h2 id="1聚类算法clutering"><a href="#1聚类算法clutering" class="headerlink" title="1聚类算法clutering"></a>1聚类算法clutering</h2><h3 id="1-1聚类算法简介"><a href="#1-1聚类算法简介" class="headerlink" title="1.1聚类算法简介"></a>1.1聚类算法简介</h3><p>无监督学习：我们面对的是一组无标记的训练数据， 数据之间， 不具任何相关联的标记。如图：<br></p>
+            <p class="article-more-link">
+                <a href="/2017/12/19/coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2017/12/19/coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习/" data-id="cjcreggzr001ussjepdazhizi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2017/12/19/coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2017/12/19/coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/2017/12/15/coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM/" itemprop="url">
+            <img src="http://img3.cache.netease.com/photo/0003/2009-05-05/58IOE5760BOd0003.jpg" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/12/15/coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM/">coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/12/15/coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM/">
+            <time datetime="2017-12-15T02:21:54.000Z" itemprop="datePublished">2017-12-15</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><h2 id="1大间距分类器-large-margin-classifier"><a href="#1大间距分类器-large-margin-classifier" class="headerlink" title="1大间距分类器 large margin classifier"></a>1大间距分类器 large margin classifier</h2><h3 id="1-1通过逻辑回归引入SVM"><a href="#1-1通过逻辑回归引入SVM" class="headerlink" title="1.1通过逻辑回归引入SVM"></a>1.1通过逻辑回归引入SVM</h3><p>先回顾一下逻辑回归的相关概念<br>$h_\theta(x) = \frac{1}{1+e^{-\theta^T x}}$</p>
+<p><img src="http://img.blog.csdn.net/20170531165409816?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjcwMDgwNzk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<ul>
+<li>IF y=1, we want hθ(x)≈1, θTx≫0 </li>
+<li>IF y=0, we want hθ(x)≈0, θTx≪0</li>
+</ul>
+<p>其CostFunction为：<br></p>
+            <p class="article-more-link">
+                <a href="/2017/12/15/coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2017/12/15/coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM/" data-id="cjcreggzo001sssjeup1ipumo" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2017/12/15/coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2017/12/15/coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-coursera-斯坦福-机器学习-吴恩达-第6周笔记-算法改进and机器学习系统设计" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -413,7 +996,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/12/14/coursera-斯坦福-机器学习-吴恩达-第6周笔记-算法改进and机器学习系统设计/" data-id="cjcre6xxq001nnbjentr7brzx" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/12/14/coursera-斯坦福-机器学习-吴恩达-第6周笔记-算法改进and机器学习系统设计/" data-id="cjcreggzj001nssjel9g9jwag" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -562,7 +1145,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/12/03/coursera-斯坦福-机器学习-吴恩达-第5周笔记-反向传播/" data-id="cjcre6xxn001knbjelyjlvaf5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/12/03/coursera-斯坦福-机器学习-吴恩达-第5周笔记-反向传播/" data-id="cjcreggzg001kssjepjshzyd0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -708,7 +1291,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/11/30/coursera-斯坦福-机器学习-吴恩达-第4周笔记-神经网络/" data-id="cjcre6xxk001fnbjemlqs4oiq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/11/30/coursera-斯坦福-机器学习-吴恩达-第4周笔记-神经网络/" data-id="cjcreggzd001fssjezjnhllgj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -858,7 +1441,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/11/28/coursera-斯坦福-机器学习-吴恩达-第3周笔记-逻辑回归/" data-id="cjcre6xxi001cnbjeh1ml2ok1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/11/28/coursera-斯坦福-机器学习-吴恩达-第3周笔记-逻辑回归/" data-id="cjcreggzb001cssjedezo0p63" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1003,7 +1586,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/11/21/coursera-斯坦福-机器学习-吴恩达-第2周笔记/" data-id="cjcre6xxb0018nbjebv3wkl9k" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/11/21/coursera-斯坦福-机器学习-吴恩达-第2周笔记/" data-id="cjcreggz70018ssjez3wx0dfo" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1081,590 +1664,6 @@
 
 
 
-    <article id="post-coursera-斯坦福-机器学习-吴恩达-第1周笔记" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music2.jpg" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/">coursera-斯坦福-机器学习-吴恩达-第1周笔记</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/">
-            <time datetime="2017-11-16T13:02:34.000Z" itemprop="datePublished">2017-11-16</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0 前言"></a>0 前言</h2><p>第一，这门课是最好的机器学习、深度学习入门教程之一，老师很有名气，是深度学习三驾马车之一的吴恩达，而且课程讲的很通俗易懂。</p>
-<p>每堂课后面还有编程作业，一定要做。课程推荐使用Octave编程语言，只需要填写核心代码，很适合自学。这门语言很多人没有学过，有些排斥。但是学计算机的同志就是要保持对新事物新工具的热爱，更何况这门语言并不难。</p>
-<p>第二，我发现网络上关于这门课的笔记有很多，但是质量参差不齐。有的虎头蛇尾甚至半途而废；有的几乎就是复制英文讲义，没有自己的理解。这也是我写笔记的目的，顺便强化自己的理解。</p></p>
-            <p class="article-more-link">
-                <a href="/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/" data-id="cjcre6xx90017nbjee97z5sly" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://yoursite.com/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-深度学习 自然语言处理 怎么获得数据集 中文语料集？" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2017/09/19/深度学习 自然语言处理 怎么获得数据集 中文语料集？/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/guitarist.jpg" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/09/19/深度学习 自然语言处理 怎么获得数据集 中文语料集？/">深度学习 自然语言处理 怎么获得数据集 中文语料集？</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/09/19/深度学习 自然语言处理 怎么获得数据集 中文语料集？/">
-            <time datetime="2017-09-19T12:07:04.000Z" itemprop="datePublished">2017-09-19</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/自然语言处理/">自然语言处理</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/深度学习/">深度学习</a>, <a class="tag-link" href="/tags/自然语言处理/">自然语言处理</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p>现如今构件人工智能、机器学习甚至深度学习系统，变得越来越容易。</p>
-<p>但是让这些模型或者系统真正有价值的却是“数据”。那么如果刚刚上手机器学习或者深度学习，怎么寻找合适的数据集呢？</p>
-<p>下面就介绍一些获取数据的方法：</p></p>
-            <p class="article-more-link">
-                <a href="/2017/09/19/深度学习 自然语言处理 怎么获得数据集 中文语料集？/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2017/09/19/深度学习 自然语言处理 怎么获得数据集 中文语料集？/" data-id="cjcre6xzq003pnbjeh4ziqrh6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://yoursite.com/2017/09/19/深度学习 自然语言处理 怎么获得数据集 中文语料集？/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2017/09/19/深度学习 自然语言处理 怎么获得数据集 中文语料集？/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-在TensorFlow中实现文本分类的CNN" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2017/09/06/在TensorFlow中实现文本分类的CNN/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/arabic-pyramid.jpg" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/09/06/在TensorFlow中实现文本分类的CNN/">在TensorFlow中实现文本分类的CNN</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/09/06/在TensorFlow中实现文本分类的CNN/">
-            <time datetime="2017-09-05T17:07:04.000Z" itemprop="datePublished">2017-09-06</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/自然语言处理/">自然语言处理</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/CNN/">CNN</a>, <a class="tag-link" href="/tags/Tensorflow/">Tensorflow</a>, <a class="tag-link" href="/tags/自然语言处理/">自然语言处理</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><p><strong>注意</strong>：</p>
-<ul>
-<li>本文翻译自WILDML的博客Implementing a CNN for Text Classification in TensorFlow</li>
-<li>博客地址： <a href="http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/" target="_blank" rel="noopener">http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/</a></li>
-<li>github地址：<a href="https://github.com/dennybritz/cnn-text-classification-tf" target="_blank" rel="noopener">https://github.com/dennybritz/cnn-text-classification-tf</a></li>
-</ul>
-<p>在这篇文章中，我们将实现一个类似于Kim Yoon的卷积神经网络语句分类模型。 本文提出的模型在一系列文本分类任务（如情绪分析）中实现了良好的分类性能，并已成为新的文本分类架构的标准基准。</p></p>
-            <p class="article-more-link">
-                <a href="/2017/09/06/在TensorFlow中实现文本分类的CNN/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2017/09/06/在TensorFlow中实现文本分类的CNN/" data-id="cjcre6xz10031nbjen2y9pi3m" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://yoursite.com/2017/09/06/在TensorFlow中实现文本分类的CNN/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2017/09/06/在TensorFlow中实现文本分类的CNN/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-零基础学习GitHub桌面版-5 github的使用技巧" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2017/09/04/零基础学习GitHub桌面版-5 github的使用技巧/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/china-great-wall.jpg" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2017/09/04/零基础学习GitHub桌面版-5 github的使用技巧/">零基础学习GitHub桌面版-5 github的使用技巧</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/09/04/零基础学习GitHub桌面版-5 github的使用技巧/">
-            <time datetime="2017-09-04T09:07:04.000Z" itemprop="datePublished">2017-09-04</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Git/">Git</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Git/">Git</a>, <a class="tag-link" href="/tags/GitHub/">GitHub</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><h1 id="github的使用技巧"><a href="#github的使用技巧" class="headerlink" title="github的使用技巧"></a>github的使用技巧</h1><p>在上述的几篇教程里讲解了一些Github的基础使用，看完之后一定要自己动手操纵一遍才能有深刻印象。等把这些个功能都试过一遍之后，你会发现这些东西都是相通的，可以举一反三。</p>
-<p>千面学会了基础的用法，今天开始分享一些github使用小技巧。</p>
-<h2 id="1-查找内容"><a href="#1-查找内容" class="headerlink" title="1 查找内容"></a>1 查找内容</h2></p>
-            <p class="article-more-link">
-                <a href="/2017/09/04/零基础学习GitHub桌面版-5 github的使用技巧/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2017/09/04/零基础学习GitHub桌面版-5 github的使用技巧/" data-id="cjcre6y0m004mnbjeyg8ew6we" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://yoursite.com/2017/09/04/零基础学习GitHub桌面版-5 github的使用技巧/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2017/09/04/零基础学习GitHub桌面版-5 github的使用技巧/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
         <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
     </nav>
@@ -1701,10 +1700,10 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/12/14/coursera-斯坦福-机器学习-吴恩达-第6周笔记-算法改进and机器学习系统设计/" class="thumbnail">
+                            <a href="/2017/12/21/coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统/" class="thumbnail">
     
     
-        <span style="background-image:url(http://img4.cache.netease.com/photo/0003/2009-05-05/58IOE4B60BOd0003.jpg)" alt="coursera-斯坦福-机器学习-吴恩达-第6周笔记-算法改进and机器学习系统设计" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ent.163.com/photoview/0BOd0003/24411.html#p=58IOGIE80BOd0003)" alt="coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统" class="thumbnail-image"></span>
     
 </a>
 
@@ -1712,18 +1711,18 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/机器学习/">机器学习</a></p>
-                            <p class="item-title"><a href="/2017/12/14/coursera-斯坦福-机器学习-吴恩达-第6周笔记-算法改进and机器学习系统设计/" class="title">coursera-斯坦福-机器学习-吴恩达-第6周笔记-算法改进and机器学习系统设计</a></p>
-                            <p class="item-date"><time datetime="2017-12-14T02:21:34.000Z" itemprop="datePublished">2017-12-14</time></p>
+                            <p class="item-title"><a href="/2017/12/21/coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统/" class="title">coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统</a></p>
+                            <p class="item-date"><time datetime="2017-12-21T03:36:54.000Z" itemprop="datePublished">2017-12-21</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/12/03/coursera-斯坦福-机器学习-吴恩达-第5周笔记-反向传播/" class="thumbnail">
+                            <a href="/2017/12/20/coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测/" class="thumbnail">
     
     
-        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music1.jpg)" alt="coursera-斯坦福-机器学习-吴恩达-第5周笔记-反向传播" class="thumbnail-image"></span>
+        <span style="background-image:url(http://img4.cache.netease.com/photo/0003/2009-05-05/58IOEADL0BOd0003.jpg)" alt="coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测" class="thumbnail-image"></span>
     
 </a>
 
@@ -1731,18 +1730,18 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/机器学习/">机器学习</a></p>
-                            <p class="item-title"><a href="/2017/12/03/coursera-斯坦福-机器学习-吴恩达-第5周笔记-反向传播/" class="title">coursera-斯坦福-机器学习-吴恩达-第5周笔记-反向传播</a></p>
-                            <p class="item-date"><time datetime="2017-12-03T02:51:34.000Z" itemprop="datePublished">2017-12-03</time></p>
+                            <p class="item-title"><a href="/2017/12/20/coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测/" class="title">coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测</a></p>
+                            <p class="item-date"><time datetime="2017-12-20T03:31:54.000Z" itemprop="datePublished">2017-12-20</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/11/30/coursera-斯坦福-机器学习-吴恩达-第4周笔记-神经网络/" class="thumbnail">
+                            <a href="/2017/12/19/coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习/" class="thumbnail">
     
     
-        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/smartphone.jpg)" alt="coursera-斯坦福-机器学习-吴恩达-第4周笔记-神经网络" class="thumbnail-image"></span>
+        <span style="background-image:url(http://img3.cache.netease.com/photo/0003/2009-05-05/58IOE7C80BOd0003.jpg)" alt="coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习" class="thumbnail-image"></span>
     
 </a>
 
@@ -1750,18 +1749,18 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/机器学习/">机器学习</a></p>
-                            <p class="item-title"><a href="/2017/11/30/coursera-斯坦福-机器学习-吴恩达-第4周笔记-神经网络/" class="title">coursera-斯坦福-机器学习-吴恩达-第4周笔记-神经网络</a></p>
-                            <p class="item-date"><time datetime="2017-11-30T02:01:34.000Z" itemprop="datePublished">2017-11-30</time></p>
+                            <p class="item-title"><a href="/2017/12/19/coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习/" class="title">coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习</a></p>
+                            <p class="item-date"><time datetime="2017-12-19T02:31:54.000Z" itemprop="datePublished">2017-12-19</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/11/28/coursera-斯坦福-机器学习-吴恩达-第3周笔记-逻辑回归/" class="thumbnail">
+                            <a href="/2017/12/15/coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM/" class="thumbnail">
     
     
-        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/niagara.jpg)" alt="coursera-斯坦福-机器学习-吴恩达-第3周笔记-逻辑回归" class="thumbnail-image"></span>
+        <span style="background-image:url(http://img3.cache.netease.com/photo/0003/2009-05-05/58IOE5760BOd0003.jpg)" alt="coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM" class="thumbnail-image"></span>
     
 </a>
 
@@ -1769,8 +1768,8 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/机器学习/">机器学习</a></p>
-                            <p class="item-title"><a href="/2017/11/28/coursera-斯坦福-机器学习-吴恩达-第3周笔记-逻辑回归/" class="title">coursera-斯坦福-机器学习-吴恩达-第3周笔记-逻辑回归</a></p>
-                            <p class="item-date"><time datetime="2017-11-28T03:01:34.000Z" itemprop="datePublished">2017-11-28</time></p>
+                            <p class="item-title"><a href="/2017/12/15/coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM/" class="title">coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM</a></p>
+                            <p class="item-date"><time datetime="2017-12-15T02:21:54.000Z" itemprop="datePublished">2017-12-15</time></p>
                         </div>
                     </li>
                 
@@ -1783,7 +1782,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习/">深度学习</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自然语言处理/">自然语言处理</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/驱动开发/">驱动开发</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习/">深度学习</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自然语言处理/">自然语言处理</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/驱动开发/">驱动开发</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1792,7 +1791,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -1801,7 +1800,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Anaconda/">Anaconda</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DevOps/">DevOps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DriverSttudio3-2/">DriverSttudio3.2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Editplus/">Editplus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBK/">GBK</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keras/">Keras</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/">Oracle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pycharm/">Pycharm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/">RNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tensorboard/">Tensorboard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tensorflow/">Tensorflow</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/USB/">USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UTF-8/">UTF-8</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coursera/">coursera</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ddk/">ddk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jieba/">jieba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myeclipse/">myeclipse</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scrapy/">scrapy</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win7/">win7</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/word2vec/">word2vec</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分词/">分词</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习路线/">学习路线</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/报错/">报错</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件操作/">文件操作</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汽车之家/">汽车之家</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/驱动程序/">驱动程序</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Anaconda/">Anaconda</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DevOps/">DevOps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DriverSttudio3-2/">DriverSttudio3.2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Editplus/">Editplus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBK/">GBK</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keras/">Keras</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/">Oracle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pycharm/">Pycharm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/">RNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tensorboard/">Tensorboard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tensorflow/">Tensorflow</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/USB/">USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UTF-8/">UTF-8</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coursera/">coursera</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ddk/">ddk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jieba/">jieba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myeclipse/">myeclipse</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scrapy/">scrapy</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win7/">win7</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/word2vec/">word2vec</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分词/">分词</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习路线/">学习路线</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/报错/">报错</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件操作/">文件操作</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汽车之家/">汽车之家</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/驱动程序/">驱动程序</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1810,7 +1809,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Anaconda/" style="font-size: 12.5px;">Anaconda</a> <a href="/tags/CNN/" style="font-size: 11.25px;">CNN</a> <a href="/tags/DevOps/" style="font-size: 10px;">DevOps</a> <a href="/tags/DriverSttudio3-2/" style="font-size: 10px;">DriverSttudio3.2</a> <a href="/tags/Editplus/" style="font-size: 10px;">Editplus</a> <a href="/tags/GBK/" style="font-size: 11.25px;">GBK</a> <a href="/tags/Git/" style="font-size: 17.5px;">Git</a> <a href="/tags/GitHub/" style="font-size: 17.5px;">GitHub</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Keras/" style="font-size: 10px;">Keras</a> <a href="/tags/Linux/" style="font-size: 13.75px;">Linux</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/Pycharm/" style="font-size: 12.5px;">Pycharm</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Tensorboard/" style="font-size: 10px;">Tensorboard</a> <a href="/tags/Tensorflow/" style="font-size: 13.75px;">Tensorflow</a> <a href="/tags/USB/" style="font-size: 10px;">USB</a> <a href="/tags/UTF-8/" style="font-size: 11.25px;">UTF-8</a> <a href="/tags/coursera/" style="font-size: 16.25px;">coursera</a> <a href="/tags/ddk/" style="font-size: 10px;">ddk</a> <a href="/tags/eclipse/" style="font-size: 13.75px;">eclipse</a> <a href="/tags/jieba/" style="font-size: 10px;">jieba</a> <a href="/tags/myeclipse/" style="font-size: 12.5px;">myeclipse</a> <a href="/tags/scrapy/" style="font-size: 15px;">scrapy</a> <a href="/tags/win7/" style="font-size: 10px;">win7</a> <a href="/tags/word2vec/" style="font-size: 10px;">word2vec</a> <a href="/tags/分词/" style="font-size: 10px;">分词</a> <a href="/tags/学习路线/" style="font-size: 11.25px;">学习路线</a> <a href="/tags/报错/" style="font-size: 16.25px;">报错</a> <a href="/tags/文件操作/" style="font-size: 10px;">文件操作</a> <a href="/tags/机器学习/" style="font-size: 16.25px;">机器学习</a> <a href="/tags/汽车之家/" style="font-size: 11.25px;">汽车之家</a> <a href="/tags/深度学习/" style="font-size: 16.25px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 18.75px;">爬虫</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/自然语言处理/" style="font-size: 16.25px;">自然语言处理</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/驱动程序/" style="font-size: 10px;">驱动程序</a>
+            <a href="/tags/Anaconda/" style="font-size: 12.22px;">Anaconda</a> <a href="/tags/CNN/" style="font-size: 11.11px;">CNN</a> <a href="/tags/DevOps/" style="font-size: 10px;">DevOps</a> <a href="/tags/DriverSttudio3-2/" style="font-size: 10px;">DriverSttudio3.2</a> <a href="/tags/Editplus/" style="font-size: 10px;">Editplus</a> <a href="/tags/GBK/" style="font-size: 11.11px;">GBK</a> <a href="/tags/Git/" style="font-size: 16.67px;">Git</a> <a href="/tags/GitHub/" style="font-size: 16.67px;">GitHub</a> <a href="/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/tags/Keras/" style="font-size: 10px;">Keras</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/Pycharm/" style="font-size: 12.22px;">Pycharm</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Tensorboard/" style="font-size: 10px;">Tensorboard</a> <a href="/tags/Tensorflow/" style="font-size: 13.33px;">Tensorflow</a> <a href="/tags/USB/" style="font-size: 10px;">USB</a> <a href="/tags/UTF-8/" style="font-size: 11.11px;">UTF-8</a> <a href="/tags/coursera/" style="font-size: 18.89px;">coursera</a> <a href="/tags/ddk/" style="font-size: 10px;">ddk</a> <a href="/tags/eclipse/" style="font-size: 13.33px;">eclipse</a> <a href="/tags/jieba/" style="font-size: 10px;">jieba</a> <a href="/tags/myeclipse/" style="font-size: 12.22px;">myeclipse</a> <a href="/tags/scrapy/" style="font-size: 14.44px;">scrapy</a> <a href="/tags/win7/" style="font-size: 10px;">win7</a> <a href="/tags/word2vec/" style="font-size: 10px;">word2vec</a> <a href="/tags/分词/" style="font-size: 10px;">分词</a> <a href="/tags/学习路线/" style="font-size: 11.11px;">学习路线</a> <a href="/tags/报错/" style="font-size: 15.56px;">报错</a> <a href="/tags/文件操作/" style="font-size: 10px;">文件操作</a> <a href="/tags/机器学习/" style="font-size: 18.89px;">机器学习</a> <a href="/tags/汽车之家/" style="font-size: 11.11px;">汽车之家</a> <a href="/tags/深度学习/" style="font-size: 15.56px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 17.78px;">爬虫</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/自然语言处理/" style="font-size: 15.56px;">自然语言处理</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/驱动程序/" style="font-size: 10px;">驱动程序</a>
         </div>
     </div>
 
