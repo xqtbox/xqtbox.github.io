@@ -3,18 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>归档: 2015/5 | 博客堂</title>
+    <title>VC6.0+ddk+DriverStudio3.2安装与配置 | 博客堂</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Note">
-<meta property="og:type" content="website">
-<meta property="og:title" content="博客堂">
-<meta property="og:url" content="http://yoursite.com/archives/2015/05/index.html">
+    <meta name="description" content="再学习VS2013+wdk之前。首先学习VC6.0+ddk+DriverStudio3.2环境下的驱动开发，来理解驱动的世界。完全新手，从零开始，亚历山大，且行且珍惜。。。。。 首先是：环境的搭建">
+<meta name="keywords" content="USB,驱动程序,DriverSttudio3.2,ddk">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VC6.0+ddk+DriverStudio3.2安装与配置">
+<meta property="og:url" content="http://yoursite.com/2016/11/18/VC6.0+ddk+DriverStudio3.2安装与配置/index.html">
 <meta property="og:site_name" content="博客堂">
-<meta property="og:description" content="Note">
+<meta property="og:description" content="再学习VS2013+wdk之前。首先学习VC6.0+ddk+DriverStudio3.2环境下的驱动开发，来理解驱动的世界。完全新手，从零开始，亚历山大，且行且珍惜。。。。。 首先是：环境的搭建">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/niagara.jpg">
+<meta property="og:updated_time" content="2018-01-23T03:12:11.564Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博客堂">
-<meta name="twitter:description" content="Note">
+<meta name="twitter:title" content="VC6.0+ddk+DriverStudio3.2安装与配置">
+<meta name="twitter:description" content="再学习VS2013+wdk之前。首先学习VC6.0+ddk+DriverStudio3.2环境下的驱动开发，来理解驱动的世界。完全新手，从零开始，亚历山大，且行且珍惜。。。。。 首先是：环境的搭建">
+<meta name="twitter:image" content="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/niagara.jpg">
     
 
     
@@ -211,50 +215,193 @@
 </aside>
 
             
-            <section id="main"><div class="timeline timeline-wrap">
-    
-            <div class="timeline-row timeline-row-major">
-                <span class="node"><i class="fa fa-calendar"></i></span>
-                <h1 class="title">2015</h1>
-            </div>
+            <section id="main"><article id="post-VC6.0+ddk+DriverStudio3.2安装与配置" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            
+	
+		<img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/niagara.jpg" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2015/05/21/在win7环境下oracle10g安装问题/">在win7环境下oracle10g安装问题</a>
+        <h1 class="article-title" itemprop="name">
+            VC6.0+ddk+DriverStudio3.2安装与配置
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2015/05/21/在win7环境下oracle10g安装问题/">
-            <time datetime="2015-05-21T13:07:04.000Z" itemprop="datePublished">2015-05-21</time>
+        <a href="/2016/11/18/VC6.0+ddk+DriverStudio3.2安装与配置/">
+            <time datetime="2016-11-18T13:07:04.000Z" itemprop="datePublished">2016-11-18</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/数据库/">数据库</a>
+        <a class="article-category-link" href="/categories/驱动开发/">驱动开发</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Oracle/">Oracle</a>, <a class="tag-link" href="/tags/win7/">win7</a>
+        <a class="tag-link" href="/tags/DriverSttudio3-2/">DriverSttudio3.2</a>, <a class="tag-link" href="/tags/USB/">USB</a>, <a class="tag-link" href="/tags/ddk/">ddk</a>, <a class="tag-link" href="/tags/驱动程序/">驱动程序</a>
     </div>
 
-                </div>
-            </div>
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>再学习VS2013+wdk之前。首先学习VC6.0+ddk+DriverStudio3.2环境下的驱动开发，来理解驱动的世界。<br>完全新手，从零开始，亚历山大，且行且珍惜。。。。。</p>
+<p>首先是：环境的搭建<br><a id="more"></a></p>
+<h1 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h1><h2 id="一"><a href="#一" class="headerlink" title="一."></a>一.</h2><p>软件的安装顺序:Windows XP（虚拟机中） –&gt; VC6.0 –&gt; WinXP_DDK -&gt; DriverStudio3.2，<br>如果顺序装错了，那么把DriverStudio3.2删除再重装就OK了。</p>
+<p>下载地址：<br>1.vc6.0英文原版（最好不要用中文版）:  <a href="http://down.liangchan.net/microsoftvisualc-en6.0.zip" target="_blank" rel="noopener">http://down.liangchan.net/microsoftvisualc-en6.0.zip</a></p>
+<p>2.WinXP_DDK：安装DDK，安装时注意需要将所有的组件、工具、例子等都安装（避免出现hidport.h找不到的问题）。       <a href="http://download.microsoft.com/download/9/0/f/90f019ac-8243-48d3-91cf-81fc4093ecfd/1830_usa_ddk.iso" target="_blank" rel="noopener">http://download.microsoft.com/download/9/0/f/90f019ac-8243-48d3-91cf-81fc4093ecfd/1830_usa_ddk.iso</a></p>
+<p>3.DriverStudio3.2：      <a href="http://ttl4.pc6.com/tx/driverstudio.zip" target="_blank" rel="noopener">http://ttl4.pc6.com/tx/driverstudio.zip</a> （安装时会检测系统有无D盘，如果虚机中XP无D盘，安装不上。用“分区助手”分下区即可）</p>
+<h2 id="二-配置DriverStudio"><a href="#二-配置DriverStudio" class="headerlink" title="二.配置DriverStudio"></a>二.配置DriverStudio</h2><p>1.从网上找到库文件 ntstrsafe.lib+csq.lib.rar，把解压出来的两个库文件拷贝到WinXP_DDK的安装目录下的库目录中.<br>（我的是 C:\WINDDK\2600\lib\wxp\i386）。启动vc6，然后进行简单的配置：菜单DriverStudio菜单下的DDK Build Settings，在弹出的对话框中选择已经安装的DDK目录（比如我的是C:\WINDDK\2600），</p>
+<p>（ntstrsafe.lib+csq.lib.rar下载地址： <a href="http://download.csdn.net/detail/victoryckl/4444640" target="_blank" rel="noopener">http://download.csdn.net/detail/victoryckl/4444640</a>     ）</p>
+<p>2.在Windows DDK compiler Options中选择”Enable only for Driver Studio”。<br>VC6.0–&gt;Tools–&gt;Options，点击”Directories”选项卡：<br>1）·“Show directories for:”下选择Include files，然后检查有没有包含ddk的头文件目录（我的是C:\WINDDK\2600\inc\wxp），如果没有则加上；<br> 以及<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\WINDDK\2600\INC\W2K </span><br><span class="line">C:\WINDDK\2600\INC\DDK\W2K </span><br><span class="line">C:\WINDDK\2600\INC\DDK\WDM\W2K</span><br></pre></td></tr></table></figure></p>
+<p>2）·“Show directories for:”下选择Library files，然后检查有没有包含ddk的库文件目录（我的是C:\WINDDK\2600\lib\wxp\i386），如果没有则加上；<br>以及  C:\WINDDK\2600\LIB\W2K\I386  </p>
+<h2 id="三。编译库文件（一定注意32位）"><a href="#三。编译库文件（一定注意32位）" class="headerlink" title="三。编译库文件（一定注意32位）"></a>三。编译库文件（一定注意32位）</h2><p>·编译适合本机使用的库文件（以下内容，如果用DDK编程者可以不看）</p>
+<p>(1).启动VC6.0。开始–&gt;所有程序 –&gt;Compuware DriveStudio–&gt;Develop–&gt;DDK Building Settings，确保“DDK Root Directory”下方的内容是ddk的安装目录（比如我的是C:\WINDDK\2600），然后点击下方的”Luanch Program”正式启动vc6的开发环境。</p>
+<p>(2).进入菜单File–&gt;Open Workspace(打开位于DriverStudio3.2安装目录的\DriverWorks\Source\vdwlibs.dsw)–&gt; 进入菜单Build–&gt;batch Build，点击“Select x86”按钮只选中全部的32位库（我的电脑是32位的。注意：对于32位的电脑一定不要选中64位的库，否则后面编译会出错）–&gt;点击按 钮”Rebuild AlL”开始编译。(注意：这种方法我曾经成功过一次，但后来再也没成功过，于是百度GOOGLE很久，发现下面这样也行：设置VdwLibs为活动项，选中Win32 WDM Checked,然后用DriverStudio里面的 Build with Build.exe即可以。然后再选Win32 WDM Free再Build一下，这样就出现了想要的vdw_wdm.lib）</p>
+<p>注:如果出现无法打开文件这类的错误,一般都是DDK Build Settings指向不对，或安装顺序有误，或者你在３２位机器上选中了６４位库。</p>
+<h2 id="四·编译一个DriverStudio自带的实例"><a href="#四·编译一个DriverStudio自带的实例" class="headerlink" title="四·编译一个DriverStudio自带的实例"></a>四·编译一个DriverStudio自带的实例</h2><p>（１）·启动ｖｃ６，点击菜单 File–&gt;Open Workspace，打开项目文件C:\Program Files\Compuware\DriverStudio\DriverWorks\Examples\wdm\hellowdm \HelloWdm.dsw，然后编译，如果没有报错，那说明安装和配置成功。但请你别高兴的太早，开发环境安装配置成功只是万里长城的第一步，剩下的你 就是要理解驱动模块的架构和具体的代码编写了。</p>
+<h2 id="五·使用Driver-wizard生成驱动程序框架"><a href="#五·使用Driver-wizard生成驱动程序框架" class="headerlink" title="五·使用Driver wizard生成驱动程序框架"></a>五·使用Driver wizard生成驱动程序框架</h2><p>(1).在VC6.0的界面下,点击菜单DriverStudio–&gt;Driver wizard，此后系统会一步一步引导你完成设置，最后自动生产的驱动程序框架。</p>
+<p>(2).设置好后将生成驱动文件,然后用VC6.0进行编译：进行Build菜单,Rebuild AlL将生成.sys文件,说明驱动模块编译成功！</p>
+<p>注:如果出现无法打开ntstrsafe.lib的错误，说明系统缺少这个库文件，参照上面的方法补上这个库文件，或者进入菜单 Project–&gt;Settings，鼠标点击左边方框里的最上面一行，然后右边”Project Option”下的ntstrsafe.lib并删除它。</p>
+
+        
         </div>
-    
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
 </div>
+
+    <a data-url="http://yoursite.com/2016/11/18/VC6.0+ddk+DriverStudio3.2安装与配置/" data-id="cjcr2esp50002qrjexq4skz9e" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2016/11/18/VC6.0+ddk+DriverStudio3.2安装与配置/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2016/11/18/VC6.0+ddk+DriverStudio3.2安装与配置/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/09/03/python结巴分词、jieba加载停用词表/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    python结巴分词、jieba加载停用词表
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2016/09/20/运维团队(OPS)与技术团队有效沟通配合探讨/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">运维团队(OPS)与技术团队有效沟通配合探讨</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+    
+
 </section>
             
                 
@@ -439,11 +586,13 @@
     <script>
     var disqus_config = function () {
         
-        this.page.identifier = '';
+            this.page.url = 'http://yoursite.com/2016/11/18/VC6.0+ddk+DriverStudio3.2安装与配置/';
+        
+        this.page.identifier = 'VC6.0+ddk+DriverStudio3.2安装与配置';
     };
     (function() { 
         var d = document, s = d.createElement('script');  
-        s.src = '//' + 'xqtbox' + '.disqus.com/count.js';
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
