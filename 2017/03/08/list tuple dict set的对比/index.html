@@ -3,18 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: 学习路线 | 博客堂</title>
+    <title>list tuple dict set的对比 | 博客堂</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Note">
-<meta property="og:type" content="website">
-<meta property="og:title" content="博客堂">
-<meta property="og:url" content="http://yoursite.com/tags/学习路线/index.html">
+    <meta name="description" content="[toc] 基本用法定义:list:链表,有序的项目, 通过索引进行查找,使用方括号”[]”;tuple:元组,元组将多样的对象集合到一起,不能修改,通过索引进行查找, 使用括号”()”;dict:字典,字典是一组键(key)和值(value)的组合,通过键(key)进行查找,没有顺序, 使用大括号”{}”;set:集合,无序,元素只出现一次, 自动去重,使用”set([])”应用场景:list,">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="list tuple dict set的对比">
+<meta property="og:url" content="http://yoursite.com/2017/03/08/list tuple dict set的对比/index.html">
 <meta property="og:site_name" content="博客堂">
-<meta property="og:description" content="Note">
+<meta property="og:description" content="[toc] 基本用法定义:list:链表,有序的项目, 通过索引进行查找,使用方括号”[]”;tuple:元组,元组将多样的对象集合到一起,不能修改,通过索引进行查找, 使用括号”()”;dict:字典,字典是一组键(key)和值(value)的组合,通过键(key)进行查找,没有顺序, 使用大括号”{}”;set:集合,无序,元素只出现一次, 自动去重,使用”set([])”应用场景:list,">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img4.cache.netease.com/photo/0003/2009-05-05/58IOEADL0BOd0003.jpg">
+<meta property="og:updated_time" content="2018-01-23T04:42:31.264Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博客堂">
-<meta name="twitter:description" content="Note">
+<meta name="twitter:title" content="list tuple dict set的对比">
+<meta name="twitter:description" content="[toc] 基本用法定义:list:链表,有序的项目, 通过索引进行查找,使用方括号”[]”;tuple:元组,元组将多样的对象集合到一起,不能修改,通过索引进行查找, 使用括号”()”;dict:字典,字典是一组键(key)和值(value)的组合,通过键(key)进行查找,没有顺序, 使用大括号”{}”;set:集合,无序,元素只出现一次, 自动去重,使用”set([])”应用场景:list,">
+<meta name="twitter:image" content="http://img4.cache.netease.com/photo/0003/2009-05-05/58IOEADL0BOd0003.jpg">
     
 
     
@@ -211,50 +215,214 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-tag"></i></span>
-        <h1 class="title">#学习路线</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-list tuple dict set的对比" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://img4.cache.netease.com/photo/0003/2009-05-05/58IOEADL0BOd0003.jpg" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2016/12/20/Python学习路线/">Python学习路线</a>
+        <h1 class="article-title" itemprop="name">
+            list tuple dict set的对比
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/12/20/Python学习路线/">
-            <time datetime="2016-12-20T13:07:04.000Z" itemprop="datePublished">2016-12-20</time>
+        <a href="/2017/03/08/list tuple dict set的对比/">
+            <time datetime="2017-03-08T04:35:33.000Z" itemprop="datePublished">2017-03-08</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
         <a class="article-category-link" href="/categories/Python/">Python</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Python/">Python</a>, <a class="tag-link" href="/tags/学习路线/">学习路线</a>
+        <a class="tag-link" href="/tags/Python/">Python</a>
     </div>
 
-                </div>
-            </div>
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>[toc]</p>
+<h1 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h1><p>定义:<br>list:链表,有序的项目, 通过索引进行查找,使用方括号”[]”;<br>tuple:元组,元组将多样的对象集合到一起,不能修改,通过索引进行查找, 使用括号”()”;<br>dict:字典,字典是一组键(key)和值(value)的组合,通过键(key)进行查找,没有顺序, 使用大括号”{}”;<br>set:集合,无序,元素只出现一次, 自动去重,使用”set([])”<br>应用场景:<br>list, 简单的数据集合,可以使用索引;<br>tuple, 把一些数据当做一个整体去使用,不能修改;<br>dict,使用键值和值进行关联的数据;<br>set,数据只出现一次,只关心数据是否出现, 不关心其位置;</p>
+<a id="more"></a>
+<h2 id="List-列表"><a href="#List-列表" class="headerlink" title="List 列表"></a>List 列表</h2><p>创建List：L = [‘Adam’, ‘Lisa’, ‘Bart’, ‘Gechong’, ‘Kongming’]</p>
+<p>显示List：L[0]</p>
+<p>遍历List：print (L)和for循环</p>
+<p>更新List：append()和insert()和直接赋值</p>
+<p>删除List：pop()和pop(n)</p>
+<p><strong>List特点</strong>：</p>
+<p>可以添加删除</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Li = [&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;, &apos;Gechong&apos;, &apos;Kongming&apos;]</span><br><span class="line"> </span><br><span class="line">print (Li)</span><br><span class="line"> </span><br><span class="line">for name in Li:</span><br><span class="line">    print(name)</span><br></pre></td></tr></table></figure>
+<h2 id="Tuple-元组"><a href="#Tuple-元组" class="headerlink" title="Tuple 元组"></a>Tuple 元组</h2><p>创建Tuple：Tu = (‘Adam’, ‘Lisa’, ‘Bart’, ‘Gechong’, ‘Kongming’)</p>
+<p>显示Tuple：Tu[0]</p>
+<p>遍历Tuple：print (Tu)和for循环</p>
+<p>更新Tuple：不可以更新</p>
+<p>删除Tuple：不可以删除</p>
+<p>Tuple特点：不可以改变，如果创建之后一个元素的Tuple时，要加”,”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Tu = (&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;, &apos;Gechong&apos;, &apos;Kongming&apos;)</span><br><span class="line"> </span><br><span class="line">print (Tu)</span><br><span class="line"> </span><br><span class="line">for name in Tu:</span><br><span class="line">    print(name)</span><br></pre></td></tr></table></figure>
+<h2 id="Dict字典"><a href="#Dict字典" class="headerlink" title="Dict字典"></a>Dict字典</h2><p>创建Dict：Di = {‘Adam’:100, ‘Lisa’:90, ‘Bart’:93, ‘Gechong’:100, ‘Kongming’:100}</p>
+<p>显示Dict：Di[‘Adam’]和Di.get(‘Adam’)</p>
+<p>遍历Dict：print(Di)和for循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Di = &#123;&apos;Adam&apos;:100, &apos;Lisa&apos;:90, &apos;Bart&apos;:93, &apos;Gechong&apos;:100, &apos;Kongming&apos;:100&#125;</span><br><span class="line"> </span><br><span class="line">for key in Di:</span><br><span class="line">    print (key)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Di = &#123;&apos;Adam&apos;:100, &apos;Lisa&apos;:90, &apos;Bart&apos;:93, &apos;Gechong&apos;:100, &apos;Kongming&apos;:100&#125;</span><br><span class="line"> </span><br><span class="line">for key in Di:</span><br><span class="line">    print (Di[key])</span><br></pre></td></tr></table></figure>
+<p>更新Dict：对应位置赋值即可</p>
+<p>删除Dict：</p>
+<p><strong>Dict特点</strong>：</p>
+<p>1：查找速度快</p>
+<p>2：浪费空间</p>
+<p>3：key不可以重复，且不可变</p>
+<p>4：数据无序排放</p>
+<h2 id="set-集合"><a href="#set-集合" class="headerlink" title="set 集合"></a>set 集合</h2><p>创建set：s = set([‘Adam’, ‘Lisa’, ‘Bart’, ‘Gechong’, ‘Kongming’])</p>
+<p>显示set：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s = set([&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;, &apos;Gechong&apos;, &apos;Kongming&apos;])</span><br><span class="line"> </span><br><span class="line">if &apos;Test&apos; in s:</span><br><span class="line">    print (&apos;Test&apos;)</span><br><span class="line">else:</span><br><span class="line">    print (&apos;No&apos;)</span><br></pre></td></tr></table></figure>
+<p>遍历set：print (s)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s = set([&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;, &apos;Gechong&apos;, &apos;Kongming&apos;])</span><br><span class="line"> </span><br><span class="line">for name in s:</span><br><span class="line">    print (name)</span><br></pre></td></tr></table></figure>
+<p>更新set：s.add()</p>
+<p>删除set：s.remove()</p>
+<h1 id="考虑性能"><a href="#考虑性能" class="headerlink" title="考虑性能"></a>考虑性能</h1><p>Python中Set和List的性能差距能有数百倍<br>如果有需要求（集合，列表等）的并集和交集的时候，最好使用Set。</p>
+<p>set和lsit可以自由转换，在删除list中多个/海量重复元素时，可以先转换成set，然后再转回list并排序(set没有排序)。此种方法不仅方便且效率较高。</p>
+
+        
         </div>
-    
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
 </div>
+
+    <a data-url="http://yoursite.com/2017/03/08/list tuple dict set的对比/" data-id="cjcr5n2tt000chxjej672maj8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2017/03/08/list tuple dict set的对比/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2017/03/08/list tuple dict set的对比/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/05/01/文件操作与数据存储json/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    文件操作与数据存储json
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/03/05/Python深度学习路线/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Python深度学习路线</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+    
+
 </section>
             
                 
@@ -439,11 +607,13 @@
     <script>
     var disqus_config = function () {
         
-        this.page.identifier = '';
+            this.page.url = 'http://yoursite.com/2017/03/08/list tuple dict set的对比/';
+        
+        this.page.identifier = 'list tuple dict set的对比';
     };
     (function() { 
         var d = document, s = d.createElement('script');  
-        s.src = '//' + 'xqtbox' + '.disqus.com/count.js';
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
