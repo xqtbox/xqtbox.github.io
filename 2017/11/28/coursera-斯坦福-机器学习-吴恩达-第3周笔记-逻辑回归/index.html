@@ -14,7 +14,7 @@
 <meta property="og:description" content="1.分类 和 模型表示这一周对应PPT lecture6 逻辑回归 1.1分类的概念 Classification先来谈谈二分类问题。课程中先给出了几个例子。   邮件是垃圾邮件还是非垃圾邮件； 网上交易是的欺骗性（Y or N）； 肿瘤是恶性的还是良性的。   对于这些问题，我们可以通过输出值y ϵ {0, 1} 来表示。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/niagara.jpg">
-<meta property="og:updated_time" content="2018-01-23T08:13:43.105Z">
+<meta property="og:updated_time" content="2018-01-23T08:36:01.569Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="coursera-斯坦福-机器学习-吴恩达-第3周笔记-逻辑回归">
 <meta name="twitter:description" content="1.分类 和 模型表示这一周对应PPT lecture6 逻辑回归 1.1分类的概念 Classification先来谈谈二分类问题。课程中先给出了几个例子。   邮件是垃圾邮件还是非垃圾邮件； 网上交易是的欺骗性（Y or N）； 肿瘤是恶性的还是良性的。   对于这些问题，我们可以通过输出值y ϵ {0, 1} 来表示。">
@@ -281,23 +281,23 @@
 <p>我们提出来了一种新的回归模型：</p>
 <p>$y=h_\theta(x) = g(\theta^Tx)$</p>
 <p>其中：<br>$$g(z) = \frac{1}{1 + e^{-z}}$$</p>
-<p>则<br>$$h_\theta(x) = \frac{1}{1 + e^{-\theta^Tx}}<br>$$<br>g(z)这个函数称之为：logistic function 或者 sigmoid function<br>，其图像为：<br><img src="http://img.blog.csdn.net/20170424181907686?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjcwMDgwNzk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<p>则<br>$$h_\theta(x) = \frac{1}{1 + e^{-\theta^Tx}}$$<br>g(z)这个函数称之为：logistic function 或者 sigmoid function<br>，其图像为：<br><img src="http://img.blog.csdn.net/20170424181907686?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjcwMDgwNzk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
 <h3 id="1-3-分类边界"><a href="#1-3-分类边界" class="headerlink" title="1.3 分类边界"></a>1.3 分类边界</h3><p>有了模型，怎么分类呢？</p>
 <p>当y&gt;0.5的时候，为正。此时由图像可知：</p>
-<p>$h_\theta(x) \geq 0.5 $</p>
-<p>$\theta^Tx\geq 0$</p>
+<p>$$h_\theta(x) \geq 0.5$$</p>
+<p>$$\theta^Tx\geq 0$$</p>
 <p>下面的图可以用来体会一下边界的含义 </p>
 <p><img src="http://img.blog.csdn.net/20170424192137777?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjcwMDgwNzk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
 <h2 id="2-逻辑回归模型-logistic-regression"><a href="#2-逻辑回归模型-logistic-regression" class="headerlink" title="2.逻辑回归模型 logistic regression"></a>2.逻辑回归模型 logistic regression</h2><h3 id="2-1-代价函数-cost-func"><a href="#2-1-代价函数-cost-func" class="headerlink" title="2.1 代价函数 cost func"></a>2.1 代价函数 cost func</h3><p>让我们先来看看线性回归中的代价函数 ，</p>
-<p>$J(\theta) = \frac{1}{2m}\sum<em>{i=1}^{m}(h</em>\theta(x^{(i)}) - y^{(i)})^2$</p>
+<p>$$J(\theta) = \frac{1}{2m}\sum<em>{i=1}^{m}(h</em>\theta(x^{(i)}) - y^{(i)})^2$$</p>
 <p>如果将其应用在逻辑回归中，由于假设函数hθ(x) 的非线性，代价函数会呈现以下形状。</p>
 <p><img src="http://img.blog.csdn.net/20170424194820447?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjcwMDgwNzk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
 <p>图像呈现出非凸性，也就是说，如果我们运用梯度下降法，不能保证算法收敛到全局最小值。</p>
 <p>所以，对于逻辑回归问题，我们定义新的代价函数如下所示 ：<br><img src="http://img.blog.csdn.net/20170424200155700?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjcwMDgwNzk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
 <p>对上面的式子进行简化，总结如下</p>
-<p>$$<br>J(\theta) = \frac{1}{2m}\sum<em>{i=1}^{m}Cost(h</em>\theta(x^{(i)}), y^{(i)})<br>$$<br>$$<br>Cost(h<em>\theta(x^{(i)}), y^{(i)}) = -y^{(i)}log(h</em>\theta(x)) - (1 - y^{(i)})log(1 - h_\theta(x^{(i)}))<br>$$</p>
+<p>$$J(\theta) = \frac{1}{2m}\sum<em>{i=1}^{m}Cost(h</em>\theta(x^{(i)}), y^{(i)})$$<br>$$Cost(h<em>\theta(x^{(i)}), y^{(i)}) = -y^{(i)}log(h</em>\theta(x)) - (1 - y^{(i)})log(1 - h_\theta(x^{(i)}))$$</p>
 <p>即：</p>
-<p>$$<br>J(\theta) = - \frac{1}{m} \displaystyle \sum<em>{i=1}^m [y^{(i)}\log (h</em>\theta (x^{(i)})) + (1 - y^{(i)})\log (1 - h_\theta(x^{(i)}))]<br>$$</p>
+<p>$$J(\theta) = - \frac{1}{m} \displaystyle \sum<em>{i=1}^m [y^{(i)}\log (h</em>\theta (x^{(i)})) + (1 - y^{(i)})\log (1 - h_\theta(x^{(i)}))]<br>$$</p>
 <p>他$的图像如下：</p>
 <p><img src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/Q9sX8nnxEeamDApmnD43Fw_1cb67ecfac77b134606532f5caf98ee4_Logistic_regression_cost_function_positive_class.png?expiry=1511913600000&amp;hmac=OTz6NTsejpcx9G03huJNlyQw6QPTq0RDuiefhb0SEUs" alt="image"><img src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/Ut7vvXnxEead-BJkoDOYOw_f719f2858d78dd66d80c5ec0d8e6b3fa_Logistic_regression_cost_function_negative_class.png?expiry=1511913600000&amp;hmac=4ADldZaYgRx8HpjUgmirXmbZyHAZ7V5vdYEPJFlhV9E" alt="image"></p>
 <p>如果我们的正确答案“y”是0，那么如果我们的假设函数也输出0，则成本函数将是0。如果我们的假设接近1，则成本函数将接近无穷大。</p>
@@ -313,17 +313,17 @@
 <p>对于梯度下降法我们可以在octive中使用如下高级函数 </p>
 <p><img src="http://img.blog.csdn.net/20170424202226478?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjcwMDgwNzk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
 <p>其中要定义代价函数costFunction：</p>
-<p>$$<br>function [jVal, gradient] = costFunction(theta)<br>$$</p>
+<p>$$function [jVal, gradient] = costFunction(theta)$$</p>
 <h3 id="2-4-复习逻辑回归"><a href="#2-4-复习逻辑回归" class="headerlink" title="2.4 复习逻辑回归"></a>2.4 复习逻辑回归</h3><p>按照惯例，我们复习一下逻辑回归，写出三个维度的函数：</p>
 <ol>
-<li>模型层面：逻辑回归模型<br>$$<br>h_\theta(x) = \frac{1}{1 + e^{-\theta^Tx}}<br>$$</li>
+<li>模型层面：逻辑回归模型<br>$$h_\theta(x) = \frac{1}{1 + e^{-\theta^Tx}}$$</li>
 <li>代价函数：cost func</li>
 </ol>
-<p>$$<br>J(\theta) = - \frac{1}{m} \displaystyle \sum<em>{i=1}^m [y^{(i)}\log (h</em>\theta (x^{(i)})) + (1 - y^{(i)})\log (1 - h_\theta(x^{(i)}))]<br>$$</p>
+<p>$$J(\theta) = - \frac{1}{m} \displaystyle \sum<em>{i=1}^m [y^{(i)}\log (h</em>\theta (x^{(i)})) + (1 - y^{(i)})\log (1 - h_\theta(x^{(i)}))]$$</p>
 <ol>
 <li>梯度下降 </li>
 </ol>
-<p>$$<br>\theta_j := \theta<em>j - \frac{\alpha}{m} \sum</em>{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)}<br>$$</p>
+<p>$$\theta_j := \theta<em>j - \frac{\alpha}{m} \sum</em>{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)}$$</p>
 <h2 id="3-多分类任务"><a href="#3-多分类任务" class="headerlink" title="3.多分类任务"></a>3.多分类任务</h2><p>文中给出的多分类解决办法是，把K分类转换为K个2分类。例如：</p>
 <p><img src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/cqmPjanSEeawbAp5ByfpEg_299fcfbd527b6b5a7440825628339c54_Screenshot-2016-11-13-10.52.29.png?expiry=1511913600000&amp;hmac=oODQb7xuCVv9WYVra6pXZokcv0OniEOiyN5Vmh_Ojss" alt="image"></p>
 <p>训练每个类别的逻辑回归分类器hθ（x）来预测y的概率。<br>最后，选择最大化 max hθ（x）的类，</p>
@@ -340,26 +340,26 @@
 <ul>
 <li>保留所有的特征，但是减小参数θj的大小。</li>
 </ul>
-<h3 id="4-2-修改代价函数实现正则化"><a href="#4-2-修改代价函数实现正则化" class="headerlink" title="4.2 修改代价函数实现正则化"></a>4.2 修改代价函数实现正则化</h3><p>我们要消除θ3x3和θ4x4的影响。如果没有真正摆脱这些特征或改变我们假设的形式，我们可以修改我们的成本函数：<br>$$<br>min<em>\theta\ \dfrac{1}{2m}\sum</em>{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + 1000\cdot\theta_3^2 + 1000\cdot\theta_4^2<br>$$<br>最后我们增加了两个额外的术语来夸大θ3和θ4的成本。<br>现在，为了使成本函数接近零，我们将不得不将θ3和θ4的值减小到接近零。</p>
+<h3 id="4-2-修改代价函数实现正则化"><a href="#4-2-修改代价函数实现正则化" class="headerlink" title="4.2 修改代价函数实现正则化"></a>4.2 修改代价函数实现正则化</h3><p>我们要消除θ3x3和θ4x4的影响。如果没有真正摆脱这些特征或改变我们假设的形式，我们可以修改我们的成本函数：<br>$$min<em>\theta\ \dfrac{1}{2m}\sum</em>{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + 1000\cdot\theta_3^2 + 1000\cdot\theta_4^2$$<br>最后我们增加了两个额外的术语来夸大θ3和θ4的成本。<br>现在，为了使成本函数接近零，我们将不得不将θ3和θ4的值减小到接近零。</p>
 <p>这又会大大减少我们的假设函数中的θ3x3和θ4x4的值。</p>
 <p>因此，我们看到新的假设（由粉红色曲线表示）看起来像一个二次函数，但是由于额外的小项θ3x3和θ4x4，所以更好地拟合数据。<br><img src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/j0X9h6tUEeawbAp5ByfpEg_ea3e85af4056c56fa704547770da65a6_Screenshot-2016-11-15-08.53.32.png?expiry=1511913600000&amp;hmac=7k3qwY698XAeJFXmQnQZ7CImsAFoWzTeMgCnIaaMM7E" alt="image"></p>
 <p>所以， 在代价函数后面加上一些乘法系数，可以“捋平”图像的弯曲，完成泛化。</p>
 <p>但是，在实际情况中，我们不知道具体惩罚哪个θ，所以就整体惩罚，把每个弯平一平。也就是修改代价函数为：</p>
-<p>$$<br>min<em>\theta\ \dfrac{1}{2m}\  \sum</em>{i=1}^m (h<em>\theta(x^{(i)}) - y^{(i)})^2 + \lambda\ \sum</em>{j=1}^n \theta_j^2<br>$$<br>其中λ是正则化参数 regularization parameter。它决定了我们θ参数的成本膨胀了多少。</p>
+<p>$$min<em>\theta\ \dfrac{1}{2m}\  \sum</em>{i=1}^m (h<em>\theta(x^{(i)}) - y^{(i)})^2 + \lambda\ \sum</em>{j=1}^n \theta_j^2$$<br>其中λ是正则化参数 regularization parameter。它决定了我们θ参数的成本膨胀了多少。</p>
 <p>如果选择的lambda太大，可能会使功能过于平滑，under fitting。<br>因此，如果λ= 0或太小会发生泛化失败，overfitting</p>
 <h3 id="4-3-在线性回归中使用正则化"><a href="#4-3-在线性回归中使用正则化" class="headerlink" title="4.3 在线性回归中使用正则化"></a>4.3 在线性回归中使用正则化</h3><p>我们可以将正则化应用于线性回归和逻辑回归。（因为就学了这俩）<br>我们将首先处理线性回归。    一共有两种方法，梯度下降和正规方程</p>
 <ol>
-<li><p>梯度下降<br>我们将修改我们的梯度下降函数，从其他参数中分离出θ0，因为我们不想惩罚θ0。<br>Repeat ｛｝<br>$$<br>\theta_j := \theta<em>j - \alpha\ \left[ \left( \frac{1}{m}\ \sum</em>{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)} \right) + \frac{\lambda}{m}\theta_j \right]<br>$$<br>通过一些操作，我们的更新规则也可以表示为：<br>$$<br>\theta_j := \theta<em>j(1 - \alpha\frac{\lambda}{m}) - \alpha\frac{1}{m}\sum</em>{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)}<br>$$<br>上面的等式中的第一项1-α λ/m将总是小于1.直觉上你可以看到它在每次更新时减少θj的值一定量</p>
+<li><p>梯度下降<br>我们将修改我们的梯度下降函数，从其他参数中分离出θ0，因为我们不想惩罚θ0。<br>Repeat ｛｝<br>$$\theta_j := \theta<em>j - \alpha\ \left[ \left( \frac{1}{m}\ \sum</em>{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)} \right) + \frac{\lambda}{m}\theta_j \right]$$<br>通过一些操作，我们的更新规则也可以表示为：<br>$$\theta_j := \theta<em>j(1 - \alpha\frac{\lambda}{m}) - \alpha\frac{1}{m}\sum</em>{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)}$$<br>上面的等式中的第一项1-α λ/m将总是小于1.直觉上你可以看到它在每次更新时减少θj的值一定量</p>
 </li>
 <li><p>正规方程</p>
 </li>
 </ol>
-<p>现在让我们使用非迭代法线方程的替代方法来进行正则化。<br>$$<br>\theta = \left( X^TX + \lambda \cdot L \right)^{-1} X^Ty<br>$$<br>L是一个矩阵，左上角为0，下角为1，其他地方为0。<br>它应该有维度（n 1）×（n 1）。<br>直观地说，这是单位矩阵（尽管我们不包括x0），乘以单个实数λ。</p>
+<p>现在让我们使用非迭代法线方程的替代方法来进行正则化。<br>$$\theta = \left( X^TX + \lambda \cdot L \right)^{-1} X^Ty$$<br>L是一个矩阵，左上角为0，下角为1，其他地方为0。<br>它应该有维度（n 1）×（n 1）。<br>直观地说，这是单位矩阵（尽管我们不包括x0），乘以单个实数λ。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">回想一下，如果m &lt;n，则XTX是不可逆的。</span><br><span class="line">然而，当我们加上术语λ⋅L时，则XTXλ⋅L变成可逆的。</span><br></pre></td></tr></table></figure>
 <h3 id="4-4-在逻辑回归中使用正则化"><a href="#4-4-在逻辑回归中使用正则化" class="headerlink" title="4.4 在逻辑回归中使用正则化"></a>4.4 在逻辑回归中使用正则化</h3><p>我们可以用类似的方式调整逻辑回归，就像我们调整线性回归一样。<br>因此，我们可以避免过度配合。<br>下图显示了粉红线所显示的正则化函数如何比蓝线所表示的非正则化函数更不可能过配：</p>
 <p><img src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/Od9mobDaEeaCrQqTpeD5ng_4f5e9c71d1aa285c1152ed4262f019c1_Screenshot-2016-11-22-09.31.21.png?expiry=1511913600000&amp;hmac=VObCxzbuzkNtYu-rssJQU5P4tCB91HaP8NlIVhb-0Mk" alt="image"></p>
 <p>回想一下，逻辑回归的成本函数是：</p>
-<p>$$<br>J(\theta) = - \frac{1}{m} \sum<em>{i=1}^m \large[ y^{(i)}\ \log (h</em>\theta (x^{(i)})) + (1 - y^{(i)})\ \log (1 - h<em>\theta(x^{(i)})) \large]<br>$$<br>我们可以通过在最后添加一个术语来规范这个等式：<br>$$<br>J(\theta) = - \frac{1}{m} \sum</em>{i=1}^m \large[ y^{(i)}\ \log (h<em>\theta (x^{(i)})) + (1 - y^{(i)})\ \log (1 - h</em>\theta(x^{(i)}))\large] + \frac{\lambda}{2m}\sum_{j=1}^n \theta_j^2<br>$$<br>第二个和Σnj=1θ2j意味着明确排除偏差项θ0。即θ矢量从0到n（保持n 1个值，θ0到θn）被索引，并且该和明确跳过θ0，从1跳到n，跳过0.因此，当计算等式时，我们应该连续更新两个以下等式：</p>
+<p>$$J(\theta) = - \frac{1}{m} \sum<em>{i=1}^m \large[ y^{(i)}\ \log (h</em>\theta (x^{(i)})) + (1 - y^{(i)})\ \log (1 - h<em>\theta(x^{(i)})) \large]$$<br>我们可以通过在最后添加一个术语来规范这个等式：<br>$$J(\theta) = - \frac{1}{m} \sum</em>{i=1}^m \large[ y^{(i)}\ \log (h<em>\theta (x^{(i)})) + (1 - y^{(i)})\ \log (1 - h</em>\theta(x^{(i)}))\large] + \frac{\lambda}{2m}\sum_{j=1}^n \theta_j^2$$<br>第二个和Σnj=1θ2j意味着明确排除偏差项θ0。即θ矢量从0到n（保持n 1个值，θ0到θn）被索引，并且该和明确跳过θ0，从1跳到n，跳过0.因此，当计算等式时，我们应该连续更新两个以下等式：</p>
 <p><img src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/dfHLC70SEea4MxKdJPaTxA_306de28804a7467f7d84da0fe3ee9c7b_Screen-Shot-2016-12-07-at-10.49.02-PM.png?expiry=1511913600000&amp;hmac=6GJOdiQ3K-7Vajfumk1pZaPd1pjqINq84CkEYrVtem0" alt="image"></p>
 <h2 id="5-编程作业2"><a href="#5-编程作业2" class="headerlink" title="5.编程作业2"></a>5.编程作业2</h2><p>首先下载作业：<br>Download the <a href="http://s3.amazonaws.com/spark-public/ml/exercises/on-demand/machine-learning-ex2.zip" target="_blank" rel="noopener">programming assignment here</a>.</p>
 <p>此ZIP文件包含PDF和启动器代码中的说明。</p>
@@ -420,7 +420,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/11/28/coursera-斯坦福-机器学习-吴恩达-第3周笔记-逻辑回归/" data-id="cjcrdq421001chajezho5crwq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/11/28/coursera-斯坦福-机器学习-吴恩达-第3周笔记-逻辑回归/" data-id="cjcrdz8bz001cjsje2eq5o2lq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
