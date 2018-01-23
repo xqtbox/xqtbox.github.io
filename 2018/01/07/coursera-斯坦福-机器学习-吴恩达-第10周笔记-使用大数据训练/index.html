@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练 | 博客堂</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1 大数据下的梯度下降在接下来的几个视频里 ，我们会讲大规模的机器学习， 就是用来处理大数据的算法。 如果我们看近5到10年的机器学习的历史 ，现在的学习算法比5年前的好很多， 其中的原因之一就是我们现在拥有很多可以训练算法的数据 。 1.1 大数据为什么我们喜欢用大的数据集呢?">
+<meta name="keywords" content="机器学习,coursera">
+<meta property="og:type" content="article">
+<meta property="og:title" content="coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练">
+<meta property="og:url" content="http://yoursite.com/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/index.html">
+<meta property="og:site_name" content="博客堂">
+<meta property="og:description" content="1 大数据下的梯度下降在接下来的几个视频里 ，我们会讲大规模的机器学习， 就是用来处理大数据的算法。 如果我们看近5到10年的机器学习的历史 ，现在的学习算法比5年前的好很多， 其中的原因之一就是我们现在拥有很多可以训练算法的数据 。 1.1 大数据为什么我们喜欢用大的数据集呢?">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img3.cache.netease.com/photo/0003/2009-05-05/58IOGNQF0BOd0003.jpg">
+<meta property="og:updated_time" content="2018-01-23T09:01:33.073Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练">
+<meta name="twitter:description" content="1 大数据下的梯度下降在接下来的几个视频里 ，我们会讲大规模的机器学习， 就是用来处理大数据的算法。 如果我们看近5到10年的机器学习的历史 ，现在的学习算法比5年前的好很多， 其中的原因之一就是我们现在拥有很多可以训练算法的数据 。 1.1 大数据为什么我们喜欢用大的数据集呢?">
+<meta name="twitter:image" content="http://img3.cache.netease.com/photo/0003/2009-05-05/58IOGNQF0BOd0003.jpg">
+    
+
+    
+
+    
+        <link rel="icon" href="/css/images/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">博客堂</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">主页</a>
+                
+                    <a class="main-nav-link" href="/archives">目录</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar01.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">主页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">目录</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar01.png" />
+            <h2 id="name">Qingtang</h2>
+            <h3 id="title">Developer &amp; NLPer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>HeFei, China</span>
+            <a id="follow" target="_blank" href="https://github.com/xqtbox/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                63
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                41
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/xqtbox" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://weibo.com/u/5890351342" target="_blank" title="weibo" class=tooltip>
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://blog.csdn.net/u012052268" target="_blank" title="pencil" class=tooltip>
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="wechat" class=tooltip>
+                            <i class="fa fa-wechat"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://img3.cache.netease.com/photo/0003/2009-05-05/58IOGNQF0BOd0003.jpg" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/">
+            <time datetime="2018-01-07T03:32:54.000Z" itemprop="datePublished">2018-01-07</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h2 id="1-大数据下的梯度下降"><a href="#1-大数据下的梯度下降" class="headerlink" title="1 大数据下的梯度下降"></a>1 大数据下的梯度下降</h2><p>在接下来的几个视频里 ，我们会讲大规模的机器学习， 就是用来处理大数据的算法。 如果我们看近5到10年的机器学习的历史 ，现在的学习算法比5年前的好很多， 其中的原因之一就是我们现在拥有很多可以训练算法的数据 。</p>
+<h3 id="1-1-大数据"><a href="#1-1-大数据" class="headerlink" title="1.1 大数据"></a>1.1 大数据</h3><p>为什么我们喜欢用大的数据集呢?</p>
+<a id="more"></a>
+<p>我们已经知道 得到一个高效的机器学习系统的最好的方式之一是 用一个低偏差的学习算法 ,然后用很多数据来训练它.</p>
+<p>当然 ，在我们训练一个上亿条数据的模型之前 ，我们还应该问自己： 为什么不用几千条数据呢 ？也许我们可以随机从上亿条的数据集里选个一千条的子集，然后用我们的算法计算。</p>
+<p> 通常的方法是画学习曲线 ：</p>
+<p> <img src="http://img.blog.csdn.net/20150406200933858?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGlwaXNvcnJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<ul>
+<li><p>如果你要绘制学习曲线，并且如果你的训练目标看起来像是左边的，而你的交叉验证集目标，theta的Jcv，那么这看起来像是一个高方差学习算法，所以加入额外的训练样例<br>提高性能。</p>
+</li>
+<li><p>右边看起来像传统的高偏见学习算法，那么看起来不大可能增加1亿到1亿将会更好，然后你会坚持n等于1000，而不是花费很多的精力弄清楚算法的规模如何。</p>
+</li>
+<li><p>正确的做法之一是增加额外的特性，或者为神经网络增加额外的隐藏单位等等，这样你就可以得到更接近于左边的情况，在这种情况下可能达到n 等于1000，这样就给了你更多的信心，试图添加基础设施（下部构造）来改变算法，使用更多的例子，可能实际上是一个很好的利用你的时间。</p>
+</li>
+</ul>
+<h3 id="1-2-随机梯度下降"><a href="#1-2-随机梯度下降" class="headerlink" title="1.2 随机梯度下降"></a>1.2 随机梯度下降</h3><p>对于很多机器学习算法， 包括线性回归、逻辑回归、神经网络等等， 算法的实现都是通过得出某个代价函数 或者某个最优化的目标来实现的， 然后使用梯度下降这样的方法来求得代价函数的最小值。</p>
+<p>当我们的训练集较大时 ，梯度下降算法则显得计算量非常大 ，在这段视频中 我想介绍一种跟普通梯度下降不同的方法 随机梯度下降(stochastic gradient descent) 。</p>
+<p>他的主要思想是：</p>
+<blockquote>
+<p>{在每次迭代中不需要看所有的训练样例，但是在一次迭代中只需要看一个训练样例}</p>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20150406205738690?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGlwaXNvcnJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<p>第一步是打乱数据 第二步是算法的关键 是关于某个单一的训练样本(x(i),y(i))来对参数进行更新 </p>
+<p>对于随即梯度下降来说，有以下说法：</p>
+<ol>
+<li>当训练集的个数m很大的时候，随即梯度下降比梯度下降要快很多。</li>
+<li>对与损失函数$J<em>\text{train}(\theta) = \frac{1}{2m}\sum</em>{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2$来说，梯度下降每次迭代都会减小，而随即梯度下降不一定减小，甚至可能增大。</li>
+<li>随即梯度下降可以用在多种模拟的优化中。</li>
+<li>在随机梯度下降之前，最好（必须）打乱训练集的顺序。</li>
+</ol>
+<p><img src="http://img.blog.csdn.net/20150406205709381?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGlwaXNvcnJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<p>与随机梯度下降相比，每次迭代都要快得多，因为我们不需要总结所有的训练样例。但是每次迭代只是试图更好地适应单个训练样例。</p>
+<p>随即梯度下降的劣势：当你运行随机梯度下降时，你会发现它通常会将参数向全局最小值的方向移动，但并不总是如此。事实上，当运行随机梯度下降时，它实际上并没有收敛到相同的固定值，最终做的是在一些接近全局最小值的区域连续四处流浪，但是它不会达到全局最小值并停留在那里。对于任何最实际的目的来说，这都是一个很好的假设。</p>
+<blockquote>
+<p>所以：选择随机梯度下降还是批梯度下降？</p>
+</blockquote>
+<p>答案：数据量大的时候使用随机梯度下降，而数据量不那么大的话还是用批梯度下降吧。</p>
+<h3 id="1-3-mini-batch梯度下降"><a href="#1-3-mini-batch梯度下降" class="headerlink" title="1.3 mini-batch梯度下降"></a>1.3 mini-batch梯度下降</h3><p>在之前的视频中 我们讨论了随机梯度下降 ，以及它是怎样比批量梯度下降更快。 在这次视频中， 让我们讨论基于这些方法的另一种变形， 叫做小批量梯度下降。 这种算法有时候甚至比随机梯度下降还要快一点 。</p>
+<p><img src="http://img.blog.csdn.net/20150406212025973?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGlwaXNvcnJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<p>由上图可以看出 批量梯度下降、随即梯度下降、小批量梯度下降的区别。小批量介于二者的规模的中间。具体计算方法如下图，选b个样本计算。（当b等于m的时候，minibatch就成了batch GD。）</p>
+<p><img src="http://img.blog.csdn.net/20150406212124018?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGlwaXNvcnJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<p>尤其是，小批量梯度下降可能要超过随机梯度下降，只有当你有一个良好的实现时，通过使用适当的向量化来计算余下的项。</p>
+<h3 id="1-4-随机梯度下降的收敛性"><a href="#1-4-随机梯度下降的收敛性" class="headerlink" title="1.4 随机梯度下降的收敛性"></a>1.4 随机梯度下降的收敛性</h3><p>现在你已经知道了随机梯度下降算法 ，但是当你运行这个算法时 你如何确保调试过程已经完成 并且能正常收敛呢？ 还有 同样重要的是 你怎样调整随机梯度下降中学习速率α的值？</p>
+<p>在这段视频中 我们会谈到一些方法来处理这些问题 ，确保它能收敛 以及选择合适的学习速率α 。</p>
+<p>在过去的1000个示例中绘制平均成本的平均值，这些图可能看起来像几个例子，看图修正模型：</p>
+<p><img src="http://img.blog.csdn.net/20150406220142973?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGlwaXNvcnJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<ol>
+<li>因为这些数字平均只有一千个例子，所以它们会有点吵，所以每一次迭代都不会减少。</li>
+<li>图2红线：通过平均5000个例子，而不是1,000个，你可能会得到更加平滑的曲线。</li>
+<li>图3平均数量较多的例子，我们在这里取平均值超过5000个例子，可能得到两种较平缓的曲线。如果得到的是洋红色水平线，你需要改变学习率或改变特征 改变算法的其他内容。</li>
+<li>图4如果你看到一条曲线正在增加，那么这是一个信号，表明算法是发散的。你真正应该做的就是把学习速率α的值作为一个微不足道的值。降低学习速率α意味着每一次随机梯度下降的迭代将会 采取一个较小的步骤，因此它可能会聚，而不是分歧。</li>
+</ol>
+<p>总结：因此，如果曲线看起来过于嘈杂，或者如果它太多摆动，那么尝试增加你平均的例子的数量，这样你可以更好地看到情节的整体趋势。如果你看到错误是实际上增加，成本实际上是增加，尝试使用较小的alpha值。</p>
+<hr>
+<p>最后还需要再说一下关于学习速率的问题 </p>
+<p><img src="http://img.blog.csdn.net/20150406220114288?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGlwaXNvcnJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<p>如果你想要随机梯度下降实际收敛到全局最小值，那么你可以做的一件事是你可以慢慢地降低α的学习速率。迭代次数是你运行的随机梯度下降的迭代次数 ，所以这真的是你见过的培训例子的数量。</p>
+<h2 id="2-大数据的高级技巧"><a href="#2-大数据的高级技巧" class="headerlink" title="2 大数据的高级技巧"></a>2 大数据的高级技巧</h2><h3 id="2-1在线学习"><a href="#2-1在线学习" class="headerlink" title="2.1在线学习"></a>2.1在线学习</h3><p>什么情况下使用在线学习？如果你运行一个主要的网站有一个连续的用户流，在线学习算法是非常合理的。因为数据本质上是免费的，如果你有这么多的数据，那么数据本质上是无限的当然，如果我们只有少量的用户，而不是使用在线学习算法，那么最好将所有的数据保存在一个固定的训练集中，然后运行一些算法。但是如果你真的有一个连续的数据流，那么在线学习算法可以是非常有效的。</p>
+<p>这种在线学习算法的一个有趣效果就是，它能够适应不断变化的用户偏好。尤其是，如果随着时间的推移，由于经济的变化，用户的价格敏感度会降低，他们愿意支付更高的价格。如果你开始有新类型的用户来到你的网站。这种在线学习算法也可以适应不断变化的用户喜好，并跟踪你不断变化的用户愿意支付的种类。而且，因为如果你的用户池发生了变化，那么这些更新到你的参数theta将只是适应你的参数，</p>
+<p>在线学习的优势：</p>
+<ol>
+<li>可以适应用户的品味变化。</li>
+<li>允许我们对流数据进行学习。</li>
+</ol>
+<h3 id="2-2-mapreduce"><a href="#2-2-mapreduce" class="headerlink" title="2.2 mapreduce"></a>2.2 mapreduce</h3><p>在上面几个视频中 我们讨论了 随机梯度下降 以及梯度下降算法的 其他一些变种， 包括如何将其 运用于在线学习 ，然而所有这些算法 都只能在一台计算机上运行 。</p>
+<p>但是 有些机器学习问题 太大以至于不可能 只在一台计算机上运行 ，有时候 它涉及的数据量如此巨大 以至于不论你使用何种算法 ，你都不希望只使用 一台计算机来处理这些数据 。</p>
+<p>因此 在这个视频中 我希望介绍 进行大规模机器学习的另一种方法 称为映射约减 (map reduce) 方法。</p>
+<p><img src="http://img.blog.csdn.net/20150411200248740?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGlwaXNvcnJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<p>注意：</p>
+<ol>
+<li>如果没有网络延迟，并且没有网络通信的费用来回发送数据，则可以达到4倍的速度。</li>
+<li>如果您只有一台具有多个处理内核的计算机，则MapReduce也可以适用。因此，与在数据传感器内的不同计算机上使用这种方法相比，网络延迟的问题要少得多。</li>
+<li><p>一些好的MapReduce开源实现，叫做Hadoop，使用你自己的实现或者使用别人的开源实现，你可以使用这些想法来并行化学习算法，并让它们在更大的数据集上运行。</p>
+<h2 id="3quiz"><a href="#3quiz" class="headerlink" title="3quiz"></a>3quiz</h2></li>
+<li><p>Suppose you are training a logistic regression classifier using stochastic gradient descent. You find that the cost (say, cost(θ,(x(i),y(i))), averaged over the last 500 examples), plotted as a function of the number of iterations, is slowly increasing over time. Which of the following changes are likely to help?答案：D</p>
+</li>
+</ol>
+<ul>
+<li>This is not an issue, as we expect this to occur with stochastic gradient descent.、</li>
+<li>Try averaging the cost over a larger number of examples (say 1000 examples instead of 500) in the plot.</li>
+<li>Try using a larger learning rate α.</li>
+<li>Try using a smaller learning rate α.</li>
+</ul>
+<ol>
+<li>Which of the following statements about stochastic gradientdescent are true? Check all that apply.答案：CD</li>
+</ol>
+<ul>
+<li>In order to make sure stochastic gradient descent is converging, we typically compute Jtrain(θ) after each iteration (and plot it) in order to make sure that the cost function is generally decreasing.</li>
+<li>Suppose you are using stochastic gradient descent to train a linear regression classifier. The cost function J(θ)=12m∑mi=1(hθ(x(i))−y(i))2 is guaranteed to decrease after every iteration of the stochastic gradient descent algorithm.</li>
+<li>You can use the method of numerical gradient checking to verify that your stochastic gradient descent implementation is bug-free. (One step of stochastic gradient descent computes the partial derivative ∂∂θjcost(θ,(x(i),y(i))).)</li>
+<li>Before running stochastic gradient descent, you should randomly shuffle (reorder) the training set.</li>
+</ul>
+<ol>
+<li>Which of the following statements about online learning are true? Check all that apply.答案：AB</li>
+</ol>
+<ul>
+<li>In the approach to online learning discussed in the lecture video, we repeatedly get a single training example, take one step of stochastic gradient descent using that example, and then move on to the next example.</li>
+<li>When using online learning, in each step we get a new example (x,y), perform one step of (essentially stochastic gradient descent) learning on that example, and then discard that example and move on to the next.</li>
+<li>One of the disadvantages of online learning is that it requires a large amount of computer memory/disk space to store all the training examples we have seen.</li>
+<li>One of the advantages of online learning is that there is no need to pick a learning rate α.</li>
+</ul>
+<ol>
+<li>Assuming that you have a very large training set, which of the following algorithms do you think can be parallelized using map-reduce and splitting the training set across different machines? Check all that apply.答案：BD</li>
+</ol>
+<ul>
+<li>Logistic regression trained using stochastic gradient descent.</li>
+<li>Linear regression trained using batch gradient descent.</li>
+<li>An online learning setting, where you repeatedly get a single example (x,y), and want to learn from that single example before moving on.</li>
+<li>A neural network trained using batch gradient descent.</li>
+</ul>
+<ol>
+<li>Which of the following statements about map-reduce are true? Check all that apply.答案：BCD</li>
+</ol>
+<ul>
+<li>Running map-reduce over N computers requires that we split the training set into N2 pieces.</li>
+<li>In order to parallelize a learning algorithm using map-reduce, the first step is to figure out how to express the main work done by the algorithm as computing sums of functions of training examples.</li>
+<li>When using map-reduce with gradient descent, we usually use a single machine that accumulates the gradients from each of the map-reduce machines, in order to compute the parameter update for that iteration.</li>
+<li>If you have just 1 computer, but your computer has multiple CPUs or multiple cores, then map-reduce might be a viable way to parallelize your learning algorithm.</li>
+</ul>
+<p>第五题的第二个版本：<br>第 5 个问题<br>Which of the following statements about map-reduce are true? Check all that apply.答案：ABD</p>
+<ul>
+<li>If you have only 1 computer with 1 computing core, then map-reduce is unlikely to help.</li>
+<li>Because of network latency and other overhead associated with map-reduce, if we run map-reduce using N computers, we might get less than an N-fold speedup compared to using 1 computer.</li>
+<li>If we run map-reduce using N computers, then we will always get at least an N-fold speedup compared to using 1 computer.</li>
+<li>When using map-reduce with gradient descent, we usually use a single machine that accumulates the gradients from each of the map-reduce machines, in order to compute the parameter update for that iteration.</li>
+</ul>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/" data-id="cjcrf579y001869jex82udnza" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/01/08/人工智能工程师学习路线 自然语言处理算法工程师学习路径/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    人工智能工程师学习路线 自然语言处理算法工程师学习路径
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/01/05/怎么加载训练好的词向量bin/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">怎么加载训练好的词向量bin</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/18/零基础学习GitHub桌面版-6使用pages创建网站/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/china-great-wall.jpg)" alt="零基础学习GitHub桌面版-6使用pages创建网站" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Git/">Git</a></p>
+                            <p class="item-title"><a href="/2018/01/18/零基础学习GitHub桌面版-6使用pages创建网站/" class="title">零基础学习GitHub桌面版-6使用pages创建网站</a></p>
+                            <p class="item-date"><time datetime="2018-01-18T14:07:04.000Z" itemprop="datePublished">2018-01-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/11/hello-world/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg)" alt="Hello World" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/01/11/hello-world/" class="title">Hello World</a></p>
+                            <p class="item-date"><time datetime="2018-01-11T03:11:11.000Z" itemprop="datePublished">2018-01-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/10/coursera-斯坦福-机器学习-吴恩达-机器学习课程总结/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/math.jpg)" alt="coursera-斯坦福-机器学习-吴恩达-机器学习课程总结" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/机器学习/">机器学习</a></p>
+                            <p class="item-title"><a href="/2018/01/10/coursera-斯坦福-机器学习-吴恩达-机器学习课程总结/" class="title">coursera-斯坦福-机器学习-吴恩达-机器学习课程总结</a></p>
+                            <p class="item-date"><time datetime="2018-01-09T18:32:54.000Z" itemprop="datePublished">2018-01-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/09/coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg)" alt="coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/机器学习/">机器学习</a></p>
+                            <p class="item-title"><a href="/2018/01/09/coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统/" class="title">coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统</a></p>
+                            <p class="item-date"><time datetime="2018-01-09T14:32:54.000Z" itemprop="datePublished">2018-01-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/08/人工智能工程师学习路线 自然语言处理算法工程师学习路径/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/shoes.jpg)" alt="人工智能工程师学习路线 自然语言处理算法工程师学习路径" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/自然语言处理/">自然语言处理</a></p>
+                            <p class="item-title"><a href="/2018/01/08/人工智能工程师学习路线 自然语言处理算法工程师学习路径/" class="title">人工智能工程师学习路线 自然语言处理算法工程师学习路径</a></p>
+                            <p class="item-date"><time datetime="2018-01-08T03:39:54.000Z" itemprop="datePublished">2018-01-08</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习/">深度学习</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自然语言处理/">自然语言处理</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/驱动开发/">驱动开发</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Anaconda/">Anaconda</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DevOps/">DevOps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DriverSttudio3-2/">DriverSttudio3.2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Editplus/">Editplus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBK/">GBK</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keras/">Keras</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/">Oracle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pycharm/">Pycharm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/">RNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tensorboard/">Tensorboard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tensorflow/">Tensorflow</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/USB/">USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UTF-8/">UTF-8</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coursera/">coursera</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ddk/">ddk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jieba/">jieba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myeclipse/">myeclipse</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scrapy/">scrapy</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win7/">win7</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/word2vec/">word2vec</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分词/">分词</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习路线/">学习路线</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/报错/">报错</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件操作/">文件操作</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汽车之家/">汽车之家</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/驱动程序/">驱动程序</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Anaconda/" style="font-size: 13.33px;">Anaconda</a> <a href="/tags/CNN/" style="font-size: 11.11px;">CNN</a> <a href="/tags/DevOps/" style="font-size: 10px;">DevOps</a> <a href="/tags/DriverSttudio3-2/" style="font-size: 10px;">DriverSttudio3.2</a> <a href="/tags/Editplus/" style="font-size: 10px;">Editplus</a> <a href="/tags/GBK/" style="font-size: 11.11px;">GBK</a> <a href="/tags/Git/" style="font-size: 17.78px;">Git</a> <a href="/tags/GitHub/" style="font-size: 17.78px;">GitHub</a> <a href="/tags/Java/" style="font-size: 17.78px;">Java</a> <a href="/tags/Keras/" style="font-size: 10px;">Keras</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/Pycharm/" style="font-size: 12.22px;">Pycharm</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Tensorboard/" style="font-size: 10px;">Tensorboard</a> <a href="/tags/Tensorflow/" style="font-size: 15.56px;">Tensorflow</a> <a href="/tags/USB/" style="font-size: 10px;">USB</a> <a href="/tags/UTF-8/" style="font-size: 11.11px;">UTF-8</a> <a href="/tags/coursera/" style="font-size: 18.89px;">coursera</a> <a href="/tags/ddk/" style="font-size: 10px;">ddk</a> <a href="/tags/eclipse/" style="font-size: 14.44px;">eclipse</a> <a href="/tags/jieba/" style="font-size: 10px;">jieba</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/myeclipse/" style="font-size: 12.22px;">myeclipse</a> <a href="/tags/scrapy/" style="font-size: 14.44px;">scrapy</a> <a href="/tags/win7/" style="font-size: 10px;">win7</a> <a href="/tags/word2vec/" style="font-size: 10px;">word2vec</a> <a href="/tags/分词/" style="font-size: 10px;">分词</a> <a href="/tags/学习路线/" style="font-size: 12.22px;">学习路线</a> <a href="/tags/报错/" style="font-size: 16.67px;">报错</a> <a href="/tags/文件操作/" style="font-size: 10px;">文件操作</a> <a href="/tags/机器学习/" style="font-size: 18.89px;">机器学习</a> <a href="/tags/汽车之家/" style="font-size: 11.11px;">汽车之家</a> <a href="/tags/深度学习/" style="font-size: 16.67px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 17.78px;">爬虫</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/自然语言处理/" style="font-size: 17.78px;">自然语言处理</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/驱动程序/" style="font-size: 10px;">驱动程序</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 Qingtang<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+
+
+
+        
+    
+    <script>
+    var disqus_config = function () {
+        
+            this.page.url = 'http://yoursite.com/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/';
+        
+        this.page.identifier = 'coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
