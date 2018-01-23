@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>coursera-斯坦福-机器学习-吴恩达-第1周笔记 | 博客堂</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="0 前言第一，这门课是最好的机器学习、深度学习入门教程之一，老师很有名气，是深度学习三驾马车之一的吴恩达，而且课程讲的很通俗易懂。 每堂课后面还有编程作业，一定要做。课程推荐使用Octave编程语言，只需要填写核心代码，很适合自学。这门语言很多人没有学过，有些排斥。但是学计算机的同志就是要保持对新事物新工具的热爱，更何况这门语言并不难。 第二，我发现网络上关于这门课的笔记有很多，但是质量参差不齐。">
+<meta name="keywords" content="机器学习,coursera">
+<meta property="og:type" content="article">
+<meta property="og:title" content="coursera-斯坦福-机器学习-吴恩达-第1周笔记">
+<meta property="og:url" content="http://yoursite.com/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/index.html">
+<meta property="og:site_name" content="博客堂">
+<meta property="og:description" content="0 前言第一，这门课是最好的机器学习、深度学习入门教程之一，老师很有名气，是深度学习三驾马车之一的吴恩达，而且课程讲的很通俗易懂。 每堂课后面还有编程作业，一定要做。课程推荐使用Octave编程语言，只需要填写核心代码，很适合自学。这门语言很多人没有学过，有些排斥。但是学计算机的同志就是要保持对新事物新工具的热爱，更何况这门语言并不难。 第二，我发现网络上关于这门课的笔记有很多，但是质量参差不齐。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music2.jpg">
+<meta property="og:updated_time" content="2018-01-23T08:09:36.305Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="coursera-斯坦福-机器学习-吴恩达-第1周笔记">
+<meta name="twitter:description" content="0 前言第一，这门课是最好的机器学习、深度学习入门教程之一，老师很有名气，是深度学习三驾马车之一的吴恩达，而且课程讲的很通俗易懂。 每堂课后面还有编程作业，一定要做。课程推荐使用Octave编程语言，只需要填写核心代码，很适合自学。这门语言很多人没有学过，有些排斥。但是学计算机的同志就是要保持对新事物新工具的热爱，更何况这门语言并不难。 第二，我发现网络上关于这门课的笔记有很多，但是质量参差不齐。">
+<meta name="twitter:image" content="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music2.jpg">
+    
+
+    
+
+    
+        <link rel="icon" href="/css/images/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">博客堂</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">主页</a>
+                
+                    <a class="main-nav-link" href="/archives">目录</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar01.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">主页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">目录</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar01.png" />
+            <h2 id="name">Qingtang</h2>
+            <h3 id="title">Developer &amp; NLPer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>HeFei, China</span>
+            <a id="follow" target="_blank" href="https://github.com/xqtbox/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                46
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                40
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/xqtbox" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="https://weibo.com/u/5890351342" target="_blank" title="weibo" class=tooltip>
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://blog.csdn.net/u012052268" target="_blank" title="pencil" class=tooltip>
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="wechat" class=tooltip>
+                            <i class="fa fa-wechat"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-coursera-斯坦福-机器学习-吴恩达-第1周笔记" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music2.jpg" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            coursera-斯坦福-机器学习-吴恩达-第1周笔记
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/">
+            <time datetime="2017-11-16T13:02:34.000Z" itemprop="datePublished">2017-11-16</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0 前言"></a>0 前言</h2><p>第一，这门课是最好的机器学习、深度学习入门教程之一，老师很有名气，是深度学习三驾马车之一的吴恩达，而且课程讲的很通俗易懂。</p>
+<p>每堂课后面还有编程作业，一定要做。课程推荐使用Octave编程语言，只需要填写核心代码，很适合自学。这门语言很多人没有学过，有些排斥。但是学计算机的同志就是要保持对新事物新工具的热爱，更何况这门语言并不难。</p>
+<p>第二，我发现网络上关于这门课的笔记有很多，但是质量参差不齐。有的虎头蛇尾甚至半途而废；有的几乎就是复制英文讲义，没有自己的理解。这也是我写笔记的目的，顺便强化自己的理解。</p>
+<a id="more"></a>
+<p>第三，这门课有官方笔记，自己下载下来，有条件的打印出来。用笔实际写写画画理解会更深刻，比如我的。</p>
+<p><img src="http://oqy7bjehk.bkt.clouddn.com/17-12-6/86302226.jpg" alt=""></p>
+<h2 id="1-Introduction介绍-对应笔记lectur"><a href="#1-Introduction介绍-对应笔记lectur" class="headerlink" title="1 Introduction介绍-对应笔记lectur"></a>1 Introduction介绍-对应笔记lectur</h2><h2 id="1-Introduction介绍-对应笔记lecture1"><a href="#1-Introduction介绍-对应笔记lecture1" class="headerlink" title="1 Introduction介绍-对应笔记lecture1"></a>1 Introduction介绍-对应笔记lecture1</h2><h3 id="1-1-机器学习应用"><a href="#1-1-机器学习应用" class="headerlink" title="1.1 机器学习应用"></a>1.1 机器学习应用</h3><p>这一章首先简单介绍了，机器学习在现实生活中用的应用例子。吹了一波机器学习未来应用宏伟蓝图，好像又回到大学教室听老师吹牛的感觉~</p>
+<h3 id="1-2-机器学习概念"><a href="#1-2-机器学习概念" class="headerlink" title="1.2 机器学习概念"></a>1.2 机器学习概念</h3><p>介绍了机器学习的概念：A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.</p>
+<p>主要包括了几个名词：你要做的任务T；以往可以学习经验的数据记录E；和判别记录做对否的判别器P</p>
+<h3 id="1-3-机器学习分类"><a href="#1-3-机器学习分类" class="headerlink" title="1.3 机器学习分类"></a>1.3 机器学习分类</h3><ol>
+<li>监督学习 Supervised learning （已知经验数据E的对错标签“p”）</li>
+</ol>
+<ul>
+<li>1.1 回归 regression（连续值）</li>
+<li>1.2 分类 classification（离散值）</li>
+</ul>
+<ol>
+<li>非监督学习 Unsupervised learning（有以往数据，但不知道他们的分类）</li>
+</ol>
+<ul>
+<li>2.1 聚类 clustering</li>
+<li>2.2 非聚类 non-clustering</li>
+</ul>
+<h2 id="2-一个变量的线性回归-对应lecture2"><a href="#2-一个变量的线性回归-对应lecture2" class="headerlink" title="2 一个变量的线性回归 -对应lecture2"></a>2 一个变量的线性回归 -对应lecture2</h2><p>这一节对应官方笔记lecture2。</p>
+<h3 id="2-1-线性回归的表示"><a href="#2-1-线性回归的表示" class="headerlink" title="2.1 线性回归的表示"></a>2.1 线性回归的表示</h3><p>起始给出了预测房价的例子。 像这样用一条线来模拟房价走势，就叫做线性回归。</p>
+<p><img src="http://img.blog.csdn.net/20170423164551394?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjcwMDgwNzk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<p>这个问题属于监督问题，每个样本都给出了准确的答案。<br>同时因为房价是连续值，所以这是一个回归问题，对给定值预测实际输出。</p>
+<p>公式：</p>
+<p>$h_\theta(x) = \theta_0 + \theta_1*x$</p>
+<p>其中两个θ是位置参数，我们的目的是求出他俩的值。</p>
+<h3 id="2-2-Cost-function-代价函数"><a href="#2-2-Cost-function-代价函数" class="headerlink" title="2.2 Cost function 代价函数"></a>2.2 Cost function 代价函数</h3><p>我们取怎样的θ值可以使预测值更加准确呢？ </p>
+<p>想想看，我们应使得每一个预测值hθ和真实值y差别不大，可以定义代价函数如下 </p>
+<p>$J(\theta_0, \theta<em>1) = \dfrac {1}{2m} \displaystyle \sum </em>{i=1}^m \left ( \hat{y}<em>{i}- y</em>{i} \right)^2 = \dfrac {1}{2m} \displaystyle \sum <em>{i=1}^m \left (h</em>\theta (x<em>{i}) - y</em>{i} \right)^2$<br>这样，只需要通过使J值取最小，即可满足需求</p>
+<p>那么怎么使J最小化呢？看图：误差与两个参数的关系。</p>
+<p><img src="http://img.blog.csdn.net/20170423171320520?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjcwMDgwNzk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<p>我们看到通过改变斜线的斜率 误差变得很小。也就是选择了右图的中心圈子里。</p>
+<h3 id="2-3-参数求解（❤梯度下降法❤）"><a href="#2-3-参数求解（❤梯度下降法❤）" class="headerlink" title="2.3 参数求解（❤梯度下降法❤）"></a>2.3 参数求解（❤梯度下降法❤）</h3><p>从上图，我们直观的看到，圈子中心误差最小。那么怎样从数学的角度计算得到那个“中心点”呢？老师给的方法是“梯度下降”<br><img src="http://img.blog.csdn.net/20170423171945273?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjcwMDgwNzk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"><br>如图，当我们的成本函数处于图的坑底时，即当它的值是最小值时，我们将知道我们已经成功了。</p>
+<p>红色箭头显示图中的最小点。我们这样做的方式是通过我们的成本函数的导数（函数的切线）。切线的斜率是那个点的导数，它会给我们一个走向的方向。我们降低成本功能的方向与最陡的下降。每一步的大小由参数α决定，称为学习率。</p>
+<p>公式如下：</p>
+<p>$\theta_j = \theta_j - \alpha\frac{\partial}{\partial\theta_j}J(\theta_0, \theta_1)  $<br>重复计算这个公式，直到函数收敛。</p>
+<p>注意更新theta值应同时更新<br><img src="http://img.blog.csdn.net/20170423173156503?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjcwMDgwNzk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<p>其中的α称之为步长，在最优化课中我们有好几种方法来确定这个α的值。</p>
+<p>这个α如果过小，则收敛很慢；如果过大，则可能导致不收敛。</p>
+<p>对于J(θ)的偏导数学推导过程如下：<br><img src="http://img.blog.csdn.net/20151221193734170" alt="image"><br>在这里你就看到，我们在构造J(θ)时1/2的出现就是为了与指数的在求导时抵消。 经过简单的替换之后我们就可以得到θ新的迭代公式：<br><img src="http://img.blog.csdn.net/20151221193749271" alt="image"></p>
+<h3 id="2-4-总结"><a href="#2-4-总结" class="headerlink" title="2.4 总结"></a>2.4 总结</h3><p>到这里，我们就学习了一个最最简单的机器学习模型求解的全部内容。我们梳理一下，一共有三个层次 的 三个公式。</p>
+<ol>
+<li><p>第一层 模型函数<br>$h_\theta(x) = \theta_0 + \theta_1*x$</p>
+</li>
+<li><p>第二层 代价函数<br>$J(\theta_0, \theta<em>1) = \dfrac {1}{2m} \displaystyle \sum </em>{i=1}^m \left (h<em>\theta (x</em>{i}) - y_{i} \right)^2$</p>
+</li>
+<li><p>第三层 GD法求解参数<br>$\theta_j = \theta_j - \alpha\frac{\partial}{\partial\theta_j}J(\theta_0, \theta_1)  $</p>
+</li>
+</ol>
+<p>就这么简单 ，就可以求出一个预测房价的线性回归模型。<br><img src="http://img.blog.csdn.net/20151221193607558" alt="image"></p>
+<h2 id="3-线性代数知识复习-对应lecture3"><a href="#3-线性代数知识复习-对应lecture3" class="headerlink" title="3 线性代数知识复习 -对应lecture3"></a>3 线性代数知识复习 -对应lecture3</h2><h3 id="3-1-概念"><a href="#3-1-概念" class="headerlink" title="3.1 概念"></a>3.1 概念</h3><p>线性代数知识，主要理解“向量”和“矩阵”两个概念即可。<br><img src="https://dn-anything-about-doc.qbox.me/document-uid49570labid2865timestamp1493280416377.png" alt="image"></p>
+<p>a是一个3×2的矩阵，b是一个2×3的矩阵，c是一个3×1的矩阵，d是一个1×2的矩阵。</p>
+<p>其中，c只有一列，我们也可以称c为列向量，d只有一行，我们也可以称d为行向量。本课程中，对于向量，默认都是指列向量。</p>
+<h3 id="3-2-矩阵运算"><a href="#3-2-矩阵运算" class="headerlink" title="3.2 矩阵运算"></a>3.2 矩阵运算</h3><ol>
+<li>矩阵的数乘运算</li>
+</ol>
+<p>一个标量（你可以直接理解为一个数字）乘以矩阵，得到的结果为矩阵中的每个元素和该标量相乘，如下<br><img src="https://dn-anything-about-doc.qbox.me/document-uid49570labid2865timestamp1493281897854.png" alt="image"></p>
+<ol>
+<li>矩阵的转置运算</li>
+</ol>
+<p>转置运算通过在矩阵右上角添加一“撇”表示。<br><img src="https://dn-anything-about-doc.qbox.me/document-uid49570labid2865timestamp1493281947905.png" alt="image"></p>
+<ol>
+<li>矩阵之间的加减法</li>
+</ol>
+<p>矩阵之间的加减法要求参与运算的两个矩阵尺寸相同，运算的结果等于两个矩阵对应元素相加<br><img src="https://dn-anything-about-doc.qbox.me/document-uid49570labid2865timestamp1493282210391.png" alt="image"></p>
+<ol>
+<li>矩阵魔力的来源–矩阵之间的乘法</li>
+</ol>
+<p>用第一个矩阵的行元素，乘第二个矩阵的列元素。所以矩阵乘法首先要求参与乘法运算的两个矩阵的尺寸能够“兼容”，具体的要求就是，第一个矩阵的列数与第二个矩阵的行数必须相同。</p>
+<p><img src="https://dn-anything-about-doc.qbox.me/document-uid49570labid2865timestamp1493282455569.png" alt="image"></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/" data-id="cjcrd1b6900178hje3ufnuoir" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/01/11/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    Hello World
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/09/19/深度学习 自然语言处理 怎么获得数据集 中文语料集？/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">深度学习 自然语言处理 怎么获得数据集 中文语料集？</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+    
+
+</section>
+            
+                
+<aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/01/11/hello-world/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg)" alt="Hello World" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/01/11/hello-world/" class="title">Hello World</a></p>
+                            <p class="item-date"><time datetime="2018-01-11T03:11:11.000Z" itemprop="datePublished">2018-01-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music2.jpg)" alt="coursera-斯坦福-机器学习-吴恩达-第1周笔记" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/机器学习/">机器学习</a></p>
+                            <p class="item-title"><a href="/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/" class="title">coursera-斯坦福-机器学习-吴恩达-第1周笔记</a></p>
+                            <p class="item-date"><time datetime="2017-11-16T13:02:34.000Z" itemprop="datePublished">2017-11-16</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/19/深度学习 自然语言处理 怎么获得数据集 中文语料集？/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/guitarist.jpg)" alt="深度学习 自然语言处理 怎么获得数据集 中文语料集？" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/自然语言处理/">自然语言处理</a></p>
+                            <p class="item-title"><a href="/2017/09/19/深度学习 自然语言处理 怎么获得数据集 中文语料集？/" class="title">深度学习 自然语言处理 怎么获得数据集 中文语料集？</a></p>
+                            <p class="item-date"><time datetime="2017-09-19T12:07:04.000Z" itemprop="datePublished">2017-09-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/06/在TensorFlow中实现文本分类的CNN/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/arabic-pyramid.jpg)" alt="在TensorFlow中实现文本分类的CNN" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/自然语言处理/">自然语言处理</a></p>
+                            <p class="item-title"><a href="/2017/09/06/在TensorFlow中实现文本分类的CNN/" class="title">在TensorFlow中实现文本分类的CNN</a></p>
+                            <p class="item-date"><time datetime="2017-09-05T17:07:04.000Z" itemprop="datePublished">2017-09-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/09/04/零基础学习GitHub桌面版-5 github的使用技巧/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/china-great-wall.jpg)" alt="零基础学习GitHub桌面版-5 github的使用技巧" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Git/">Git</a></p>
+                            <p class="item-title"><a href="/2017/09/04/零基础学习GitHub桌面版-5 github的使用技巧/" class="title">零基础学习GitHub桌面版-5 github的使用技巧</a></p>
+                            <p class="item-date"><time datetime="2017-09-04T09:07:04.000Z" itemprop="datePublished">2017-09-04</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习/">深度学习</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自然语言处理/">自然语言处理</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/驱动开发/">驱动开发</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Anaconda/">Anaconda</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DevOps/">DevOps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DriverSttudio3-2/">DriverSttudio3.2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Editplus/">Editplus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBK/">GBK</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keras/">Keras</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/">Oracle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pycharm/">Pycharm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/">RNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tensorboard/">Tensorboard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tensorflow/">Tensorflow</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/USB/">USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UTF-8/">UTF-8</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coursera/">coursera</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ddk/">ddk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jieba/">jieba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myeclipse/">myeclipse</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scrapy/">scrapy</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win7/">win7</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/word2vec/">word2vec</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分词/">分词</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习路线/">学习路线</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/报错/">报错</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件操作/">文件操作</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汽车之家/">汽车之家</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/驱动程序/">驱动程序</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/Anaconda/" style="font-size: 12.5px;">Anaconda</a> <a href="/tags/CNN/" style="font-size: 11.25px;">CNN</a> <a href="/tags/DevOps/" style="font-size: 10px;">DevOps</a> <a href="/tags/DriverSttudio3-2/" style="font-size: 10px;">DriverSttudio3.2</a> <a href="/tags/Editplus/" style="font-size: 10px;">Editplus</a> <a href="/tags/GBK/" style="font-size: 11.25px;">GBK</a> <a href="/tags/Git/" style="font-size: 17.5px;">Git</a> <a href="/tags/GitHub/" style="font-size: 17.5px;">GitHub</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Keras/" style="font-size: 10px;">Keras</a> <a href="/tags/Linux/" style="font-size: 13.75px;">Linux</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/Pycharm/" style="font-size: 12.5px;">Pycharm</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Tensorboard/" style="font-size: 10px;">Tensorboard</a> <a href="/tags/Tensorflow/" style="font-size: 13.75px;">Tensorflow</a> <a href="/tags/USB/" style="font-size: 10px;">USB</a> <a href="/tags/UTF-8/" style="font-size: 11.25px;">UTF-8</a> <a href="/tags/coursera/" style="font-size: 10px;">coursera</a> <a href="/tags/ddk/" style="font-size: 10px;">ddk</a> <a href="/tags/eclipse/" style="font-size: 13.75px;">eclipse</a> <a href="/tags/jieba/" style="font-size: 10px;">jieba</a> <a href="/tags/myeclipse/" style="font-size: 12.5px;">myeclipse</a> <a href="/tags/scrapy/" style="font-size: 15px;">scrapy</a> <a href="/tags/win7/" style="font-size: 10px;">win7</a> <a href="/tags/word2vec/" style="font-size: 10px;">word2vec</a> <a href="/tags/分词/" style="font-size: 10px;">分词</a> <a href="/tags/学习路线/" style="font-size: 11.25px;">学习路线</a> <a href="/tags/报错/" style="font-size: 16.25px;">报错</a> <a href="/tags/文件操作/" style="font-size: 10px;">文件操作</a> <a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a> <a href="/tags/汽车之家/" style="font-size: 11.25px;">汽车之家</a> <a href="/tags/深度学习/" style="font-size: 16.25px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 18.75px;">爬虫</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/自然语言处理/" style="font-size: 16.25px;">自然语言处理</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/驱动程序/" style="font-size: 10px;">驱动程序</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 Qingtang<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+
+
+
+        
+    
+    <script>
+    var disqus_config = function () {
+        
+            this.page.url = 'http://yoursite.com/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/';
+        
+        this.page.identifier = 'coursera-斯坦福-机器学习-吴恩达-第1周笔记';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
