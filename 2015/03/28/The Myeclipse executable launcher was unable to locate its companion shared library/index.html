@@ -5,19 +5,19 @@
     
     <title>The Myeclipse executable launcher was unable to locate its companion shared library | 博客堂</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="The Myeclipse executable launcher was unable to locate its companion shared library打开myeclipse的时候弹出：The Myeclipse executable launcher was unable to locate its companion shared library 解决办法：在安装目录下打开 my">
+    <meta name="description" content="The Myeclipse executable launcher was unable to locate its companion shared library 打开myeclipse的时候弹出：The Myeclipse executable launcher was unable to locate its companion shared library 解决办法：">
 <meta name="keywords" content="Java,eclipse,myeclipse,报错">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Myeclipse executable launcher was unable to locate its companion shared library">
 <meta property="og:url" content="http://yoursite.com/2015/03/28/The Myeclipse executable launcher was unable to locate its companion shared library/index.html">
 <meta property="og:site_name" content="博客堂">
-<meta property="og:description" content="The Myeclipse executable launcher was unable to locate its companion shared library打开myeclipse的时候弹出：The Myeclipse executable launcher was unable to locate its companion shared library 解决办法：在安装目录下打开 my">
+<meta property="og:description" content="The Myeclipse executable launcher was unable to locate its companion shared library 打开myeclipse的时候弹出：The Myeclipse executable launcher was unable to locate its companion shared library 解决办法：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/china-great-wall.jpg">
-<meta property="og:updated_time" content="2018-01-23T02:31:26.784Z">
+<meta property="og:updated_time" content="2018-01-23T02:35:22.516Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Myeclipse executable launcher was unable to locate its companion shared library">
-<meta name="twitter:description" content="The Myeclipse executable launcher was unable to locate its companion shared library打开myeclipse的时候弹出：The Myeclipse executable launcher was unable to locate its companion shared library 解决办法：在安装目录下打开 my">
+<meta name="twitter:description" content="The Myeclipse executable launcher was unable to locate its companion shared library 打开myeclipse的时候弹出：The Myeclipse executable launcher was unable to locate its companion shared library 解决办法：">
 <meta name="twitter:image" content="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/china-great-wall.jpg">
     
 
@@ -266,9 +266,11 @@
         <div class="article-entry" itemprop="articleBody">
         
             
-            <h1 id="The-Myeclipse-executable-launcher-was-unable-to-locate-its-companion-shared-library"><a href="#The-Myeclipse-executable-launcher-was-unable-to-locate-its-companion-shared-library" class="headerlink" title="The Myeclipse executable launcher was unable to locate its companion shared library"></a>The Myeclipse executable launcher was unable to locate its companion shared library</h1><p>打开myeclipse的时候弹出：The Myeclipse executable launcher was unable to locate its companion shared library</p>
-<h1 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h1><p>在安装目录下打开 myeclipse.ini<br>发现 /MyEclipse/Common/的路径找不到了，因为修改了文件夹的名字。 因为上次装MyEclipse装在E盘 这次装在D盘 所以会有两个地方。</p>
-<p>所以：<br>1.根据ini文件的路径找到MyEclipse/Common/<br>2.或者更改ini文件到新的路径。<br><a id="more"></a></p>
+            <p>The Myeclipse executable launcher was unable to locate its companion shared library</p>
+<p>打开myeclipse的时候弹出：The Myeclipse executable launcher was unable to locate its companion shared library</p>
+<h1 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h1><a id="more"></a>
+<p>在安装目录下打开 myeclipse.ini<br>发现 /MyEclipse/Common/的路径找不到了，因为修改了文件夹的名字。 因为上次装MyEclipse装在E盘 这次装在D盘 所以会有两个地方。</p>
+<p>所以：<br>1.根据ini文件的路径找到MyEclipse/Common/<br>2.或者更改ini文件到新的路径。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#utf8 (do not remove)  </span><br><span class="line">#utf8 (do not remove)  </span><br><span class="line">-startup  </span><br><span class="line">E:/本机常用软件/MyEclipse/Common/plugins/org.eclipse.equinox.launcher_1.2.0.v20110502.jar  </span><br><span class="line">--launcher.library  </span><br><span class="line">E:/本机常用软件/MyEclipse/Common/plugins/org.eclipse.equinox.launcher.i18n.win32.win32.x86_4.2.0.v201201111650  </span><br><span class="line">-install  </span><br><span class="line">D:\Program Files\MyEclipse  </span><br><span class="line">-vm  </span><br><span class="line">E:\本机常用软件\MyEclipse\Common\binary\com.sun.java.jdk.win32.x86_1.6.0.013\jre\bin\javaw.exe  </span><br><span class="line">-configuration  </span><br><span class="line">D:\Program Files\MyEclipse\configuration  </span><br><span class="line">-vmargs  </span><br><span class="line">-Xmx512m  </span><br><span class="line">-XX:MaxPermSize=256m  </span><br><span class="line">-XX:ReservedCodeCacheSize=64m  </span><br><span class="line">-Dosgi.nls.warnings=ignore</span><br></pre></td></tr></table></figure>
 
         
@@ -280,7 +282,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2015/03/28/The Myeclipse executable launcher was unable to locate its companion shared library/" data-id="cjcr0z0h00000d7jeiflxjqc3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2015/03/28/The Myeclipse executable launcher was unable to locate its companion shared library/" data-id="cjcr150up0000gdjesnip3apz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -405,7 +407,7 @@
                             <a href="/2018/01/11/hello-world/" class="thumbnail">
     
     
-        <span class="thumbnail-image thumbnail-none"></span>
+        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg)" alt="Hello World" class="thumbnail-image"></span>
     
 </a>
 
