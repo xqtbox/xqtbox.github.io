@@ -159,11 +159,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                68
+                72
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                42
+                49
                 <span>标签</span>
             </div>
         </div>
@@ -212,6 +212,440 @@
 
             
             <section id="main">
+    <article id="post- 远程连接自动断开的问题解决办法" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/2018/04/19/ 远程连接自动断开的问题解决办法/" itemprop="url">
+            <img src="https://jabinzou.github.io/gallery/cookie-session.jpg" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/04/19/ 远程连接自动断开的问题解决办法/">远程连接自动断开的问题解决办法</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/04/19/ 远程连接自动断开的问题解决办法/">
+            <time datetime="2018-04-19T04:12:32.000Z" itemprop="datePublished">2018-04-19</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Linux/">Linux</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Linux/">Linux</a>, <a class="tag-link" href="/tags/screen/">screen</a>, <a class="tag-link" href="/tags/session/">session</a>, <a class="tag-link" href="/tags/xshell/">xshell</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>远程连接自动断开的问题解决办法</p>
+<h1 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1. 问题描述"></a>1. 问题描述</h1><p>我们都知道，作为服务器，默认一般都是被动的等待客户端的连接到来。但对基于ssh协议的xshell的运用，总是出现自动断开的情况。</p>
+<p>但是我们经常需要运行一些需要很长时间才能完成的任务，比如系统备份、ftp 传输等等。通常情况下我们都是为每一个这样的任务开一个远程终端窗口，因为它们执行的时间太长了。必须等待它们执行完毕，在此期间不能关掉窗口或者断开连接，否则这个任务就会被杀掉，一切半途而废了。</p></p>
+            <p class="article-more-link">
+                <a href="/2018/04/19/ 远程连接自动断开的问题解决办法/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2018/04/19/ 远程连接自动断开的问题解决办法/" data-id="cjgax3w460006mlje1r4afx1y" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2018/04/19/ 远程连接自动断开的问题解决办法/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2018/04/19/ 远程连接自动断开的问题解决办法/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post- 2018.03.26试题理解论文两篇阅读" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/2018/03/26/ 2018.03.26试题理解论文两篇阅读/" itemprop="url">
+            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music1.jpg" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/03/26/ 2018.03.26试题理解论文两篇阅读/">2018.03.26试题理解论文两篇阅读</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/03/26/ 2018.03.26试题理解论文两篇阅读/">
+            <time datetime="2018-03-26T04:17:34.000Z" itemprop="datePublished">2018-03-26</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/NLP/">NLP</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/CNN/">CNN</a>, <a class="tag-link" href="/tags/LSTM/">LSTM</a>, <a class="tag-link" href="/tags/问答系统/">问答系统</a>, <a class="tag-link" href="/tags/阅读理解/">阅读理解</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><p>最近读了两篇关于问题答案联合建模的论文，读书笔记如下：</p>
+<h1 id="1-A-Constituent-Centric-Neural-Architecture-for-Reading-Comprehension"><a href="#1-A-Constituent-Centric-Neural-Architecture-for-Reading-Comprehension" class="headerlink" title="1 A Constituent-Centric Neural Architecture for Reading Comprehension"></a>1 A Constituent-Centric Neural Architecture for Reading Comprehension</h1><h2 id="0-摘要："><a href="#0-摘要：" class="headerlink" title="0 摘要："></a>0 摘要：</h2><h3 id="0-1应用领域："><a href="#0-1应用领域：" class="headerlink" title="0.1应用领域："></a>0.1应用领域：</h3><p>阅读理解（Reading comprehension RC）旨在理解自然语言并回答其中的问题，这是一项具有挑战性的任务。 在本文中，我们研究斯坦福问题答疑数据集（SQUAD）中的RC问题。</p></p>
+            <p class="article-more-link">
+                <a href="/2018/03/26/ 2018.03.26试题理解论文两篇阅读/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2018/03/26/ 2018.03.26试题理解论文两篇阅读/" data-id="cjgax3w3g0000mljemvmb0qa1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2018/03/26/ 2018.03.26试题理解论文两篇阅读/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2018/03/26/ 2018.03.26试题理解论文两篇阅读/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-Python时间序列分析" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/2018/03/05/Python时间序列分析/" itemprop="url">
+            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/smartphone.jpg" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/03/05/Python时间序列分析/">python时间序列分析</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/03/05/Python时间序列分析/">
+            <time datetime="2018-03-05T11:27:24.000Z" itemprop="datePublished">2018-03-05</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Python/">Python</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/NLP/">NLP</a>, <a class="tag-link" href="/tags/Python/">Python</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><blockquote>
+<p>本文转载自博客园大神“大熊猫淘沙”的一篇文章——python时间序列分析。<br>文章写的生动有趣干货满满，特此收藏转载一下。原文地址：<a href="https://www.cnblogs.com/foley/p/5582358.html" target="_blank" rel="noopener">https://www.cnblogs.com/foley/p/5582358.html</a></p>
+</blockquote></p>
+            <p class="article-more-link">
+                <a href="/2018/03/05/Python时间序列分析/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2018/03/05/Python时间序列分析/" data-id="cjgax3w5e0011mljezmohmfmg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2018/03/05/Python时间序列分析/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2018/03/05/Python时间序列分析/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-零基础学习GitHub桌面版-9购买属于自己的域名并关联" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -277,7 +711,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/02/05/零基础学习GitHub桌面版-9购买属于自己的域名并关联/" data-id="cjda5axxn0066uajepzl03t0v" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/02/05/零基础学习GitHub桌面版-9购买属于自己的域名并关联/" data-id="cjgax3wby006lmljethpjhilg" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -355,6 +789,149 @@
 
 
 
+    <article id="post-Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<a href="/2018/02/05/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/" itemprop="url">
+            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/niagara.jpg" class="article-banner" />
+        </a>
+	
+
+
+
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2018/02/05/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/">零基础学习GitHub桌面版-9购买属于自己的域名并关联</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/02/05/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/">
+            <time datetime="2018-02-05T11:17:34.000Z" itemprop="datePublished">2018-02-05</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Git/">Git</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Git/">Git</a>, <a class="tag-link" href="/tags/GitHub/">GitHub</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            <p><h1 id="0-摘要"><a href="#0-摘要" class="headerlink" title="0 摘要"></a>0 摘要</h1><p>因为Hexo个人博客是托管在github之上，每次访问都要使用githubname.github.io这么一个长串的域名来访问，会显得非常繁琐。这个时候我们可以购买一个域名，设置DNS跳转，以达到通过域名即可访问我们的个人博客。通过查阅文档发现，github pages是支持域名绑定的</p></p>
+            <p class="article-more-link">
+                <a href="/2018/02/05/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/#more">查看更多</a>
+            </p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2018/02/05/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/" data-id="cjgax3w4v000hmljeqbskjhgh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2018/02/05/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2018/02/05/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-零基础学习GitHub桌面版-8配置你的Hexo" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -421,7 +998,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/02/02/零基础学习GitHub桌面版-8配置你的Hexo/" data-id="cjda5axxk0062uaje3gwtib8i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/02/02/零基础学习GitHub桌面版-8配置你的Hexo/" data-id="cjgax3wbo006imljeqtwg1u0t" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -565,7 +1142,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/02/01/零基础学习GitHub桌面版-7使用Hexo建站并更换主题/" data-id="cjda5axxb005zuajeds0glqhi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/02/01/零基础学习GitHub桌面版-7使用Hexo建站并更换主题/" data-id="cjgax3wbl006emljef842ldmz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -709,7 +1286,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/01/30/EndNote X7如何在论文中嵌入中文定格式要求的参考文献/" data-id="cjda5axo40006uajeyez99mgn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/01/30/EndNote X7如何在论文中嵌入中文定格式要求的参考文献/" data-id="cjgax3w4e0009mljeevzjqhuo" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -856,7 +1433,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/01/25/eclipse的git插件安装、配置与使用/" data-id="cjda5axru002guajer4bti6c3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/01/25/eclipse的git插件安装、配置与使用/" data-id="cjgax3w7l002rmlje2zp3qon6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1001,7 +1578,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/01/18/零基础学习GitHub桌面版-6使用pages创建网站/" data-id="cjda5axx4005vuajevm6q07p7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/01/18/零基础学习GitHub桌面版-6使用pages创建网站/" data-id="cjgax3wbi006bmljefh14law7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1079,589 +1656,8 @@
 
 
 
-    <article id="post-coursera-斯坦福-机器学习-吴恩达-机器学习课程总结" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2018/01/10/coursera-斯坦福-机器学习-吴恩达-机器学习课程总结/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/math.jpg" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/01/10/coursera-斯坦福-机器学习-吴恩达-机器学习课程总结/">coursera-斯坦福-机器学习-吴恩达-机器学习课程总结</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/01/10/coursera-斯坦福-机器学习-吴恩达-机器学习课程总结/">
-            <time datetime="2018-01-09T18:32:54.000Z" itemprop="datePublished">2018-01-10</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><h2 id="1结论"><a href="#1结论" class="headerlink" title="1结论"></a>1结论</h2><h3 id="1-1总结和致谢"><a href="#1-1总结和致谢" class="headerlink" title="1.1总结和致谢"></a>1.1总结和致谢</h3><p><img src="http://oqy7bjehk.bkt.clouddn.com/18-1-9/91397098.jpg" alt=""></p>
-<p>在这门课中 我们花了大量的时间 介绍了诸如线性回归 逻辑回归 神经网络 支持向量机 等等一些监督学习算法， 这类算法需要带标签的数据和样本  ，比如 x(i) y(i)。</p>
-<p>然后我们也花了很多时间介绍无监督学习 ，例如 K-均值聚类 用于降维的主成分分析。 以及当你只有一系列无标签数据 x(i) 时的 异常检测算法， 当然 有时带标签的数据 也可以用于异常检测算法的评估 。<br></p>
-            <p class="article-more-link">
-                <a href="/2018/01/10/coursera-斯坦福-机器学习-吴恩达-机器学习课程总结/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2018/01/10/coursera-斯坦福-机器学习-吴恩达-机器学习课程总结/" data-id="cjda5axpk0018uaje7q09j7cu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://yoursite.com/2018/01/10/coursera-斯坦福-机器学习-吴恩达-机器学习课程总结/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2018/01/10/coursera-斯坦福-机器学习-吴恩达-机器学习课程总结/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2018/01/09/coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/01/09/coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统/">coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/01/09/coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统/">
-            <time datetime="2018-01-09T14:32:54.000Z" itemprop="datePublished">2018-01-09</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><h2 id="1图像ORC"><a href="#1图像ORC" class="headerlink" title="1图像ORC"></a>1图像ORC</h2><h3 id="1-1问题描述"><a href="#1-1问题描述" class="headerlink" title="1.1问题描述"></a>1.1问题描述</h3><p>在这一段介绍一种 机器学习的应用实例 照片OCR技术。 我想介绍这部分内容的原因 主要有以下三个 ，</p>
-<ol>
-<li>第一 我想向你展示 一个复杂的机器学习系统 是如何被组合起来的 </li>
-<li>第二 我想介绍一下 机器学习流水线（machine learning pipeline）的有关概念， 以及在决定下一步做什么时， 如何分配资源。 </li>
-<li>最后,通过介绍照片OCR问题 的机会来告诉你， 机器学习的诸多 有意思的想法和理念 。其中之一是如何将机器学习 应用到计算机视觉问题中， 第二是有关 人工数据合成（artificial data synthesis）的概念。</li>
-</ol></p>
-            <p class="article-more-link">
-                <a href="/2018/01/09/coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2018/01/09/coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统/" data-id="cjda5axpq001fuaje45p5n4fi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://yoursite.com/2018/01/09/coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2018/01/09/coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-人工智能工程师学习路线 自然语言处理算法工程师学习路径" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2018/01/08/人工智能工程师学习路线 自然语言处理算法工程师学习路径/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/shoes.jpg" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/01/08/人工智能工程师学习路线 自然语言处理算法工程师学习路径/">人工智能工程师学习路线 自然语言处理算法工程师学习路径</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/01/08/人工智能工程师学习路线 自然语言处理算法工程师学习路径/">
-            <time datetime="2018-01-08T03:39:54.000Z" itemprop="datePublished">2018-01-08</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/自然语言处理/">自然语言处理</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/学习路线/">学习路线</a>, <a class="tag-link" href="/tags/自然语言处理/">自然语言处理</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><h2 id="1入门级别"><a href="#1入门级别" class="headerlink" title="1入门级别"></a>1入门级别</h2><h3 id="1-1-数据结构"><a href="#1-1-数据结构" class="headerlink" title="1.1 数据结构"></a>1.1 数据结构</h3><h3 id="1-2-算法（重点）"><a href="#1-2-算法（重点）" class="headerlink" title="1.2 算法（重点）"></a>1.2 算法（重点）</h3><p>面试必考。参考学习地址：<br>麻省理工学院公开课：算法导论 <a href="http://open.163.com/special/opencourse/algorithms.html" target="_blank" rel="noopener">http://open.163.com/special/opencourse/algorithms.html</a></p>
-<h3 id="1-3python"><a href="#1-3python" class="headerlink" title="1.3python"></a>1.3python</h3><p>包括python基础、面向对象要懂。</p></p>
-            <p class="article-more-link">
-                <a href="/2018/01/08/人工智能工程师学习路线 自然语言处理算法工程师学习路径/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2018/01/08/人工智能工程师学习路线 自然语言处理算法工程师学习路径/" data-id="cjda5axuv003uuajep20wsn3l" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://yoursite.com/2018/01/08/人工智能工程师学习路线 自然语言处理算法工程师学习路径/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2018/01/08/人工智能工程师学习路线 自然语言处理算法工程师学习路径/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
-    <article id="post-coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-            
-	
-		<a href="/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/" itemprop="url">
-            <img src="http://img3.cache.netease.com/photo/0003/2009-05-05/58IOGNQF0BOd0003.jpg" class="article-banner" />
-        </a>
-	
-
-
-
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/">coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/">
-            <time datetime="2018-01-07T03:32:54.000Z" itemprop="datePublished">2018-01-07</time>
-        </a>
-    </div>
-
-
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
-    </div>
-
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-            <p><h2 id="1-大数据下的梯度下降"><a href="#1-大数据下的梯度下降" class="headerlink" title="1 大数据下的梯度下降"></a>1 大数据下的梯度下降</h2><p>在接下来的几个视频里 ，我们会讲大规模的机器学习， 就是用来处理大数据的算法。 如果我们看近5到10年的机器学习的历史 ，现在的学习算法比5年前的好很多， 其中的原因之一就是我们现在拥有很多可以训练算法的数据 。</p>
-<h3 id="1-1-大数据"><a href="#1-1-大数据" class="headerlink" title="1.1 大数据"></a>1.1 大数据</h3><p>为什么我们喜欢用大的数据集呢?</p></p>
-            <p class="article-more-link">
-                <a href="/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/#more">查看更多</a>
-            </p>
-        
-        </div>
-        <footer class="article-footer">
-            <div class="share-container">
-
-
-
-</div>
-
-    <a data-url="http://yoursite.com/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/" data-id="cjda5axpo001cuajewp5u7mqy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
-<script>
-    (function ($) {
-        // Prevent duplicate binding
-        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
-            __SHARE_BUTTON_BINDED__ = true;
-        } else {
-            return;
-        }
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-            
-    
-        <a href="http://yoursite.com/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/">评论</a>
-    
-
-        </footer>
-    </div>
-    
-</article>
-
-
-
     <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
     </nav>
 </section>
             
@@ -1673,6 +1669,63 @@
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/19/ 远程连接自动断开的问题解决办法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://jabinzou.github.io/gallery/cookie-session.jpg)" alt="远程连接自动断开的问题解决办法" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Linux/">Linux</a></p>
+                            <p class="item-title"><a href="/2018/04/19/ 远程连接自动断开的问题解决办法/" class="title">远程连接自动断开的问题解决办法</a></p>
+                            <p class="item-date"><time datetime="2018-04-19T04:12:32.000Z" itemprop="datePublished">2018-04-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/03/26/ 2018.03.26试题理解论文两篇阅读/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music1.jpg)" alt="2018.03.26试题理解论文两篇阅读" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/NLP/">NLP</a></p>
+                            <p class="item-title"><a href="/2018/03/26/ 2018.03.26试题理解论文两篇阅读/" class="title">2018.03.26试题理解论文两篇阅读</a></p>
+                            <p class="item-date"><time datetime="2018-03-26T04:17:34.000Z" itemprop="datePublished">2018-03-26</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/03/05/Python时间序列分析/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/smartphone.jpg)" alt="python时间序列分析" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Python/">Python</a></p>
+                            <p class="item-title"><a href="/2018/03/05/Python时间序列分析/" class="title">python时间序列分析</a></p>
+                            <p class="item-date"><time datetime="2018-03-05T11:27:24.000Z" itemprop="datePublished">2018-03-05</time></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
@@ -1696,29 +1749,10 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2018/02/02/零基础学习GitHub桌面版-8配置你的Hexo/" class="thumbnail">
+                            <a href="/2018/02/05/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/" class="thumbnail">
     
     
-        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/little-girl.jpg)" alt="零基础学习GitHub桌面版-8配置你的Hexo" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Git/">Git</a></p>
-                            <p class="item-title"><a href="/2018/02/02/零基础学习GitHub桌面版-8配置你的Hexo/" class="title">零基础学习GitHub桌面版-8配置你的Hexo</a></p>
-                            <p class="item-date"><time datetime="2018-02-02T04:27:34.000Z" itemprop="datePublished">2018-02-02</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2018/02/01/零基础学习GitHub桌面版-7使用Hexo建站并更换主题/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music2.jpg)" alt="零基础学习GitHub桌面版-7使用Hexo建站并更换主题" class="thumbnail-image"></span>
+        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/niagara.jpg)" alt="零基础学习GitHub桌面版-9购买属于自己的域名并关联" class="thumbnail-image"></span>
     
 </a>
 
@@ -1726,46 +1760,8 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Git/">Git</a></p>
-                            <p class="item-title"><a href="/2018/02/01/零基础学习GitHub桌面版-7使用Hexo建站并更换主题/" class="title">零基础学习GitHub桌面版-7使用Hexo建站并更换主题</a></p>
-                            <p class="item-date"><time datetime="2018-02-01T14:27:14.000Z" itemprop="datePublished">2018-02-01</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2018/01/30/EndNote X7如何在论文中嵌入中文定格式要求的参考文献/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/guitarist.jpg)" alt="EndNote X7如何在论文中嵌入中文定格式要求的参考文献" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/随笔/">随笔</a></p>
-                            <p class="item-title"><a href="/2018/01/30/EndNote X7如何在论文中嵌入中文定格式要求的参考文献/" class="title">EndNote X7如何在论文中嵌入中文定格式要求的参考文献</a></p>
-                            <p class="item-date"><time datetime="2018-01-30T04:07:04.000Z" itemprop="datePublished">2018-01-30</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2018/01/25/eclipse的git插件安装、配置与使用/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/arabic-pyramid.jpg)" alt="eclipse的git插件安装、配置与使用" class="thumbnail-image"></span>
-    
-</a>
-
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Git/">Git</a></p>
-                            <p class="item-title"><a href="/2018/01/25/eclipse的git插件安装、配置与使用/" class="title">eclipse的git插件安装、配置与使用</a></p>
-                            <p class="item-date"><time datetime="2018-01-25T13:02:01.000Z" itemprop="datePublished">2018-01-25</time></p>
+                            <p class="item-title"><a href="/2018/02/05/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/" class="title">零基础学习GitHub桌面版-9购买属于自己的域名并关联</a></p>
+                            <p class="item-date"><time datetime="2018-02-05T11:17:34.000Z" itemprop="datePublished">2018-02-05</time></p>
                         </div>
                     </li>
                 
@@ -1778,7 +1774,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">分类</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习/">深度学习</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自然语言处理/">自然语言处理</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/驱动开发/">驱动开发</a><span class="category-list-count">1</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/深度学习/">深度学习</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/爬虫/">爬虫</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/自然语言处理/">自然语言处理</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/驱动开发/">驱动开发</a><span class="category-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1787,7 +1783,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1796,7 +1792,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Anaconda/">Anaconda</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DevOps/">DevOps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DriverSttudio3-2/">DriverSttudio3.2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Editplus/">Editplus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EndNote/">EndNote</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBK/">GBK</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keras/">Keras</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/">Oracle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pycharm/">Pycharm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/">RNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tensorboard/">Tensorboard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tensorflow/">Tensorflow</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/USB/">USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UTF-8/">UTF-8</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coursera/">coursera</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ddk/">ddk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jieba/">jieba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myeclipse/">myeclipse</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scrapy/">scrapy</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win7/">win7</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/word2vec/">word2vec</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分词/">分词</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习路线/">学习路线</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/报错/">报错</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件操作/">文件操作</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汽车之家/">汽车之家</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/驱动程序/">驱动程序</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Anaconda/">Anaconda</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DevOps/">DevOps</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DriverSttudio3-2/">DriverSttudio3.2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Editplus/">Editplus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EndNote/">EndNote</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GBK/">GBK</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/">GitHub</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Keras/">Keras</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LSTM/">LSTM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oracle/">Oracle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pycharm/">Pycharm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RNN/">RNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tensorboard/">Tensorboard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tensorflow/">Tensorflow</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/USB/">USB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UTF-8/">UTF-8</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coursera/">coursera</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ddk/">ddk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jieba/">jieba</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/myeclipse/">myeclipse</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scrapy/">scrapy</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/screen/">screen</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/session/">session</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win7/">win7</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/word2vec/">word2vec</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xshell/">xshell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分词/">分词</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习路线/">学习路线</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/报错/">报错</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/文件操作/">文件操作</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/汽车之家/">汽车之家</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/深度学习/">深度学习</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬虫/">爬虫</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/问答系统/">问答系统</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/阅读理解/">阅读理解</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/驱动程序/">驱动程序</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -1805,7 +1801,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">标签云</h3>
         <div class="widget tagcloud">
-            <a href="/tags/Anaconda/" style="font-size: 12.73px;">Anaconda</a> <a href="/tags/CNN/" style="font-size: 10.91px;">CNN</a> <a href="/tags/DevOps/" style="font-size: 10px;">DevOps</a> <a href="/tags/DriverSttudio3-2/" style="font-size: 10px;">DriverSttudio3.2</a> <a href="/tags/Editplus/" style="font-size: 10px;">Editplus</a> <a href="/tags/EndNote/" style="font-size: 10px;">EndNote</a> <a href="/tags/GBK/" style="font-size: 10.91px;">GBK</a> <a href="/tags/Git/" style="font-size: 18.18px;">Git</a> <a href="/tags/GitHub/" style="font-size: 18.18px;">GitHub</a> <a href="/tags/Java/" style="font-size: 17.27px;">Java</a> <a href="/tags/Keras/" style="font-size: 10px;">Keras</a> <a href="/tags/Linux/" style="font-size: 12.73px;">Linux</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/Pycharm/" style="font-size: 11.82px;">Pycharm</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Tensorboard/" style="font-size: 10px;">Tensorboard</a> <a href="/tags/Tensorflow/" style="font-size: 14.55px;">Tensorflow</a> <a href="/tags/USB/" style="font-size: 10px;">USB</a> <a href="/tags/UTF-8/" style="font-size: 10.91px;">UTF-8</a> <a href="/tags/coursera/" style="font-size: 19.09px;">coursera</a> <a href="/tags/ddk/" style="font-size: 10px;">ddk</a> <a href="/tags/eclipse/" style="font-size: 14.55px;">eclipse</a> <a href="/tags/jieba/" style="font-size: 10px;">jieba</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/myeclipse/" style="font-size: 11.82px;">myeclipse</a> <a href="/tags/scrapy/" style="font-size: 13.64px;">scrapy</a> <a href="/tags/win7/" style="font-size: 10px;">win7</a> <a href="/tags/word2vec/" style="font-size: 10px;">word2vec</a> <a href="/tags/分词/" style="font-size: 10px;">分词</a> <a href="/tags/学习路线/" style="font-size: 11.82px;">学习路线</a> <a href="/tags/报错/" style="font-size: 15.45px;">报错</a> <a href="/tags/文件操作/" style="font-size: 10px;">文件操作</a> <a href="/tags/机器学习/" style="font-size: 19.09px;">机器学习</a> <a href="/tags/汽车之家/" style="font-size: 10.91px;">汽车之家</a> <a href="/tags/深度学习/" style="font-size: 15.45px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 16.36px;">爬虫</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/自然语言处理/" style="font-size: 16.36px;">自然语言处理</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/驱动程序/" style="font-size: 10px;">驱动程序</a>
+            <a href="/tags/Anaconda/" style="font-size: 13px;">Anaconda</a> <a href="/tags/CNN/" style="font-size: 12px;">CNN</a> <a href="/tags/DevOps/" style="font-size: 10px;">DevOps</a> <a href="/tags/DriverSttudio3-2/" style="font-size: 10px;">DriverSttudio3.2</a> <a href="/tags/Editplus/" style="font-size: 10px;">Editplus</a> <a href="/tags/EndNote/" style="font-size: 10px;">EndNote</a> <a href="/tags/GBK/" style="font-size: 11px;">GBK</a> <a href="/tags/Git/" style="font-size: 19px;">Git</a> <a href="/tags/GitHub/" style="font-size: 19px;">GitHub</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/Keras/" style="font-size: 10px;">Keras</a> <a href="/tags/LSTM/" style="font-size: 10px;">LSTM</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/Pycharm/" style="font-size: 12px;">Pycharm</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Tensorboard/" style="font-size: 10px;">Tensorboard</a> <a href="/tags/Tensorflow/" style="font-size: 15px;">Tensorflow</a> <a href="/tags/USB/" style="font-size: 10px;">USB</a> <a href="/tags/UTF-8/" style="font-size: 11px;">UTF-8</a> <a href="/tags/coursera/" style="font-size: 19px;">coursera</a> <a href="/tags/ddk/" style="font-size: 10px;">ddk</a> <a href="/tags/eclipse/" style="font-size: 15px;">eclipse</a> <a href="/tags/jieba/" style="font-size: 10px;">jieba</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/myeclipse/" style="font-size: 12px;">myeclipse</a> <a href="/tags/scrapy/" style="font-size: 14px;">scrapy</a> <a href="/tags/screen/" style="font-size: 10px;">screen</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/win7/" style="font-size: 10px;">win7</a> <a href="/tags/word2vec/" style="font-size: 10px;">word2vec</a> <a href="/tags/xshell/" style="font-size: 10px;">xshell</a> <a href="/tags/分词/" style="font-size: 10px;">分词</a> <a href="/tags/学习路线/" style="font-size: 12px;">学习路线</a> <a href="/tags/报错/" style="font-size: 16px;">报错</a> <a href="/tags/文件操作/" style="font-size: 10px;">文件操作</a> <a href="/tags/机器学习/" style="font-size: 19px;">机器学习</a> <a href="/tags/汽车之家/" style="font-size: 11px;">汽车之家</a> <a href="/tags/深度学习/" style="font-size: 16px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 17px;">爬虫</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/自然语言处理/" style="font-size: 17px;">自然语言处理</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/问答系统/" style="font-size: 10px;">问答系统</a> <a href="/tags/阅读理解/" style="font-size: 10px;">阅读理解</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/驱动程序/" style="font-size: 10px;">驱动程序</a>
         </div>
     </div>
 
