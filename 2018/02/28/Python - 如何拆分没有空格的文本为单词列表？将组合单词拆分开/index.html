@@ -3,18 +3,22 @@
 <head>
     <meta charset="utf-8">
     
-    <title>分类: 机器学习 | 博客堂</title>
+    <title>Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开 | 博客堂</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Note">
-<meta property="og:type" content="website">
-<meta property="og:title" content="博客堂">
-<meta property="og:url" content="http://yoursite.com/categories/机器学习/index.html">
+    <meta name="description" content="python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开很多时候，我们需要把一长串单词字符拆分开来，比如：  输入：“tableapplechairtablecupboard …”很多字。我们希望有一个有效的算法来分割这样的文本到单词列表，并得到： 输出：[“table”，“apple”，“chair”，“table”，“cup”，“board”]  或者将一个很长的函数名拆分成小单词">
+<meta name="keywords" content="Python,自然语言处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开">
+<meta property="og:url" content="http://yoursite.com/2018/02/28/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/index.html">
 <meta property="og:site_name" content="博客堂">
-<meta property="og:description" content="Note">
+<meta property="og:description" content="python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开很多时候，我们需要把一长串单词字符拆分开来，比如：  输入：“tableapplechairtablecupboard …”很多字。我们希望有一个有效的算法来分割这样的文本到单词列表，并得到： 输出：[“table”，“apple”，“chair”，“table”，“cup”，“board”]  或者将一个很长的函数名拆分成小单词">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/shoes.jpg">
+<meta property="og:updated_time" content="2018-04-22T14:47:05.040Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博客堂">
-<meta name="twitter:description" content="Note">
+<meta name="twitter:title" content="Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开">
+<meta name="twitter:description" content="python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开很多时候，我们需要把一长串单词字符拆分开来，比如：  输入：“tableapplechairtablecupboard …”很多字。我们希望有一个有效的算法来分割这样的文本到单词列表，并得到： 输出：[“table”，“apple”，“chair”，“table”，“cup”，“board”]  或者将一个很长的函数名拆分成小单词">
+<meta name="twitter:image" content="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/shoes.jpg">
     
 
     
@@ -211,378 +215,197 @@
 </aside>
 
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-folder"></i></span>
-        <h1 class="title">机器学习</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            
+	
+		<img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/shoes.jpg" class="article-banner" />
+	
+
+
+
+        
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/01/10/coursera-斯坦福-机器学习-吴恩达-机器学习课程总结/">coursera-斯坦福-机器学习-吴恩达-机器学习课程总结</a>
+        <h1 class="article-title" itemprop="name">
+            Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2018/01/10/coursera-斯坦福-机器学习-吴恩达-机器学习课程总结/">
-            <time datetime="2018-01-09T18:32:54.000Z" itemprop="datePublished">2018-01-10</time>
+        <a href="/2018/02/28/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/">
+            <time datetime="2018-02-28T11:11:34.000Z" itemprop="datePublished">2018-02-28</time>
         </a>
     </div>
 
 
-                    
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
+        <a class="article-category-link" href="/categories/自然语言处理/">自然语言处理</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
+        <a class="tag-link" href="/tags/Python/">Python</a>, <a class="tag-link" href="/tags/自然语言处理/">自然语言处理</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+                    </div>
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/01/09/coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统/">coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/01/09/coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统/">
-            <time datetime="2018-01-09T14:32:54.000Z" itemprop="datePublished">2018-01-09</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
-    </div>
-
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#python-如何拆分没有空格的文本为单词列表？将组合单词拆分开"><span class="toc-number">1.</span> <span class="toc-text">python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1算法的思想"><span class="toc-number">1.1.</span> <span class="toc-text">1算法的思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2代码"><span class="toc-number">1.2.</span> <span class="toc-text">2代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3下载"><span class="toc-number">1.3.</span> <span class="toc-text">3下载</span></a></li></ol></li></ol>
                 </div>
-            </div>
+            
+            <h1 id="python-如何拆分没有空格的文本为单词列表？将组合单词拆分开"><a href="#python-如何拆分没有空格的文本为单词列表？将组合单词拆分开" class="headerlink" title="python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开"></a>python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开</h1><p>很多时候，我们需要把一长串单词字符拆分开来，比如：</p>
+<ul>
+<li>输入：“tableapplechairtablecupboard …”很多字。我们希望有一个有效的算法来分割这样的文本到单词列表，并得到：</li>
+<li>输出：[“table”，“apple”，“chair”，“table”，“cup”，“board”]</li>
+</ul>
+<p>或者将一个很长的函数名拆分成小单词： WbxNewBrowserInstance 变为 [ wbx new browser instance ]</p>
+<a id="more"></a>
+<h2 id="1算法的思想"><a href="#1算法的思想" class="headerlink" title="1算法的思想"></a>1算法的思想</h2><p>算法的思想是：通过所有可能的单词(从第一个字母开始)，并找到最长的单词可能 ，插入空格。</p>
+<p>所以我们需要一个 “常用单词列表”。</p>
+<p>后面的方法是对输出的分布进行建模。良好的第一近似是假设所有单词是独立分布的。然后你只需要知道所有单词的相对频率。可以合理地假定它们遵循Zipf定律，即在单词列表中具有秩n的单词具有大约1 /(n log N)的概率，其中N是字典中的单词数。</p>
+<p>一旦你修正了模型，你可以使用动态规划来推断空格的位置。最可能的句子是最大化每个单词的概率的乘积，并且很容易用动态规划来计算它。不是直接使用概率，而是使用定义为概率的倒数的对数的成本来避免溢出。</p>
+<h2 id="2代码"><a href="#2代码" class="headerlink" title="2代码"></a>2代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">def cutLongNameFun(self,s):</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        longWords变为 long word：log里面有很多长函数名，比如WbxMeeting_VerifyMeetingIsExist。</span><br><span class="line">        将其拆成小单词wbx meeting verify meeting is exist，更有意义。若有大写则分割。</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        # Build a cost dictionary, assuming Zipf&apos;s law and cost = -math.log(probability).</span><br><span class="line">        # 建立一个成本字典，假设Zipf定律和成本= -math.log（概率）。</span><br><span class="line">        words = open(&quot;words-by-frequency.txt&quot;).read().split() # 有特殊字符的话直接在其中添加</span><br><span class="line">        wordcost = dict((k, log((i+1)*log(len(words)))) for i,k in enumerate(words))</span><br><span class="line">        maxword = max(len(x) for x in words)</span><br><span class="line">        </span><br><span class="line">        def infer_spaces(s):</span><br><span class="line">            &apos;&apos;&apos;Uses dynamic programming to infer the location of spaces in a string without spaces.</span><br><span class="line">            .使用动态编程来推断不带空格的字符串中空格的位置。&apos;&apos;&apos;</span><br><span class="line">            # Find the best match for the i first characters, assuming cost has</span><br><span class="line">            # been built for the i-1 first characters.</span><br><span class="line">            # Returns a pair (match_cost, match_length).</span><br><span class="line">            def best_match(i):</span><br><span class="line">                candidates = enumerate(reversed(cost[max(0, i-maxword):i]))</span><br><span class="line">                return min((c + wordcost.get(s[i-k-1:i], 9e999), k+1) for k,c in candidates)</span><br><span class="line">            </span><br><span class="line">            # Build the cost array.</span><br><span class="line">            cost = [0]</span><br><span class="line">            for i in range(1,len(s)+1):</span><br><span class="line">                c,k = best_match(i)</span><br><span class="line">                cost.append(c)</span><br><span class="line">            </span><br><span class="line">            # Backtrack to recover the minimal-cost string.</span><br><span class="line">            out = []</span><br><span class="line">            i = len(s)</span><br><span class="line">            while i&gt;0:</span><br><span class="line">                c,k = best_match(i)</span><br><span class="line">                assert c == cost[i]</span><br><span class="line">                out.append(s[i-k:i])</span><br><span class="line">                i -= k</span><br><span class="line">        </span><br><span class="line">            return &quot; &quot;.join(reversed(out))</span><br></pre></td></tr></table></figure>
+<p>使用实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s = &apos;thumbgreenappleactiveassignmentweeklymetaphor&apos;</span><br><span class="line">print(infer_spaces(s))</span><br><span class="line"></span><br><span class="line"># 结果为 thumb green apple active assignment weekly metaphor.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Before: thereismassesoftextinformationofpeoplescommentswhichisparsedfromhtmlbuttherearen</span><br><span class="line">odelimitedcharactersinthemforexamplethumbgreenappleactiveassignmentweeklymetapho</span><br><span class="line">rapparentlytherearethumbgreenappleetcinthestringialsohavealargedictionarytoquery</span><br><span class="line">whetherthewordisreasonablesowhatsthefastestwayofextractionthxalot.</span><br><span class="line"></span><br><span class="line">After: there is masses of text information of peoples comments which is parsed from html but there are no delimited characters in them for example thumb green apple active assignment weekly metaphor apparently there are thumb green apple etc in the string i also have a large dictionary to query whether the word is reasonable so what s the fastest way of extraction thx a lot.</span><br></pre></td></tr></table></figure>
+<p>正如你可以看到，这个算法基本上是完美的。最<strong>重要的部分</strong>是确保你的单词列表训练到一个类似于你实际遇到的语料库，否则结果将是非常糟糕。所以你应该手工完善自己的单词库。</p>
+<h2 id="3下载"><a href="#3下载" class="headerlink" title="3下载"></a>3下载</h2><p>words-by-frequency.txt 这个文件下载：<br><a href="http://download.csdn.net/download/u012052268/10263440" target="_blank" rel="noopener">http://download.csdn.net/download/u012052268/10263440</a></p>
+
+        
         </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/">coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/">
-            <time datetime="2018-01-07T03:32:54.000Z" itemprop="datePublished">2018-01-07</time>
-        </a>
-    </div>
+        <footer class="article-footer">
+            <div class="share-container">
 
 
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-    </div>
 
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/12/21/coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统/">coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/12/21/coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统/">
-            <time datetime="2017-12-21T03:36:54.000Z" itemprop="datePublished">2017-12-21</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/12/20/coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测/">coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/12/20/coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测/">
-            <time datetime="2017-12-20T03:31:54.000Z" itemprop="datePublished">2017-12-20</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/12/19/coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习/">coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/12/19/coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习/">
-            <time datetime="2017-12-19T02:31:54.000Z" itemprop="datePublished">2017-12-19</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/12/15/coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM/">coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/12/15/coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM/">
-            <time datetime="2017-12-15T02:21:54.000Z" itemprop="datePublished">2017-12-15</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/12/14/coursera-斯坦福-机器学习-吴恩达-第6周笔记-算法改进and机器学习系统设计/">coursera-斯坦福-机器学习-吴恩达-第6周笔记-算法改进and机器学习系统设计</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/12/14/coursera-斯坦福-机器学习-吴恩达-第6周笔记-算法改进and机器学习系统设计/">
-            <time datetime="2017-12-14T02:21:34.000Z" itemprop="datePublished">2017-12-14</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/12/03/coursera-斯坦福-机器学习-吴恩达-第5周笔记-反向传播/">coursera-斯坦福-机器学习-吴恩达-第5周笔记-反向传播</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/12/03/coursera-斯坦福-机器学习-吴恩达-第5周笔记-反向传播/">
-            <time datetime="2017-12-03T02:51:34.000Z" itemprop="datePublished">2017-12-03</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2017/11/30/coursera-斯坦福-机器学习-吴恩达-第4周笔记-神经网络/">coursera-斯坦福-机器学习-吴恩达-第4周笔记-神经网络</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2017/11/30/coursera-斯坦福-机器学习-吴恩达-第4周笔记-神经网络/">
-            <time datetime="2017-11-30T02:01:34.000Z" itemprop="datePublished">2017-11-30</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/coursera/">coursera</a>, <a class="tag-link" href="/tags/机器学习/">机器学习</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
 </div>
 
-    <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/categories/机器学习/page/2/">2</a><a class="extend next" rel="next" href="/categories/机器学习/page/2/">下一页 &raquo;</a>
-    </nav>
+    <a data-url="http://yoursite.com/2018/02/28/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/" data-id="cjgaxgb7o000hexjeg50uqu64" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2018/02/28/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2018/02/28/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/03/05/Python时间序列分析/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    python时间序列分析
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/02/05/零基础学习GitHub桌面版-9购买属于自己的域名并关联/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">零基础学习GitHub桌面版-9购买属于自己的域名并关联</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+</section>
+    
+
 </section>
             
                 
@@ -767,11 +590,13 @@
     <script>
     var disqus_config = function () {
         
-        this.page.identifier = '';
+            this.page.url = 'http://yoursite.com/2018/02/28/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/';
+        
+        this.page.identifier = 'Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开';
     };
     (function() { 
         var d = document, s = d.createElement('script');  
-        s.src = '//' + 'xqtbox' + '.disqus.com/count.js';
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
     })();
