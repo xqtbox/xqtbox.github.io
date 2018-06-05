@@ -30,17 +30,44 @@
     <link rel="stylesheet" href="/css/style.css">
 
     <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
-    
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-    
-    
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-    
-    
-    
-    
-
+    <% if (typeof(isHead) !== 'undefined' && isHead) { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- css('libs/lightgallery/css/lightgallery.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- css('libs/justified-gallery/justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.google_analytics) { %>
+        <%- partial('plugin/google-analytics') %>
+    <% } %>
+    <% if (theme.plugins.google_site_verification) { %>
+        <meta name="google-site-verification" content="<%= theme.plugins.google_site_verification %>" />
+    <% } %>
+    <% if (theme.plugins.baidu_analytics) { %>
+        <%- partial('plugin/baidu-analytics') %>
+    <% } %>
+<% } else { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- js('libs/lightgallery/js/lightgallery.min') %>
+        <%- js('libs/lightgallery/js/lg-thumbnail.min') %>
+        <%- js('libs/lightgallery/js/lg-pager.min') %>
+        <%- js('libs/lightgallery/js/lg-autoplay.min') %>
+        <%- js('libs/lightgallery/js/lg-fullscreen.min') %>
+        <%- js('libs/lightgallery/js/lg-zoom.min') %>
+        <%- js('libs/lightgallery/js/lg-hash.min') %>
+        <%- js('libs/lightgallery/js/lg-share.min') %>
+        <%- js('libs/lightgallery/js/lg-video.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- js('libs/justified-gallery/jquery.justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.mathjax) { %>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <%- js('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML') %>
+    <% } %>
+<% } %>
 
 
 
@@ -283,7 +310,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/12/15/coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM/" data-id="cjgaxgb9t002eexjesrr37idu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/12/15/coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM/" data-id="cji1kum28002eh5je6lvur2pp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -427,7 +454,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/12/14/coursera-斯坦福-机器学习-吴恩达-第6周笔记-算法改进and机器学习系统设计/" data-id="cjgaxgb9h002aexjekf8fl4at" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/12/14/coursera-斯坦福-机器学习-吴恩达-第6周笔记-算法改进and机器学习系统设计/" data-id="cji1kum23002ah5je278q1a9q" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -576,7 +603,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/12/03/coursera-斯坦福-机器学习-吴恩达-第5周笔记-反向传播/" data-id="cjgaxgb9e0027exjebe1sby5g" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/12/03/coursera-斯坦福-机器学习-吴恩达-第5周笔记-反向传播/" data-id="cji1kum1y0027h5jeme4md0qd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -722,7 +749,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/11/30/coursera-斯坦福-机器学习-吴恩达-第4周笔记-神经网络/" data-id="cjgaxgb9b0023exjenleuan05" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/11/30/coursera-斯坦福-机器学习-吴恩达-第4周笔记-神经网络/" data-id="cji1kum1u0023h5jehxd5l2v5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -872,7 +899,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/11/28/coursera-斯坦福-机器学习-吴恩达-第3周笔记-逻辑回归/" data-id="cjgaxgb980021exjer68xx481" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/11/28/coursera-斯坦福-机器学习-吴恩达-第3周笔记-逻辑回归/" data-id="cji1kum1r0021h5je5ujtqaf1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1017,7 +1044,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/11/21/coursera-斯坦福-机器学习-吴恩达-第2周笔记/" data-id="cjgaxgb95001yexje1kal5p9l" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/11/21/coursera-斯坦福-机器学习-吴恩达-第2周笔记/" data-id="cji1kum1o001yh5jezzexrl8j" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1162,7 +1189,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/" data-id="cjgaxgb92001vexjevg3zdhn5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/" data-id="cji1kum1m001vh5jei78hngbm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1307,7 +1334,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/09/19/深度学习 自然语言处理 怎么获得数据集 中文语料集？/" data-id="cjgaxgbdc0056exjeyycovsob" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/09/19/深度学习 自然语言处理 怎么获得数据集 中文语料集？/" data-id="cji1kum6r0056h5jesk1y02bk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1456,7 +1483,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/09/06/在TensorFlow中实现文本分类的CNN/" data-id="cjgaxgbc9004iexjev128oc59" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/09/06/在TensorFlow中实现文本分类的CNN/" data-id="cji1kum5b004fh5jearlaf37i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1601,7 +1628,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/09/04/零基础学习GitHub桌面版-5 github的使用技巧/" data-id="cjgaxgbef0066exje1zfzzknf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/09/04/零基础学习GitHub桌面版-5 github的使用技巧/" data-id="cji1kum840066h5je74m7x3hc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1878,28 +1905,44 @@
 
 
 
-
-    
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
-    
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-    
-    
+<% if (typeof(isHead) !== 'undefined' && isHead) { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- css('libs/lightgallery/css/lightgallery.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- css('libs/justified-gallery/justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.google_analytics) { %>
+        <%- partial('plugin/google-analytics') %>
+    <% } %>
+    <% if (theme.plugins.google_site_verification) { %>
+        <meta name="google-site-verification" content="<%= theme.plugins.google_site_verification %>" />
+    <% } %>
+    <% if (theme.plugins.baidu_analytics) { %>
+        <%- partial('plugin/baidu-analytics') %>
+    <% } %>
+<% } else { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- js('libs/lightgallery/js/lightgallery.min') %>
+        <%- js('libs/lightgallery/js/lg-thumbnail.min') %>
+        <%- js('libs/lightgallery/js/lg-pager.min') %>
+        <%- js('libs/lightgallery/js/lg-autoplay.min') %>
+        <%- js('libs/lightgallery/js/lg-fullscreen.min') %>
+        <%- js('libs/lightgallery/js/lg-zoom.min') %>
+        <%- js('libs/lightgallery/js/lg-hash.min') %>
+        <%- js('libs/lightgallery/js/lg-share.min') %>
+        <%- js('libs/lightgallery/js/lg-video.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- js('libs/justified-gallery/jquery.justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.mathjax) { %>
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
         </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-    
-
+        <%- js('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML') %>
+    <% } %>
+<% } %>
 
 
 <!-- Custom Scripts -->

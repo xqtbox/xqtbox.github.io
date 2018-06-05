@@ -30,17 +30,44 @@
     <link rel="stylesheet" href="/css/style.css">
 
     <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
-    
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-    
-    
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-    
-    
-    
-    
-
+    <% if (typeof(isHead) !== 'undefined' && isHead) { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- css('libs/lightgallery/css/lightgallery.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- css('libs/justified-gallery/justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.google_analytics) { %>
+        <%- partial('plugin/google-analytics') %>
+    <% } %>
+    <% if (theme.plugins.google_site_verification) { %>
+        <meta name="google-site-verification" content="<%= theme.plugins.google_site_verification %>" />
+    <% } %>
+    <% if (theme.plugins.baidu_analytics) { %>
+        <%- partial('plugin/baidu-analytics') %>
+    <% } %>
+<% } else { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- js('libs/lightgallery/js/lightgallery.min') %>
+        <%- js('libs/lightgallery/js/lg-thumbnail.min') %>
+        <%- js('libs/lightgallery/js/lg-pager.min') %>
+        <%- js('libs/lightgallery/js/lg-autoplay.min') %>
+        <%- js('libs/lightgallery/js/lg-fullscreen.min') %>
+        <%- js('libs/lightgallery/js/lg-zoom.min') %>
+        <%- js('libs/lightgallery/js/lg-hash.min') %>
+        <%- js('libs/lightgallery/js/lg-share.min') %>
+        <%- js('libs/lightgallery/js/lg-video.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- js('libs/justified-gallery/jquery.justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.mathjax) { %>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <%- js('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML') %>
+    <% } %>
+<% } %>
 
 
 
@@ -279,7 +306,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/03/05/Python深度学习路线/" data-id="cjgaxgb890012exjenn96ru1i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/03/05/Python深度学习路线/" data-id="cji1kum0s0012h5jecm2s4c7h" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -424,7 +451,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/02/19/utf-8项目生成javadoc时:报错:编码GB:的不可映射字符/" data-id="cjgaxgbbq0042exjenu43tx9l" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/02/19/utf-8项目生成javadoc时:报错:编码GB:的不可映射字符/" data-id="cji1kum4w0042h5jefb9cefz7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -568,7 +595,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2016/12/20/Python学习路线/" data-id="cjgaxgb84000wexje2ay8if03" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2016/12/20/Python学习路线/" data-id="cji1kum0o000wh5jeibc5g6l0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -712,7 +739,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2016/11/18/VC6.0+ddk+DriverStudio3.2安装与配置/" data-id="cjgaxgb8j001bexjezynevs0g" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2016/11/18/VC6.0+ddk+DriverStudio3.2安装与配置/" data-id="cji1kum12001bh5jekxmegll6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -855,7 +882,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2016/09/20/运维团队(OPS)与技术团队有效沟通配合探讨/" data-id="cjgaxgbdq005mexjeu6useo1n" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2016/09/20/运维团队(OPS)与技术团队有效沟通配合探讨/" data-id="cji1kum77005mh5je9d2rqtcs" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -999,7 +1026,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2016/09/06/在Editplus中配置java的(带包)编译(javac)和运行(java)的方法/" data-id="cjgaxgbc0004aexjeefw15tov" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2016/09/06/在Editplus中配置java的(带包)编译(javac)和运行(java)的方法/" data-id="cji1kum56004ah5jepaqp0d64" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1143,7 +1170,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2015/05/21/在win7环境下oracle10g安装问题/" data-id="cjgaxgbc4004fexje8nokimqa" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2015/05/21/在win7环境下oracle10g安装问题/" data-id="cji1kum5f004ih5jedath1m0m" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1289,7 +1316,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2015/05/02/Python字符串的encode与decode研究心得-解决乱码问题/" data-id="cjgaxgb82000texjegtpl6yrm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2015/05/02/Python字符串的encode与decode研究心得-解决乱码问题/" data-id="cji1kum0m000th5jei7ss7k9y" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1434,7 +1461,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2015/03/28/The Myeclipse executable launcher was unable to locate its companion shared library/" data-id="cjgaxgb8g0017exjefa0uhmy4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2015/03/28/The Myeclipse executable launcher was unable to locate its companion shared library/" data-id="cji1kum0z0017h5je4a7kmdxt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1512,13 +1539,13 @@
 
 
 
-    <article id="post-myeclipes配置tomecat时，一点击就报错89" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-破解myeclipse10时找不到myeclipse-Common-plusgin" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             
 	
-		<a href="/2015/03/27/myeclipes配置tomecat时，一点击就报错89/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/math.jpg" class="article-banner" />
+		<a href="/2015/03/27/破解myeclipse10时找不到myeclipse-Common-plusgin/" itemprop="url">
+            <img src="http://nkssai.qiniudn.com/JOJOJO.jpg" class="article-banner" />
         </a>
 	
 
@@ -1530,7 +1557,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2015/03/27/myeclipes配置tomecat时，一点击就报错89/">myeclipes配置tomecat时，一点击就报错89</a>
+            <a class="article-title" href="/2015/03/27/破解myeclipse10时找不到myeclipse-Common-plusgin/">破解myeclipse10时找不到myeclipse-Common-plusgin</a>
         </h1>
     
 
@@ -1539,7 +1566,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2015/03/27/myeclipes配置tomecat时，一点击就报错89/">
+        <a href="/2015/03/27/破解myeclipse10时找不到myeclipse-Common-plusgin/">
             <time datetime="2015-03-27T13:07:04.000Z" itemprop="datePublished">2015-03-27</time>
         </a>
     </div>
@@ -1564,10 +1591,11 @@
         
         <div class="article-entry" itemprop="articleBody">
         
-            <p><p>myeclipes配置tomecat时，一点击就报错89</p>
-<p>因为你没有注册 myeclipes！ 真心的。</p></p>
+            <p><p>破解myeclipse10时找不到myeclipse/Common/plusgin</p>
+<p>说明你原来安装过myeclipse，这个文件夹有默认跑到原来的路径了。</p>
+<p>解决方法，查看你最新安装的路径下的  .ini文件（myeclipse.ini）。 里面有myeclipse/Common/plusgin的路径</p></p>
             <p class="article-more-link">
-                <a href="/2015/03/27/myeclipes配置tomecat时，一点击就报错89/#more">查看更多</a>
+                <a href="/2015/03/27/破解myeclipse10时找不到myeclipse-Common-plusgin/#more">查看更多</a>
             </p>
         
         </div>
@@ -1578,7 +1606,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2015/03/27/myeclipes配置tomecat时，一点击就报错89/" data-id="cjgaxgbaw003bexje53ztdb8v" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2015/03/27/破解myeclipse10时找不到myeclipse-Common-plusgin/" data-id="cji1kum6y005eh5jem45l84f1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1646,7 +1674,7 @@
 
             
     
-        <a href="http://yoursite.com/2015/03/27/myeclipes配置tomecat时，一点击就报错89/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2015/03/27/myeclipes配置tomecat时，一点击就报错89/">评论</a>
+        <a href="http://yoursite.com/2015/03/27/破解myeclipse10时找不到myeclipse-Common-plusgin/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2015/03/27/破解myeclipse10时找不到myeclipse-Common-plusgin/">评论</a>
     
 
         </footer>
@@ -1855,28 +1883,44 @@
 
 
 
-
-    
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
-    
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-    
-    
+<% if (typeof(isHead) !== 'undefined' && isHead) { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- css('libs/lightgallery/css/lightgallery.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- css('libs/justified-gallery/justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.google_analytics) { %>
+        <%- partial('plugin/google-analytics') %>
+    <% } %>
+    <% if (theme.plugins.google_site_verification) { %>
+        <meta name="google-site-verification" content="<%= theme.plugins.google_site_verification %>" />
+    <% } %>
+    <% if (theme.plugins.baidu_analytics) { %>
+        <%- partial('plugin/baidu-analytics') %>
+    <% } %>
+<% } else { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- js('libs/lightgallery/js/lightgallery.min') %>
+        <%- js('libs/lightgallery/js/lg-thumbnail.min') %>
+        <%- js('libs/lightgallery/js/lg-pager.min') %>
+        <%- js('libs/lightgallery/js/lg-autoplay.min') %>
+        <%- js('libs/lightgallery/js/lg-fullscreen.min') %>
+        <%- js('libs/lightgallery/js/lg-zoom.min') %>
+        <%- js('libs/lightgallery/js/lg-hash.min') %>
+        <%- js('libs/lightgallery/js/lg-share.min') %>
+        <%- js('libs/lightgallery/js/lg-video.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- js('libs/justified-gallery/jquery.justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.mathjax) { %>
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
         </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-    
-
+        <%- js('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML') %>
+    <% } %>
+<% } %>
 
 
 <!-- Custom Scripts -->
