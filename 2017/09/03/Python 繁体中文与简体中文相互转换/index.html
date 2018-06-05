@@ -1,79 +1,54 @@
 <!DOCTYPE html>
-<html lang=zh>
+<html<%= config.language ? " lang=" + config.language.substring(0, 2) : ""%>>
 <head>
     <meta charset="utf-8">
-    
-    <title>Python 繁体中文与简体中文相互转换 | 博客堂</title>
+    <%
+        function capitalize (str) { return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase() }
+        var title = page.title;
+        if (is_archive()) {
+            title = capitalize(__('index.archive'));
+            if (is_month()) {
+                title += ': ' + page.year + '/' + page.month;
+            } else if (is_year()) {
+                title += ': ' + page.year;
+            }
+        } else if (is_category()) {
+            title = capitalize(__('index.category')) + ': ' + page.category;
+        } else if (is_tag()) {
+            title = capitalize(__('index.tag')) + ': ' + page.tag;
+        }
+    %>
+    <title><% if (title) { %><%= title %> | <% } %><%= config.title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="工作中需要将繁体中文转换成简体中文上网找了些资料，发现这个包最方便 1 安装不需要什么安装方法，只需要把这两个文件下载下来，保存到与代码同一目录下即可  https://raw.githubusercontent.com/skydark/nstools/master/zhtools/langconv.pyhttps://raw.githubusercontent.com/skydark/nstoo">
-<meta name="keywords" content="Python,自然语言处理">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Python 繁体中文与简体中文相互转换">
-<meta property="og:url" content="http://yoursite.com/2017/09/03/Python 繁体中文与简体中文相互转换/index.html">
-<meta property="og:site_name" content="博客堂">
-<meta property="og:description" content="工作中需要将繁体中文转换成简体中文上网找了些资料，发现这个包最方便 1 安装不需要什么安装方法，只需要把这两个文件下载下来，保存到与代码同一目录下即可  https://raw.githubusercontent.com/skydark/nstools/master/zhtools/langconv.pyhttps://raw.githubusercontent.com/skydark/nstoo">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg">
-<meta property="og:updated_time" content="2018-01-23T07:50:08.929Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python 繁体中文与简体中文相互转换">
-<meta name="twitter:description" content="工作中需要将繁体中文转换成简体中文上网找了些资料，发现这个包最方便 1 安装不需要什么安装方法，只需要把这两个文件下载下来，保存到与代码同一目录下即可  https://raw.githubusercontent.com/skydark/nstools/master/zhtools/langconv.pyhttps://raw.githubusercontent.com/skydark/nstoo">
-<meta name="twitter:image" content="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/salt-lake.jpg">
-    
+    <%- open_graph({
+        image:          thumbnail(page),
+        fb_app_id:      theme.miscellaneous.open_graph.fb_app_id,
+        fb_admins:      theme.miscellaneous.open_graph.fb_admins,
+        twitter_id:     theme.miscellaneous.open_graph.twitter_id,
+        google_plus:    theme.miscellaneous.open_graph.google_plus,
+    }) %>
+    <%- meta(page) %>
 
-    
+    <% if (theme.customize && theme.customize.social_links && theme.customize.social_links.rss) { %>
+        <link rel="alternate" href="<%- theme.customize.social_links.rss %>" title="<%= config.title %>" type="application/atom+xml" />
+    <% } %>
 
-    
-        <link rel="icon" href="/css/images/favicon.ico" />
-    
+    <% if (theme.customize.favicon) { %>
+        <link rel="icon" href="<%- url_for(theme.customize.favicon) %>" />
+    <% } %>
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/open-sans/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    <%- css('libs/font-awesome/css/font-awesome.min') %>
+    <%- css('libs/open-sans/styles') %>
+    <%- css('libs/source-code-pro/styles') %>
 
-    <link rel="stylesheet" href="/css/style.css">
+    <%- css('css/style') %>
 
-    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
-    <% if (typeof(isHead) !== 'undefined' && isHead) { %>
-    <% if (theme.plugins.lightgallery) { %>
-        <%- css('libs/lightgallery/css/lightgallery.min') %>
-    <% } %>
-    <% if (theme.plugins.justifiedgallery) { %>
-        <%- css('libs/justified-gallery/justifiedGallery.min') %>
-    <% } %>
-    <% if (theme.plugins.google_analytics) { %>
-        <%- partial('plugin/google-analytics') %>
-    <% } %>
-    <% if (theme.plugins.google_site_verification) { %>
-        <meta name="google-site-verification" content="<%= theme.plugins.google_site_verification %>" />
-    <% } %>
-    <% if (theme.plugins.baidu_analytics) { %>
-        <%- partial('plugin/baidu-analytics') %>
-    <% } %>
-<% } else { %>
-    <% if (theme.plugins.lightgallery) { %>
-        <%- js('libs/lightgallery/js/lightgallery.min') %>
-        <%- js('libs/lightgallery/js/lg-thumbnail.min') %>
-        <%- js('libs/lightgallery/js/lg-pager.min') %>
-        <%- js('libs/lightgallery/js/lg-autoplay.min') %>
-        <%- js('libs/lightgallery/js/lg-fullscreen.min') %>
-        <%- js('libs/lightgallery/js/lg-zoom.min') %>
-        <%- js('libs/lightgallery/js/lg-hash.min') %>
-        <%- js('libs/lightgallery/js/lg-share.min') %>
-        <%- js('libs/lightgallery/js/lg-video.min') %>
-    <% } %>
-    <% if (theme.plugins.justifiedgallery) { %>
-        <%- js('libs/justified-gallery/jquery.justifiedGallery.min') %>
-    <% } %>
-    <% if (theme.plugins.mathjax) { %>
-        <script type="text/x-mathjax-config">
-            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
-        </script>
-        <%- js('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML') %>
-    <% } %>
-<% } %>
+    <%- js('libs/jquery/2.1.3/jquery.min') %>
+    <%- partial('plugin/scripts', { isHead: true }) %>
 
 
+<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+  <script>AV.initialize("3xqai3Hkvm2dGkFoitiqh37k-gzGzoHsz", "eSvg308BIgoFA9kDAGNyS79X");</script>
 
 </head>
 
@@ -315,7 +290,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/09/03/Python 繁体中文与简体中文相互转换/" data-id="cji1kum0c000ih5jead4evqch" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/09/03/Python 繁体中文与简体中文相互转换/" data-id="cji1kzrch0018q8jexnk2c5xq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -594,13 +569,81 @@
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2018 Qingtang<br>
+            &copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %><br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
         </div>
     </div>
 </footer>
 
-
+<!--page counter part-->
+<script>
+function addCount (Counter) {
+        url=$('.article-date').attr('href').trim();
+        title = $('.article-title').text().trim();
+        var query=new AV.Query(Counter);
+        //use url as unique idnetfication
+        query.equalTo("url",url);
+        query.find({
+            success: function(results){
+                if(results.length>0)
+                {
+                    var counter=results[0];
+                    counter.fetchWhenSave(true); //get recent result
+                    counter.increment("time");
+                    counter.save();
+                }
+                else
+                {
+                    var newcounter=new Counter();
+                    newcounter.set("title",title);
+                    newcounter.set("url",url);
+                    newcounter.set("time",1);
+                    newcounter.save(null,{
+                        success: function(newcounter){
+                        //alert('New object created');
+                        },
+                        error: function(newcounter,error){
+                        alert('Failed to create');
+                        }
+                        });
+                }
+            },
+            error: function(error){
+                //find null is not a error
+                alert('Error:'+error.code+" "+error.message);
+            }
+        });
+}
+$(function(){
+        var Counter=AV.Object.extend("Counter");
+        //only increse visit counting when intering a page
+        if ($('.article-title').length == 1)
+           addCount(Counter);
+        var query=new AV.Query(Counter);
+        query.descending("time");
+        // the sum of popular posts
+        query.limit(10); 
+        query.find({
+            success: function(results){
+                    for(var i=0;i<results.length;i++)    
+                    {
+                        var counter=results[i];
+                        title=counter.get("title");
+                        url=counter.get("url");
+                        time=counter.get("time");
+                        // add to the popularlist widget
+                        showcontent=title+" ("+time+")";
+                        //notice the "" in href
+                        $('.popularlist').append('<li><a href="'+url+'">'+showcontent+'</a></li>');
+                    }
+                },
+            error: function(error){
+                alert("Error:"+error.code+" "+error.message);
+            }
+            }
+        )
+        });
+</script>
 
         
     
@@ -621,44 +664,28 @@
 
 
 
-<% if (typeof(isHead) !== 'undefined' && isHead) { %>
-    <% if (theme.plugins.lightgallery) { %>
-        <%- css('libs/lightgallery/css/lightgallery.min') %>
-    <% } %>
-    <% if (theme.plugins.justifiedgallery) { %>
-        <%- css('libs/justified-gallery/justifiedGallery.min') %>
-    <% } %>
-    <% if (theme.plugins.google_analytics) { %>
-        <%- partial('plugin/google-analytics') %>
-    <% } %>
-    <% if (theme.plugins.google_site_verification) { %>
-        <meta name="google-site-verification" content="<%= theme.plugins.google_site_verification %>" />
-    <% } %>
-    <% if (theme.plugins.baidu_analytics) { %>
-        <%- partial('plugin/baidu-analytics') %>
-    <% } %>
-<% } else { %>
-    <% if (theme.plugins.lightgallery) { %>
-        <%- js('libs/lightgallery/js/lightgallery.min') %>
-        <%- js('libs/lightgallery/js/lg-thumbnail.min') %>
-        <%- js('libs/lightgallery/js/lg-pager.min') %>
-        <%- js('libs/lightgallery/js/lg-autoplay.min') %>
-        <%- js('libs/lightgallery/js/lg-fullscreen.min') %>
-        <%- js('libs/lightgallery/js/lg-zoom.min') %>
-        <%- js('libs/lightgallery/js/lg-hash.min') %>
-        <%- js('libs/lightgallery/js/lg-share.min') %>
-        <%- js('libs/lightgallery/js/lg-video.min') %>
-    <% } %>
-    <% if (theme.plugins.justifiedgallery) { %>
-        <%- js('libs/justified-gallery/jquery.justifiedGallery.min') %>
-    <% } %>
-    <% if (theme.plugins.mathjax) { %>
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
         </script>
-        <%- js('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML') %>
-    <% } %>
-<% } %>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
 
 
 <!-- Custom Scripts -->
