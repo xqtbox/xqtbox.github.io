@@ -14,7 +14,7 @@
 <meta property="og:description" content="注1：本文翻译自GitHub上的一篇介绍，介绍了基于深度学习的文本分类问题。代码和部分模型介绍在GitHub上：https://github.com/DX2017/text_classification 注2：本文参考风起云杨译文：https://blog.csdn.net/qq_35273499/article/details/79498733 并加入自己的理解整理。  1 概述这个库 的目的">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://img3.cache.netease.com/photo/0003/2009-05-05/58IOE7C80BOd0003.jpg">
-<meta property="og:updated_time" content="2018-06-14T14:04:54.390Z">
+<meta property="og:updated_time" content="2018-06-14T14:10:07.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2018.06.06论文：12个NLP分类模型">
 <meta name="twitter:description" content="注1：本文翻译自GitHub上的一篇介绍，介绍了基于深度学习的文本分类问题。代码和部分模型介绍在GitHub上：https://github.com/DX2017/text_classification 注2：本文参考风起云杨译文：https://blog.csdn.net/qq_35273499/article/details/79498733 并加入自己的理解整理。  1 概述这个库 的目的">
@@ -496,10 +496,10 @@
 <p>b. 通过转换每个键，值和输入来获取候选隐藏状态。</p>
 <p>c. 组合门和候选隐藏状态来更新当前的隐藏状态。</p>
 <p>t时刻输入st时，每个隐含层状态hj通过st和key wj来更新，更新公式如下： </p>
-<p><code>$g_j \gets \sigma (s_t^T h_j + s_t^T w_j)$</code></p>
-<p><code>$\tilde{h_j} \gets \phi( Uh_j + Vw_j + Ws_t)$</code></p>
-<p><code>$h_j \gets h_j + g_j \odot \tilde{h_j}$</code></p>
-<p><code>$h_j \gets \frac{h_j}{\|h_j\|}$</code></p>
+<p>$g_j \gets \sigma (s_t^T h_j + s_t^T w_j)$</p>
+<p>$\tilde{h_j} \gets \phi( Uh_j + Vw_j + Ws_t)$</p>
+<p>$h_j \gets h_j + g_j \odot \tilde{h_j}$</p>
+<p>$h_j \gets \frac{h_j}{|h_j|}$</p>
 <p>例如：</p>
 <ul>
 <li>Mary picked up the ball.</li>
@@ -537,7 +537,7 @@
 <li>在每个时间点 t，RNN 更新其隐藏状态 ht=RNN(L[wt],ht−1) . L 是 word embedding matrix.</li>
 <li>在输入只有一个句子的情况下，输入模块输出 RNN 的所有隐藏状态.</li>
 <li>在输入是多个句子的情况下，我们将所有句子拼接，并在每个句子末尾插入句末 token. RNN 每个句末 token 位置的隐藏状态作为输出.</li>
-<li>输入模块的输出序列为 Tc 个 fact representation c. 其中 <code>$c_t$</code> 是输出序列的第 t 个元素. 输入多个句子的情况下，TC 是句子个数.</li>
+<li>输入模块的输出序列为 Tc 个 fact representation c. 其中 $c_t$ 是输出序列的第 t 个元素. 输入多个句子的情况下，TC 是句子个数.</li>
 <li>RNN 的选择： 原生的 RNN 性能较差， GRU 和 LSTM 性能差不多，但 LSTM 的计算更加昂贵，所以一般使用 GRU.</li>
 </ul>
 <ol>
@@ -551,8 +551,8 @@
 <li>片段记忆模块</li>
 </ol>
 <ul>
-<li>每个迭代都根据之前的记忆<code>$m^{i-1}$</code>、问题q 和事实 c 产生新的片段 ei.新的episode (e)等于<code>$e_t^i = G(c_t, m^{m-1}, q)$</code> (其中初始: m 0 = q) （e每次都带着q）</li>
-<li>在当前E之下：片段记忆在输入模块输出的事实 c 上迭代，更新内部的片段记忆.<code>$m^i = GRU(e^i, m^{i-1})$</code> </li>
+<li>每个迭代都根据之前的记忆$m^{i-1}$、问题q 和事实 c 产生新的片段 ei.新的episode (e)等$e_t^i = G(c_t, m^{m-1}, q)$ (其中初始: m 0 = q) （e每次都带着q）</li>
+<li>在当前E之下：片段记忆在输入模块输出的事实 c 上迭代，更新内部的片段记忆.$m^i = GRU(e^i, m^{i-1})$</li>
 <li>注意力机制：本文使用门控功能作为我们的注意机制，门函数 G(c,m,q)=σ(W(2)tanh(W(1)z(c,m,q)+b(1))+b(2)) 来衡量当前 句子的关注力</li>
 </ul>
 <ol>
