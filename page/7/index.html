@@ -30,17 +30,44 @@
     <link rel="stylesheet" href="/css/style.css">
 
     <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
-    
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-    
-    
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-    
-    
-    
-    
-
+    <% if (typeof(isHead) !== 'undefined' && isHead) { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- css('libs/lightgallery/css/lightgallery.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- css('libs/justified-gallery/justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.google_analytics) { %>
+        <%- partial('plugin/google-analytics') %>
+    <% } %>
+    <% if (theme.plugins.google_site_verification) { %>
+        <meta name="google-site-verification" content="<%= theme.plugins.google_site_verification %>" />
+    <% } %>
+    <% if (theme.plugins.baidu_analytics) { %>
+        <%- partial('plugin/baidu-analytics') %>
+    <% } %>
+<% } else { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- js('libs/lightgallery/js/lightgallery.min') %>
+        <%- js('libs/lightgallery/js/lg-thumbnail.min') %>
+        <%- js('libs/lightgallery/js/lg-pager.min') %>
+        <%- js('libs/lightgallery/js/lg-autoplay.min') %>
+        <%- js('libs/lightgallery/js/lg-fullscreen.min') %>
+        <%- js('libs/lightgallery/js/lg-zoom.min') %>
+        <%- js('libs/lightgallery/js/lg-hash.min') %>
+        <%- js('libs/lightgallery/js/lg-share.min') %>
+        <%- js('libs/lightgallery/js/lg-video.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- js('libs/justified-gallery/jquery.justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.mathjax) { %>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <%- js('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML') %>
+    <% } %>
+<% } %>
 
 
 
@@ -279,7 +306,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/03/08/Python中的列表list/" data-id="cjiemavlb000rfijedpu0ox1j" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/03/08/Python中的列表list/" data-id="cjsxbbspo000rqrje4sgfullm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -423,7 +450,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/03/08/list tuple dict set的对比/" data-id="cjiemavo1003cfijewpwgpkuq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/03/08/list tuple dict set的对比/" data-id="cjsxbbssy003cqrjemxloo3p2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -568,7 +595,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/03/05/Python深度学习路线/" data-id="cjiemavln0018fije4y9py9lj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/03/05/Python深度学习路线/" data-id="cjsxbbsq20018qrje8t3d8jvp" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -713,7 +740,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/02/19/utf-8项目生成javadoc时:报错:编码GB:的不可映射字符/" data-id="cjiemavow0048fijeomt6urt0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/02/19/utf-8项目生成javadoc时:报错:编码GB:的不可映射字符/" data-id="cjsxbbsue0048qrjeqfw3y9nv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -857,7 +884,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2016/12/20/Python学习路线/" data-id="cjiemavli0012fijev2c8y71z" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2016/12/20/Python学习路线/" data-id="cjsxbbspx0012qrje4dh3gmu2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1001,7 +1028,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2016/11/18/VC6.0+ddk+DriverStudio3.2安装与配置/" data-id="cjiemavlw001ffijeiudhnh33" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2016/11/18/VC6.0+ddk+DriverStudio3.2安装与配置/" data-id="cjsxbbsqb001fqrje44ewv81c" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1144,7 +1171,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2016/09/20/运维团队(OPS)与技术团队有效沟通配合探讨/" data-id="cjiemavql005vfije34qhoerz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2016/09/20/运维团队(OPS)与技术团队有效沟通配合探讨/" data-id="cjsxbbswz005vqrjesw51fmuj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1288,7 +1315,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2016/09/06/在Editplus中配置java的(带包)编译(javac)和运行(java)的方法/" data-id="cjiemavp3004gfije1u6eqbdc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2016/09/06/在Editplus中配置java的(带包)编译(javac)和运行(java)的方法/" data-id="cjsxbbsup004gqrjens6zcpp1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1432,7 +1459,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2015/05/21/在win7环境下oracle10g安装问题/" data-id="cjiemavp9004ofijexc7mlp8a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2015/05/21/在win7环境下oracle10g安装问题/" data-id="cjsxbbsv0004oqrjedfuw6jb6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1578,7 +1605,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2015/05/02/Python字符串的encode与decode研究心得-解决乱码问题/" data-id="cjiemavlg000xfije0oene3xq" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2015/05/02/Python字符串的encode与decode研究心得-解决乱码问题/" data-id="cjsxbbspu000xqrjey4806xlw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1676,7 +1703,7 @@
                             <a href="/2018/06/06/2018.06.06论文：12个NLP分类模型/" class="thumbnail">
     
     
-        <span style="background-image:url(http://img3.cache.netease.com/photo/0003/2009-05-05/58IOE7C80BOd0003.jpg)" alt="2018.06.06论文：12个NLP分类模型" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006qDjsOly1g0tdxh29lzj30kq088gxj.jpg)" alt="2018.06.06论文：12个NLP分类模型" class="thumbnail-image"></span>
     
 </a>
 
@@ -1733,7 +1760,7 @@
                             <a href="/2018/03/26/ 2018.03.26试题理解论文两篇阅读/" class="thumbnail">
     
     
-        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music1.jpg)" alt="2018.03.26试题理解论文两篇阅读" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006qDjsOly1g0tdw3lqvbj30kr07ywoo.jpg)" alt="2018.03.26试题理解论文两篇阅读" class="thumbnail-image"></span>
     
 </a>
 
@@ -1752,7 +1779,7 @@
                             <a href="/2018/03/05/Python时间序列分析/" class="thumbnail">
     
     
-        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/smartphone.jpg)" alt="python时间序列分析" class="thumbnail-image"></span>
+        <span style="background-image:url(https://jabinzou.github.io/gallery/third.jpg)" alt="python时间序列分析" class="thumbnail-image"></span>
     
 </a>
 
@@ -1830,7 +1857,7 @@
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2018 Qingtang<br>
+            &copy; 2019 Qingtang<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
         </div>
     </div>
@@ -1855,28 +1882,44 @@
 
 
 
-
-    
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
-    
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-    
-    
+<% if (typeof(isHead) !== 'undefined' && isHead) { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- css('libs/lightgallery/css/lightgallery.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- css('libs/justified-gallery/justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.google_analytics) { %>
+        <%- partial('plugin/google-analytics') %>
+    <% } %>
+    <% if (theme.plugins.google_site_verification) { %>
+        <meta name="google-site-verification" content="<%= theme.plugins.google_site_verification %>" />
+    <% } %>
+    <% if (theme.plugins.baidu_analytics) { %>
+        <%- partial('plugin/baidu-analytics') %>
+    <% } %>
+<% } else { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- js('libs/lightgallery/js/lightgallery.min') %>
+        <%- js('libs/lightgallery/js/lg-thumbnail.min') %>
+        <%- js('libs/lightgallery/js/lg-pager.min') %>
+        <%- js('libs/lightgallery/js/lg-autoplay.min') %>
+        <%- js('libs/lightgallery/js/lg-fullscreen.min') %>
+        <%- js('libs/lightgallery/js/lg-zoom.min') %>
+        <%- js('libs/lightgallery/js/lg-hash.min') %>
+        <%- js('libs/lightgallery/js/lg-share.min') %>
+        <%- js('libs/lightgallery/js/lg-video.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- js('libs/justified-gallery/jquery.justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.mathjax) { %>
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
         </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-    
-
+        <%- js('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML') %>
+    <% } %>
+<% } %>
 
 
 <!-- Custom Scripts -->

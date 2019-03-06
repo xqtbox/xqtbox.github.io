@@ -30,17 +30,44 @@
     <link rel="stylesheet" href="/css/style.css">
 
     <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
-    
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-    
-    
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-    
-    
-    
-    
-
+    <% if (typeof(isHead) !== 'undefined' && isHead) { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- css('libs/lightgallery/css/lightgallery.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- css('libs/justified-gallery/justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.google_analytics) { %>
+        <%- partial('plugin/google-analytics') %>
+    <% } %>
+    <% if (theme.plugins.google_site_verification) { %>
+        <meta name="google-site-verification" content="<%= theme.plugins.google_site_verification %>" />
+    <% } %>
+    <% if (theme.plugins.baidu_analytics) { %>
+        <%- partial('plugin/baidu-analytics') %>
+    <% } %>
+<% } else { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- js('libs/lightgallery/js/lightgallery.min') %>
+        <%- js('libs/lightgallery/js/lg-thumbnail.min') %>
+        <%- js('libs/lightgallery/js/lg-pager.min') %>
+        <%- js('libs/lightgallery/js/lg-autoplay.min') %>
+        <%- js('libs/lightgallery/js/lg-fullscreen.min') %>
+        <%- js('libs/lightgallery/js/lg-zoom.min') %>
+        <%- js('libs/lightgallery/js/lg-hash.min') %>
+        <%- js('libs/lightgallery/js/lg-share.min') %>
+        <%- js('libs/lightgallery/js/lg-video.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- js('libs/justified-gallery/jquery.justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.mathjax) { %>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <%- js('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML') %>
+    <% } %>
+<% } %>
 
 
 
@@ -279,7 +306,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/12/20/coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测/" data-id="cjiemavnd002pfijea7p8o6f4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/12/20/coursera-斯坦福-机器学习-吴恩达-第9周笔记（上）-异常检测/" data-id="cjsxbbsrz002pqrje8tcp8684" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -423,7 +450,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/12/19/coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习/" data-id="cjiemavnb002nfijesx6mh765" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/12/19/coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习/" data-id="cjsxbbsrx002nqrje9xn67oy0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -572,7 +599,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/12/15/coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM/" data-id="cjiemavn8002ifijevu55h5bu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/12/15/coursera-斯坦福-机器学习-吴恩达-第7周笔记-支持向量机SVM/" data-id="cjsxbbsrp002gqrjeyg1q1whh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -716,7 +743,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/12/14/coursera-斯坦福-机器学习-吴恩达-第6周笔记-算法改进and机器学习系统设计/" data-id="cjiemavn3002gfije1hw3bioe" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/12/14/coursera-斯坦福-机器学习-吴恩达-第6周笔记-算法改进and机器学习系统设计/" data-id="cjsxbbsru002iqrjer9wl4th4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -800,7 +827,7 @@
             
 	
 		<a href="/2017/12/03/coursera-斯坦福-机器学习-吴恩达-第5周笔记-反向传播/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music1.jpg" class="article-banner" />
+            <img src="https://jabinzou.github.io/gallery/pug.jpg" class="article-banner" />
         </a>
 	
 
@@ -865,7 +892,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/12/03/coursera-斯坦福-机器学习-吴恩达-第5周笔记-反向传播/" data-id="cjiemavmz002cfije4bhmg9uw" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/12/03/coursera-斯坦福-机器学习-吴恩达-第5周笔记-反向传播/" data-id="cjsxbbsrk002cqrjeodlsuk33" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -949,7 +976,7 @@
             
 	
 		<a href="/2017/11/30/coursera-斯坦福-机器学习-吴恩达-第4周笔记-神经网络/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/smartphone.jpg" class="article-banner" />
+            <img src="http://img3.cache.netease.com/photo/0003/2009-05-05/58IOGNQF0BOd0003.jpg" class="article-banner" />
         </a>
 	
 
@@ -1011,7 +1038,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/11/30/coursera-斯坦福-机器学习-吴恩达-第4周笔记-神经网络/" data-id="cjiemavmw0029fijesp1balak" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/11/30/coursera-斯坦福-机器学习-吴恩达-第4周笔记-神经网络/" data-id="cjsxbbsrh0029qrjevz39j4ut" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1095,7 +1122,7 @@
             
 	
 		<a href="/2017/11/28/coursera-斯坦福-机器学习-吴恩达-第3周笔记-逻辑回归/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/niagara.jpg" class="article-banner" />
+            <img src="http://ww1.sinaimg.cn/large/006qDjsOly1g0tdw3lqvbj30kr07ywoo.jpg" class="article-banner" />
         </a>
 	
 
@@ -1161,7 +1188,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/11/28/coursera-斯坦福-机器学习-吴恩达-第3周笔记-逻辑回归/" data-id="cjiemavmr0025fijelv2omku4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/11/28/coursera-斯坦福-机器学习-吴恩达-第3周笔记-逻辑回归/" data-id="cjsxbbsre0025qrjee60y3oy2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1245,7 +1272,7 @@
             
 	
 		<a href="/2017/11/21/coursera-斯坦福-机器学习-吴恩达-第2周笔记/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/little-girl.jpg" class="article-banner" />
+            <img src="http://ww1.sinaimg.cn/large/006qDjsOly1g0tdxh29lzj30kq088gxj.jpg" class="article-banner" />
         </a>
 	
 
@@ -1306,7 +1333,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/11/21/coursera-斯坦福-机器学习-吴恩达-第2周笔记/" data-id="cjiemavmh0022fije7mj2uz2a" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/11/21/coursera-斯坦福-机器学习-吴恩达-第2周笔记/" data-id="cjsxbbsra0022qrjeb9rztecf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1390,7 +1417,7 @@
             
 	
 		<a href="/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music2.jpg" class="article-banner" />
+            <img src="https://jabinzou.github.io/gallery/third.jpg" class="article-banner" />
         </a>
 	
 
@@ -1451,7 +1478,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/" data-id="cjiemavmf001zfijevwnwgibt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/11/16/coursera-斯坦福-机器学习-吴恩达-第1周笔记/" data-id="cjsxbbsqz001zqrjesuk23er9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1535,7 +1562,7 @@
             
 	
 		<a href="/2017/09/19/深度学习 自然语言处理 怎么获得数据集 中文语料集？/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/guitarist.jpg" class="article-banner" />
+            <img src="https://jabinzou.github.io/gallery/third.jpg" class="article-banner" />
         </a>
 	
 
@@ -1596,7 +1623,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/09/19/深度学习 自然语言处理 怎么获得数据集 中文语料集？/" data-id="cjiemavq5005bfijeo9k2gaoa" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/09/19/深度学习 自然语言处理 怎么获得数据集 中文语料集？/" data-id="cjsxbbsw8005bqrjesjhb8jw9" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1694,7 +1721,7 @@
                             <a href="/2018/06/06/2018.06.06论文：12个NLP分类模型/" class="thumbnail">
     
     
-        <span style="background-image:url(http://img3.cache.netease.com/photo/0003/2009-05-05/58IOE7C80BOd0003.jpg)" alt="2018.06.06论文：12个NLP分类模型" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006qDjsOly1g0tdxh29lzj30kq088gxj.jpg)" alt="2018.06.06论文：12个NLP分类模型" class="thumbnail-image"></span>
     
 </a>
 
@@ -1751,7 +1778,7 @@
                             <a href="/2018/03/26/ 2018.03.26试题理解论文两篇阅读/" class="thumbnail">
     
     
-        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music1.jpg)" alt="2018.03.26试题理解论文两篇阅读" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006qDjsOly1g0tdw3lqvbj30kr07ywoo.jpg)" alt="2018.03.26试题理解论文两篇阅读" class="thumbnail-image"></span>
     
 </a>
 
@@ -1770,7 +1797,7 @@
                             <a href="/2018/03/05/Python时间序列分析/" class="thumbnail">
     
     
-        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/smartphone.jpg)" alt="python时间序列分析" class="thumbnail-image"></span>
+        <span style="background-image:url(https://jabinzou.github.io/gallery/third.jpg)" alt="python时间序列分析" class="thumbnail-image"></span>
     
 </a>
 
@@ -1848,7 +1875,7 @@
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2018 Qingtang<br>
+            &copy; 2019 Qingtang<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
         </div>
     </div>
@@ -1873,28 +1900,44 @@
 
 
 
-
-    
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
-    
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-    
-    
+<% if (typeof(isHead) !== 'undefined' && isHead) { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- css('libs/lightgallery/css/lightgallery.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- css('libs/justified-gallery/justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.google_analytics) { %>
+        <%- partial('plugin/google-analytics') %>
+    <% } %>
+    <% if (theme.plugins.google_site_verification) { %>
+        <meta name="google-site-verification" content="<%= theme.plugins.google_site_verification %>" />
+    <% } %>
+    <% if (theme.plugins.baidu_analytics) { %>
+        <%- partial('plugin/baidu-analytics') %>
+    <% } %>
+<% } else { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- js('libs/lightgallery/js/lightgallery.min') %>
+        <%- js('libs/lightgallery/js/lg-thumbnail.min') %>
+        <%- js('libs/lightgallery/js/lg-pager.min') %>
+        <%- js('libs/lightgallery/js/lg-autoplay.min') %>
+        <%- js('libs/lightgallery/js/lg-fullscreen.min') %>
+        <%- js('libs/lightgallery/js/lg-zoom.min') %>
+        <%- js('libs/lightgallery/js/lg-hash.min') %>
+        <%- js('libs/lightgallery/js/lg-share.min') %>
+        <%- js('libs/lightgallery/js/lg-video.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- js('libs/justified-gallery/jquery.justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.mathjax) { %>
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
         </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-    
-
+        <%- js('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML') %>
+    <% } %>
+<% } %>
 
 
 <!-- Custom Scripts -->

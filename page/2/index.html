@@ -30,17 +30,44 @@
     <link rel="stylesheet" href="/css/style.css">
 
     <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
-    
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-    
-    
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-    
-    
-    
-    
-
+    <% if (typeof(isHead) !== 'undefined' && isHead) { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- css('libs/lightgallery/css/lightgallery.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- css('libs/justified-gallery/justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.google_analytics) { %>
+        <%- partial('plugin/google-analytics') %>
+    <% } %>
+    <% if (theme.plugins.google_site_verification) { %>
+        <meta name="google-site-verification" content="<%= theme.plugins.google_site_verification %>" />
+    <% } %>
+    <% if (theme.plugins.baidu_analytics) { %>
+        <%- partial('plugin/baidu-analytics') %>
+    <% } %>
+<% } else { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- js('libs/lightgallery/js/lightgallery.min') %>
+        <%- js('libs/lightgallery/js/lg-thumbnail.min') %>
+        <%- js('libs/lightgallery/js/lg-pager.min') %>
+        <%- js('libs/lightgallery/js/lg-autoplay.min') %>
+        <%- js('libs/lightgallery/js/lg-fullscreen.min') %>
+        <%- js('libs/lightgallery/js/lg-zoom.min') %>
+        <%- js('libs/lightgallery/js/lg-hash.min') %>
+        <%- js('libs/lightgallery/js/lg-share.min') %>
+        <%- js('libs/lightgallery/js/lg-video.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- js('libs/justified-gallery/jquery.justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.mathjax) { %>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <%- js('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML') %>
+    <% } %>
+<% } %>
 
 
 
@@ -218,7 +245,7 @@
             
 	
 		<a href="/2018/01/25/eclipse的git插件安装、配置与使用/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/arabic-pyramid.jpg" class="article-banner" />
+            <img src="http://img4.cache.netease.com/photo/0003/2009-05-05/58IOEADL0BOd0003.jpg" class="article-banner" />
         </a>
 	
 
@@ -281,7 +308,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/01/25/eclipse的git插件安装、配置与使用/" data-id="cjiemavnl002wfijep9i6mch8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/01/25/eclipse的git插件安装、配置与使用/" data-id="cjsxbbss9002wqrjek9edxdcm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -365,7 +392,7 @@
             
 	
 		<a href="/2018/01/18/零基础学习GitHub桌面版-6使用pages创建网站/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/china-great-wall.jpg" class="article-banner" />
+            <img src="http://img3.cache.netease.com/photo/0003/2009-05-05/58IOGHNL0BOd0003.jpg" class="article-banner" />
         </a>
 	
 
@@ -426,7 +453,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/01/18/零基础学习GitHub桌面版-6使用pages创建网站/" data-id="cjiemavra006hfije8gnpwm3k" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/01/18/零基础学习GitHub桌面版-6使用pages创建网站/" data-id="cjsxbbsy1006hqrjee6mqk86z" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -510,7 +537,7 @@
             
 	
 		<a href="/2018/01/10/coursera-斯坦福-机器学习-吴恩达-机器学习课程总结/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/math.jpg" class="article-banner" />
+            <img src="http://ww1.sinaimg.cn/large/006qDjsOly1g0te31g2eyj30kl07k12p.jpg" class="article-banner" />
         </a>
 	
 
@@ -571,7 +598,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/01/10/coursera-斯坦福-机器学习-吴恩达-机器学习课程总结/" data-id="cjiemavm6001qfijeu910h8xk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/01/10/coursera-斯坦福-机器学习-吴恩达-机器学习课程总结/" data-id="cjsxbbsqo001qqrjegtr4v1np" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -719,7 +746,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/01/09/coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统/" data-id="cjiemavmc001wfije40n7uvic" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/01/09/coursera-斯坦福-机器学习-吴恩达-第11周笔记-ORC系统/" data-id="cjsxbbsqw001wqrjel4q45w7i" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -803,7 +830,7 @@
             
 	
 		<a href="/2018/01/08/人工智能工程师学习路线 自然语言处理算法工程师学习路径/" itemprop="url">
-            <img src="http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/shoes.jpg" class="article-banner" />
+            <img src="http://img3.cache.netease.com/photo/0003/2009-05-05/58IOIBH30BOd0003.jpg" class="article-banner" />
         </a>
 	
 
@@ -863,7 +890,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/01/08/人工智能工程师学习路线 自然语言处理算法工程师学习路径/" data-id="cjiemavp0004bfijee72writ8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/01/08/人工智能工程师学习路线 自然语言处理算法工程师学习路径/" data-id="cjsxbbsuj004bqrjexo0pmyrt" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1007,7 +1034,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/" data-id="cjiemavm9001tfije2s7stdw8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/01/07/coursera-斯坦福-机器学习-吴恩达-第10周笔记-使用大数据训练/" data-id="cjsxbbsqr001tqrjetfr4da69" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1152,7 +1179,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/01/05/怎么加载训练好的词向量bin/" data-id="cjiemavpp004zfijew2siknv5" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/01/05/怎么加载训练好的词向量bin/" data-id="cjsxbbsvt004zqrjer6hbfs9s" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1296,7 +1323,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2018/01/03/pip错误：TypeError parse() got an unexpected keyword argument transport_encoding/" data-id="cjiemavoa003kfije4fmtvi68" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2018/01/03/pip错误：TypeError parse() got an unexpected keyword argument transport_encoding/" data-id="cjsxbbste003kqrjevrngq3l6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1441,7 +1468,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/12/27/eclipse使用maven教程/" data-id="cjiemavnj002ufije0njrdplh" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/12/27/eclipse使用maven教程/" data-id="cjsxbbss6002uqrjenhs1rrzi" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1586,7 +1613,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/12/21/coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统/" data-id="cjiemavng002sfijerbxevu9k" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/12/21/coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统/" data-id="cjsxbbss2002sqrjegaa91wck" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1684,7 +1711,7 @@
                             <a href="/2018/06/06/2018.06.06论文：12个NLP分类模型/" class="thumbnail">
     
     
-        <span style="background-image:url(http://img3.cache.netease.com/photo/0003/2009-05-05/58IOE7C80BOd0003.jpg)" alt="2018.06.06论文：12个NLP分类模型" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006qDjsOly1g0tdxh29lzj30kq088gxj.jpg)" alt="2018.06.06论文：12个NLP分类模型" class="thumbnail-image"></span>
     
 </a>
 
@@ -1741,7 +1768,7 @@
                             <a href="/2018/03/26/ 2018.03.26试题理解论文两篇阅读/" class="thumbnail">
     
     
-        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music1.jpg)" alt="2018.03.26试题理解论文两篇阅读" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006qDjsOly1g0tdw3lqvbj30kr07ywoo.jpg)" alt="2018.03.26试题理解论文两篇阅读" class="thumbnail-image"></span>
     
 </a>
 
@@ -1760,7 +1787,7 @@
                             <a href="/2018/03/05/Python时间序列分析/" class="thumbnail">
     
     
-        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/smartphone.jpg)" alt="python时间序列分析" class="thumbnail-image"></span>
+        <span style="background-image:url(https://jabinzou.github.io/gallery/third.jpg)" alt="python时间序列分析" class="thumbnail-image"></span>
     
 </a>
 
@@ -1838,7 +1865,7 @@
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2018 Qingtang<br>
+            &copy; 2019 Qingtang<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
         </div>
     </div>
@@ -1863,28 +1890,44 @@
 
 
 
-
-    
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
-    
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-    
-    
+<% if (typeof(isHead) !== 'undefined' && isHead) { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- css('libs/lightgallery/css/lightgallery.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- css('libs/justified-gallery/justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.google_analytics) { %>
+        <%- partial('plugin/google-analytics') %>
+    <% } %>
+    <% if (theme.plugins.google_site_verification) { %>
+        <meta name="google-site-verification" content="<%= theme.plugins.google_site_verification %>" />
+    <% } %>
+    <% if (theme.plugins.baidu_analytics) { %>
+        <%- partial('plugin/baidu-analytics') %>
+    <% } %>
+<% } else { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- js('libs/lightgallery/js/lightgallery.min') %>
+        <%- js('libs/lightgallery/js/lg-thumbnail.min') %>
+        <%- js('libs/lightgallery/js/lg-pager.min') %>
+        <%- js('libs/lightgallery/js/lg-autoplay.min') %>
+        <%- js('libs/lightgallery/js/lg-fullscreen.min') %>
+        <%- js('libs/lightgallery/js/lg-zoom.min') %>
+        <%- js('libs/lightgallery/js/lg-hash.min') %>
+        <%- js('libs/lightgallery/js/lg-share.min') %>
+        <%- js('libs/lightgallery/js/lg-video.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- js('libs/justified-gallery/jquery.justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.mathjax) { %>
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
         </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-    
-
+        <%- js('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML') %>
+    <% } %>
+<% } %>
 
 
 <!-- Custom Scripts -->

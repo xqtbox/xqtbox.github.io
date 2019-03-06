@@ -30,17 +30,44 @@
     <link rel="stylesheet" href="/css/style.css">
 
     <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
-    
-    
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
-    
-    
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
-    
-    
-    
-    
-
+    <% if (typeof(isHead) !== 'undefined' && isHead) { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- css('libs/lightgallery/css/lightgallery.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- css('libs/justified-gallery/justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.google_analytics) { %>
+        <%- partial('plugin/google-analytics') %>
+    <% } %>
+    <% if (theme.plugins.google_site_verification) { %>
+        <meta name="google-site-verification" content="<%= theme.plugins.google_site_verification %>" />
+    <% } %>
+    <% if (theme.plugins.baidu_analytics) { %>
+        <%- partial('plugin/baidu-analytics') %>
+    <% } %>
+<% } else { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- js('libs/lightgallery/js/lightgallery.min') %>
+        <%- js('libs/lightgallery/js/lg-thumbnail.min') %>
+        <%- js('libs/lightgallery/js/lg-pager.min') %>
+        <%- js('libs/lightgallery/js/lg-autoplay.min') %>
+        <%- js('libs/lightgallery/js/lg-fullscreen.min') %>
+        <%- js('libs/lightgallery/js/lg-zoom.min') %>
+        <%- js('libs/lightgallery/js/lg-hash.min') %>
+        <%- js('libs/lightgallery/js/lg-share.min') %>
+        <%- js('libs/lightgallery/js/lg-video.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- js('libs/justified-gallery/jquery.justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.mathjax) { %>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <%- js('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML') %>
+    <% } %>
+<% } %>
 
 
 
@@ -277,7 +304,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/08/23/linux常用指令-整理（不断完善）/" data-id="cjiemavnt0034fijeme3x1mij" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/08/23/linux常用指令-整理（不断完善）/" data-id="cjsxbbssm0034qrje9f4fzhkz" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -421,7 +448,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/08/22/linux的Anaconda环境下安装TensorFlow/" data-id="cjiemavny0038fijee9j2ocef" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/08/22/linux的Anaconda环境下安装TensorFlow/" data-id="cjsxbbsss0038qrje38f2iabd" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -567,7 +594,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/08/14/词嵌入来龙去脉 word embedding和word2vec/" data-id="cjiemavqh005rfijex199ltza" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/08/14/词嵌入来龙去脉 word embedding和word2vec/" data-id="cjsxbbswt005rqrjehqw4mpcb" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -710,7 +737,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/08/14/Linux安装jdk以及eclipse安装Anaconda与pyChram/" data-id="cjiemavl1000hfijejiuhohvv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/08/14/Linux安装jdk以及eclipse安装Anaconda与pyChram/" data-id="cjsxbbspd000hqrjealp7pave" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -862,7 +889,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/08/11/bat2018自然语言处理校园招聘的要求/" data-id="cjiemavm2001nfijeuocg7mmk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/08/11/bat2018自然语言处理校园招聘的要求/" data-id="cjsxbbsqi001nqrje7er767mm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1006,7 +1033,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/07/19/Tensorboard可视化好帮手/" data-id="cjiemavlp0019fije3tmash9w" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/07/19/Tensorboard可视化好帮手/" data-id="cjsxbbsq40019qrjeb3lxscsf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1151,7 +1178,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/07/03/Windows下用Anaconda安装TensorFlow并在pycharm中使用/" data-id="cjiemavm0001kfijeqch83rw6" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/07/03/Windows下用Anaconda安装TensorFlow并在pycharm中使用/" data-id="cjsxbbsqf001kqrjeg5i227np" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1297,7 +1324,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/05/30/汽车之家口碑爬虫/" data-id="cjiemavq20057fije0sy1a0ya" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/05/30/汽车之家口碑爬虫/" data-id="cjsxbbsw40057qrje71me2qsj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1443,7 +1470,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/05/20/AttributeError:FeedExporter object has no attribute slot/" data-id="cjiemavkk0009fijek6tuusns" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/05/20/AttributeError:FeedExporter object has no attribute slot/" data-id="cjsxbbsou0009qrjedat7sjg2" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1591,7 +1618,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/05/19/实战天猫数据爬取/" data-id="cjiemavpc004rfije7kp69404" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/05/19/实战天猫数据爬取/" data-id="cjsxbbsv4004rqrjeu6c5voxl" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -1689,7 +1716,7 @@
                             <a href="/2018/06/06/2018.06.06论文：12个NLP分类模型/" class="thumbnail">
     
     
-        <span style="background-image:url(http://img3.cache.netease.com/photo/0003/2009-05-05/58IOE7C80BOd0003.jpg)" alt="2018.06.06论文：12个NLP分类模型" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006qDjsOly1g0tdxh29lzj30kq088gxj.jpg)" alt="2018.06.06论文：12个NLP分类模型" class="thumbnail-image"></span>
     
 </a>
 
@@ -1746,7 +1773,7 @@
                             <a href="/2018/03/26/ 2018.03.26试题理解论文两篇阅读/" class="thumbnail">
     
     
-        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/music1.jpg)" alt="2018.03.26试题理解论文两篇阅读" class="thumbnail-image"></span>
+        <span style="background-image:url(http://ww1.sinaimg.cn/large/006qDjsOly1g0tdw3lqvbj30kr07ywoo.jpg)" alt="2018.03.26试题理解论文两篇阅读" class="thumbnail-image"></span>
     
 </a>
 
@@ -1765,7 +1792,7 @@
                             <a href="/2018/03/05/Python时间序列分析/" class="thumbnail">
     
     
-        <span style="background-image:url(http://blog.zhangruipeng.me/hexo-theme-icarus/gallery/smartphone.jpg)" alt="python时间序列分析" class="thumbnail-image"></span>
+        <span style="background-image:url(https://jabinzou.github.io/gallery/third.jpg)" alt="python时间序列分析" class="thumbnail-image"></span>
     
 </a>
 
@@ -1843,7 +1870,7 @@
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2018 Qingtang<br>
+            &copy; 2019 Qingtang<br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
         </div>
     </div>
@@ -1868,28 +1895,44 @@
 
 
 
-
-    
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
-    
-    
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
-    
-    
+<% if (typeof(isHead) !== 'undefined' && isHead) { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- css('libs/lightgallery/css/lightgallery.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- css('libs/justified-gallery/justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.google_analytics) { %>
+        <%- partial('plugin/google-analytics') %>
+    <% } %>
+    <% if (theme.plugins.google_site_verification) { %>
+        <meta name="google-site-verification" content="<%= theme.plugins.google_site_verification %>" />
+    <% } %>
+    <% if (theme.plugins.baidu_analytics) { %>
+        <%- partial('plugin/baidu-analytics') %>
+    <% } %>
+<% } else { %>
+    <% if (theme.plugins.lightgallery) { %>
+        <%- js('libs/lightgallery/js/lightgallery.min') %>
+        <%- js('libs/lightgallery/js/lg-thumbnail.min') %>
+        <%- js('libs/lightgallery/js/lg-pager.min') %>
+        <%- js('libs/lightgallery/js/lg-autoplay.min') %>
+        <%- js('libs/lightgallery/js/lg-fullscreen.min') %>
+        <%- js('libs/lightgallery/js/lg-zoom.min') %>
+        <%- js('libs/lightgallery/js/lg-hash.min') %>
+        <%- js('libs/lightgallery/js/lg-share.min') %>
+        <%- js('libs/lightgallery/js/lg-video.min') %>
+    <% } %>
+    <% if (theme.plugins.justifiedgallery) { %>
+        <%- js('libs/justified-gallery/jquery.justifiedGallery.min') %>
+    <% } %>
+    <% if (theme.plugins.mathjax) { %>
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
         </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-    
-
+        <%- js('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML') %>
+    <% } %>
+<% } %>
 
 
 <!-- Custom Scripts -->
