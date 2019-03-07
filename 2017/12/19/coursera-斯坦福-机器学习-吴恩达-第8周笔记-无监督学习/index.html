@@ -55,7 +55,7 @@
 <meta property="og:image" content="http://static.zybuluo.com/EtoDemerzel/4htax2yujv331naz6714beou/image_1bvhq9lgl8tr18sc1nj91ek983r9i.png">
 <meta property="og:image" content="http://static.zybuluo.com/EtoDemerzel/khg9umw7zuiyp6nlcwxnvc8t/image_1bvhqqr4a1ha7vdi1p61ufgh0e9v.png">
 <meta property="og:image" content="http://static.zybuluo.com/EtoDemerzel/zwc7byhk6oh4uu7v67r2fvga/image_1bvhqupea1jc681t1g6018eb10leac.png">
-<meta property="og:updated_time" content="2018-01-23T08:46:48.425Z">
+<meta property="og:updated_time" content="2019-03-07T05:41:27.940Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习">
 <meta name="twitter:description" content="对于无监督学习我们主要学习两种算法：聚类（K-means）和维度约简（PCA法）。 1聚类算法clutering1.1聚类算法简介无监督学习：我们面对的是一组无标记的训练数据， 数据之间， 不具任何相关联的标记。如图：">
@@ -168,6 +168,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -182,6 +186,12 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/image-banner/12.jpg" alt="coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习">
+        </span>
+    </div>
     
     <div class="card-content article ">
         
@@ -653,6 +663,105 @@
 </div>
     
         
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#1聚类算法clutering">
+        <span class="has-mr-6">1</span>
+        <span>1聚类算法clutering</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-1聚类算法简介">
+        <span class="has-mr-6">1.1</span>
+        <span>1.1聚类算法简介</span>
+        </a></li><li>
+        <a class="is-flex" href="#1-2K-means">
+        <span class="has-mr-6">1.2</span>
+        <span>1.2K-means</span>
+        </a></li><li>
+        <a class="is-flex" href="#1-2-1kmeans的目标函数">
+        <span class="has-mr-6">1.3</span>
+        <span>1.2.1kmeans的目标函数</span>
+        </a></li><li>
+        <a class="is-flex" href="#1-2-2随机初始化">
+        <span class="has-mr-6">1.4</span>
+        <span>1.2.2随机初始化</span>
+        </a></li><li>
+        <a class="is-flex" href="#1-2-3选择类别数">
+        <span class="has-mr-6">1.5</span>
+        <span>1.2.3选择类别数</span>
+        </a></li><li>
+        <a class="is-flex" href="#1-3考试quiz">
+        <span class="has-mr-6">1.6</span>
+        <span>1.3考试quiz</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#2-维数约减-dimensionality-reduction">
+        <span class="has-mr-6">2</span>
+        <span>2 维数约减 (dimensionality reduction)</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#2-1数据压缩">
+        <span class="has-mr-6">2.1</span>
+        <span>2.1数据压缩</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-2数据可视化">
+        <span class="has-mr-6">2.2</span>
+        <span>2.2数据可视化</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#3维度约简-主成分分析法PCA">
+        <span class="has-mr-6">3</span>
+        <span>3维度约简-主成分分析法PCA</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#3-1-PCA是做什么的">
+        <span class="has-mr-6">3.1</span>
+        <span>3.1 PCA是做什么的</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-2PCA的计算过程❤❤❤">
+        <span class="has-mr-6">3.2</span>
+        <span>3.2PCA的计算过程❤❤❤</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#4应用PCA">
+        <span class="has-mr-6">4</span>
+        <span>4应用PCA</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#4-1PCA反向压缩">
+        <span class="has-mr-6">4.1</span>
+        <span>4.1PCA反向压缩</span>
+        </a></li><li>
+        <a class="is-flex" href="#4-2怎么选择维度k">
+        <span class="has-mr-6">4.2</span>
+        <span>4.2怎么选择维度k</span>
+        </a></li><li>
+        <a class="is-flex" href="#4-3使用PCA的场景">
+        <span class="has-mr-6">4.3</span>
+        <span>4.3使用PCA的场景</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#5总复习quiz与编程">
+        <span class="has-mr-6">5</span>
+        <span>5总复习quiz与编程</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#5-1quiz主成份分析：">
+        <span class="has-mr-6">5.1</span>
+        <span>5.1quiz主成份分析：</span>
+        </a></li><li>
+        <a class="is-flex" href="#5-2编程题">
+        <span class="has-mr-6">5.2</span>
+        <span>5.2编程题</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-K-means-clustering">
+        <span class="has-mr-6">5.2.1</span>
+        <span>1 K-means clustering</span>
+        </a></li><li>
+        <a class="is-flex" href="#2主成分分析">
+        <span class="has-mr-6">5.2.2</span>
+        <span>2主成分分析</span>
+        </a></li></ul></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
     
         
 
