@@ -27,7 +27,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -102,16 +102,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -122,7 +122,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -199,7 +199,7 @@
 <h1 id="3-在本地配置博客"><a href="#3-在本地配置博客" class="headerlink" title="3 在本地配置博客"></a>3 在本地配置博客</h1><p>这些全部设置完成后，此时你并不能要申请的域名访问你的博客。</p>
 <p>接着你需要做的是在hexo根目录的source文件夹里创建CNAME文件，不带任何后缀，里面添加你的域名信息，如：penglei.com。</p>
 <p>实践证明如果此时你填写的是www.penglei.top那么以后你只能用www.penglei.top访问，而如果你填写的是penglei.top。那么用www.penglei.top和penglei.top访问都是可以的。重新清理hexo,并发布即可用新的域名访问。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g -d</span><br></pre></td></tr></table></figure>
 <h1 id="4-搭建完成访问出现404-可能的原因是："><a href="#4-搭建完成访问出现404-可能的原因是：" class="headerlink" title="4 搭建完成访问出现404 可能的原因是："></a>4 搭建完成访问出现404 可能的原因是：</h1><ul>
 <li>绑定了个人域名，但是域名解析错误。<br>域名解析正确但你的域名是通过国内注册商注册的，你的域名因没有实名制而无法访问。</li>
 <li>你认为配置没有问题，那么可能只是你的浏览器在捣鬼，可尝试清除浏览器缓存再访问或者换个浏览器访问。</li>
@@ -284,6 +284,30 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/02/05/零基础学习GitHub桌面版-9购买属于自己的域名并关联/';
+        this.page.identifier = '2018/02/05/零基础学习GitHub桌面版-9购买属于自己的域名并关联/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 

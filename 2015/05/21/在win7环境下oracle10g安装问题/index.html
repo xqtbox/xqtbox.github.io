@@ -24,7 +24,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -99,16 +99,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -119,7 +119,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -174,8 +174,8 @@
 <a id="more"></a>
 <p>Oracle Database 10g Release 2 (10.2.0.1.0) Enterprise/Standard Edition forMicrosoft Windows (32-bit)</p>
 <p>  <a href="http://download.oracle.com/otn/nt/oracle10g/10201/10201_database_win32.zip" target="_blank" rel="noopener">http://download.oracle.com/otn/nt/oracle10g/10201/10201_database_win32.zip</a></p>
-<h2 id="2、-然后解压"><a href="#2、-然后解压" class="headerlink" title="2、 然后解压"></a>2、 然后解压</h2><h2 id="3、-退出360等，最好关闭防火墙。"><a href="#3、-退出360等，最好关闭防火墙。" class="headerlink" title="3、 退出360等，最好关闭防火墙。"></a>3、 退出360等，最好关闭防火墙。</h2><h2 id="4、-让陈旧的oracle10g支持高大上的win7，呵呵："><a href="#4、-让陈旧的oracle10g支持高大上的win7，呵呵：" class="headerlink" title="4、  让陈旧的oracle10g支持高大上的win7，呵呵："></a>4、  让陈旧的oracle10g支持高大上的win7，呵呵：</h2><p>更改解压好的文件夹里面：<br>.. \database\stage\prereq\db下的refhost.xml文件，在  任意一个之后增加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--MicrosoftWindows 7--&gt;</span><br><span class="line">    &lt;OPERATING_SYSTEM&gt;</span><br><span class="line">      &lt;VERSION VALUE=&quot;6.1&quot;/&gt;</span><br><span class="line">&lt;/OPERATING_SYSTEM&gt;</span><br></pre></td></tr></table></figure></p>
-<h2 id="5、-更改-database-install下的oraparam-ini文件，增加如下项："><a href="#5、-更改-database-install下的oraparam-ini文件，增加如下项：" class="headerlink" title="5、  更改.. \database\install下的oraparam.ini文件，增加如下项："></a>5、  更改.. \database\install下的oraparam.ini文件，增加如下项：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Windows=5.0,5.1,5.2,6.0,6.1</span><br><span class="line">[Windows-6.1-required]</span><br><span class="line">#Minimum display colours for OUI to run</span><br><span class="line">MIN_DISPLAY_COLORS=256</span><br><span class="line">#Minimum CPU speed required for OUI</span><br><span class="line">#CPU=300</span><br><span class="line">[Windows-6.1-optional]</span><br></pre></td></tr></table></figure>
+<h2 id="2、-然后解压"><a href="#2、-然后解压" class="headerlink" title="2、 然后解压"></a>2、 然后解压</h2><h2 id="3、-退出360等，最好关闭防火墙。"><a href="#3、-退出360等，最好关闭防火墙。" class="headerlink" title="3、 退出360等，最好关闭防火墙。"></a>3、 退出360等，最好关闭防火墙。</h2><h2 id="4、-让陈旧的oracle10g支持高大上的win7，呵呵："><a href="#4、-让陈旧的oracle10g支持高大上的win7，呵呵：" class="headerlink" title="4、  让陈旧的oracle10g支持高大上的win7，呵呵："></a>4、  让陈旧的oracle10g支持高大上的win7，呵呵：</h2><p>更改解压好的文件夹里面：<br>.. \database\stage\prereq\db下的refhost.xml文件，在  任意一个之后增加<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--MicrosoftWindows 7--&gt;</span><br><span class="line">    &lt;OPERATING_SYSTEM&gt;</span><br><span class="line">      &lt;VERSION VALUE=&quot;6.1&quot;/&gt;</span><br><span class="line">&lt;/OPERATING_SYSTEM&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="5、-更改-database-install下的oraparam-ini文件，增加如下项："><a href="#5、-更改-database-install下的oraparam-ini文件，增加如下项：" class="headerlink" title="5、  更改.. \database\install下的oraparam.ini文件，增加如下项："></a>5、  更改.. \database\install下的oraparam.ini文件，增加如下项：</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Windows=5.0,5.1,5.2,6.0,6.1</span><br><span class="line">[Windows-6.1-required]</span><br><span class="line">#Minimum display colours for OUI to run</span><br><span class="line">MIN_DISPLAY_COLORS=256</span><br><span class="line">#Minimum CPU speed required for OUI</span><br><span class="line">#CPU=300</span><br><span class="line">[Windows-6.1-optional]</span><br></pre></td></tr></table></figure>
 <h2 id="6、-右击“stuep-exe”文件–》选择“属性”–》兼容性–》选中兼容系统"><a href="#6、-右击“stuep-exe”文件–》选择“属性”–》兼容性–》选中兼容系统" class="headerlink" title="6、  右击“stuep.exe”文件–》选择“属性”–》兼容性–》选中兼容系统"></a>6、  右击“stuep.exe”文件–》选择“属性”–》兼容性–》选中兼容系统</h2><p>然后就可以开始安装了，（以管理员身份运行此程序）首先会弹出一个框说是找不到先决条件(这个很正常，因为上面被你更改了配置)，不要紧张，耐心等待一会就会开始安装了，千万不要关闭这个窗口。</p>
 <h2 id="7、-ERROR-2正在检查网络配置要求…"><a href="#7、-ERROR-2正在检查网络配置要求…" class="headerlink" title="7、 ERROR 2正在检查网络配置要求…"></a>7、 ERROR 2正在检查网络配置要求…</h2><p>检查完成。此次检查的总体结果为: 失败 &lt;&lt;&lt;&lt; </p>
 <p>问题: 安装检测到系统的主 IP 地址是 DHCP 分配的地址。</p>
@@ -189,7 +189,7 @@
 <p>问题原因：找不到本机系统的IP地址，无法解析机器名。</p>
 <p>解决办法：在hosts文件下手动修改。</p>
 <p> （1）打开c:\windows\system32\drivers\etc\hosts文件</p>
-<p>手动加入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1       localhost</span><br><span class="line">192.168.0.1   lenovothink</span><br></pre></td></tr></table></figure></p>
+<p>手动加入：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1       localhost</span><br><span class="line">192.168.0.1   lenovothink</span><br></pre></td></tr></table></figure></p>
 <p> 第二行，每台机器不一样！那么 怎么找到自己机器的IP地址和机器名？</p>
 <p>（1）      IP地址网络连接-&gt;本地连接<br>（2）      本机的机器名：右键 我的电脑 即可看到。</p>
 <p>情况3:<br>如果企业管理控制器打不开怎么办呢？</p>
@@ -293,6 +293,30 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2015/05/21/在win7环境下oracle10g安装问题/';
+        this.page.identifier = '2015/05/21/在win7环境下oracle10g安装问题/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 

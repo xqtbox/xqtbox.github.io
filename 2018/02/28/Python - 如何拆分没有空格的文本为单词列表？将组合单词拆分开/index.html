@@ -24,7 +24,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -99,16 +99,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -119,7 +119,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -184,10 +184,10 @@
 <p>所以我们需要一个 “常用单词列表”。</p>
 <p>后面的方法是对输出的分布进行建模。良好的第一近似是假设所有单词是独立分布的。然后你只需要知道所有单词的相对频率。可以合理地假定它们遵循Zipf定律，即在单词列表中具有秩n的单词具有大约1 /(n log N)的概率，其中N是字典中的单词数。</p>
 <p>一旦你修正了模型，你可以使用动态规划来推断空格的位置。最可能的句子是最大化每个单词的概率的乘积，并且很容易用动态规划来计算它。不是直接使用概率，而是使用定义为概率的倒数的对数的成本来避免溢出。</p>
-<h2 id="2代码"><a href="#2代码" class="headerlink" title="2代码"></a>2代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">def cutLongNameFun(self,s):</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        longWords变为 long word：log里面有很多长函数名，比如WbxMeeting_VerifyMeetingIsExist。</span><br><span class="line">        将其拆成小单词wbx meeting verify meeting is exist，更有意义。若有大写则分割。</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        # Build a cost dictionary, assuming Zipf&apos;s law and cost = -math.log(probability).</span><br><span class="line">        # 建立一个成本字典，假设Zipf定律和成本= -math.log（概率）。</span><br><span class="line">        words = open(&quot;words-by-frequency.txt&quot;).read().split() # 有特殊字符的话直接在其中添加</span><br><span class="line">        wordcost = dict((k, log((i+1)*log(len(words)))) for i,k in enumerate(words))</span><br><span class="line">        maxword = max(len(x) for x in words)</span><br><span class="line">        </span><br><span class="line">        def infer_spaces(s):</span><br><span class="line">            &apos;&apos;&apos;Uses dynamic programming to infer the location of spaces in a string without spaces.</span><br><span class="line">            .使用动态编程来推断不带空格的字符串中空格的位置。&apos;&apos;&apos;</span><br><span class="line">            # Find the best match for the i first characters, assuming cost has</span><br><span class="line">            # been built for the i-1 first characters.</span><br><span class="line">            # Returns a pair (match_cost, match_length).</span><br><span class="line">            def best_match(i):</span><br><span class="line">                candidates = enumerate(reversed(cost[max(0, i-maxword):i]))</span><br><span class="line">                return min((c + wordcost.get(s[i-k-1:i], 9e999), k+1) for k,c in candidates)</span><br><span class="line">            </span><br><span class="line">            # Build the cost array.</span><br><span class="line">            cost = [0]</span><br><span class="line">            for i in range(1,len(s)+1):</span><br><span class="line">                c,k = best_match(i)</span><br><span class="line">                cost.append(c)</span><br><span class="line">            </span><br><span class="line">            # Backtrack to recover the minimal-cost string.</span><br><span class="line">            out = []</span><br><span class="line">            i = len(s)</span><br><span class="line">            while i&gt;0:</span><br><span class="line">                c,k = best_match(i)</span><br><span class="line">                assert c == cost[i]</span><br><span class="line">                out.append(s[i-k:i])</span><br><span class="line">                i -= k</span><br><span class="line">        </span><br><span class="line">            return &quot; &quot;.join(reversed(out))</span><br></pre></td></tr></table></figure>
+<h2 id="2代码"><a href="#2代码" class="headerlink" title="2代码"></a>2代码</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">def cutLongNameFun(self,s):</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        longWords变为 long word：log里面有很多长函数名，比如WbxMeeting_VerifyMeetingIsExist。</span><br><span class="line">        将其拆成小单词wbx meeting verify meeting is exist，更有意义。若有大写则分割。</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        # Build a cost dictionary, assuming Zipf&apos;s law and cost = -math.log(probability).</span><br><span class="line">        # 建立一个成本字典，假设Zipf定律和成本= -math.log（概率）。</span><br><span class="line">        words = open(&quot;words-by-frequency.txt&quot;).read().split() # 有特殊字符的话直接在其中添加</span><br><span class="line">        wordcost = dict((k, log((i+1)*log(len(words)))) for i,k in enumerate(words))</span><br><span class="line">        maxword = max(len(x) for x in words)</span><br><span class="line">        </span><br><span class="line">        def infer_spaces(s):</span><br><span class="line">            &apos;&apos;&apos;Uses dynamic programming to infer the location of spaces in a string without spaces.</span><br><span class="line">            .使用动态编程来推断不带空格的字符串中空格的位置。&apos;&apos;&apos;</span><br><span class="line">            # Find the best match for the i first characters, assuming cost has</span><br><span class="line">            # been built for the i-1 first characters.</span><br><span class="line">            # Returns a pair (match_cost, match_length).</span><br><span class="line">            def best_match(i):</span><br><span class="line">                candidates = enumerate(reversed(cost[max(0, i-maxword):i]))</span><br><span class="line">                return min((c + wordcost.get(s[i-k-1:i], 9e999), k+1) for k,c in candidates)</span><br><span class="line">            </span><br><span class="line">            # Build the cost array.</span><br><span class="line">            cost = [0]</span><br><span class="line">            for i in range(1,len(s)+1):</span><br><span class="line">                c,k = best_match(i)</span><br><span class="line">                cost.append(c)</span><br><span class="line">            </span><br><span class="line">            # Backtrack to recover the minimal-cost string.</span><br><span class="line">            out = []</span><br><span class="line">            i = len(s)</span><br><span class="line">            while i&gt;0:</span><br><span class="line">                c,k = best_match(i)</span><br><span class="line">                assert c == cost[i]</span><br><span class="line">                out.append(s[i-k:i])</span><br><span class="line">                i -= k</span><br><span class="line">        </span><br><span class="line">            return &quot; &quot;.join(reversed(out))</span><br></pre></td></tr></table></figure>
 <p>使用实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s = &apos;thumbgreenappleactiveassignmentweeklymetaphor&apos;</span><br><span class="line">print(infer_spaces(s))</span><br><span class="line"></span><br><span class="line"># 结果为 thumb green apple active assignment weekly metaphor.</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Before: thereismassesoftextinformationofpeoplescommentswhichisparsedfromhtmlbuttherearen</span><br><span class="line">odelimitedcharactersinthemforexamplethumbgreenappleactiveassignmentweeklymetapho</span><br><span class="line">rapparentlytherearethumbgreenappleetcinthestringialsohavealargedictionarytoquery</span><br><span class="line">whetherthewordisreasonablesowhatsthefastestwayofextractionthxalot.</span><br><span class="line"></span><br><span class="line">After: there is masses of text information of peoples comments which is parsed from html but there are no delimited characters in them for example thumb green apple active assignment weekly metaphor apparently there are thumb green apple etc in the string i also have a large dictionary to query whether the word is reasonable so what s the fastest way of extraction thx a lot.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s = &apos;thumbgreenappleactiveassignmentweeklymetaphor&apos;</span><br><span class="line">print(infer_spaces(s))</span><br><span class="line"></span><br><span class="line"># 结果为 thumb green apple active assignment weekly metaphor.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Before: thereismassesoftextinformationofpeoplescommentswhichisparsedfromhtmlbuttherearen</span><br><span class="line">odelimitedcharactersinthemforexamplethumbgreenappleactiveassignmentweeklymetapho</span><br><span class="line">rapparentlytherearethumbgreenappleetcinthestringialsohavealargedictionarytoquery</span><br><span class="line">whetherthewordisreasonablesowhatsthefastestwayofextractionthxalot.</span><br><span class="line"></span><br><span class="line">After: there is masses of text information of peoples comments which is parsed from html but there are no delimited characters in them for example thumb green apple active assignment weekly metaphor apparently there are thumb green apple etc in the string i also have a large dictionary to query whether the word is reasonable so what s the fastest way of extraction thx a lot.</span><br></pre></td></tr></table></figure>
 <p>正如你可以看到，这个算法基本上是完美的。最<strong>重要的部分</strong>是确保你的单词列表训练到一个类似于你实际遇到的语料库，否则结果将是非常糟糕。所以你应该手工完善自己的单词库。</p>
 <h2 id="3下载"><a href="#3下载" class="headerlink" title="3下载"></a>3下载</h2><p>words-by-frequency.txt 这个文件下载：<br><a href="http://download.csdn.net/download/u012052268/10263440" target="_blank" rel="noopener">http://download.csdn.net/download/u012052268/10263440</a></p>
 
@@ -267,6 +267,30 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/02/28/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/';
+        this.page.identifier = '2018/02/28/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 

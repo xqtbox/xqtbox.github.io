@@ -39,7 +39,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -114,16 +114,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -134,7 +134,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -261,18 +261,18 @@
 </ul>
 <h3 id="4-2编程作业-多分类"><a href="#4-2编程作业-多分类" class="headerlink" title="4.2编程作业-多分类"></a>4.2编程作业-多分类</h3><p>在这个练习中，你将实现一对多 逻辑回归和神经网络来识别手写数字。 在开始编程练习之前，我们强烈建议您观看视频讲座并完成相关主题的复习问题。</p>
 <p>要开始练习，您需要下载<a href="https://s3.amazonaws.com/spark-public/ml/exercises/on-demand/machine-learning-ex3.zip" target="_blank" rel="noopener">初学者代码</a>并将其内容解压到您希望完成练习的目录。 如果需要，在开始本练习之前，使用Octave / MATLAB中的cd命令切换到此目录。</p>
-<p>下面是各个文件的作用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ex3.m - Octave / MATLAB脚本，指导您完成第1部分</span><br><span class="line">ex3 nn.m - Octave / MATLAB脚本，指导您完成第2部分</span><br><span class="line">ex3data1.mat - 手写数字的训练集</span><br><span class="line">ex3weights.mat - 神经网络练习的初始权重</span><br><span class="line">submit.m - 提交您的解决方案到我们的服务器的提交脚本</span><br><span class="line">displayData.m - 帮助可视化数据集的功能</span><br><span class="line">fmincg.m - 函数最小化例程（类似于fminunc）</span><br><span class="line">sigmoid.m - 乙状结肠功能</span><br><span class="line">-lrCostFunction.m - Logistic回归成本函数</span><br><span class="line">-oneVsAll.m - 训练一对多多分类器</span><br><span class="line">-predictOneVsAll.m - 使用一个对所有多类分类器进行预测</span><br><span class="line">-predict.m神经网络预测函数</span><br></pre></td></tr></table></figure></p>
+<p>下面是各个文件的作用<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ex3.m - Octave / MATLAB脚本，指导您完成第1部分</span><br><span class="line">ex3 nn.m - Octave / MATLAB脚本，指导您完成第2部分</span><br><span class="line">ex3data1.mat - 手写数字的训练集</span><br><span class="line">ex3weights.mat - 神经网络练习的初始权重</span><br><span class="line">submit.m - 提交您的解决方案到我们的服务器的提交脚本</span><br><span class="line">displayData.m - 帮助可视化数据集的功能</span><br><span class="line">fmincg.m - 函数最小化例程（类似于fminunc）</span><br><span class="line">sigmoid.m - 乙状结肠功能</span><br><span class="line">-lrCostFunction.m - Logistic回归成本函数</span><br><span class="line">-oneVsAll.m - 训练一对多多分类器</span><br><span class="line">-predictOneVsAll.m - 使用一个对所有多类分类器进行预测</span><br><span class="line">-predict.m神经网络预测函数</span><br></pre></td></tr></table></figure></p>
 <h4 id="4-2-1多分类"><a href="#4-2-1多分类" class="headerlink" title="4.2.1多分类"></a>4.2.1多分类</h4><p>对于这个练习，你将使用逻辑回归和神经网络来识别手写数字（从0到9）。 自动手写数字识别在今天被广泛使用，从识别邮件信封上的邮政编码（邮政编码）到识别银行支票上的金额。 本练习将向您展示如何将您学习的方法用于此分类任务。</p>
 <p>在练习的第一部分，您将扩展先前的逻辑回归实现，并将其应用于“one-vs-all”分类。</p>
 <p>程序已经写好载入数据，我们修改lrCostFunction.m来计算代价函数 和梯度。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sigm = sigmoid(X*theta); </span><br><span class="line">J = -1/m * (y&apos;*log(sigm) + (1-y&apos;)*log(1-sigm)) + lambda/2/m*sigm;</span><br><span class="line"></span><br><span class="line">grad(1,:) = 1/m * (X(:,1)&apos; * (sigm -y)); </span><br><span class="line">grad(1:end,:) = 1/m * (X(:,2:end)&apos;*(sigm - y)) +lambda/m*theta(2:end, :);</span><br></pre></td></tr></table></figure>
-<p>下面修改<br>oneVsAll.m 实现一对多分类。在里面加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">initial_theta = zeros(n+1, 1);</span><br><span class="line">options = optimset(&apos;GradObj&apos;, &apos;on&apos;, &apos;MaxIter&apos;, 50);</span><br><span class="line">for c=1:num_labels</span><br><span class="line">    all_theta(c, :) = fmincg(@(t)(lrCostFunction(t, X, (y==c), lambda)), initial_theta, options);</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
-<p>下面进行预测，修改 predictOneVsAll.m添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">temp = all_theta * X&apos;;</span><br><span class="line">[maxx, pp] = max(temp);</span><br><span class="line">p = pp&apos;;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sigm = sigmoid(X*theta); </span><br><span class="line">J = -1/m * (y&apos;*log(sigm) + (1-y&apos;)*log(1-sigm)) + lambda/2/m*sigm;</span><br><span class="line"></span><br><span class="line">grad(1,:) = 1/m * (X(:,1)&apos; * (sigm -y)); </span><br><span class="line">grad(1:end,:) = 1/m * (X(:,2:end)&apos;*(sigm - y)) +lambda/m*theta(2:end, :);</span><br></pre></td></tr></table></figure>
+<p>下面修改<br>oneVsAll.m 实现一对多分类。在里面加入<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">initial_theta = zeros(n+1, 1);</span><br><span class="line">options = optimset(&apos;GradObj&apos;, &apos;on&apos;, &apos;MaxIter&apos;, 50);</span><br><span class="line">for c=1:num_labels</span><br><span class="line">    all_theta(c, :) = fmincg(@(t)(lrCostFunction(t, X, (y==c), lambda)), initial_theta, options);</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>下面进行预测，修改 predictOneVsAll.m添加<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">temp = all_theta * X&apos;;</span><br><span class="line">[maxx, pp] = max(temp);</span><br><span class="line">p = pp&apos;;</span><br></pre></td></tr></table></figure></p>
 <p>最后精度Training Set Accuracy: 94.880000</p>
 <h4 id="4-2-2-Neural-Networks"><a href="#4-2-2-Neural-Networks" class="headerlink" title="4.2.2 Neural Networks"></a>4.2.2 Neural Networks</h4><p>在本练习的前一部分中，您实现了多类逻辑回归来识别手写数字。 然而，逻辑回归不能形成更复杂的假设，因为它只是一个线性分类器。</p>
 <p>在练习的这一部分，您将实现一个神经网络，使用与之前相同的训练集来识别手写数字。 神经网络将能够表示形成非线性假设的复杂模型。 本周，您将使用我们已经训练过的神经网络的参数。 您的目标是实现前馈传播算法以使用我们的权重进行预测。 在下周的练习中，您将编写用于学习神经网络参数的反向传播算法。</p>
 <p>提供的脚本ex3 nn.m将帮助您逐步完成此练习。</p>
-<p> 首先修改predict.m来写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">X = [ones(m, 1) X];</span><br><span class="line">XX = sigmoid(X*Theta1&apos;);</span><br><span class="line">pp = sigmoid([ones(size(XX, 1), 1) XX] * Theta2&apos;);</span><br><span class="line">[a, p] = max(pp, [], 2);</span><br></pre></td></tr></table></figure></p>
+<p> 首先修改predict.m来写<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">X = [ones(m, 1) X];</span><br><span class="line">XX = sigmoid(X*Theta1&apos;);</span><br><span class="line">pp = sigmoid([ones(size(XX, 1), 1) XX] * Theta2&apos;);</span><br><span class="line">[a, p] = max(pp, [], 2);</span><br></pre></td></tr></table></figure></p>
 <p>最终预测准确性：Training Set Accuracy: 97.520000</p>
 
         </div>
@@ -351,6 +351,30 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/11/30/coursera-斯坦福-机器学习-吴恩达-第4周笔记-神经网络/';
+        this.page.identifier = '2017/11/30/coursera-斯坦福-机器学习-吴恩达-第4周笔记-神经网络/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 

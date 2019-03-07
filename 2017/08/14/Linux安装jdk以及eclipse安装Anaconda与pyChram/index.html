@@ -29,7 +29,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -104,16 +104,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -124,7 +124,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -178,34 +178,34 @@
 <a id="more"></a>
 <p><img src="http://www.linuxidc.com/upload/2015_01/15011909588648.png" alt="image"></p>
 <h3 id="2、解压源码包"><a href="#2、解压源码包" class="headerlink" title="2、解压源码包"></a>2、解压源码包</h3><p>通过终端在/usr/local目录下新建java文件夹，命令行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /usr/local/java</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /usr/local/java</span><br></pre></td></tr></table></figure>
 <p>然后将下载到压缩包拷贝到java文件夹中，命令行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp jdk-8u25-linux-x64.tar.gz /usr/local/java</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp jdk-8u25-linux-x64.tar.gz /usr/local/java</span><br></pre></td></tr></table></figure>
 <p>然后进入java目录，命令行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/java</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/java</span><br></pre></td></tr></table></figure>
 <p>解压压缩包，命令行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxvf jdk-8u25-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxvf jdk-8u25-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
 <p>然后可以把压缩包删除，命令行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm jdk-8u25-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm jdk-8u25-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
 <h3 id="3、设置jdk环境变量"><a href="#3、设置jdk环境变量" class="headerlink" title="3、设置jdk环境变量"></a>3、设置jdk环境变量</h3><p>要对profile进行配置：输入命令:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/profile</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/profile</span><br></pre></td></tr></table></figure>
 <p>按i进入插入模式，并写入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/local/java/jdk1.8.0_144</span><br><span class="line">export JRE_HOME=//usr/local/java/jdk1.8.0_144/jre</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH</span><br><span class="line">export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/local/java/jdk1.8.0_144</span><br><span class="line">export JRE_HOME=//usr/local/java/jdk1.8.0_144/jre</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH</span><br><span class="line">export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH</span><br></pre></td></tr></table></figure>
 <h3 id="4-重启linux"><a href="#4-重启linux" class="headerlink" title="4 重启linux"></a>4 重启linux</h3><h3 id="5、检查"><a href="#5、检查" class="headerlink" title="5、检查"></a>5、检查</h3><p>在终端输入如下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
 <h2 id="2-安装eclipse"><a href="#2-安装eclipse" class="headerlink" title="2.安装eclipse"></a>2.安装eclipse</h2><h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>下载:eclipse-SDK-3.7.2-linux-gtk.tar.gz</p>
 <p>在地址：<a href="http://www.eclipse.org/downloads/" target="_blank" rel="noopener">http://www.eclipse.org/downloads/</a><br><img src="http://images.cnblogs.com/cnblogs_com/hongten/395172/r_39.png" alt="image"></p>
 <p><img src="http://images.cnblogs.com/cnblogs_com/hongten/395172/r_40.png" alt="image"></p>
 <h3 id="2放入指定文件夹"><a href="#2放入指定文件夹" class="headerlink" title="2放入指定文件夹"></a>2放入指定文件夹</h3><p>把压缩包放入/home/xqt/software</p>
-<h3 id="3解压安装包"><a href="#3解压安装包" class="headerlink" title="3解压安装包"></a>3解压安装包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf eclipse-SDK-4.2-linux-gtk.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="3解压安装包"><a href="#3解压安装包" class="headerlink" title="3解压安装包"></a>3解压安装包</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf eclipse-SDK-4.2-linux-gtk.tar.gz</span><br></pre></td></tr></table></figure>
 <h3 id="4启动eclipse"><a href="#4启动eclipse" class="headerlink" title="4启动eclipse"></a>4启动eclipse</h3><p>  进入eclipse文件夹，点击eclipse文件。</p>
 <p>  并把他固定在启动器上</p>
 <h1 id="linux安装Anaconda与pyChram"><a href="#linux安装Anaconda与pyChram" class="headerlink" title="linux安装Anaconda与pyChram"></a>linux安装Anaconda与pyChram</h1><h2 id="1linux安装Anaconda"><a href="#1linux安装Anaconda" class="headerlink" title="1linux安装Anaconda"></a>1linux安装Anaconda</h2><h3 id="1-下载（直接到清华镜像下载）"><a href="#1-下载（直接到清华镜像下载）" class="headerlink" title="1 下载（直接到清华镜像下载）"></a>1 下载（直接到清华镜像下载）</h3><p><a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/</a><br>，选择合适的版本。<br><img src="http://img.blog.csdn.net/20170411161509240?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveGlhZXJ3b2FpbHVv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
 <h3 id="2-安装anaconda"><a href="#2-安装anaconda" class="headerlink" title="2 安装anaconda"></a>2 安装anaconda</h3><p>进入下载目录，输入命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Anaconda3-4.3.1-Linux-x86.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Anaconda3-4.3.1-Linux-x86.sh</span><br></pre></td></tr></table></figure>
 <p>在安装的过程中，会问你安装路径，直接回车默认就可以了。有个地方问你是否将anaconda安装路径加入到环境变量（.bashrc)中，输入yes，默认的是no， </p>
-<p>如果10秒内没输入就要配置环境，根据提示，在终端输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit ~/bashrc</span><br></pre></td></tr></table></figure></p>
-<p>打开profile文件。添加语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=/home/xqt/anaconda3/bin:$PATH</span><br></pre></td></tr></table></figure></p>
+<p>如果10秒内没输入就要配置环境，根据提示，在终端输入<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit ~/bashrc</span><br></pre></td></tr></table></figure></p>
+<p>打开profile文件。添加语句<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=/home/xqt/anaconda3/bin:$PATH</span><br></pre></td></tr></table></figure></p>
 <p>，保存，退出。 （想卸载的时候别忘记把这句话删除）</p>
 <h3 id="3-重启linux"><a href="#3-重启linux" class="headerlink" title="3 重启linux"></a>3 重启linux</h3><p>配置好PATH后，可以通过which conda或conda –version命令检查是否正确。 </p>
 <p>输入conda list 就可以查询，你现在安装了哪些库，常用的numpy, scipy名列其中。</p>
@@ -215,12 +215,12 @@
 <p>打开jupyter notebook 也只需要在终端输入：</p>
 <p>jupyter notebook</p>
 <p>由于anaconda在linux下是安装在一个文件夹里/home/anaconda ,如果安装过程中出错问题，或者想更新另一个版本，删除anaconda也很方便，执行下面命令 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf ~/anaconda</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf ~/anaconda</span><br></pre></td></tr></table></figure>
 <h2 id="linux安装pyChram"><a href="#linux安装pyChram" class="headerlink" title="linux安装pyChram"></a>linux安装pyChram</h2><h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1 下载"></a>1 下载</h3><p>百度搜索pycharm<br>然后打开pycharm的官网<br>然后在官网首页点击down</p>
 <h3 id="2-解压"><a href="#2-解压" class="headerlink" title="2 解压"></a>2 解压</h3><p>打开刚才下载的目录，复制到/home/xqt/software</p>
 <p>右击文件，点击提取到此处（这与Windows的解压是一个意思）<br>解压完成后，可以看到文件夹</p>
 <h3 id="3-安装"><a href="#3-安装" class="headerlink" title="3 安装"></a>3 安装</h3><p>打开刚才解压好的文件夹<br>然后再打开bin目录</p>
-<p>在此处打开终端然后输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./pycharm.sh</span><br></pre></td></tr></table></figure></p>
+<p>在此处打开终端然后输入：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./pycharm.sh</span><br></pre></td></tr></table></figure></p>
 <p>开始安装<br>（.sh 是一个脚本文件，相当于win下的.exe）<br>回车</p>
 
         </div>
@@ -299,6 +299,30 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/08/14/Linux安装jdk以及eclipse安装Anaconda与pyChram/';
+        this.page.identifier = '2017/08/14/Linux安装jdk以及eclipse安装Anaconda与pyChram/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 

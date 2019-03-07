@@ -24,7 +24,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -99,16 +99,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -119,7 +119,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -177,7 +177,7 @@
 <p>3.DriverStudio3.2：      <a href="http://ttl4.pc6.com/tx/driverstudio.zip" target="_blank" rel="noopener">http://ttl4.pc6.com/tx/driverstudio.zip</a> （安装时会检测系统有无D盘，如果虚机中XP无D盘，安装不上。用“分区助手”分下区即可）</p>
 <h2 id="二-配置DriverStudio"><a href="#二-配置DriverStudio" class="headerlink" title="二.配置DriverStudio"></a>二.配置DriverStudio</h2><p>1.从网上找到库文件 ntstrsafe.lib+csq.lib.rar，把解压出来的两个库文件拷贝到WinXP_DDK的安装目录下的库目录中.<br>（我的是 C:\WINDDK\2600\lib\wxp\i386）。启动vc6，然后进行简单的配置：菜单DriverStudio菜单下的DDK Build Settings，在弹出的对话框中选择已经安装的DDK目录（比如我的是C:\WINDDK\2600），</p>
 <p>（ntstrsafe.lib+csq.lib.rar下载地址： <a href="http://download.csdn.net/detail/victoryckl/4444640" target="_blank" rel="noopener">http://download.csdn.net/detail/victoryckl/4444640</a>     ）</p>
-<p>2.在Windows DDK compiler Options中选择”Enable only for Driver Studio”。<br>VC6.0–&gt;Tools–&gt;Options，点击”Directories”选项卡：<br>1）·“Show directories for:”下选择Include files，然后检查有没有包含ddk的头文件目录（我的是C:\WINDDK\2600\inc\wxp），如果没有则加上；<br> 以及<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\WINDDK\2600\INC\W2K </span><br><span class="line">C:\WINDDK\2600\INC\DDK\W2K </span><br><span class="line">C:\WINDDK\2600\INC\DDK\WDM\W2K</span><br></pre></td></tr></table></figure></p>
+<p>2.在Windows DDK compiler Options中选择”Enable only for Driver Studio”。<br>VC6.0–&gt;Tools–&gt;Options，点击”Directories”选项卡：<br>1）·“Show directories for:”下选择Include files，然后检查有没有包含ddk的头文件目录（我的是C:\WINDDK\2600\inc\wxp），如果没有则加上；<br> 以及<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\WINDDK\2600\INC\W2K </span><br><span class="line">C:\WINDDK\2600\INC\DDK\W2K </span><br><span class="line">C:\WINDDK\2600\INC\DDK\WDM\W2K</span><br></pre></td></tr></table></figure></p>
 <p>2）·“Show directories for:”下选择Library files，然后检查有没有包含ddk的库文件目录（我的是C:\WINDDK\2600\lib\wxp\i386），如果没有则加上；<br>以及  C:\WINDDK\2600\LIB\W2K\I386  </p>
 <h2 id="三。编译库文件（一定注意32位）"><a href="#三。编译库文件（一定注意32位）" class="headerlink" title="三。编译库文件（一定注意32位）"></a>三。编译库文件（一定注意32位）</h2><p>·编译适合本机使用的库文件（以下内容，如果用DDK编程者可以不看）</p>
 <p>(1).启动VC6.0。开始–&gt;所有程序 –&gt;Compuware DriveStudio–&gt;Develop–&gt;DDK Building Settings，确保“DDK Root Directory”下方的内容是ddk的安装目录（比如我的是C:\WINDDK\2600），然后点击下方的”Luanch Program”正式启动vc6的开发环境。</p>
@@ -264,6 +264,30 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2016/11/18/VC6.0+ddk+DriverStudio3.2安装与配置/';
+        this.page.identifier = '2016/11/18/VC6.0+ddk+DriverStudio3.2安装与配置/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 

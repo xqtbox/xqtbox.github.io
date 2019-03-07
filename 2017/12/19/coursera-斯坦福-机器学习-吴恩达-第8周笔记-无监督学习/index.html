@@ -65,7 +65,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -140,16 +140,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -160,7 +160,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -428,16 +428,16 @@
 <p>1.1.1 Finding closest centroids</p>
 <p>对每个example，根据公式：<br><img src="http://static.zybuluo.com/EtoDemerzel/4hdabyidl14amiy5ptwr0k6c/image_1bvhd7nem1lh31ijm1h0atjc1pm42j.png" alt="image"></p>
 <p>找到距离它最近的centroid，并标记。若有数个距离相同且均为最近，任取一个即可。</p>
-<p>打开findClosestCentroids.m代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">for i=1:size(X,1)  </span><br><span class="line">    adj=sqrt((X(i,:)-centroids(1,:))*(X(i,:)-centroids(1,:))&apos;);  </span><br><span class="line">    idx(i)=1;  </span><br><span class="line">    for j=2:K  </span><br><span class="line">        temp=sqrt((X(i,:)-centroids(j,:))*(X(i,:)-centroids(j,:))&apos;);  </span><br><span class="line">        if(temp&lt;adj)  </span><br><span class="line">            idx(i)=j;  </span><br><span class="line">            adj=temp;  </span><br><span class="line">        end  </span><br><span class="line">    end  </span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>打开findClosestCentroids.m代码如下：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">for i=1:size(X,1)  </span><br><span class="line">    adj=sqrt((X(i,:)-centroids(1,:))*(X(i,:)-centroids(1,:))&apos;);  </span><br><span class="line">    idx(i)=1;  </span><br><span class="line">    for j=2:K  </span><br><span class="line">        temp=sqrt((X(i,:)-centroids(j,:))*(X(i,:)-centroids(j,:))&apos;);  </span><br><span class="line">        if(temp&lt;adj)  </span><br><span class="line">            idx(i)=j;  </span><br><span class="line">            adj=temp;  </span><br><span class="line">        end  </span><br><span class="line">    end  </span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
 <p>1.1.2 Compute centroid means</p>
 <p>对每个centroid，根据公式：<img src="http://static.zybuluo.com/EtoDemerzel/5yyj3r6wjss8vsr1ug905jcn/image_1bvhddrbtfpl7kh1mdifn416er3g.png" alt="image">求出该类所有点的平均值（即中心点）进行更新。</p>
-<p>打开computeCentroids.m写入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for i=1:K  </span><br><span class="line">    if(size(find(idx==i),2)~=0)  </span><br><span class="line">        centroids(i,:)=mean(X(find(idx==i),:));  </span><br><span class="line">    else  </span><br><span class="line">        centroids(i,:)=zeros(1,n);  </span><br><span class="line">    end  </span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>打开computeCentroids.m写入：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for i=1:K  </span><br><span class="line">    if(size(find(idx==i),2)~=0)  </span><br><span class="line">        centroids(i,:)=mean(X(find(idx==i),:));  </span><br><span class="line">    else  </span><br><span class="line">        centroids(i,:)=zeros(1,n);  </span><br><span class="line">    end  </span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
 <p>1.2 K-means on example dataset</p>
 <p>ex7.m中提供了一个例子，其中中 K 已经被手动初始化过了。</p>
 <p>我们要把点分成三类，迭代次数为10次。三类的中心点初始化为(3,3),(6,2),(8,5).<br>得到如下图像。（中间的图像略去，只展示开始和完成时的图像）<br>这是初始图像：<br><img src="http://static.zybuluo.com/EtoDemerzel/vdmjv77mgp6yr2lppgkm989f/image_1bvhdo54a1obu1c561jua1uui7uk3t.png" alt="image"></p>
 <p>进行10次迭代后的图像：<img src="http://static.zybuluo.com/EtoDemerzel/nn68hj7np0y1756ntv4ms9qk/image_1bvhdoub019fjfj0en71k6o8ri4a.png" alt="image"><br>可以看到三堆点被很好地分成了三类。图片上同时也展示了中心点的移动轨迹。</p>
 <p>1.3 Random initialization</p>
-<p>ex7.m中为了方便检验结果正确性，给定了K的初始化。而实际应用中，我们需要随机初始化。<br>kMeansInitCentroids.m 完成如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">randidx = randperm(size(X, 1));</span><br><span class="line">% Take the first K examples as centroids</span><br><span class="line">centroids = X(randidx(1:K), :);</span><br></pre></td></tr></table></figure></p>
+<p>ex7.m中为了方便检验结果正确性，给定了K的初始化。而实际应用中，我们需要随机初始化。<br>kMeansInitCentroids.m 完成如下代码：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">randidx = randperm(size(X, 1));</span><br><span class="line">% Take the first K examples as centroids</span><br><span class="line">centroids = X(randidx(1:K), :);</span><br></pre></td></tr></table></figure></p>
 <p>1.4 Image compression with K-means</p>
 <p>用K-means进行图片压缩。<br>用一张128\times 128的图片为例，采用RGB，总共需要128\times 128 \times 24 = 393216个bit。<br>这里我们对他进行压缩，把所有颜色分成16类，以其centroid对应的颜色代替整个一类中的颜色，可以将空间压缩至16\times 24 + 128\times 128 \times 4 = 65920 个bit。<br>用题目中提供的例子，效果大概如下：</p>
 <p><img src="http://static.zybuluo.com/EtoDemerzel/4rgucvo4a6oysg20fpewlall/image_1bvheqvbshfk1j1318ll1pis15lo5n.png" alt="image"></p>
@@ -447,14 +447,14 @@
 <p>2.2 Implementing PCA</p>
 <p>首先需要计算数据的协方差矩阵（covariance matrix）。<br>然后使用 Octave/MATLAB中的SVD函数计算特征向量（eigenvector）。</p>
 <p>可以先对数据进行normalization和feature scaling的处理。<br>协方差矩阵如下计算：<img src="http://static.zybuluo.com/EtoDemerzel/wfh2ygl1rqbhbsg146pu6yfc/image_1bvhi4bs61c8m169qagiaf4osb7b.png" alt="image"></p>
-<p>然后用SVD函数求特征向量。<br>故完成pca.m如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[U,S,V] = svd(1/m * X&apos; * X);</span><br></pre></td></tr></table></figure></p>
+<p>然后用SVD函数求特征向量。<br>故完成pca.m如下：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[U,S,V] = svd(1/m * X&apos; * X);</span><br></pre></td></tr></table></figure></p>
 <p>把求出的特征向量绘制在图上：<br><img src="http://static.zybuluo.com/EtoDemerzel/rm3px2nsux8e333lzhtlgkx4/image_1bvhivt7a1c3pijbr46183r1d5k88.png" alt="image"></p>
 <p>2.3 Dimensionality reduction with PCA</p>
 <p>将高维的examples投影到低维上。</p>
 <p>2.3.1 Projecting the data onto the principal components</p>
-<p>完成projectData.m如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ureduce = U(:,1:K);</span><br><span class="line">Z = X * Ureduce;</span><br></pre></td></tr></table></figure></p>
+<p>完成projectData.m如下：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ureduce = U(:,1:K);</span><br><span class="line">Z = X * Ureduce;</span><br></pre></td></tr></table></figure></p>
 <p>2.3.2 Reconstructing an approximation of the data</p>
-<p>从投影过的低维恢复高维recoverData.m：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ureduce = U(:, 1:K);</span><br><span class="line">X_rec = Z * Ureduce&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>从投影过的低维恢复高维recoverData.m：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ureduce = U(:, 1:K);</span><br><span class="line">X_rec = Z * Ureduce&apos;;</span><br></pre></td></tr></table></figure></p>
 <p>2.3.3 Visualizing the projections</p>
 <p><img src="http://static.zybuluo.com/EtoDemerzel/5b55d0q62ucupvc78q6qvjsf/image_1bvhq0b1j1cj36k6el8ars19rb8l.png" alt="image"></p>
 <p>根据上图可以看出，恢复后的图只保留了其中一个特征向量上的信息，而垂直方向的信息丢失了。</p>
@@ -544,6 +544,30 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/12/19/coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习/';
+        this.page.identifier = '2017/12/19/coursera-斯坦福-机器学习-吴恩达-第8周笔记-无监督学习/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 

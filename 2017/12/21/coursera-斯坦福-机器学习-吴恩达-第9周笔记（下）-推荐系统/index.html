@@ -32,7 +32,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -107,16 +107,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -127,7 +127,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -291,11 +291,11 @@
 <p>1m∑(i,j):r(i,j)=1∑nk=1((θ(j))kx(i)k−y(i,j))2</p>
 <h3 id="4-2编程"><a href="#4-2编程" class="headerlink" title="4.2编程"></a>4.2编程</h3><p>在本练习中，您将实施异常检测算法并将其应用于检测网络上发生故障的服务器。 在第二部分中，您将使用协作过滤来构建电影的推荐系统</p>
 <p>1异常检测<br>在这个练习中，您将实现一个异常检测算法来检测服务器计算机中的异常行为。 这些功能衡量每个服务器响应的吞吐量（mb / s）和延迟（ms）。 当你的服务器正在运行时，你收集了他们如何行为的例子，因此有一个未标记的数据集{x（1），…，x（m）}。 您怀疑这些示例中绝大多数是服务器正常运行的“正常”（非异常）示例，但也可能有一些服务器在此数据集中异常运行的示例。</p>
-<p>打开estimateGaussian.m<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mu = 1/m * sum(X);</span><br><span class="line">sigma2 = 1/m * sum((X - repmat(mu, m, 1)).^2);</span><br></pre></td></tr></table></figure></p>
+<p>打开estimateGaussian.m<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mu = 1/m * sum(X);</span><br><span class="line">sigma2 = 1/m * sum((X - repmat(mu, m, 1)).^2);</span><br></pre></td></tr></table></figure></p>
 <p>打开selectThreshold.m填入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">predictions = (pval &lt; epsilon);</span><br><span class="line">fp = sum((predictions == 1) &amp; (yval == 0));</span><br><span class="line">fn = sum((predictions == 0) &amp; (yval == 1));</span><br><span class="line">tp = sum((predictions == 1) &amp; (yval == 1));</span><br><span class="line"></span><br><span class="line">prec = tp / (tp + fp);</span><br><span class="line">rec = tp / (tp + fn);</span><br><span class="line"></span><br><span class="line">F1 = 2 * prec * rec / (prec + rec);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">predictions = (pval &lt; epsilon);</span><br><span class="line">fp = sum((predictions == 1) &amp; (yval == 0));</span><br><span class="line">fn = sum((predictions == 0) &amp; (yval == 1));</span><br><span class="line">tp = sum((predictions == 1) &amp; (yval == 1));</span><br><span class="line"></span><br><span class="line">prec = tp / (tp + fp);</span><br><span class="line">rec = tp / (tp + fn);</span><br><span class="line"></span><br><span class="line">F1 = 2 * prec * rec / (prec + rec);</span><br></pre></td></tr></table></figure>
 <p>打开cofiCostFunc.m填入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X_grad = (((X*Theta&apos;).*R*Theta-Y.*R*Theta)+lambda.*X);</span><br><span class="line">Theta_grad = ((X&apos;*((X*Theta&apos;).*R)-X&apos;*(Y.*R)))&apos;+lambda.*Theta;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X_grad = (((X*Theta&apos;).*R*Theta-Y.*R*Theta)+lambda.*X);</span><br><span class="line">Theta_grad = ((X&apos;*((X*Theta&apos;).*R)-X&apos;*(Y.*R)))&apos;+lambda.*Theta;</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -373,6 +373,30 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/12/21/coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统/';
+        this.page.identifier = '2017/12/21/coursera-斯坦福-机器学习-吴恩达-第9周笔记（下）-推荐系统/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 

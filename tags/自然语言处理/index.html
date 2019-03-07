@@ -22,7 +22,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -97,16 +97,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -117,7 +117,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -399,7 +399,7 @@
         <div class="content">
             <p>word2vec 有的时候需要加载之际之前训练好的词向量，或者加载下载的别人的词向量，加载如下：</p>
 <h2 id="1默认方法"><a href="#1默认方法" class="headerlink" title="1默认方法"></a>1默认方法</h2><p>如果你是用默认方法训练的，则可以直接load：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model.save(&apos;/model/word2vec_model&apos;)</span><br><span class="line"></span><br><span class="line">new_model=gensim.models.Word2Vec.load(&apos;/model/word2vec_model&apos;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model.save(&apos;/model/word2vec_model&apos;)</span><br><span class="line"></span><br><span class="line">new_model=gensim.models.Word2Vec.load(&apos;/model/word2vec_model&apos;)</span><br></pre></td></tr></table></figure>
         </div>
         
         
@@ -675,7 +675,7 @@
             <h1 id="0词嵌入来龙去脉"><a href="#0词嵌入来龙去脉" class="headerlink" title="0词嵌入来龙去脉"></a>0词嵌入来龙去脉</h1><p>之前一段时间，在结合深度学习做NLP的时候一直有思考一些问题，</p>
 <p>不少的terms like： 词向量、word embedding、分布式表示、word2vec、glove等等，</p>
 <p>这一锅粥的名词术语分别代表什么，他们具体的关系是什么，他们是否处于平级关系？</p>
-<p>整篇文章的构架是按照属于概念在逻辑上的先后大小顺序，一层一层一级一级地往下剖析、比较、说明。<br>
+<p>整篇文章的构架是按照属于概念在逻辑上的先后大小顺序，一层一层一级一级地往下剖析、比较、说明。<br></p>
         </div>
         
         

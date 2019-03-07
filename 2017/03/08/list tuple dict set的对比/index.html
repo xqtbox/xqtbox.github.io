@@ -24,7 +24,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -99,16 +99,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -119,7 +119,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -179,19 +179,19 @@
 <p>删除List：pop()和pop(n)</p>
 <p><strong>List特点</strong>：</p>
 <p>可以添加删除</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Li = [&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;, &apos;Gechong&apos;, &apos;Kongming&apos;]</span><br><span class="line"> </span><br><span class="line">print (Li)</span><br><span class="line"> </span><br><span class="line">for name in Li:</span><br><span class="line">    print(name)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Li = [&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;, &apos;Gechong&apos;, &apos;Kongming&apos;]</span><br><span class="line"> </span><br><span class="line">print (Li)</span><br><span class="line"> </span><br><span class="line">for name in Li:</span><br><span class="line">    print(name)</span><br></pre></td></tr></table></figure>
 <h2 id="Tuple-元组"><a href="#Tuple-元组" class="headerlink" title="Tuple 元组"></a>Tuple 元组</h2><p>创建Tuple：Tu = (‘Adam’, ‘Lisa’, ‘Bart’, ‘Gechong’, ‘Kongming’)</p>
 <p>显示Tuple：Tu[0]</p>
 <p>遍历Tuple：print (Tu)和for循环</p>
 <p>更新Tuple：不可以更新</p>
 <p>删除Tuple：不可以删除</p>
 <p>Tuple特点：不可以改变，如果创建之后一个元素的Tuple时，要加”,”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Tu = (&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;, &apos;Gechong&apos;, &apos;Kongming&apos;)</span><br><span class="line"> </span><br><span class="line">print (Tu)</span><br><span class="line"> </span><br><span class="line">for name in Tu:</span><br><span class="line">    print(name)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Tu = (&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;, &apos;Gechong&apos;, &apos;Kongming&apos;)</span><br><span class="line"> </span><br><span class="line">print (Tu)</span><br><span class="line"> </span><br><span class="line">for name in Tu:</span><br><span class="line">    print(name)</span><br></pre></td></tr></table></figure>
 <h2 id="Dict字典"><a href="#Dict字典" class="headerlink" title="Dict字典"></a>Dict字典</h2><p>创建Dict：Di = {‘Adam’:100, ‘Lisa’:90, ‘Bart’:93, ‘Gechong’:100, ‘Kongming’:100}</p>
 <p>显示Dict：Di[‘Adam’]和Di.get(‘Adam’)</p>
 <p>遍历Dict：print(Di)和for循环</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Di = &#123;&apos;Adam&apos;:100, &apos;Lisa&apos;:90, &apos;Bart&apos;:93, &apos;Gechong&apos;:100, &apos;Kongming&apos;:100&#125;</span><br><span class="line"> </span><br><span class="line">for key in Di:</span><br><span class="line">    print (key)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Di = &#123;&apos;Adam&apos;:100, &apos;Lisa&apos;:90, &apos;Bart&apos;:93, &apos;Gechong&apos;:100, &apos;Kongming&apos;:100&#125;</span><br><span class="line"> </span><br><span class="line">for key in Di:</span><br><span class="line">    print (Di[key])</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Di = &#123;&apos;Adam&apos;:100, &apos;Lisa&apos;:90, &apos;Bart&apos;:93, &apos;Gechong&apos;:100, &apos;Kongming&apos;:100&#125;</span><br><span class="line"> </span><br><span class="line">for key in Di:</span><br><span class="line">    print (key)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Di = &#123;&apos;Adam&apos;:100, &apos;Lisa&apos;:90, &apos;Bart&apos;:93, &apos;Gechong&apos;:100, &apos;Kongming&apos;:100&#125;</span><br><span class="line"> </span><br><span class="line">for key in Di:</span><br><span class="line">    print (Di[key])</span><br></pre></td></tr></table></figure>
 <p>更新Dict：对应位置赋值即可</p>
 <p>删除Dict：</p>
 <p><strong>Dict特点</strong>：</p>
@@ -201,9 +201,9 @@
 <p>4：数据无序排放</p>
 <h2 id="set-集合"><a href="#set-集合" class="headerlink" title="set 集合"></a>set 集合</h2><p>创建set：s = set([‘Adam’, ‘Lisa’, ‘Bart’, ‘Gechong’, ‘Kongming’])</p>
 <p>显示set：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s = set([&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;, &apos;Gechong&apos;, &apos;Kongming&apos;])</span><br><span class="line"> </span><br><span class="line">if &apos;Test&apos; in s:</span><br><span class="line">    print (&apos;Test&apos;)</span><br><span class="line">else:</span><br><span class="line">    print (&apos;No&apos;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s = set([&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;, &apos;Gechong&apos;, &apos;Kongming&apos;])</span><br><span class="line"> </span><br><span class="line">if &apos;Test&apos; in s:</span><br><span class="line">    print (&apos;Test&apos;)</span><br><span class="line">else:</span><br><span class="line">    print (&apos;No&apos;)</span><br></pre></td></tr></table></figure>
 <p>遍历set：print (s)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s = set([&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;, &apos;Gechong&apos;, &apos;Kongming&apos;])</span><br><span class="line"> </span><br><span class="line">for name in s:</span><br><span class="line">    print (name)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s = set([&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;, &apos;Gechong&apos;, &apos;Kongming&apos;])</span><br><span class="line"> </span><br><span class="line">for name in s:</span><br><span class="line">    print (name)</span><br></pre></td></tr></table></figure>
 <p>更新set：s.add()</p>
 <p>删除set：s.remove()</p>
 <h1 id="考虑性能"><a href="#考虑性能" class="headerlink" title="考虑性能"></a>考虑性能</h1><p>Python中Set和List的性能差距能有数百倍<br>如果有需要求（集合，列表等）的并集和交集的时候，最好使用Set。</p>
@@ -285,6 +285,30 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/03/08/list tuple dict set的对比/';
+        this.page.identifier = '2017/03/08/list tuple dict set的对比/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 

@@ -41,7 +41,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -116,16 +116,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -136,7 +136,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -326,19 +326,19 @@
 <ol>
 <li>完成文件linearRegCostFunction.m中的代码。 你的任务是写一个函数来计算正则化的线性回归成本函数。 如果可能的话，尝试向量化你的代码，避免写循环。</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">J = 1/2/m* sum((X*theta - y) .^ 2) + lambda/2/m * sum(theta(2:end) .^ 2);</span><br><span class="line"></span><br><span class="line">grad = 1/m* (X&apos;*(X*theta - y));</span><br><span class="line">grad(2:end) = grad(2:end) + lambda/m*theta(2:end);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">J = 1/2/m* sum((X*theta - y) .^ 2) + lambda/2/m * sum(theta(2:end) .^ 2);</span><br><span class="line"></span><br><span class="line">grad = 1/m* (X&apos;*(X*theta - y));</span><br><span class="line">grad(2:end) = grad(2:end) + lambda/m*theta(2:end);</span><br></pre></td></tr></table></figure>
 <ol>
 <li>填写learningCurve.m，以便返回训练集和交叉验证集的错误向量。</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for i=1:m</span><br><span class="line">    theta = trainLinearReg(X(1:i, :), y(1:i), lambda);</span><br><span class="line">    error_train(i) = linearRegCostFunction(X(1:i, :), y(1:i), theta, 0);</span><br><span class="line">    error_val(i) = linearRegCostFunction(Xval, yval, theta, 0);</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for i=1:m</span><br><span class="line">    theta = trainLinearReg(X(1:i, :), y(1:i), lambda);</span><br><span class="line">    error_train(i) = linearRegCostFunction(X(1:i, :), y(1:i), theta, 0);</span><br><span class="line">    error_val(i) = linearRegCostFunction(Xval, yval, theta, 0);</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <ol>
 <li>完成polyFeatures.m中的代码，以便函数将大小为m×1的原始训练集X映射到其更高的权力。</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for i = 1:p</span><br><span class="line">    X_poly(:,i) = X.^i;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for i = 1:p</span><br><span class="line">    X_poly(:,i) = X.^i;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <ol>
 <li>完成validationCurve.m中的代码。具体来说，应该使用trainLinearReg函数来训练使用不同λ值的模型，并计算训练误差和交叉验证误差。</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for i=1:size(lambda_vec, 1)</span><br><span class="line">    theta = trainLinearReg(X, y, lambda_vec(i));</span><br><span class="line">    error_train(i) = linearRegCostFunction(X, y, theta, 0);</span><br><span class="line">    error_val(i) = linearRegCostFunction(Xval, yval, theta, 0);</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for i=1:size(lambda_vec, 1)</span><br><span class="line">    theta = trainLinearReg(X, y, lambda_vec(i));</span><br><span class="line">    error_train(i) = linearRegCostFunction(X, y, theta, 0);</span><br><span class="line">    error_val(i) = linearRegCostFunction(Xval, yval, theta, 0);</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <h2 id="2机器学习系统设计"><a href="#2机器学习系统设计" class="headerlink" title="2机器学习系统设计"></a>2机器学习系统设计</h2><p>这一章对应PPT lecture11</p>
 <p>给定一个电子邮件数据集，我们可以为每个电子邮件构建一个向量。这个向量中的每个条目代表一个单词（词袋模型）。该矢量通常包含10,000到50,000个条目，通过查找我们数据集中最常用的单词来收集。如果在电子邮件中找到一个单词，我们将分配它的相应条目1，否则如果没有找到，条目将是0.一旦我们已经准备好了所有的x向量，我们将训练我们的算法，最后，我们可以用它来分类电子邮件是否是垃圾邮件。</p>
 <p>那么你怎么能花时间来提高这个分类器的准确度呢？</p>
@@ -377,12 +377,12 @@
 <ul>
 <li>假设考虑到一个正常人如果误判为癌症，将会承受不必要的心理和生理压力，所以我们要有很大把握才预测一个病人患癌症(y=1)。那么一种方式就是提高阙值(threshold)，不妨设我们将阙值提高到0.7，即：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Predict 1 if: hθ(x)≥0.7 </span><br><span class="line">Predict 0 if: hθ(x)&lt;0.7</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Predict 1 if: hθ(x)≥0.7 </span><br><span class="line">Predict 0 if: hθ(x)&lt;0.7</span><br></pre></td></tr></table></figure>
 <p>在这种情况下，我们将会有较高的precision，但是recall将会变低。</p>
 <ul>
 <li>假设考虑到一个已经患癌症的病人如果误判为没有患癌症，那么病人可能将因不能及时治疗而失去宝贵生命，所以我们想要避免错过癌症患者的一种方式就是降低阙值，假设降低到0.3, 即</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Predict 1 if: hθ(x)≥0.3 </span><br><span class="line">Predict 0 if: hθ(x)&lt;0.3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Predict 1 if: hθ(x)≥0.3 </span><br><span class="line">Predict 0 if: hθ(x)&lt;0.3</span><br></pre></td></tr></table></figure>
 <p>在这种情况下，将得到较高的recall，但是precision将会下降。 </p>
 <p>为了将precision和Recal转变为一个单一数值，我们引入了F1值：$F = 2\frac{PR}{P+R}$</p>
 <p>总结：<br>衡量一个算法应该用一下值综合考虑：</p>
@@ -550,6 +550,30 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/12/14/coursera-斯坦福-机器学习-吴恩达-第6周笔记-算法改进and机器学习系统设计/';
+        this.page.identifier = '2017/12/14/coursera-斯坦福-机器学习-吴恩达-第6周笔记-算法改进and机器学习系统设计/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 

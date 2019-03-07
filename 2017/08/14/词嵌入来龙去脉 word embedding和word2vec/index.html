@@ -28,7 +28,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -103,16 +103,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -123,7 +123,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -184,7 +184,7 @@
 <p>有人提到，图像、语音属于比较自然地低级数据表示形式，在图像和语音领域，最基本的数据是信号数据，我们可以通过一些距离度量，判断信号是否相似，在判断两幅图片是否相似时，只需通过观察图片本身就能给出回答。而语言作为人类在进化了几百万年所产生的一种高层的抽象的思维信息表达的工具，其具有高度抽象的特征，文本是符号数据，两个词只要字面不同，就难以刻画它们之间的联系，即使是“麦克风”和“话筒”这样的同义词，从字面上也难以看出这两者意思相同（语义鸿沟现象），可能并不是简单地一加一那么简单就能表示出来，而判断两个词是否相似时，还需要更多的背景知识才能做出回答。</p>
 <p>那么据上是不是可以自信地下一个结论呢：如何有效地表示出语言句子是决定NN能发挥出强大拟合计算能力的关键前提！</p>
 <h2 id="2-NLP词的表示方法类型"><a href="#2-NLP词的表示方法类型" class="headerlink" title="2 NLP词的表示方法类型"></a>2 NLP词的表示方法类型</h2><p>接下来将按照上面的思路，引出各种词的表示方法。按照现今目前的发展，词的表示分为独热表示one-hot、分布式表示distributed。</p>
-<h3 id="2-1词的独热表示one-hot-representation"><a href="#2-1词的独热表示one-hot-representation" class="headerlink" title="2.1词的独热表示one-hot representation"></a>2.1词的独热表示one-hot representation</h3><p>NLP 中最直观，也是到目前为止最常用的词表示方法是 One-hot Representation，这种方法把每个词表示为一个很长的向量。这个向量的维度是词表大小，其中绝大多数元素为 0，只有一个维度的值为 1，这个维度就代表了当前的词。关于one-hot编码的资料很多，街货，这里简单举个栗子说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">“话筒”表示为 [0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 ...]</span><br><span class="line">“麦克”表示为 [0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 ...]</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-1词的独热表示one-hot-representation"><a href="#2-1词的独热表示one-hot-representation" class="headerlink" title="2.1词的独热表示one-hot representation"></a>2.1词的独热表示one-hot representation</h3><p>NLP 中最直观，也是到目前为止最常用的词表示方法是 One-hot Representation，这种方法把每个词表示为一个很长的向量。这个向量的维度是词表大小，其中绝大多数元素为 0，只有一个维度的值为 1，这个维度就代表了当前的词。关于one-hot编码的资料很多，街货，这里简单举个栗子说明：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">“话筒”表示为 [0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 ...]</span><br><span class="line">“麦克”表示为 [0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 ...]</span><br></pre></td></tr></table></figure></p>
 <p> 每个词都是茫茫 0 海中的一个 1。这种 One-hot Representation 如果采用稀疏方式存储，会是非常的简洁：也就是给每个词分配一个数字 ID。比如刚才的例子中，话筒记为 3，麦克记为 8（假设从 0 开始记）。如果要编程实现的话，用 Hash 表给每个词分配一个编号就可以了。这么简洁的表示方法配合上最大熵、SVM、CRF 等等算法已经很好地完成了 NLP 领域的各种主流任务。</p>
 <p>现在我们分析他的不当处。1、向量的维度会随着句子的词的数量类型增大而增大；2、任意两个词之间都是孤立的，根本无法表示出在语义层面上词语词之间的相关信息，而这一点是致命的。</p>
 <h3 id="2-2词的分布式表示distributed-representation"><a href="#2-2词的分布式表示distributed-representation" class="headerlink" title="2.2词的分布式表示distributed representation"></a>2.2词的分布式表示distributed representation</h3><p>统的独热表示（ one-hot representation）仅仅将词符号化，不包含任何语义信息。如何将语义融入到词表示中？Harris 在 1954 年提出的分布假说（ distributional hypothesis）为这一设想提供了理论基础：上下文相似的词，其语义也相似。Firth 在 1957 年对分布假说进行了进一步阐述和明确：词的语义由其上下文决定（ a word is characterized by thecompany it keeps）。</p>
@@ -208,7 +208,7 @@
 <p>这也是词向量又名词嵌入的缘由了。</p>
 <h2 id="6-神经网络语言模型与word2vec"><a href="#6-神经网络语言模型与word2vec" class="headerlink" title="6 神经网络语言模型与word2vec"></a>6 神经网络语言模型与word2vec</h2><p> 好了，到目前为止我们已经对的分布式表示以及词嵌入的概念的层级关系有了个理性的认识了，那这跟word2vec有什么联系？</p>
 <h3 id="6-1神经网络语言模型"><a href="#6-1神经网络语言模型" class="headerlink" title="6.1神经网络语言模型"></a>6.1神经网络语言模型</h3><p> 上面说，通过神经网络训练语言模型可以得到词向量，那么，究竟有哪些类型的神经网络语言模型呢？个人所知，大致有这么些个：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a) Neural Network Language Model ，NNLM</span><br><span class="line">b) Log-Bilinear Language Model， LBL</span><br><span class="line">c) Recurrent Neural Network based Language Model，RNNLM</span><br><span class="line">d) Collobert 和 Weston 在2008 年提出的 C&amp;W 模型</span><br><span class="line">e) Mikolov 等人提出了 CBOW（ Continuous Bagof-Words）和 Skip-gram 模型</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a) Neural Network Language Model ，NNLM</span><br><span class="line">b) Log-Bilinear Language Model， LBL</span><br><span class="line">c) Recurrent Neural Network based Language Model，RNNLM</span><br><span class="line">d) Collobert 和 Weston 在2008 年提出的 C&amp;W 模型</span><br><span class="line">e) Mikolov 等人提出了 CBOW（ Continuous Bagof-Words）和 Skip-gram 模型</span><br></pre></td></tr></table></figure>
 <p>到这，估计有人看到了两个熟悉的term：CBOW、skip-gram，有看过word2vec的同学应该对此有所了解。我们继续。</p>
 <h3 id="6-2word2vec与CBOW、Skip-gram"><a href="#6-2word2vec与CBOW、Skip-gram" class="headerlink" title="6.2word2vec与CBOW、Skip-gram"></a>6.2word2vec与CBOW、Skip-gram</h3><p>现在我们正式引出最火热的另一个term：word2vec。</p>
 <p>上面提到的5个神经网络语言模型，只是个在逻辑概念上的东西，那么具体我们得通过设计将其实现出来，而实现CBOW（ Continuous Bagof-Words）和 Skip-gram 语言模型的工具正是well-known word2vec！另外，C&amp;W 模型的实现工具是SENNA。</p>
@@ -298,6 +298,30 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/08/14/词嵌入来龙去脉 word embedding和word2vec/';
+        this.page.identifier = '2017/08/14/词嵌入来龙去脉 word embedding和word2vec/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 

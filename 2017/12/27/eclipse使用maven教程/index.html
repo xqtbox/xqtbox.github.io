@@ -41,7 +41,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -116,16 +116,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -136,7 +136,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -201,7 +201,7 @@
 <p><img src="http://images2015.cnblogs.com/blog/879896/201604/879896-20160422224122257-1646031907.jpg" alt="image"></p>
 <p>解压到本地，安装Maven前，先确保已安装JDK，CMD下输入java -version验证是否已安装JDK，如下为我本机的JDK版本：<br><img src="http://images2015.cnblogs.com/blog/879896/201604/879896-20160422224613116-109817766.jpg" alt="image"></p>
 <h3 id="1-2安装"><a href="#1-2安装" class="headerlink" title="1.2安装"></a>1.2安装</h3><p>解压到本地目录，比如我的环境中，在本地目录C:\Program Files\Java\apache-maven-3.5.2中.</p>
-<h3 id="1-3配置环境变量"><a href="#1-3配置环境变量" class="headerlink" title="1.3配置环境变量"></a>1.3配置环境变量</h3><p>在下面配置一下C:\Program Files\Java\apache-maven-3.5.2\conf目录中的settings.xml文件，更改一下如下配置：　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- localRepository</span><br><span class="line">  | The path to the local repository maven will use to store artifacts.</span><br><span class="line">  |</span><br><span class="line">  | Default: $&#123;user.home&#125;/.m2/repository  --&gt;</span><br><span class="line"> &lt;localRepository&gt;C:\Program Files\Java\apache-maven-3.5.2\m2\repository&lt;/localRepository&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="1-3配置环境变量"><a href="#1-3配置环境变量" class="headerlink" title="1.3配置环境变量"></a>1.3配置环境变量</h3><p>在下面配置一下C:\Program Files\Java\apache-maven-3.5.2\conf目录中的settings.xml文件，更改一下如下配置：　<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- localRepository</span><br><span class="line">  | The path to the local repository maven will use to store artifacts.</span><br><span class="line">  |</span><br><span class="line">  | Default: $&#123;user.home&#125;/.m2/repository  --&gt;</span><br><span class="line"> &lt;localRepository&gt;C:\Program Files\Java\apache-maven-3.5.2\m2\repository&lt;/localRepository&gt;</span><br></pre></td></tr></table></figure></p>
 <p>如果不改的话就在用户目录。</p>
 <p>还有个问题，可能有人说需不需要设置maven的环境变量，可以设置，但是如果只是使用Eclipse的maven的插件而不需要使用命令行，就不用了。反正我有设置。</p>
 <p>设置环境变量：</p>
@@ -284,25 +284,25 @@
 <p>　注意：</p>
 <p>　　留意上面的命令的作用，build和test都会生成相应的class文件。也就是说，当你新建一个maven工程，或者clean一个maven工程后，如果没有使用这两个命令，直接针对类进行测试，会跑出java.class.notfound的错误。因为此时还没有编译生成class文件，如果有朋友发现这个问题注意一下就好了。（该部分只针对旧版本，新版本如maven3.3是可以自动编译的）</p>
 <p>　　只有使用了上面的两个命令后，才能针对某个类进行单元测试。</p>
-<h3 id="3-3使用maven命令"><a href="#3-3使用maven命令" class="headerlink" title="3.3使用maven命令"></a>3.3使用maven命令</h3><p>现在eclipse可以使用自带的run as来进行maven但是对于linux来说还是命令好用，下面通过一个例子演示maven命令的使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">　编译：mvn compile　　--src/main/java目录java源码编译生成class （target目录下）</span><br><span class="line"></span><br><span class="line">测试：mvn test　　　　--src/test/java 目录编译</span><br><span class="line"></span><br><span class="line">清理：mvn clean　　　 --删除target目录，也就是将class文件等删除</span><br><span class="line"></span><br><span class="line">打包：mvn package　　--生成压缩文件：java项目#jar包；web项目#war包，也是放在target目录下</span><br><span class="line"></span><br><span class="line">安装：mvn install　　　--将压缩文件(jar或者war)上传到本地仓库</span><br><span class="line"></span><br><span class="line">部署|发布：mvn deploy　　--将压缩文件上传私服</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-3使用maven命令"><a href="#3-3使用maven命令" class="headerlink" title="3.3使用maven命令"></a>3.3使用maven命令</h3><p>现在eclipse可以使用自带的run as来进行maven但是对于linux来说还是命令好用，下面通过一个例子演示maven命令的使用。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">　编译：mvn compile　　--src/main/java目录java源码编译生成class （target目录下）</span><br><span class="line"></span><br><span class="line">测试：mvn test　　　　--src/test/java 目录编译</span><br><span class="line"></span><br><span class="line">清理：mvn clean　　　 --删除target目录，也就是将class文件等删除</span><br><span class="line"></span><br><span class="line">打包：mvn package　　--生成压缩文件：java项目#jar包；web项目#war包，也是放在target目录下</span><br><span class="line"></span><br><span class="line">安装：mvn install　　　--将压缩文件(jar或者war)上传到本地仓库</span><br><span class="line"></span><br><span class="line">部署|发布：mvn deploy　　--将压缩文件上传私服</span><br></pre></td></tr></table></figure></p>
 <p>下面我们看项目代码：</p>
-<p>一个简单的类com.liuyan.maven.helloword.HelloWorld<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">package com.liuyan.maven.helloword;</span><br><span class="line"></span><br><span class="line">public class HelloWorld &#123;</span><br><span class="line">	public String sayHello() &#123;</span><br><span class="line">		return &quot;hello maven&quot;;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * @param args</span><br><span class="line">	 */</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		System.out.println(new HelloWorld().sayHello());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>一个简单的类com.liuyan.maven.helloword.HelloWorld<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">package com.liuyan.maven.helloword;</span><br><span class="line"></span><br><span class="line">public class HelloWorld &#123;</span><br><span class="line">	public String sayHello() &#123;</span><br><span class="line">		return &quot;hello maven&quot;;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * @param args</span><br><span class="line">	 */</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		System.out.println(new HelloWorld().sayHello());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在此项目的根目录下有一个pom.xml文件，内容是默认的，暂时不用管。</p>
-<p>进入控制台，将当前目录cd到与pom.xml同级的文件夹下面（或者使用shift进入）。执行编译命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean compile</span><br></pre></td></tr></table></figure></p>
+<p>进入控制台，将当前目录cd到与pom.xml同级的文件夹下面（或者使用shift进入）。执行编译命令：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean compile</span><br></pre></td></tr></table></figure></p>
 <p>执行后造成的结果。就是项目的根路径下出现了一个taget文件夹</p>
 <p><img src="http://dl.iteye.com/upload/attachment/491387/93df452b-3bef-3236-bbb1-aefefd16f26f.jpg" alt="image"></p>
 <p>里面就是编译后的class类。经理过来说，你需要进行单元测试才能发布出来给大家用。Ok，我们在源码包——src/test/java下面开始编写junit单元测试类。</p>
-<p>单元测试代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package com.liuyan.maven.helloword;</span><br><span class="line"></span><br><span class="line">import org.junit.Test;</span><br><span class="line">import org.junit.Assert;</span><br><span class="line"></span><br><span class="line">public class TestHelloWorld &#123;</span><br><span class="line"></span><br><span class="line">	@Test</span><br><span class="line">	public void testSayHello() &#123;</span><br><span class="line">		HelloWorld helloWorld = new HelloWorld();</span><br><span class="line">		Assert.assertEquals(helloWorld.sayHello(), &quot;hello maven&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>之后我们因为使用了junit单元测试，那么就是说我们这个项目依赖了它。修改一下pom.xml文件内容，如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;</span><br><span class="line">	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line">	&lt;groupId&gt;com.liuyan.maven&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;MavenDemo&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</span><br><span class="line">	&lt;dependencies&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;4.7&lt;/version&gt;</span><br><span class="line">			&lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">	&lt;/dependencies&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure></p>
-<p>进入命令行，执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean test</span><br></pre></td></tr></table></figure></p>
+<p>单元测试代码如下<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package com.liuyan.maven.helloword;</span><br><span class="line"></span><br><span class="line">import org.junit.Test;</span><br><span class="line">import org.junit.Assert;</span><br><span class="line"></span><br><span class="line">public class TestHelloWorld &#123;</span><br><span class="line"></span><br><span class="line">	@Test</span><br><span class="line">	public void testSayHello() &#123;</span><br><span class="line">		HelloWorld helloWorld = new HelloWorld();</span><br><span class="line">		Assert.assertEquals(helloWorld.sayHello(), &quot;hello maven&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>之后我们因为使用了junit单元测试，那么就是说我们这个项目依赖了它。修改一下pom.xml文件内容，如下<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">	xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd&quot;&gt;</span><br><span class="line">	&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line">	&lt;groupId&gt;com.liuyan.maven&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;MavenDemo&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</span><br><span class="line">	&lt;dependencies&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;4.7&lt;/version&gt;</span><br><span class="line">			&lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">		&lt;/dependency&gt;</span><br><span class="line">	&lt;/dependencies&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure></p>
+<p>进入命令行，执行命令<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean test</span><br></pre></td></tr></table></figure></p>
 <p>执行后观察一下taget文件夹如下图，多出了test-classes文件夹和另外2个咱们暂时不用去管的文件夹。</p>
 <p>之后在观察一下本地的临时仓库C:\Users\liuyan.m2\repository，会多出文件夹junit，下载的版本是4.7。</p>
-<p>如果我们想把项目打成jar的形式输出出去呢？在项目根目录下执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean package</span><br></pre></td></tr></table></figure></p>
+<p>如果我们想把项目打成jar的形式输出出去呢？在项目根目录下执行<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean package</span><br></pre></td></tr></table></figure></p>
 <p> 执行后效果如下</p>
 <p> <img src="http://dl.iteye.com/upload/attachment/491391/61e2d0db-658a-3002-9d08-f387499b4775.jpg" alt="image"></p>
 <p>生成了一个jar包，至于SNAPSHOT是快照的意思，快照就是项目暂时还不稳定的意思。</p>
 <p>打包测试后没问题了，想把此项目当做Maven的本地资源仓库，为其他的项目也能提供服务，可以这么做。</p>
-<p>执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean install</span><br></pre></td></tr></table></figure></p>
+<p>执行命令<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean install</span><br></pre></td></tr></table></figure></p>
 <p>执行后本地的临时库文件多了你自己的这个项目。这样别的项目需要你这个项目提供服务的时候就可以从本地Mavne库中提取相应的jar了。</p>
 
         </div>
@@ -381,6 +381,30 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/12/27/eclipse使用maven教程/';
+        this.page.identifier = '2017/12/27/eclipse使用maven教程/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 

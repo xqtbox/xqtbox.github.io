@@ -24,7 +24,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -99,16 +99,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -119,7 +119,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -174,17 +174,17 @@
 <a id="more"></a>
 <h1 id="1-建立专门的运行环境再安装"><a href="#1-建立专门的运行环境再安装" class="headerlink" title="1. 建立专门的运行环境再安装"></a>1. 建立专门的运行环境再安装</h1><p>可以专门建立一个tensorflow的运行环境，好处是：1.官网建议 2.不与其他文件混乱</p>
 <h2 id="（1）创建专门运行环境"><a href="#（1）创建专门运行环境" class="headerlink" title="（1）创建专门运行环境"></a>（1）创建专门运行环境</h2><p>为Anaconda创建一个python3.5（或者3.6都行，随便）的环境，环境名称为tensorflow ，输入下面命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n tensorflow</span><br></pre></td></tr></table></figure>
-<h2 id="（2）启动tensorflow的环境："><a href="#（2）启动tensorflow的环境：" class="headerlink" title="（2）启动tensorflow的环境："></a>（2）启动tensorflow的环境：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source activate tensorflow</span><br></pre></td></tr></table></figure>
-<p>注：当不使用tensorflow时，关闭tensorflow环境，命令为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source deactivate tensorflow</span><br></pre></td></tr></table></figure></p>
-<h2 id="（3）安装cpu版本的TensorFlow"><a href="#（3）安装cpu版本的TensorFlow" class="headerlink" title="（3）安装cpu版本的TensorFlow"></a>（3）安装cpu版本的TensorFlow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade --ignore-installed tensorflow tfBinaryURL</span><br></pre></td></tr></table></figure>
-<p>where tfBinaryURL is the URL of the TensorFlow Python package. For example, the following command installs the CPU-only version of TensorFlow for Python 3.6:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(tensorflow)$ pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.3.0-cp36-cp36m-linux_x86_64.whl</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n tensorflow</span><br></pre></td></tr></table></figure>
+<h2 id="（2）启动tensorflow的环境："><a href="#（2）启动tensorflow的环境：" class="headerlink" title="（2）启动tensorflow的环境："></a>（2）启动tensorflow的环境：</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source activate tensorflow</span><br></pre></td></tr></table></figure>
+<p>注：当不使用tensorflow时，关闭tensorflow环境，命令为：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source deactivate tensorflow</span><br></pre></td></tr></table></figure></p>
+<h2 id="（3）安装cpu版本的TensorFlow"><a href="#（3）安装cpu版本的TensorFlow" class="headerlink" title="（3）安装cpu版本的TensorFlow"></a>（3）安装cpu版本的TensorFlow</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade --ignore-installed tensorflow tfBinaryURL</span><br></pre></td></tr></table></figure>
+<p>where tfBinaryURL is the URL of the TensorFlow Python package. For example, the following command installs the CPU-only version of TensorFlow for Python 3.6:<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(tensorflow)$ pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.3.0-cp36-cp36m-linux_x86_64.whl</span><br></pre></td></tr></table></figure></p>
 <p>我觉的，也可以不写后面的地址。</p>
-<h2 id="（4）测试是否安装完成"><a href="#（4）测试是否安装完成" class="headerlink" title="（4）测试是否安装完成"></a>（4）测试是否安装完成</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line">hello = tf.constant(&apos;Hello, TensorFlow!&apos;)</span><br><span class="line">sess = tf.Session()</span><br><span class="line">print(sess.run(hello))</span><br></pre></td></tr></table></figure>
-<h1 id="2-直接在python3-6中安装"><a href="#2-直接在python3-6中安装" class="headerlink" title="2. 直接在python3.6中安装"></a>2. 直接在python3.6中安装</h1><h2 id="（1）安装cpu版本的TensorFlow"><a href="#（1）安装cpu版本的TensorFlow" class="headerlink" title="（1）安装cpu版本的TensorFlow"></a>（1）安装cpu版本的TensorFlow</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install --upgrade --ignore-installed tensorflow</span><br></pre></td></tr></table></figure>
-<h2 id="（2）测试是否安装完成"><a href="#（2）测试是否安装完成" class="headerlink" title="（2）测试是否安装完成"></a>（2）测试是否安装完成</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line">hello = tf.constant(&apos;Hello, TensorFlow!&apos;)</span><br><span class="line">sess = tf.Session()</span><br><span class="line">print(sess.run(hello))</span><br></pre></td></tr></table></figure>
+<h2 id="（4）测试是否安装完成"><a href="#（4）测试是否安装完成" class="headerlink" title="（4）测试是否安装完成"></a>（4）测试是否安装完成</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line">hello = tf.constant(&apos;Hello, TensorFlow!&apos;)</span><br><span class="line">sess = tf.Session()</span><br><span class="line">print(sess.run(hello))</span><br></pre></td></tr></table></figure>
+<h1 id="2-直接在python3-6中安装"><a href="#2-直接在python3-6中安装" class="headerlink" title="2. 直接在python3.6中安装"></a>2. 直接在python3.6中安装</h1><h2 id="（1）安装cpu版本的TensorFlow"><a href="#（1）安装cpu版本的TensorFlow" class="headerlink" title="（1）安装cpu版本的TensorFlow"></a>（1）安装cpu版本的TensorFlow</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install --upgrade --ignore-installed tensorflow</span><br></pre></td></tr></table></figure>
+<h2 id="（2）测试是否安装完成"><a href="#（2）测试是否安装完成" class="headerlink" title="（2）测试是否安装完成"></a>（2）测试是否安装完成</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line">hello = tf.constant(&apos;Hello, TensorFlow!&apos;)</span><br><span class="line">sess = tf.Session()</span><br><span class="line">print(sess.run(hello))</span><br></pre></td></tr></table></figure>
 <h1 id="3-报错，权限不够"><a href="#3-报错，权限不够" class="headerlink" title="3 报错，权限不够"></a>3 报错，权限不够</h1><p>因为anaconda安装的时候用户默认为root，所以装其他的撞不上。</p>
-<p>更改anaconda目录的用户为xqt（原来是root）否则会导致安装不上，权限不够。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R xqt:xqt anaconda3/</span><br></pre></td></tr></table></figure></p>
+<p>更改anaconda目录的用户为xqt（原来是root）否则会导致安装不上，权限不够。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R xqt:xqt anaconda3/</span><br></pre></td></tr></table></figure></p>
 
         </div>
         
@@ -262,6 +262,30 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/08/22/linux的Anaconda环境下安装TensorFlow/';
+        this.page.identifier = '2017/08/22/linux的Anaconda环境下安装TensorFlow/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 

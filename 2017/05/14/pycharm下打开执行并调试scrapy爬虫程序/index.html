@@ -38,7 +38,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -113,16 +113,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -133,7 +133,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -207,7 +207,7 @@
 </ol>
 <p><img src="http://img.blog.csdn.net/20161024144749397" alt=""></p>
 <ol>
-<li>在test1目录和scrapy.cfg同级目录下面，新建一个begin.py文件（便于理解可以写成main.py），注意箭头2所指的名字和第5步中的name=’dmoz’ 名字是一样的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from scrapy import cmdline</span><br><span class="line"></span><br><span class="line">cmdline.execute(&quot;scrapy crawl dmoz&quot;.split())</span><br></pre></td></tr></table></figure>
+<li>在test1目录和scrapy.cfg同级目录下面，新建一个begin.py文件（便于理解可以写成main.py），注意箭头2所指的名字和第5步中的name=’dmoz’ 名字是一样的。<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from scrapy import cmdline</span><br><span class="line"></span><br><span class="line">cmdline.execute(&quot;scrapy crawl dmoz&quot;.split())</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p><img src="http://img.blog.csdn.net/20161024145150255" alt=""></p>
@@ -307,6 +307,30 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/05/14/pycharm下打开执行并调试scrapy爬虫程序/';
+        this.page.identifier = '2017/05/14/pycharm下打开执行并调试scrapy爬虫程序/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 

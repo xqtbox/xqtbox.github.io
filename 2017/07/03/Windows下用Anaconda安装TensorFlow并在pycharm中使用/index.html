@@ -40,7 +40,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -115,16 +115,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -135,7 +135,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -190,20 +190,20 @@
 <h1 id="1-安装Anaconda"><a href="#1-安装Anaconda" class="headerlink" title="1.安装Anaconda"></a>1.安装Anaconda</h1><a id="more"></a>
 <p>选择相应的Anaconda进行安装，下载地址点击这里，下载对应系统版本的Anaconda，官网现在的版本是Anaconda 4.3.1 for python3.6。笔者安装的是4.3.0版本的。<br><img src="http://img.blog.csdn.net/20170320154109652?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMDg1ODYwNQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
 <p>就和安装普通的软件一样，全部选择默认即可，注意勾选将python3.6添加进环境变量。<br><img src="http://img.blog.csdn.net/20170320154332280?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMDg1ODYwNQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<p>这样Anaconda就安装好了，我们可以通过下面的命令来查看Anaconda已经安装了哪些包。<br>运行 开始菜单-&gt;Anaconda3—&gt;Anaconda Prompt ：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list</span><br></pre></td></tr></table></figure></p>
+<p>这样Anaconda就安装好了，我们可以通过下面的命令来查看Anaconda已经安装了哪些包。<br>运行 开始菜单-&gt;Anaconda3—&gt;Anaconda Prompt ：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list</span><br></pre></td></tr></table></figure></p>
 <p>可以看到已经安装了numpy、sympy等常用的包。</p>
 <h1 id="2-安装Tensorflow"><a href="#2-安装Tensorflow" class="headerlink" title="2.安装Tensorflow"></a>2.安装Tensorflow</h1><p>TensorFlow目前在Windows下只支持python 3.5版本。</p>
 <p>（1）打开Anaconda Prompt，输入清华仓库镜像，这样更新会快一些： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure>
-<p>（2）同样在Anaconda Prompt中利用Anaconda创建一个python3.5的环境，环境名称为tensorflow ，输入下面命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n tensorflow python=3.5</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure>
+<p>（2）同样在Anaconda Prompt中利用Anaconda创建一个python3.5的环境，环境名称为tensorflow ，输入下面命令：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n tensorflow python=3.5</span><br></pre></td></tr></table></figure></p>
 <p>运行 开始菜单-&gt;Anaconda3—&gt;Anaconda Navigator，点击左侧的Environments，可以看到tensorflow的环境已经创建好了。</p>
 <p><img src="http://img.blog.csdn.net/20170320160746414?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMDg1ODYwNQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<p>（3）在Anaconda Prompt中启动tensorflow环境：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">activate tensorflow</span><br></pre></td></tr></table></figure></p>
+<p>（3）在Anaconda Prompt中启动tensorflow环境：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">activate tensorflow</span><br></pre></td></tr></table></figure></p>
 <p><img src="http://img.blog.csdn.net/20170320161840217?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMDg1ODYwNQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<p>注：当不使用tensorflow时，关闭tensorflow环境，命令为：deactivate<br>（4）安装cpu版本的TensorFlow<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade --ignore-installed tensorflow</span><br></pre></td></tr></table></figure></p>
+<p>注：当不使用tensorflow时，关闭tensorflow环境，命令为：deactivate<br>（4）安装cpu版本的TensorFlow<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade --ignore-installed tensorflow</span><br></pre></td></tr></table></figure></p>
 <p>注：这里没有介绍GPU版本的安装方法，GPU版本需要安装cuda8+cudnn5，如需要的请搜索其他博文。</p>
 <p>注意：一定要在 刚刚创建的tensorflow的环境下安装！！！！<br>这样tensorflow cpu版本就安装好了。</p>
-<p>（5）测试tensorflow<br>在Anaconda Prompt中启动tensorflow环境，并进入python环境。<br><img src="http://img.blog.csdn.net/20170320162548220?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMDg1ODYwNQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>测试代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line">hello = tf.constant(&apos;Hello, TensorFlow!&apos;)</span><br><span class="line">sess = tf.Session()</span><br><span class="line">print(sess.run(hello))</span><br></pre></td></tr></table></figure></p>
+<p>（5）测试tensorflow<br>在Anaconda Prompt中启动tensorflow环境，并进入python环境。<br><img src="http://img.blog.csdn.net/20170320162548220?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMDg1ODYwNQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>测试代码如下:<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line">hello = tf.constant(&apos;Hello, TensorFlow!&apos;)</span><br><span class="line">sess = tf.Session()</span><br><span class="line">print(sess.run(hello))</span><br></pre></td></tr></table></figure></p>
 <p>运行结果：<br><img src="http://img.blog.csdn.net/20170320162727619?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMDg1ODYwNQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
 <h1 id="3-其他问题"><a href="#3-其他问题" class="headerlink" title="3.其他问题"></a>3.其他问题</h1><p>或许到这里我们并没有满足，我们在Anaconda自带的ipython 和Spyder中import tensorflow的时候一直失败，提示 No module named ‘tensorflow’，如下图，那是因为我们没有在tensorflow的环境下打开它们。</p>
 <p><img src="http://img.blog.csdn.net/20170320163031546?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMDg1ODYwNQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
@@ -219,7 +219,7 @@
 <p>例如我的解释器位置： </p>
 <p><img src="http://img.blog.csdn.net/20170718204923486?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjA1MjI2OA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
 <p><img src="http://img.blog.csdn.net/20170718204928622?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjA1MjI2OA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p>等部署完后便可跑个HelloWorld了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line"></span><br><span class="line">hello = tf.constant(&quot;Hello!TensorFlow&quot;)</span><br><span class="line">sess = tf.Session()</span><br><span class="line">print(sess.run(hello))</span><br></pre></td></tr></table></figure></p>
+<p>等部署完后便可跑个HelloWorld了<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line"></span><br><span class="line">hello = tf.constant(&quot;Hello!TensorFlow&quot;)</span><br><span class="line">sess = tf.Session()</span><br><span class="line">print(sess.run(hello))</span><br></pre></td></tr></table></figure></p>
 <p>运行一下<br><img src="http://img.blog.csdn.net/20170308201822989?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd3g3Nzg4MjUw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
 <p>起飞！</p>
 <p>这种方式的好处：不用每次都 开启、关闭环境了。<br>（activate tensorflow 、deactivate tensorflow）</p>
@@ -300,6 +300,30 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/07/03/Windows下用Anaconda安装TensorFlow并在pycharm中使用/';
+        this.page.identifier = '2017/07/03/Windows下用Anaconda安装TensorFlow并在pycharm中使用/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 

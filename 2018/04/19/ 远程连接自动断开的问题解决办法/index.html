@@ -24,7 +24,7 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
+<link rel="icon" href="/images/favicon.ico">
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
@@ -99,16 +99,16 @@
             <div class="navbar-start">
                 
                 <a class="navbar-item"
-                href="/">Home</a>
+                href="/">主页</a>
                 
                 <a class="navbar-item"
-                href="/archives">Archives</a>
+                href="/archives">归档</a>
                 
                 <a class="navbar-item"
-                href="/categories">Categories</a>
+                href="/categories">分类</a>
                 
                 <a class="navbar-item"
-                href="/tags">Tags</a>
+                href="/tags">标签</a>
                 
                 <a class="navbar-item"
                 href="/about">About</a>
@@ -119,7 +119,7 @@
                 
                     
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
                         
                         <i class="fab fa-github"></i>
                         
@@ -192,11 +192,11 @@
 <li>第二天，再打开shell 运行命令：<code>screen -r myOneNight</code>  我们发现，昨天的程序还在正常运行。爽。</li>
 </ol>
 <h1 id="3-screen详解"><a href="#3-screen详解" class="headerlink" title="3. screen详解"></a>3. screen详解</h1><h2 id="3-1-安装screen"><a href="#3-1-安装screen" class="headerlink" title="3.1 安装screen"></a>3.1 安装screen</h2><p>其实流行的Linux发行版（例如Red Hat Enterprise Linux）通常会自带screen实用程序，如果没有的话，可以从GNU screen的官方网站下载。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@TS-DEV ~]# yum install screen</span><br><span class="line">[root@TS-DEV ~]# rpm -qa|grep screen</span><br><span class="line">screen-4.0.3-4.el5</span><br><span class="line">[root@TS-DEV ~]#</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@TS-DEV ~]# yum install screen</span><br><span class="line">[root@TS-DEV ~]# rpm -qa|grep screen</span><br><span class="line">screen-4.0.3-4.el5</span><br><span class="line">[root@TS-DEV ~]#</span><br></pre></td></tr></table></figure>
 <h2 id="3-2-创建一个新的窗口"><a href="#3-2-创建一个新的窗口" class="headerlink" title="3.2 创建一个新的窗口"></a>3.2 创建一个新的窗口</h2><p>安装完成后，直接敲命令screen就可以启动它。但是这样启动的screen会话没有名字，实践上推荐为每个screen会话取一个名字，方便分辨：<code>screen -S david</code></p>
-<h2 id="3-3-常用的命令"><a href="#3-3-常用的命令" class="headerlink" title="3.3 常用的命令"></a>3.3 常用的命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">screen -S yourname -&gt; 新建一个叫yourname的session</span><br><span class="line">screen -ls -&gt; 列出当前所有的session</span><br><span class="line">screen -r yourname -&gt; 回到yourname这个session</span><br><span class="line">screen -d yourname -&gt; 远程detach某个session</span><br><span class="line">screen -d -r yourname -&gt; 结束当前session并回到yourname这个session</span><br></pre></td></tr></table></figure>
+<h2 id="3-3-常用的命令"><a href="#3-3-常用的命令" class="headerlink" title="3.3 常用的命令"></a>3.3 常用的命令</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">screen -S yourname -&gt; 新建一个叫yourname的session</span><br><span class="line">screen -ls -&gt; 列出当前所有的session</span><br><span class="line">screen -r yourname -&gt; 回到yourname这个session</span><br><span class="line">screen -d yourname -&gt; 远程detach某个session</span><br><span class="line">screen -d -r yourname -&gt; 结束当前session并回到yourname这个session</span><br></pre></td></tr></table></figure>
 <p>screen的选项：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-A 　将所有的视窗都调整为目前终端机的大小。</span><br><span class="line">-d &lt;作业名称&gt; 　将指定的screen作业离线。</span><br><span class="line">-h &lt;行数&gt; 　指定视窗的缓冲区行数。</span><br><span class="line">-m 　即使目前已在作业中的screen作业，仍强制建立新的screen作业。</span><br><span class="line">-r &lt;作业名称&gt; 　恢复离线的screen作业。</span><br><span class="line">-R 　先试图恢复离线的作业。若找不到离线的作业，即建立新的screen作业。</span><br><span class="line">-s 　指定建立新视窗时，所要执行的shell。</span><br><span class="line">-S &lt;作业名称&gt; 　指定screen作业的名称。</span><br><span class="line">-v 　显示版本信息。</span><br><span class="line">-x 　恢复之前离线的screen作业。</span><br><span class="line">-ls或--list 　显示目前所有的screen作业。</span><br><span class="line">-wipe 　检查目前所有的screen作业，并删除已经无法使用的screen作业。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-A 　将所有的视窗都调整为目前终端机的大小。</span><br><span class="line">-d &lt;作业名称&gt; 　将指定的screen作业离线。</span><br><span class="line">-h &lt;行数&gt; 　指定视窗的缓冲区行数。</span><br><span class="line">-m 　即使目前已在作业中的screen作业，仍强制建立新的screen作业。</span><br><span class="line">-r &lt;作业名称&gt; 　恢复离线的screen作业。</span><br><span class="line">-R 　先试图恢复离线的作业。若找不到离线的作业，即建立新的screen作业。</span><br><span class="line">-s 　指定建立新视窗时，所要执行的shell。</span><br><span class="line">-S &lt;作业名称&gt; 　指定screen作业的名称。</span><br><span class="line">-v 　显示版本信息。</span><br><span class="line">-x 　恢复之前离线的screen作业。</span><br><span class="line">-ls或--list 　显示目前所有的screen作业。</span><br><span class="line">-wipe 　检查目前所有的screen作业，并删除已经无法使用的screen作业。</span><br></pre></td></tr></table></figure>
 <h2 id="4-引用"><a href="#4-引用" class="headerlink" title="4 引用"></a>4 引用</h2><p>screen还有更加丰富的 高级用法，请参考：</p>
 <ol>
 <li>GNU’s Screen 官方站点：<a href="http://www.gnu.org/software/screen/" target="_blank" rel="noopener">http://www.gnu.org/software/screen/</a></li>
@@ -279,6 +279,30 @@
 </div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/04/19/ 远程连接自动断开的问题解决办法/';
+        this.page.identifier = '2018/04/19/ 远程连接自动断开的问题解决办法/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 
