@@ -1,0 +1,2194 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8">
+<title>Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开 - 博客堂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
+    <meta name="description" content="python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开很多时候，我们需要把一长串单词字符拆分开来，比如：  输入：“tableapplechairtablecupboard …”很多字。我们希望有一个有效的算法来分割这样的文本到单词列表，并得到： 输出：[“table”，“apple”，“chair”，“table”，“cup”，“board”]  或者将一个很长的函数名拆分成小单词">
+<meta name="keywords" content="自然语言处理,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开">
+<meta property="og:url" content="http://yoursite.com/2018/02/28/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/index.html">
+<meta property="og:site_name" content="博客堂">
+<meta property="og:description" content="python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开很多时候，我们需要把一长串单词字符拆分开来，比如：  输入：“tableapplechairtablecupboard …”很多字。我们希望有一个有效的算法来分割这样的文本到单词列表，并得到： 输出：[“table”，“apple”，“chair”，“table”，“cup”，“board”]  或者将一个很长的函数名拆分成小单词">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-07T08:36:39.015Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开">
+<meta name="twitter:description" content="python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开很多时候，我们需要把一长串单词字符拆分开来，比如：  输入：“tableapplechairtablecupboard …”很多字。我们希望有一个有效的算法来分割这样的文本到单词列表，并得到： 输出：[“table”，“apple”，“chair”，“table”，“cup”，“board”]  或者将一个很长的函数名拆分成小单词">
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/image-banner/03.jpg" alt="Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-02-28T11:11:34.000Z">2018-02-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 分钟 读完 (大约 887 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开
+            
+        </h1>
+        <div class="content">
+            <h1 id="python-如何拆分没有空格的文本为单词列表？将组合单词拆分开"><a href="#python-如何拆分没有空格的文本为单词列表？将组合单词拆分开" class="headerlink" title="python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开"></a>python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开</h1><p>很多时候，我们需要把一长串单词字符拆分开来，比如：</p>
+<ul>
+<li>输入：“tableapplechairtablecupboard …”很多字。我们希望有一个有效的算法来分割这样的文本到单词列表，并得到：</li>
+<li>输出：[“table”，“apple”，“chair”，“table”，“cup”，“board”]</li>
+</ul>
+<p>或者将一个很长的函数名拆分成小单词： WbxNewBrowserInstance 变为 [ wbx new browser instance ]</p>
+<a id="more"></a>
+<h2 id="1算法的思想"><a href="#1算法的思想" class="headerlink" title="1算法的思想"></a>1算法的思想</h2><p>算法的思想是：通过所有可能的单词(从第一个字母开始)，并找到最长的单词可能 ，插入空格。</p>
+<p>所以我们需要一个 “常用单词列表”。</p>
+<p>后面的方法是对输出的分布进行建模。良好的第一近似是假设所有单词是独立分布的。然后你只需要知道所有单词的相对频率。可以合理地假定它们遵循Zipf定律，即在单词列表中具有秩n的单词具有大约1 /(n log N)的概率，其中N是字典中的单词数。</p>
+<p>一旦你修正了模型，你可以使用动态规划来推断空格的位置。最可能的句子是最大化每个单词的概率的乘积，并且很容易用动态规划来计算它。不是直接使用概率，而是使用定义为概率的倒数的对数的成本来避免溢出。</p>
+<h2 id="2代码"><a href="#2代码" class="headerlink" title="2代码"></a>2代码</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">def cutLongNameFun(self,s):</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        longWords变为 long word：log里面有很多长函数名，比如WbxMeeting_VerifyMeetingIsExist。</span><br><span class="line">        将其拆成小单词wbx meeting verify meeting is exist，更有意义。若有大写则分割。</span><br><span class="line">        &apos;&apos;&apos;</span><br><span class="line">        # Build a cost dictionary, assuming Zipf&apos;s law and cost = -math.log(probability).</span><br><span class="line">        # 建立一个成本字典，假设Zipf定律和成本= -math.log（概率）。</span><br><span class="line">        words = open(&quot;words-by-frequency.txt&quot;).read().split() # 有特殊字符的话直接在其中添加</span><br><span class="line">        wordcost = dict((k, log((i+1)*log(len(words)))) for i,k in enumerate(words))</span><br><span class="line">        maxword = max(len(x) for x in words)</span><br><span class="line">        </span><br><span class="line">        def infer_spaces(s):</span><br><span class="line">            &apos;&apos;&apos;Uses dynamic programming to infer the location of spaces in a string without spaces.</span><br><span class="line">            .使用动态编程来推断不带空格的字符串中空格的位置。&apos;&apos;&apos;</span><br><span class="line">            # Find the best match for the i first characters, assuming cost has</span><br><span class="line">            # been built for the i-1 first characters.</span><br><span class="line">            # Returns a pair (match_cost, match_length).</span><br><span class="line">            def best_match(i):</span><br><span class="line">                candidates = enumerate(reversed(cost[max(0, i-maxword):i]))</span><br><span class="line">                return min((c + wordcost.get(s[i-k-1:i], 9e999), k+1) for k,c in candidates)</span><br><span class="line">            </span><br><span class="line">            # Build the cost array.</span><br><span class="line">            cost = [0]</span><br><span class="line">            for i in range(1,len(s)+1):</span><br><span class="line">                c,k = best_match(i)</span><br><span class="line">                cost.append(c)</span><br><span class="line">            </span><br><span class="line">            # Backtrack to recover the minimal-cost string.</span><br><span class="line">            out = []</span><br><span class="line">            i = len(s)</span><br><span class="line">            while i&gt;0:</span><br><span class="line">                c,k = best_match(i)</span><br><span class="line">                assert c == cost[i]</span><br><span class="line">                out.append(s[i-k:i])</span><br><span class="line">                i -= k</span><br><span class="line">        </span><br><span class="line">            return &quot; &quot;.join(reversed(out))</span><br></pre></td></tr></table></figure>
+<p>使用实例：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s = &apos;thumbgreenappleactiveassignmentweeklymetaphor&apos;</span><br><span class="line">print(infer_spaces(s))</span><br><span class="line"></span><br><span class="line"># 结果为 thumb green apple active assignment weekly metaphor.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Before: thereismassesoftextinformationofpeoplescommentswhichisparsedfromhtmlbuttherearen</span><br><span class="line">odelimitedcharactersinthemforexamplethumbgreenappleactiveassignmentweeklymetapho</span><br><span class="line">rapparentlytherearethumbgreenappleetcinthestringialsohavealargedictionarytoquery</span><br><span class="line">whetherthewordisreasonablesowhatsthefastestwayofextractionthxalot.</span><br><span class="line"></span><br><span class="line">After: there is masses of text information of peoples comments which is parsed from html but there are no delimited characters in them for example thumb green apple active assignment weekly metaphor apparently there are thumb green apple etc in the string i also have a large dictionary to query whether the word is reasonable so what s the fastest way of extraction thx a lot.</span><br></pre></td></tr></table></figure>
+<p>正如你可以看到，这个算法基本上是完美的。最<strong>重要的部分</strong>是确保你的单词列表训练到一个类似于你实际遇到的语料库，否则结果将是非常糟糕。所以你应该手工完善自己的单词库。</p>
+<h2 id="3下载"><a href="#3下载" class="headerlink" title="3下载"></a>3下载</h2><p>words-by-frequency.txt 这个文件下载：<br><a href="http://download.csdn.net/download/u012052268/10263440" target="_blank" rel="noopener">http://download.csdn.net/download/u012052268/10263440</a></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Python/">Python</a>, <a class="has-link-grey -link" href="/tags/自然语言处理/">自然语言处理</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2018/03/05/Python时间序列分析/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">python时间序列分析</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2018/02/05/零基础学习GitHub桌面版-9购买属于自己的域名并关联/">
+                <span class="level-item">零基础学习GitHub桌面版-9购买属于自己的域名并关联</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/02/28/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/';
+        this.page.identifier = '2018/02/28/Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <figure class="image container is-128x128 has-mb-6">
+                            <img class="is-rounded" src="/images/avatar.png" alt="Qingtang">
+                        </figure>
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Qingtang
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Developer &amp; NLPer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>HeFei, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        74
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        49
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="http://github.com/xqtbox" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="http://github.com/xqtbox">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Zhihu" href="https://www.zhihu.com/people/xqtbox/activities">
+                
+                <i class="fab fa-zhihu"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Weibo" href="https://www.weibo.com/u/5890351342">
+                
+                <i class="fab fa-weibo"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="CSDN" href="https://blog.csdn.net/u012052268">
+                
+                <i class="fas fa-crown"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#python-如何拆分没有空格的文本为单词列表？将组合单词拆分开">
+        <span class="has-mr-6">1</span>
+        <span>python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1算法的思想">
+        <span class="has-mr-6">1.1</span>
+        <span>1算法的思想</span>
+        </a></li><li>
+        <a class="is-flex" href="#2代码">
+        <span class="has-mr-6">1.2</span>
+        <span>2代码</span>
+        </a></li><li>
+        <a class="is-flex" href="#3下载">
+        <span class="has-mr-6">1.3</span>
+        <span>3下载</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Linux/">
+            <span class="level-start">
+                <span class="level-item">Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/NLP/">
+            <span class="level-start">
+                <span class="level-item">NLP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Python/">
+            <span class="level-start">
+                <span class="level-item">Python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/数据库/">
+            <span class="level-start">
+                <span class="level-item">数据库</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/机器学习/">
+            <span class="level-start">
+                <span class="level-item">机器学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/深度学习/">
+            <span class="level-start">
+                <span class="level-item">深度学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/爬虫/">
+            <span class="level-start">
+                <span class="level-item">爬虫</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/自然语言处理/">
+            <span class="level-start">
+                <span class="level-item">自然语言处理</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">11</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/运维/">
+            <span class="level-start">
+                <span class="level-item">运维</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/随笔/">
+            <span class="level-start">
+                <span class="level-item">随笔</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/驱动开发/">
+            <span class="level-start">
+                <span class="level-item">驱动开发</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Anaconda/" style="font-size: 12.5px;">Anaconda</a> <a href="/tags/CNN/" style="font-size: 11.67px;">CNN</a> <a href="/tags/DevOps/" style="font-size: 10px;">DevOps</a> <a href="/tags/DriverSttudio3-2/" style="font-size: 10px;">DriverSttudio3.2</a> <a href="/tags/Editplus/" style="font-size: 10px;">Editplus</a> <a href="/tags/EndNote/" style="font-size: 10px;">EndNote</a> <a href="/tags/GBK/" style="font-size: 10.83px;">GBK</a> <a href="/tags/Git/" style="font-size: 18.33px;">Git</a> <a href="/tags/GitHub/" style="font-size: 18.33px;">GitHub</a> <a href="/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/tags/Keras/" style="font-size: 10px;">Keras</a> <a href="/tags/LSTM/" style="font-size: 10px;">LSTM</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/Pycharm/" style="font-size: 11.67px;">Pycharm</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Tensorboard/" style="font-size: 10px;">Tensorboard</a> <a href="/tags/Tensorflow/" style="font-size: 14.17px;">Tensorflow</a> <a href="/tags/USB/" style="font-size: 10px;">USB</a> <a href="/tags/UTF-8/" style="font-size: 10.83px;">UTF-8</a> <a href="/tags/coursera/" style="font-size: 19.17px;">coursera</a> <a href="/tags/ddk/" style="font-size: 10px;">ddk</a> <a href="/tags/eclipse/" style="font-size: 14.17px;">eclipse</a> <a href="/tags/jieba/" style="font-size: 10px;">jieba</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/myeclipse/" style="font-size: 11.67px;">myeclipse</a> <a href="/tags/scrapy/" style="font-size: 13.33px;">scrapy</a> <a href="/tags/screen/" style="font-size: 10px;">screen</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/win7/" style="font-size: 10px;">win7</a> <a href="/tags/word2vec/" style="font-size: 10px;">word2vec</a> <a href="/tags/xshell/" style="font-size: 10px;">xshell</a> <a href="/tags/分词/" style="font-size: 10px;">分词</a> <a href="/tags/学习路线/" style="font-size: 11.67px;">学习路线</a> <a href="/tags/报错/" style="font-size: 15px;">报错</a> <a href="/tags/文件操作/" style="font-size: 10px;">文件操作</a> <a href="/tags/机器学习/" style="font-size: 19.17px;">机器学习</a> <a href="/tags/汽车之家/" style="font-size: 10.83px;">汽车之家</a> <a href="/tags/深度学习/" style="font-size: 16.67px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 15.83px;">爬虫</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/自然语言处理/" style="font-size: 17.5px;">自然语言处理</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/问答系统/" style="font-size: 10px;">问答系统</a> <a href="/tags/阅读理解/" style="font-size: 10px;">阅读理解</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/驱动程序/" style="font-size: 10px;">驱动程序</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2018/06/06/2018.06.06论文：12个NLP分类模型/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/01.jpg" alt="2018.06.06论文：12个NLP分类模型">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-06T04:15:34.000Z">2018-06-06</time></div>
+                    <a href="/2018/06/06/2018.06.06论文：12个NLP分类模型/" class="has-link-black-ter is-size-6">2018.06.06论文：12个NLP分类模型</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/05/17/深度学习中的highway network、ResNet、Inception/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/11.jpg" alt="深度学习中的highway network、ResNet、Inception">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-05-17T04:45:34.000Z">2018-05-17</time></div>
+                    <a href="/2018/05/17/深度学习中的highway network、ResNet、Inception/" class="has-link-black-ter is-size-6">深度学习中的highway network、ResNet、Inception</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/04/19/ 远程连接自动断开的问题解决办法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/17.jpg" alt="远程连接自动断开的问题解决办法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-04-19T04:12:32.000Z">2018-04-19</time></div>
+                    <a href="/2018/04/19/ 远程连接自动断开的问题解决办法/" class="has-link-black-ter is-size-6">远程连接自动断开的问题解决办法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/03/26/ 2018.03.26试题理解论文两篇阅读/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="http://ww1.sinaimg.cn/large/006qDjsOly1g0tdw3lqvbj30kr07ywoo.jpg" alt="2018.03.26试题理解论文两篇阅读">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-03-26T04:17:34.000Z">2018-03-26</time></div>
+                    <a href="/2018/03/26/ 2018.03.26试题理解论文两篇阅读/" class="has-link-black-ter is-size-6">2018.03.26试题理解论文两篇阅读</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/NLP/">NLP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/03/05/Python时间序列分析/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/07.jpg" alt="python时间序列分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-03-05T11:27:24.000Z">2018-03-05</time></div>
+                    <a href="/2018/03/05/Python时间序列分析/" class="has-link-black-ter is-size-6">python时间序列分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anaconda/">
+                        <span class="tag">Anaconda</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CNN/">
+                        <span class="tag">CNN</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DevOps/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DriverSttudio3-2/">
+                        <span class="tag">DriverSttudio3.2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Editplus/">
+                        <span class="tag">Editplus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EndNote/">
+                        <span class="tag">EndNote</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GBK/">
+                        <span class="tag">GBK</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keras/">
+                        <span class="tag">Keras</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LSTM/">
+                        <span class="tag">LSTM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLP/">
+                        <span class="tag">NLP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Oracle/">
+                        <span class="tag">Oracle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pycharm/">
+                        <span class="tag">Pycharm</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">23</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RNN/">
+                        <span class="tag">RNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorboard/">
+                        <span class="tag">Tensorboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/USB/">
+                        <span class="tag">USB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UTF-8/">
+                        <span class="tag">UTF-8</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/coursera/">
+                        <span class="tag">coursera</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ddk/">
+                        <span class="tag">ddk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/eclipse/">
+                        <span class="tag">eclipse</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jieba/">
+                        <span class="tag">jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/maven/">
+                        <span class="tag">maven</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/myeclipse/">
+                        <span class="tag">myeclipse</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy/">
+                        <span class="tag">scrapy</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/screen/">
+                        <span class="tag">screen</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/session/">
+                        <span class="tag">session</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/win7/">
+                        <span class="tag">win7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/word2vec/">
+                        <span class="tag">word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/xshell/">
+                        <span class="tag">xshell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/分词/">
+                        <span class="tag">分词</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/学习路线/">
+                        <span class="tag">学习路线</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/报错/">
+                        <span class="tag">报错</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/文件操作/">
+                        <span class="tag">文件操作</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器学习/">
+                        <span class="tag">机器学习</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/汽车之家/">
+                        <span class="tag">汽车之家</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/深度学习/">
+                        <span class="tag">深度学习</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/编码/">
+                        <span class="tag">编码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/自然语言处理/">
+                        <span class="tag">自然语言处理</span>
+                        <span class="tag is-grey">11</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/运维/">
+                        <span class="tag">运维</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/问答系统/">
+                        <span class="tag">问答系统</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/阅读理解/">
+                        <span class="tag">阅读理解</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/面向对象/">
+                        <span class="tag">面向对象</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/驱动程序/">
+                        <span class="tag">驱动程序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2018/06/06/2018.06.06论文：12个NLP分类模型/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/01.jpg" alt="2018.06.06论文：12个NLP分类模型">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-06-06T04:15:34.000Z">2018-06-06</time></div>
+                    <a href="/2018/06/06/2018.06.06论文：12个NLP分类模型/" class="has-link-black-ter is-size-6">2018.06.06论文：12个NLP分类模型</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/05/17/深度学习中的highway network、ResNet、Inception/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/11.jpg" alt="深度学习中的highway network、ResNet、Inception">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-05-17T04:45:34.000Z">2018-05-17</time></div>
+                    <a href="/2018/05/17/深度学习中的highway network、ResNet、Inception/" class="has-link-black-ter is-size-6">深度学习中的highway network、ResNet、Inception</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/04/19/ 远程连接自动断开的问题解决办法/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/17.jpg" alt="远程连接自动断开的问题解决办法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-04-19T04:12:32.000Z">2018-04-19</time></div>
+                    <a href="/2018/04/19/ 远程连接自动断开的问题解决办法/" class="has-link-black-ter is-size-6">远程连接自动断开的问题解决办法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/03/26/ 2018.03.26试题理解论文两篇阅读/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="http://ww1.sinaimg.cn/large/006qDjsOly1g0tdw3lqvbj30kr07ywoo.jpg" alt="2018.03.26试题理解论文两篇阅读">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-03-26T04:17:34.000Z">2018-03-26</time></div>
+                    <a href="/2018/03/26/ 2018.03.26试题理解论文两篇阅读/" class="has-link-black-ter is-size-6">2018.03.26试题理解论文两篇阅读</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/NLP/">NLP</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/03/05/Python时间序列分析/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/07.jpg" alt="python时间序列分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-03-05T11:27:24.000Z">2018-03-05</time></div>
+                    <a href="/2018/03/05/Python时间序列分析/" class="has-link-black-ter is-size-6">python时间序列分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anaconda/">
+                        <span class="tag">Anaconda</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CNN/">
+                        <span class="tag">CNN</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DevOps/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DriverSttudio3-2/">
+                        <span class="tag">DriverSttudio3.2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Editplus/">
+                        <span class="tag">Editplus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EndNote/">
+                        <span class="tag">EndNote</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GBK/">
+                        <span class="tag">GBK</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keras/">
+                        <span class="tag">Keras</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LSTM/">
+                        <span class="tag">LSTM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLP/">
+                        <span class="tag">NLP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Oracle/">
+                        <span class="tag">Oracle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pycharm/">
+                        <span class="tag">Pycharm</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">23</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RNN/">
+                        <span class="tag">RNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorboard/">
+                        <span class="tag">Tensorboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/USB/">
+                        <span class="tag">USB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UTF-8/">
+                        <span class="tag">UTF-8</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/coursera/">
+                        <span class="tag">coursera</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ddk/">
+                        <span class="tag">ddk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/eclipse/">
+                        <span class="tag">eclipse</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jieba/">
+                        <span class="tag">jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/maven/">
+                        <span class="tag">maven</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/myeclipse/">
+                        <span class="tag">myeclipse</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy/">
+                        <span class="tag">scrapy</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/screen/">
+                        <span class="tag">screen</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/session/">
+                        <span class="tag">session</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/win7/">
+                        <span class="tag">win7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/word2vec/">
+                        <span class="tag">word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/xshell/">
+                        <span class="tag">xshell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/分词/">
+                        <span class="tag">分词</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/学习路线/">
+                        <span class="tag">学习路线</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/报错/">
+                        <span class="tag">报错</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/文件操作/">
+                        <span class="tag">文件操作</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器学习/">
+                        <span class="tag">机器学习</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/汽车之家/">
+                        <span class="tag">汽车之家</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/深度学习/">
+                        <span class="tag">深度学习</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/编码/">
+                        <span class="tag">编码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/自然语言处理/">
+                        <span class="tag">自然语言处理</span>
+                        <span class="tag is-grey">11</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/运维/">
+                        <span class="tag">运维</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/问答系统/">
+                        <span class="tag">问答系统</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/阅读理解/">
+                        <span class="tag">阅读理解</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/面向对象/">
+                        <span class="tag">面向对象</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/驱动程序/">
+                        <span class="tag">驱动程序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Python - 如何拆分没有空格的文本为单词列表？将组合单词拆分开" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Qingtang&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="http://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
