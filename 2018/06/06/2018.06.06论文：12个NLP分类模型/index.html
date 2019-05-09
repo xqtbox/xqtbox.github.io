@@ -1,0 +1,2718 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8">
+<title>2018.06.06论文：12个NLP分类模型 - 博客堂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
+    <meta name="description" content="注1：本文翻译自GitHub上的一篇介绍，介绍了基于深度学习的文本分类问题。代码和部分模型介绍在GitHub上：https://github.com/DX2017/text_classification 注2：本文参考风起云杨译文：https://blog.csdn.net/qq_35273499/article/details/79498733 并加入自己的理解整理。  1 概述这个库 的目的">
+<meta name="keywords" content="深度学习,自然语言处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018.06.06论文：12个NLP分类模型">
+<meta property="og:url" content="http://xuqingtang.top/2018/06/06/2018.06.06论文：12个NLP分类模型/index.html">
+<meta property="og:site_name" content="博客堂">
+<meta property="og:description" content="注1：本文翻译自GitHub上的一篇介绍，介绍了基于深度学习的文本分类问题。代码和部分模型介绍在GitHub上：https://github.com/DX2017/text_classification 注2：本文参考风起云杨译文：https://blog.csdn.net/qq_35273499/article/details/79498733 并加入自己的理解整理。  1 概述这个库 的目的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdn.net/20180525152527784">
+<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20180126/ff57de198e894003a949e94202feff7b.jpeg">
+<meta property="og:image" content="http://5b0988e595225.cdn.sohucs.com/images/20180126/4de02dd88a944fc38aa89dd2bb1a653d.jpeg">
+<meta property="og:image" content="https://img-blog.csdn.net/20180525172433230">
+<meta property="og:image" content="https://img-blog.csdn.net/20180525172703934">
+<meta property="og:image" content="https://camo.githubusercontent.com/4cd078e4a955a4c930a3538b0a07a573221e96df/68747470733a2f2f6661726d312e737461746963666c69636b722e636f6d2f3635302f33333034393137353035305f303830643464653766665f6f2e6a7067">
+<meta property="og:image" content="https://img-blog.csdn.net/20180525173307693">
+<meta property="og:image" content="https://img-blog.csdn.net/20180525173426643">
+<meta property="og:image" content="https://img-blog.csdn.net/20170622205151814?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl1Y2hvbmdl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20180312170833315?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180312171906162?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180312172102795?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180312172432600?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180312171446733?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180312173300155?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180312173557256?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180312173944245?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180312174253495?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/2018031217412746?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180525192130248">
+<meta property="og:image" content="https://img-blog.csdn.net/20170614204638015?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbWlqaWFveGlhb3Nhbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20170614211442174?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbWlqaWFveGlhb3Nhbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="https://img-blog.csdn.net/20180129155220637">
+<meta property="og:image" content="https://img-blog.csdn.net/20170514153103329?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvamF2YWZyZWVseQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2019-03-07T13:23:39.094Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2018.06.06论文：12个NLP分类模型">
+<meta name="twitter:description" content="注1：本文翻译自GitHub上的一篇介绍，介绍了基于深度学习的文本分类问题。代码和部分模型介绍在GitHub上：https://github.com/DX2017/text_classification 注2：本文参考风起云杨译文：https://blog.csdn.net/qq_35273499/article/details/79498733 并加入自己的理解整理。  1 概述这个库 的目的">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180525152527784">
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="2018.06.06论文：12个NLP分类模型" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/image-banner/05.jpg" alt="2018.06.06论文：12个NLP分类模型">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-06-06T04:15:34.000Z">2018-06-06</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 小时 读完 (大约 7703 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                2018.06.06论文：12个NLP分类模型
+            
+        </h1>
+        <div class="content">
+            <blockquote>
+<p>注1：本文翻译自GitHub上的一篇介绍，介绍了基于深度学习的文本分类问题。代码和部分模型介绍在GitHub上：<a href="https://github.com/DX2017/text_classification" target="_blank" rel="noopener">https://github.com/DX2017/text_classification</a></p>
+<p>注2：本文参考风起云杨译文：<a href="https://blog.csdn.net/qq_35273499/article/details/79498733" target="_blank" rel="noopener">https://blog.csdn.net/qq_35273499/article/details/79498733</a> 并加入自己的理解整理。</p>
+</blockquote>
+<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h1><p>这个库 的目的是探索用深度学习进行NLP文本分类的方法。它具有文本分类的各种基准模型。</p>
+<a id="more"></a>
+<p>它还支持多标签分类，其中多标签与句子或文档相关联（作者的一篇论文：链接：<a href="https://github.com/brightmart/text_classification/blob/master/multi-label-classification.pdf" target="_blank" rel="noopener">large scale muli-label text classification with deep learning</a>）。</p>
+<p>虽然这12个模型都很简单，可能不会让你在这项文本分类任务中游刃有余，但是这些模型中的其中一些是非常经典的，因此它们可以说是非常适合作为基准模型的。每个模型在模型类型（github代码）下都有一个测试函数。这个几个模型也可以用于构建问答系统，或者是序列生成。</p>
+<p>如果你想了解更多关于文本分类，或这些模型可以应用的任务的数据集详细信息，可以点击链接进行查询，我们选择了一个：<a href="https://biendata.com/competition/zhihu/" target="_blank" rel="noopener">https://biendata.com/competition/zhihu/</a></p>
+<h2 id="1-1模型概览"><a href="#1-1模型概览" class="headerlink" title="1.1模型概览"></a>1.1模型概览</h2><p>这篇文章介绍的模型有以下：</p>
+<ul>
+<li>1.fastText</li>
+<li>2.TextCNN</li>
+<li>3.TextRNN</li>
+<li>4.RCNN</li>
+<li>5.分层注意网络（Hierarchical Attention Network）</li>
+<li>6.具有注意的seq2seq模型（seq2seq with attention）</li>
+<li>7.Transformer(“Attend Is All You Need”)</li>
+<li>8.动态记忆网络（Dynamic Memory Network）</li>
+<li>9.实体网络：追踪世界的状态</li>
+<li>10.Ensemble models</li>
+<li>11.Boosting：<br>该模型是多模型堆叠而来的。每一层都是一个模型。结果将基于加在一起的logits，层之间的唯一链接是标签权重。每个标签的浅层预测误差率将成为下一层的权重。那些错误率很高的标签会有很大的权重。所以后面的层将更加关注那些错误预测的标签，并试图修复前一层的误差。结果是，我们可以得到一个很强大的模型。查看： a00_boosting/boosting.py</li>
+</ul>
+<p>还包括一下其他模型：</p>
+<ul>
+<li>1.BiLstm Text Relation</li>
+<li>2.Two CNN Text Relation</li>
+<li>3.BiLstm Text Relation Two RNN</li>
+</ul>
+<h2 id="1-2各模型效果对比："><a href="#1-2各模型效果对比：" class="headerlink" title="1.2各模型效果对比："></a>1.2各模型效果对比：</h2><p>性能（多标签标签预测任务，要求预测能够达到前5，300万训练数据，满分：0.5）<br><img src="https://img-blog.csdn.net/20180525152527784" alt="性等对比"></p>
+<h2 id="1-4-代码用法："><a href="#1-4-代码用法：" class="headerlink" title="1.4 代码用法："></a>1.4 代码用法：</h2><ol>
+<li><p>模型在xxx_model.py中</p>
+</li>
+<li><p>运行python xxx_train.py来训练模型</p>
+</li>
+<li><p>运行python xxx_predict.py进行推理（测试）。</p>
+</li>
+</ol>
+<ul>
+<li>运行环境：</li>
+</ul>
+<p>python 2.7+tensorflow 1.1</p>
+<p>TextCNN 模型已经可以转换成python 3.6版本</p>
+<ul>
+<li>注意：</li>
+</ul>
+<p>一些util函数是在data_util.py中的；典型输入如：“x1 x2 x3 x4 x5 label 323434”，其中“x1，x2”是单词，“323434”是标签；它具有一个将预训练的单词加载和分配嵌入到模型的函数，其中单词嵌入在word2vec或fastText中进行预先训练。</p>
+<h1 id="2-模型细节："><a href="#2-模型细节：" class="headerlink" title="2 模型细节："></a>2 模型细节：</h1><h2 id="2-1-快速文本（fastText）"><a href="#2-1-快速文本（fastText）" class="headerlink" title="2.1 快速文本（fastText）"></a>2.1 快速文本（fastText）</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><blockquote>
+<p>参考：<a href="https://www.sohu.com/a/219080991_129720" target="_blank" rel="noopener">https://www.sohu.com/a/219080991_129720</a></p>
+</blockquote>
+<p>FastText是Facebook开发的一款快速文本分类器，提供简单而高效的文本分类和表征学习的方法，不过这个项目其实是有两部分组成的：</p>
+<ol>
+<li>一部分是 文本分类paper：A. Joulin, E. Grave, P. Bojanowski, T. Mikolov, <a href="https://arxiv.org/abs/1607.01759" target="_blank" rel="noopener">Bag of Tricks for Efficient Text<br>Classification</a>（高效文本分类技巧）。</li>
+<li>另一部分是词嵌入学习（paper:P. Bojanowski<em>, E. Grave</em>, A. Joulin, T. Mikolov, Enriching Word Vectors with Subword Information（使用子字信息丰富词汇向量））。</li>
+</ol>
+<p>本文主要关注FastText 用于文本分类，其词向量的用法可以参考博文：<a href="https://blog.csdn.net/sinat_26917383/article/details/54850933" target="_blank" rel="noopener">NLP︱高级词向量表达（二）——FastText（简述、学习笔记）</a> </p>
+<p>fastText是Facebook于2016年开源的一个词向量计算和文本分类工具，在学术上并没有太大创新。但是它的优点也非常明显，在文本分类任务中，fastText（浅层网络）往往能取得和深度网络相媲美的精度，却在训练时间上比深度网络快许多数量级。在标准的多核CPU上， 能够训练10亿词级别语料库的词向量在10分钟之内。可以看出fastText有两个主要的特点：</p>
+<ol>
+<li>速度很快 </li>
+<li>在速度的基础上精度较高 。 </li>
+</ol>
+<p>对应的解决办法就是：</p>
+<ol>
+<li>层级简单 + embedding叠加 + 分层Softmax</li>
+<li>字符级别的n-gram</li>
+</ol>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><ul>
+<li>快的原因：</li>
+</ul>
+<ol>
+<li>层级简单:<img src="http://5b0988e595225.cdn.sohucs.com/images/20180126/ff57de198e894003a949e94202feff7b.jpeg" alt="image"></li>
+<li>单词的embedding叠加获得的文档向量. 全连接参数由 n <em> L </em> 1024 变成 1 <em> L  </em> 1024</li>
+<li>在输出时，fastText采用了分层Softmax，大大降低了模型训练时间：</li>
+</ol>
+<p>标准的Softmax回归中，要计算y=j时的Softmax概率：，我们需要对所有的K个概率做归一化，这在|y|很大时非常耗时。于是，分层Softmax诞生了，它的基本思想是使用树的层级结构替代扁平化的标准Softmax，使得在计算时，只需计算一条路径上的所有节点的概率值，无需在意其它的节点。</p>
+<p>下图是一个分层Softmax示例：</p>
+<p><img src="http://5b0988e595225.cdn.sohucs.com/images/20180126/4de02dd88a944fc38aa89dd2bb1a653d.jpeg" alt="image"></p>
+<p>树的结构是根据类标的频数构造的霍夫曼树。K个不同的类标组成所有的叶子节点，K-1个内部节点作为内部参数，从根节点到某个叶子节点经过的节点和边形成一条路径。从根节点走到叶子节点，实际上是在做了3次二分类的逻辑回归。通过分层的Softmax，计算复杂度一下从|K|降低到log|K|。</p>
+<ul>
+<li>准的原因：字符级别的n-gram：</li>
+</ul>
+<p>word2vec把语料库中的每个单词当成原子的，它会为每个单词生成一个向量。这忽略了单词内部的形态特征，比如：“apple” 和“apples”，“达观数据”和“达观”，这两个例子中，两个单词都有较多公共字符，即它们的内部形态类似，但是在传统的word2vec中，这种单词内部形态信息因为它们被转换成不同的id丢失了。</p>
+<p>为了克服这个问题，fastText使用了字符级别的n-grams来表示一个单词。对于单词“apple”，假设n的取值为3，则它的trigram有:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">“&lt;ap”, “app”, “ppl”, “ple”, “le&gt;”</span><br></pre></td></tr></table></figure>
+<p>其中，&lt;表示前缀，&gt;表示后缀。于是，我们可以用这些trigram来表示“apple”这个单词，进一步，我们可以用这5个trigram的向量叠加来表示“apple”的词向量。</p>
+<p>这带来两点好处：（论文中怎么说》》》》》？？？？）</p>
+<ol>
+<li><p>对于低频词生成的词向量效果会更好。因为它们的n-gram可以和其它词共享。</p>
+</li>
+<li><p>对于训练词库之外的单词，仍然可以构建它们的词向量。我们可以叠加它们的字符级n-gram向量。</p>
+</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>于是fastText的核心思想就是：将整篇文档的词及n-gram向量叠加平均得到文档向量，然后使用文档向量做softmax多分类。这中间涉及到两个技巧：字符级n-gram特征的引入以及分层Softmax分类。github代码：p5_fastTextB_model.py</p>
+<h2 id="2-2文本卷积神经网络（Text-CNN）"><a href="#2-2文本卷积神经网络（Text-CNN）" class="headerlink" title="2.2文本卷积神经网络（Text CNN）"></a>2.2文本卷积神经网络（Text CNN）</h2><p>《卷积神经网络进行句子分类》ConvolutionalNeuralNetworksforSentenceClassiﬁcation论文的实现</p>
+<p>结构：降维—&gt; conv —&gt; 最大池化 —&gt;完全连接层——–&gt; softmax</p>
+<p>github代码查看：<a href="https://github.com/DX2017/text_classification/blob/master/a02_TextCNN/p7_TextCNN_model.py" target="_blank" rel="noopener">p7_Text CNN_model.py</a></p>
+<p><img src="https://img-blog.csdn.net/20180525172433230" alt="textcnn"></p>
+<p>卷积神经网络是解决计算机视觉问题的主要手段。 现在我们将展示CNN如何用于NLP，特别是文本分类。句子长度会略有不同。 所以我们将使用padding来获得固定长度，n。 </p>
+<p>对于句子中的每个标记，我们将使用单词嵌入来获得一个固定的维度向量d。 所以我们的输入是一个二维矩阵：（n，d）。这跟CNN用于图象是类似的。</p>
+<p>首先，我们将对我们的输入进行卷积计算。他是滤波器和输入部分之间的元素乘法。我们使用k个滤波器，每个滤波器是一个二维矩阵（f，d）注意d与词向量的长度相同。现在输出的将是k个列表，每个列表的长度是n-f+1。每个元素是标量（scalar）。请注意，第二维将始终是单词嵌入的维度。我们使用不同的大小的滤波器从文本输入中获取丰富的特征，这与n-gram特征是类似的。</p>
+<p>其次，我们将卷积运算的输出做最大池化。对于k个特征映射，我们将得到k个标量。</p>
+<p>第三，我们将连接所有标量来获得最终的特征。他是一个固定大小的向量。它与我们使用的滤波器的大小无关。</p>
+<p>最后，我们将使用全连接层把这些特征映射到之前定义的标签。</p>
+<h2 id="2-3文本循环神经网络（Text-RNN）"><a href="#2-3文本循环神经网络（Text-RNN）" class="headerlink" title="2.3文本循环神经网络（Text RNN）"></a>2.3文本循环神经网络（Text RNN）</h2><blockquote>
+<p>Github 代码查看：p8_Text RNN_model.py</p>
+</blockquote>
+<p>尽管TextCNN能够在很多任务里面能有不错的表现，但CNN有个最大问题是固定 filter_size 的视野，一方面无法建模更长的序列信息，另一方面 filter _size 的超参调节也很繁琐。CNN本质是做文本的特征表达工作，而自然语言处理中更常用的是递归神经网络（RNN, Recurrent Neural Network），能够更好的表达上下文信息。</p>
+<p>模型结构：embedding—&gt;bi-drectional lstm —&gt; concat output  –&gt;average—–&gt; softmax layer</p>
+<p><img src="https://img-blog.csdn.net/20180525172703934" alt="image"></p>
+<p>通过利用双向LSTM建模，然后输出最后一个词的结果直接接全连接层softmax输出了。</p>
+<h2 id="2-4-双向长短期记忆网络文本关系（BiLstm-Text-Relation）"><a href="#2-4-双向长短期记忆网络文本关系（BiLstm-Text-Relation）" class="headerlink" title="2.4 双向长短期记忆网络文本关系（BiLstm Text Relation）"></a>2.4 双向长短期记忆网络文本关系（BiLstm Text Relation）</h2><blockquote>
+<p>Github 代码查看：<a href="https://github.com/DX2017/text_classification/blob/master/aa5_BiLstmTextRelation/p9_BiLstmTextRelation_model.py" target="_blank" rel="noopener">p9_BiLstm Text Relation_model.py</a></p>
+</blockquote>
+<p>结构：结构与Text RNN相同。但输入是被特别设计，直接把两个句子进行拼接。</p>
+<p>例如：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#   &quot;how much is the computer? EOS price of laptop&quot;---&gt; label:1</span><br></pre></td></tr></table></figure>
+<p>“EOS”是一个特殊的标记，将问题1和问题2分开。但是 模型并没有把两个句子分割开来，而是当做一个输入进行建模: 把 (背后的逻辑应该是 BiLstm 的自动“双向”建模能力)</p>
+<h2 id="2-5-两个卷积神经网络文本关系（two-CNN-Text-Relation）"><a href="#2-5-两个卷积神经网络文本关系（two-CNN-Text-Relation）" class="headerlink" title="2.5 两个卷积神经网络文本关系（two CNN Text Relation）"></a>2.5 两个卷积神经网络文本关系（two CNN Text Relation）</h2><blockquote>
+<p>Github 代码查看：p9_two CNN Text Relation_model.py</p>
+</blockquote>
+<p>结构：首先用两个不同的卷积来提取两个句子的特征，然后连接两个特征，使用线性变换层将投影输出到目标标签上，然后使用softmax二分类。</p>
+<p><img src="https://camo.githubusercontent.com/4cd078e4a955a4c930a3538b0a07a573221e96df/68747470733a2f2f6661726d312e737461746963666c69636b722e636f6d2f3635302f33333034393137353035305f303830643464653766665f6f2e6a7067" alt="image"></p>
+<p>更多文档、代码参考 参见USTC大佬、iflytek之光 Randolph的github库：<a href="https://github.com/RandolphVI/Text-Pairs-Relation-Classification" target="_blank" rel="noopener">Text-Pairs-Relation-Classification</a></p>
+<h2 id="2-6-双长短期记忆文本关系双循环神经网络（BiLstm-Text-Relation-Two-RNN）"><a href="#2-6-双长短期记忆文本关系双循环神经网络（BiLstm-Text-Relation-Two-RNN）" class="headerlink" title="2.6 双长短期记忆文本关系双循环神经网络（BiLstm Text Relation Two RNN）"></a>2.6 双长短期记忆文本关系双循环神经网络（BiLstm Text Relation Two RNN）</h2><blockquote>
+<p>Github 代码查看：p9_BiLstm Text Relation Two RNN_model.py</p>
+</blockquote>
+<p>结构：一个句子的一个双向lstm（得到输出1），另一个句子的另一个双向lstm（得到输出2）。拼接之后加全连接， 最后：softmax（输出1 输出0）</p>
+<h2 id="2-7-循环卷积神经网络（text-RCNN）"><a href="#2-7-循环卷积神经网络（text-RCNN）" class="headerlink" title="2.7 循环卷积神经网络（text-RCNN）"></a>2.7 循环卷积神经网络（text-RCNN）</h2><blockquote>
+<p>Github 代码查看：<a href="https://github.com/DX2017/text_classification/blob/master/a04_TextRCNN/p71_TextRCNN_model.py" target="_blank" rel="noopener">p71_TextRCNN_model.py</a></p>
+</blockquote>
+<p>《用于文本分类的循环卷积神经网络》<a href="https://scholar.google.com.hk/scholar?q=Recurrent+Convolutional+Neural+Networks+for+Text+Classification&amp;hl=zh-CN&amp;as_sdt=0&amp;as_vis=1&amp;oi=scholart&amp;sa=X&amp;ved=0ahUKEwjpx82cvqTUAhWHspQKHUbDBDYQgQMIITAA" target="_blank" rel="noopener">Recurrent Convolutional Neural Networks for Text Classification</a>论文的实现。</p>
+<p>结构：1）循环结构（卷积层）2）最大池化3）完全连接层+ softmax</p>
+<p><img src="https://img-blog.csdn.net/20180525173307693" alt="image"></p>
+<p>重点是 循环结构（卷积层），在循环神经网络中，加入了“上一个单词”的词向量，类似于 卷积神经网络的2-gram特征。这就是为什么是循环网络 却叫卷积层，重点代码如下：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">def get_context_left(self,context_left,embedding_previous):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    :param context_left:</span><br><span class="line">    :param embedding_previous:</span><br><span class="line">    :return: output:[None,embed_size]</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    left_c=tf.matmul(context_left,self.W_l) #context_left:[batch_size,embed_size];W_l:[embed_size,embed_size]</span><br><span class="line">    left_e=tf.matmul(embedding_previous,self.W_sl)#embedding_previous;[batch_size,embed_size]</span><br><span class="line">    left_h=left_c+left_e</span><br><span class="line">    context_left=self.activation(left_h)</span><br><span class="line">    return context_left</span><br><span class="line"></span><br><span class="line">def get_context_right(self,context_right,embedding_afterward):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    :param context_right:</span><br><span class="line">    :param embedding_afterward:</span><br><span class="line">    :return: output:[None,embed_size]</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    right_c=tf.matmul(context_right,self.W_r)</span><br><span class="line">    right_e=tf.matmul(embedding_afterward,self.W_sr)</span><br><span class="line">    right_h=right_c+right_e</span><br><span class="line">    context_right=self.activation(right_h)</span><br><span class="line">    return context_right</span><br></pre></td></tr></table></figure>
+<h2 id="2-8-分层注意力"><a href="#2-8-分层注意力" class="headerlink" title="2.8 分层注意力"></a>2.8 分层注意力</h2><p>代码：p1_HierarchicalAttention_model.py</p>
+<p>《用于文档分类的分层注意网络》<a href="https://www.cs.cmu.edu/~diyiy/docs/naacl16.pdf" target="_blank" rel="noopener">Hierarchical Attention Networks for Document Classiﬁcation</a> 论文的实现。</p>
+<p>结构：</p>
+<ol>
+<li>词编码器：词级双向GRU，以获得丰富的词汇表征</li>
+<li>词注意力：词级注意在句子中获取重要信息</li>
+<li>句子编码器：句子级双向GRU，以获得丰富的句子表征</li>
+<li>句子注意：句级注意以获得句子中的重点句子</li>
+<li>FC + Softmax</li>
+</ol>
+<p><img src="https://img-blog.csdn.net/20180525173426643" alt="image"></p>
+<p>它有两个独特的特点：</p>
+<p>1）它具有体现文件层次结构的层次结构</p>
+<p>2）它在单词和句子级别使用两个级别的注意力机制，它使模型能够捕捉到不同级别的重要信息。</p>
+<p>一个重要问题： ==Uw和Us 的来源 去向？==</p>
+<p>计算方式：<img src="https://img-blog.csdn.net/20170622205151814?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl1Y2hvbmdl/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<ul>
+<li>就是一个 随机初始化的“权重向量”，通过训练更新， 每次计算出前向神经网络的隐层输出之后，乘以权重得到注意力向量。</li>
+</ul>
+<p>从代码来研究：</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">AttentionLayer</span><span class="hljs-params">(self, inputs, name)</span>:</span></span><br><span class="line">    <span class="hljs-comment">#inputs是GRU的输出，size是[batch_size, max_time, encoder_size(hidden_size * 2)]</span></span><br><span class="line">    <span class="hljs-keyword">with</span> tf.variable_scope(name):</span><br><span class="line">        <span class="hljs-comment"># u_context是上下文的重要性向量，用于区分不同单词/句子对于句子/文档的重要程度,</span></span><br><span class="line">        <span class="hljs-comment"># 因为使用双向GRU，所以其长度为2×hidden_szie</span></span><br><span class="line">        u_context = tf.Variable(tf.truncated_normal([self.hidden_size * <span class="hljs-number">2</span>]), name=<span class="hljs-string">'u_context'</span>)</span><br><span class="line">        <span class="hljs-comment">#使用一个全连接层编码GRU的输出的到期隐层表示,输出u的size是[batch_size, max_time, hidden_size * 2]</span></span><br><span class="line">        h = layers.fully_connected(inputs, self.hidden_size * <span class="hljs-number">2</span>, activation_fn=tf.nn.tanh)</span><br><span class="line">        <span class="hljs-comment">#shape为[batch_size, max_time, 1]</span></span><br><span class="line">        alpha = tf.nn.softmax(tf.reduce_sum(tf.multiply(h, u_context), axis=<span class="hljs-number">2</span>, keep_dims=<span class="hljs-keyword">True</span>), dim=<span class="hljs-number">1</span>)</span><br><span class="line">        <span class="hljs-comment">#reduce_sum之前shape为[batch_szie, max_time, hidden_szie*2]，之后shape为[batch_size, hidden_size*2]</span></span><br><span class="line">        atten_output = tf.reduce_sum(tf.multiply(inputs, alpha), axis=<span class="hljs-number">1</span>)</span><br><span class="line">        <span class="hljs-keyword">return</span> atten_output</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">###########################################################################################</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-number">1.</span> 词向量层：省略</span><br><span class="line"></span><br><span class="line"><span class="hljs-number">2.</span> 句子级注意力：</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sent2vec</span><span class="hljs-params">(self, word_embedded)</span>:</span></span><br><span class="line">    <span class="hljs-keyword">with</span> tf.name_scope(<span class="hljs-string">"sent2vec"</span>):</span><br><span class="line">        <span class="hljs-comment">#GRU的输入tensor是[batch_size, max_time, ...].在构造句子向量时max_time应该是每个句子的长度，所以这里将</span></span><br><span class="line">        <span class="hljs-comment">#batch_size * sent_in_doc当做是batch_size.这样一来，每个GRU的cell处理的都是一个单词的词向量</span></span><br><span class="line">        <span class="hljs-comment">#并最终将一句话中的所有单词的词向量融合（Attention）在一起形成句子向量</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">#shape为[batch_size*sent_in_doc, word_in_sent, embedding_size]</span></span><br><span class="line">        word_embedded = tf.reshape(word_embedded, [<span class="hljs-number">-1</span>, self.max_sentence_length, self.embedding_size])</span><br><span class="line">        <span class="hljs-comment">#shape为[batch_size*sent_in_doce, word_in_sent, hidden_size*2]</span></span><br><span class="line">        word_encoded = self.BidirectionalGRUEncoder(word_embedded, name=<span class="hljs-string">'word_encoder'</span>)</span><br><span class="line">        <span class="hljs-comment">#shape为[batch_size*sent_in_doc, hidden_size*2]</span></span><br><span class="line">        sent_vec = self.AttentionLayer(word_encoded, name=<span class="hljs-string">'word_attention'</span>)</span><br><span class="line">        <span class="hljs-keyword">return</span> sent_vec</span><br><span class="line"></span><br><span class="line"><span class="hljs-number">3.</span>文档级注意力</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">doc2vec</span><span class="hljs-params">(self, sent_vec)</span>:</span></span><br><span class="line">    <span class="hljs-comment">#原理与sent2vec一样，根据文档中所有句子的向量构成一个文档向量</span></span><br><span class="line">    <span class="hljs-keyword">with</span> tf.name_scope(<span class="hljs-string">"doc2vec"</span>):</span><br><span class="line">        sent_vec = tf.reshape(sent_vec, [<span class="hljs-number">-1</span>, self.max_sentence_num, self.hidden_size*<span class="hljs-number">2</span>])</span><br><span class="line">        <span class="hljs-comment">#shape为[batch_size, sent_in_doc, hidden_size*2]</span></span><br><span class="line">        doc_encoded = self.BidirectionalGRUEncoder(sent_vec, name=<span class="hljs-string">'sent_encoder'</span>)</span><br><span class="line">        <span class="hljs-comment">#shape为[batch_szie, hidden_szie*2]</span></span><br><span class="line">        doc_vec = self.AttentionLayer(doc_encoded, name=<span class="hljs-string">'sent_attention'</span>)</span><br><span class="line">        <span class="hljs-keyword">return</span> doc_vec</span><br><span class="line"><span class="hljs-number">4.</span> 全连接层：省略</span><br></pre></td></tr></table></figure>
+<h2 id="2-9具有注意的Seq2seq模型"><a href="#2-9具有注意的Seq2seq模型" class="headerlink" title="2.9具有注意的Seq2seq模型"></a>2.9具有注意的Seq2seq模型</h2><p>具有注意的Seq2seq模型的实现是通过《共同学习排列和翻译的神经机器翻译》<a href="https://arxiv.org/pdf/1409.0473.pdf" target="_blank" rel="noopener">NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE</a>来实现的。</p>
+<p>首先学习一下什么是seq2seq模型：<a href="https://blog.csdn.net/qq_27505047/article/details/79531049" target="_blank" rel="noopener">https://blog.csdn.net/qq_27505047/article/details/79531049</a></p>
+<h3 id="2-9-1-encoder-to-decoder"><a href="#2-9-1-encoder-to-decoder" class="headerlink" title="2.9.1 encoder to decoder"></a>2.9.1 encoder to decoder</h3><p>首先是第一篇《NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE》，这篇论文算是在自然语言处理(NLP)中第一个使用attention机制的工作，将attention机制用到了神经网络机器翻译(NMT)，NMT其实就是一个典型的Seq2Seq模型，也就是一个encoder to decoder模型，传统的NMT使用两个RNN，一个RNN对源语言进行编码，将源语言编码到一个固定维度的中间向量，再使用一个RNN进行解码翻译到目标语言: </p>
+<p><img src="https://img-blog.csdn.net/20180312170833315?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>按照论文所述，encoder中的每个隐层单元的计算公式为： </p>
+<p><img src="https://img-blog.csdn.net/20180312171906162?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>encoder的输出语义编码向量c为： </p>
+<p><img src="https://img-blog.csdn.net/20180312172102795?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>而decoder通过将联合概率p(y)分解成有序条件来定义翻译y的概率：<br><img src="https://img-blog.csdn.net/20180312172432600?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<h3 id="2-9-2-引入注意力机制"><a href="#2-9-2-引入注意力机制" class="headerlink" title="2.9.2 引入注意力机制"></a>2.9.2 引入注意力机制</h3><p>而引入注意力机制后的模型如下： </p>
+<p><img src="https://img-blog.csdn.net/20180312171446733?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
+<p>此时，关于p(y)的定义变化如下： </p>
+<p><img src="https://img-blog.csdn.net/20180312173300155?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""></p>
+<p>此处c变成了ci，即要输出的第i个单词时对应的ci向量，因此要如何计算ci向量时注意力机制实现的关键.但在此之前si的计算也变成了： </p>
+<p><img src="https://img-blog.csdn.net/20180312173557256?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<p>此时引入 论文示意图：</p>
+<p><img src="https://img-blog.csdn.net/20180312173944245?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></p>
+<h3 id="2-9-3-attention的计算方式"><a href="#2-9-3-attention的计算方式" class="headerlink" title="2.9.3 attention的计算方式"></a>2.9.3 attention的计算方式</h3><p>那么重点来了，这个系数a是怎么计算的呢？</p>
+<p>注意机制计算过程：</p>
+<ol>
+<li>计算每个编码器输入 与 解码器隐藏状态的相似度，以获得每个编码器输入的可能性分布。<br><img src="https://img-blog.csdn.net/20180312174253495?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt=""> </li>
+<li>计算 基于可能性分布的 编码器注意力的加权和。ci是所有具有概率αij的hj的期望。<br><img src="https://img-blog.csdn.net/2018031217412746?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMjc1MDUwNDc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="image"></li>
+</ol>
+<h2 id="2-10-Transformer（“Attention-Is-All-You-Need”）"><a href="#2-10-Transformer（“Attention-Is-All-You-Need”）" class="headerlink" title="2.10 Transformer（“Attention Is All You Need”）"></a>2.10 Transformer（“Attention Is All You Need”）</h2><blockquote>
+<p>参考mijiaoxiaosan的博文：<a href="https://blog.csdn.net/mijiaoxiaosan/article/details/73251443" target="_blank" rel="noopener">《对Attention is all you need 的理解》</a></p>
+<p>参考 paperweekly 《一文读懂「Attention is All You Need」| 附代码实现》 <a href="https://yq.aliyun.com/articles/342508" target="_blank" rel="noopener">https://yq.aliyun.com/articles/342508</a></p>
+</blockquote>
+<p>带注意的 seq2seq是解决序列生成问题的典型模型，如翻译、对话系统。</p>
+<p>Transformer，它仅仅依靠注意机制执行这些任务 (编码器 解码器  都只用attention)，是快速的、实现新的最先进的结果。</p>
+<p>结构如下：</p>
+<ul>
+<li>编码器：</li>
+</ul>
+<p>由N = 6个相同层的堆叠组成。</p>
+<p>每个层都有两个子层。第一是多向自注意机制；第二个是全连接前馈网络。</p>
+<ul>
+<li>解码器：</li>
+</ul>
+<p>1.解码器由N = 6个相同层的堆叠组成。</p>
+<p>2.除了每个编码器层中的两个子层之外，解码器多加入了一层 多向注意。</p>
+<p><img src="https://img-blog.csdn.net/20180525192130248" alt="image"></p>
+<p>这个模型主要创新点： ==多头注意力   和位置编码== 关键点：</p>
+<ol>
+<li>==位置编码==： 由于模型没有任何循环或者卷积，为了使用序列的顺序信息，需要将tokens的相对以及绝对位置信息注入到模型中去。论文在输入embeddings的基础上加了一个“位置编码”。位置编码和embeddings由同样的维度都是d 所以两者可以直接相加。  有很多位置编码的选择，既有学习到的也有固定不变的。本文中用了正弦和余弦函数进行编码。<code>$PosEnc_{(pos,2i)} = sin(pos/10000^{2i/{d_{model}}})$</code> <code>$PE_{(pos,2i+1)} = cos(pos/10000^{2i/{d_{model}}})$</code><br>其中的pos是位置，i是维度（比如50维的词向量 如果位置 和 确定了 ）。 偶数维度用sin 奇数维度用cos。   最后将词向量与位置向量直接相加。</li>
+<li>==多头注意力 的基本组成单位==：<ol>
+<li>普通注意力 ：attention函数可以看作将一个query和一系列key-value对映射为一个输出（output）的过程（多数情况下 K和V是同一向量）事实上这种 Attention 的定义并不新鲜，但由于 Google 的影响力，我们可以认为现在是更加正式地提出了这个定义，并将其视为一个层地看待。。<img src="https://img-blog.csdn.net/20170614204638015?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbWlqaWFveGlhb3Nhbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></li>
+<li>论文自创在普通attention的基础上加了一个Scale（缩放层）：计算query和所有keys的点乘，然后每个都除以dk−−√（这个操作就是所谓的Scaled）。之后利用一个softmax函数来获取values的权重。 这样可以起到“归一化”的作用。Mask层没看懂。</li>
+<li>总的来说 attention公式如下：<code>$Attention(Q,K,V) = softmax({QK^T\over {\sqrt {d_k}}})V$</code> 。只要稍微思考一下就会发现，这样的 Self Attention模型并不能捕捉序列的顺序。换句话说，如果将 K,V 按行打乱顺序（相当于句子中的词序打乱），那么 Attention 的结果还是一样的。但是对于 NLP 中的任务来说，顺序是很重要的信息，它代表着局部甚至是全局的结构，学习不到顺序信息，那么效果将会大打折扣。于是 Google 再祭出了一招——Position Embedding，也就是上面的“位置向量”。</li>
+</ol>
+</li>
+<li>==Multi-Head Attention 多头注意力==：本文结构中的Attention并不是简简单单将一个attention应用进去。作者发现对 原始向量 进行h 次不同的attention，再拼接起来 效果特别好。所谓“多头”（Multi-Head），就是只多做几次同样的事情（参数不共享），然后把结果拼接。</li>
+</ol>
+<p>分别对每一个映射之后的得到的queries，keys以及values进行attention函数的并行操作，最后拼接成output值。具体操作细节如以下公式。 <code>$MultiHead(Q,K,V) = Concat(head_1,...,head_h)$</code>  <code>$where:   head_i = Attention(Q{W_i}^Q,K{W_i}^K,V{W_i}^V)$</code> 结构示意图： <img src="https://img-blog.csdn.net/20170614211442174?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbWlqaWFveGlhb3Nhbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<h2 id="2-11-循环实体网络（Recurrent-Entity-Network）"><a href="#2-11-循环实体网络（Recurrent-Entity-Network）" class="headerlink" title="2.11 循环实体网络（Recurrent Entity Network）"></a>2.11 循环实体网络（Recurrent Entity Network）</h2><p><a href="https://arxiv.org/pdf/1612.03969.pdf" target="_blank" rel="noopener">这篇论文</a>是facebook AI在2017年的ICLR会议上发表的，文章提出了Recurrent Entity Network的模型用来对world state进行建模，根据模型的输入对记忆单元进行实时的更新，从而得到对world的一个即时的认识。该模型可以用于机器阅读理解等领域。</p>
+<p>输入：</p>
+<ol>
+<li>故事：它是多句话，作为上下文。</li>
+<li>问题：一个句子，这是一个问题。</li>
+<li>回答：一个单一的标签。</li>
+</ol>
+<p>和之前的模型一样，Entity Network模型共分为Input Encoder、Dynamic Memory和Output Model三个部分。如下图的架构图所示：</p>
+<p><img src="https://img-blog.csdn.net/20180129155220637" alt="image"></p>
+<p>模型结构：</p>
+<p>1.输入编码层：利用RNN或者LSTM等时序神经网络模型，使用最后一个时间步长的状态作为句子编码 来编码故事（上下文）和查询（问题）st就是固定长度的句子的向量表示。</p>
+<p>2.动态记忆：</p>
+<p>a. 通过使用键的“相似性”，输入故事的值来计算门控。</p>
+<p>b. 通过转换每个键，值和输入来获取候选隐藏状态。</p>
+<p>c. 组合门和候选隐藏状态来更新当前的隐藏状态。</p>
+<p>t时刻输入st时，每个隐含层状态hj通过st和key wj来更新，更新公式如下： </p>
+<p>$g_j \gets \sigma (s_t^T h_j + s_t^T w_j)$</p>
+<p>$\tilde{h_j} \gets \phi( Uh_j + Vw_j + Ws_t)$</p>
+<p>$h_j \gets h_j + g_j \odot \tilde{h_j}$</p>
+<p>$h_j \gets \frac{h_j}{|h_j|}$</p>
+<p>例如：</p>
+<ul>
+<li>Mary picked up the ball.</li>
+<li>Mary went to the garden.</li>
+<li>Where is the ball？</li>
+</ul>
+<p>前两句是文本，最后一句是问题。由第一句得到在时间步长t的句子表达st，由第二句得到时间步长t+1的句子表达st+1。</p>
+<ol>
+<li>当st被读取，w1记录实体Mary，h1记录实体状态Mary拿了一个ball；</li>
+<li>w2记录实体ball，h2记录实体状态ball被Mary拿着；</li>
+<li>然后st+1被读取，读取到Mary，因为w1是记录Mary的key，位置寻址项sTt+1w1变化，门函数被激活，更新h1实体状态Mary去了garden;</li>
+<li>因为h2记录ball被mary拿着，因此内容寻址项sTt+1h2变化，门函数被激活，更新h2的实体状态球被mary拿着，球在garden。</li>
+</ol>
+<ul>
+<li>Output Model<br>在原文中使用了一层的记忆网络，因此得到最后一个时间步长的隐层向量hj以后，就可以直接输出。</li>
+</ul>
+<h2 id="2-12-动态记忆网络"><a href="#2-12-动态记忆网络" class="headerlink" title="2.12 动态记忆网络"></a>2.12 动态记忆网络</h2><blockquote>
+<p>原文：<a href="http://www.thespermwhale.com/jaseweston/ram/papers/paper_21.pdf" target="_blank" rel="noopener">《Ask me anything: dynamic memory networks for natural language processing》</a></p>
+<p>博客参考：<a href="https://blog.csdn.net/javafreely/article/details/71994247" target="_blank" rel="noopener">https://blog.csdn.net/javafreely/article/details/71994247</a></p>
+</blockquote>
+<p>Question answering 是自然语言处理领域的一个复杂问题. 它需要对文本的理解力和推理能力.DMN 的输入包含事实输入，问题输入，经过内部处理形成片段记忆，最终产生问题的答案.</p>
+<p>DMN 由4个模块组成：</p>
+<ul>
+<li>输入模块： 将原生文本输入编码成分布式向量表示. NLP 问题中，输入可以是一个句子，一个故事，电影评论，新闻文章或者维基百科文章等. 它的输入是 Work embedding（如通过 word2vec 或 GloVe 编码）.</li>
+<li>问题模块： 同输入模块类似，也是一个 RNN 网络. 输出是最后隐藏节点. </li>
+<li>片段记忆模块： 片段记忆模块通过注意力机制决定关注输入数据的那些部分，并根据之前的记忆和问题产生新的记忆. </li>
+<li>回答模块：回答模块也是一个 GRU 网络.其中上次输出和问题一起作为gru节点的输入。 根据最终记忆，产生问题的回答.</li>
+</ul>
+<p><img src="https://img-blog.csdn.net/20170514153103329?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvamF2YWZyZWVseQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<ol>
+<li>输入模块</li>
+</ol>
+<ul>
+<li>输入模块是一个 RNN 网络. 它的输入是 Work embedding（如通过 word2vec 或 GloVe 编码）. 输入是 TI个单词 w1,…,wTI .</li>
+<li>在每个时间点 t，RNN 更新其隐藏状态 ht=RNN(L[wt],ht−1) . L 是 word embedding matrix.</li>
+<li>在输入只有一个句子的情况下，输入模块输出 RNN 的所有隐藏状态.</li>
+<li>在输入是多个句子的情况下，我们将所有句子拼接，并在每个句子末尾插入句末 token. RNN 每个句末 token 位置的隐藏状态作为输出.</li>
+<li>输入模块的输出序列为 Tc 个 fact representation c. 其中 $c_t$ 是输出序列的第 t 个元素. 输入多个句子的情况下，TC 是句子个数.</li>
+<li>RNN 的选择： 原生的 RNN 性能较差， GRU 和 LSTM 性能差不多，但 LSTM 的计算更加昂贵，所以一般使用 GRU.</li>
+</ul>
+<ol>
+<li>问题模块</li>
+</ol>
+<ul>
+<li>同输入模块类似，也是一个 RNN 网络. </li>
+<li>输出是最后隐藏节点 qTQ. （不同于输入模块，输入模块的输出是多个隐藏节点）</li>
+</ul>
+<ol>
+<li>片段记忆模块</li>
+</ol>
+<ul>
+<li>每个迭代都根据之前的记忆$m^{i-1}$、问题q 和事实 c 产生新的片段 ei.新的episode (e)等$e_t^i = G(c_t, m^{m-1}, q)$ (其中初始: m 0 = q) （e每次都带着q）</li>
+<li>在当前E之下：片段记忆在输入模块输出的事实 c 上迭代，更新内部的片段记忆.$m^i = GRU(e^i, m^{i-1})$</li>
+<li>注意力机制：本文使用门控功能作为我们的注意机制，门函数 G(c,m,q)=σ(W(2)tanh(W(1)z(c,m,q)+b(1))+b(2)) 来衡量当前 句子的关注力</li>
+</ul>
+<ol>
+<li>回答模块</li>
+</ol>
+<ul>
+<li>回答模块也是一个 GRU 网络.</li>
+<li>初始值为 a0=mTM</li>
+<li>输出为 yt=softmax(W(a)at)</li>
+<li>隐藏状态 at=GRU([yt−1,q],at−1), 上次输出和问题一起作为输入</li>
+</ul>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/深度学习/">深度学习</a>, <a class="has-link-grey -link" href="/tags/自然语言处理/">自然语言处理</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/03/07/零基础学习GitHub桌面版-10给博客添加萌萌的live2d插件/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">零基础学习GitHub桌面版-10给博客添加萌萌的live2d插件</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2018/05/17/深度学习中的highway network、ResNet、Inception/">
+                <span class="level-item">深度学习中的highway network、ResNet、Inception</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://xuqingtang.top/2018/06/06/2018.06.06论文：12个NLP分类模型/';
+        this.page.identifier = '2018/06/06/2018.06.06论文：12个NLP分类模型/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <figure class="image container is-128x128 has-mb-6">
+                            <img class="is-rounded" src="/images/avatar.png" alt="Qingtang">
+                        </figure>
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Qingtang
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Developer &amp; NLPer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>HeFei, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        87
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        54
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="http://github.com/xqtbox" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="http://github.com/xqtbox">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="CSDN" href="https://blog.csdn.net/u012052268">
+                
+                <i class="fas fa-pencil-alt"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Weibo" href="https://www.weibo.com/u/5890351342">
+                
+                <i class="fab fa-weibo"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="知乎" href="https://www.zhihu.com/people/xqtbox/activities">
+                
+                <i class="fab fa-zhihu"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#1-概述">
+        <span class="has-mr-6">1</span>
+        <span>1 概述</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-1模型概览">
+        <span class="has-mr-6">1.1</span>
+        <span>1.1模型概览</span>
+        </a></li><li>
+        <a class="is-flex" href="#1-2各模型效果对比：">
+        <span class="has-mr-6">1.2</span>
+        <span>1.2各模型效果对比：</span>
+        </a></li><li>
+        <a class="is-flex" href="#1-4-代码用法：">
+        <span class="has-mr-6">1.3</span>
+        <span>1.4 代码用法：</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#2-模型细节：">
+        <span class="has-mr-6">2</span>
+        <span>2 模型细节：</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#2-1-快速文本（fastText）">
+        <span class="has-mr-6">2.1</span>
+        <span>2.1 快速文本（fastText）</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#介绍">
+        <span class="has-mr-6">2.1.1</span>
+        <span>介绍</span>
+        </a></li><li>
+        <a class="is-flex" href="#解释">
+        <span class="has-mr-6">2.1.2</span>
+        <span>解释</span>
+        </a></li><li>
+        <a class="is-flex" href="#总结">
+        <span class="has-mr-6">2.1.3</span>
+        <span>总结</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#2-2文本卷积神经网络（Text-CNN）">
+        <span class="has-mr-6">2.2</span>
+        <span>2.2文本卷积神经网络（Text CNN）</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-3文本循环神经网络（Text-RNN）">
+        <span class="has-mr-6">2.3</span>
+        <span>2.3文本循环神经网络（Text RNN）</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-4-双向长短期记忆网络文本关系（BiLstm-Text-Relation）">
+        <span class="has-mr-6">2.4</span>
+        <span>2.4 双向长短期记忆网络文本关系（BiLstm Text Relation）</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-5-两个卷积神经网络文本关系（two-CNN-Text-Relation）">
+        <span class="has-mr-6">2.5</span>
+        <span>2.5 两个卷积神经网络文本关系（two CNN Text Relation）</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-6-双长短期记忆文本关系双循环神经网络（BiLstm-Text-Relation-Two-RNN）">
+        <span class="has-mr-6">2.6</span>
+        <span>2.6 双长短期记忆文本关系双循环神经网络（BiLstm Text Relation Two RNN）</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-7-循环卷积神经网络（text-RCNN）">
+        <span class="has-mr-6">2.7</span>
+        <span>2.7 循环卷积神经网络（text-RCNN）</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-8-分层注意力">
+        <span class="has-mr-6">2.8</span>
+        <span>2.8 分层注意力</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-9具有注意的Seq2seq模型">
+        <span class="has-mr-6">2.9</span>
+        <span>2.9具有注意的Seq2seq模型</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#2-9-1-encoder-to-decoder">
+        <span class="has-mr-6">2.9.1</span>
+        <span>2.9.1 encoder to decoder</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-9-2-引入注意力机制">
+        <span class="has-mr-6">2.9.2</span>
+        <span>2.9.2 引入注意力机制</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-9-3-attention的计算方式">
+        <span class="has-mr-6">2.9.3</span>
+        <span>2.9.3 attention的计算方式</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#2-10-Transformer（“Attention-Is-All-You-Need”）">
+        <span class="has-mr-6">2.10</span>
+        <span>2.10 Transformer（“Attention Is All You Need”）</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-11-循环实体网络（Recurrent-Entity-Network）">
+        <span class="has-mr-6">2.11</span>
+        <span>2.11 循环实体网络（Recurrent Entity Network）</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-12-动态记忆网络">
+        <span class="has-mr-6">2.12</span>
+        <span>2.12 动态记忆网络</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://blog.csdn.net/u012052268" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">CSDN</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">blog.csdn.net</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Linux/">
+            <span class="level-start">
+                <span class="level-item">Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/NLP/">
+            <span class="level-start">
+                <span class="level-item">NLP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Python/">
+            <span class="level-start">
+                <span class="level-item">Python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/数据库/">
+            <span class="level-start">
+                <span class="level-item">数据库</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/机器学习/">
+            <span class="level-start">
+                <span class="level-item">机器学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/深度学习/">
+            <span class="level-start">
+                <span class="level-item">深度学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/爬虫/">
+            <span class="level-start">
+                <span class="level-item">爬虫</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/自然语言处理/">
+            <span class="level-start">
+                <span class="level-item">自然语言处理</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/运维/">
+            <span class="level-start">
+                <span class="level-item">运维</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/随笔/">
+            <span class="level-start">
+                <span class="level-item">随笔</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/驱动开发/">
+            <span class="level-start">
+                <span class="level-item">驱动开发</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Anaconda/" style="font-size: 12.73px;">Anaconda</a> <a href="/tags/CNN/" style="font-size: 11.82px;">CNN</a> <a href="/tags/DevOps/" style="font-size: 10px;">DevOps</a> <a href="/tags/DriverSttudio3-2/" style="font-size: 10px;">DriverSttudio3.2</a> <a href="/tags/Editplus/" style="font-size: 10px;">Editplus</a> <a href="/tags/EndNote/" style="font-size: 10px;">EndNote</a> <a href="/tags/GBK/" style="font-size: 10.91px;">GBK</a> <a href="/tags/Git/" style="font-size: 19.09px;">Git</a> <a href="/tags/GitHub/" style="font-size: 19.09px;">GitHub</a> <a href="/tags/Java/" style="font-size: 17.27px;">Java</a> <a href="/tags/Jena/" style="font-size: 10px;">Jena</a> <a href="/tags/Jieba/" style="font-size: 10px;">Jieba</a> <a href="/tags/Keras/" style="font-size: 10px;">Keras</a> <a href="/tags/LSTM/" style="font-size: 10px;">LSTM</a> <a href="/tags/Linux/" style="font-size: 14.55px;">Linux</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/Neo4j/" style="font-size: 10px;">Neo4j</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/Protege/" style="font-size: 10px;">Protege</a> <a href="/tags/Pycharm/" style="font-size: 11.82px;">Pycharm</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Tensorboard/" style="font-size: 10px;">Tensorboard</a> <a href="/tags/Tensorflow/" style="font-size: 14.55px;">Tensorflow</a> <a href="/tags/USB/" style="font-size: 10px;">USB</a> <a href="/tags/UTF-8/" style="font-size: 10.91px;">UTF-8</a> <a href="/tags/coursera/" style="font-size: 19.09px;">coursera</a> <a href="/tags/ddk/" style="font-size: 10px;">ddk</a> <a href="/tags/eclipse/" style="font-size: 14.55px;">eclipse</a> <a href="/tags/jieba/" style="font-size: 10px;">jieba</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/myeclipse/" style="font-size: 11.82px;">myeclipse</a> <a href="/tags/scrapy/" style="font-size: 13.64px;">scrapy</a> <a href="/tags/screen/" style="font-size: 10px;">screen</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/win7/" style="font-size: 10px;">win7</a> <a href="/tags/word2vec/" style="font-size: 10px;">word2vec</a> <a href="/tags/xshell/" style="font-size: 10px;">xshell</a> <a href="/tags/分词/" style="font-size: 10px;">分词</a> <a href="/tags/学习路线/" style="font-size: 11.82px;">学习路线</a> <a href="/tags/报错/" style="font-size: 15.45px;">报错</a> <a href="/tags/文件操作/" style="font-size: 10px;">文件操作</a> <a href="/tags/机器学习/" style="font-size: 19.09px;">机器学习</a> <a href="/tags/汽车之家/" style="font-size: 10.91px;">汽车之家</a> <a href="/tags/深度学习/" style="font-size: 17.27px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 16.36px;">爬虫</a> <a href="/tags/知识图谱/" style="font-size: 16.36px;">知识图谱</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/自然语言处理/" style="font-size: 18.18px;">自然语言处理</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/问答系统/" style="font-size: 10px;">问答系统</a> <a href="/tags/阅读理解/" style="font-size: 10px;">阅读理解</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/驱动程序/" style="font-size: 10px;">驱动程序</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/11.jpg" alt="linux环境变量的设置+关于bashrc与profile的区别">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-03T05:24:26.000Z">2019-05-03</time></div>
+                    <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="has-link-black-ter is-size-6">linux环境变量的设置+关于bashrc与profile的区别</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/02/Windows下neo4j安装使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/10.jpg" alt="Windows下neo4j安装使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-02T03:21:22.000Z">2019-05-02</time></div>
+                    <a href="/2019/05/02/Windows下neo4j安装使用/" class="has-link-black-ter is-size-6">Windows下neo4j安装使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/09.jpg" alt="实践篇（5）：基于REfO的简单知识问答">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-01T04:28:22.000Z">2019-05-01</time></div>
+                    <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="has-link-black-ter is-size-6">实践篇（5）：基于REfO的简单知识问答</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/08.jpg" alt="实践篇（4）：Apache jena SPARQL endpoint及推理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-30T03:28:25.000Z">2019-04-30</time></div>
+                    <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="has-link-black-ter is-size-6">实践篇（4）：Apache jena SPARQL endpoint及推理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/07.jpg" alt="实践篇（3）RDF查询语言SPARQL">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-29T04:28:25.000Z">2019-04-29</time></div>
+                    <a href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/" class="has-link-black-ter is-size-6">实践篇（3）RDF查询语言SPARQL</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anaconda/">
+                        <span class="tag">Anaconda</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CNN/">
+                        <span class="tag">CNN</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DevOps/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DriverSttudio3-2/">
+                        <span class="tag">DriverSttudio3.2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Editplus/">
+                        <span class="tag">Editplus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EndNote/">
+                        <span class="tag">EndNote</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GBK/">
+                        <span class="tag">GBK</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jena/">
+                        <span class="tag">Jena</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jieba/">
+                        <span class="tag">Jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keras/">
+                        <span class="tag">Keras</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LSTM/">
+                        <span class="tag">LSTM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLP/">
+                        <span class="tag">NLP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Neo4j/">
+                        <span class="tag">Neo4j</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Oracle/">
+                        <span class="tag">Oracle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Protege/">
+                        <span class="tag">Protege</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pycharm/">
+                        <span class="tag">Pycharm</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">25</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RNN/">
+                        <span class="tag">RNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorboard/">
+                        <span class="tag">Tensorboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/USB/">
+                        <span class="tag">USB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UTF-8/">
+                        <span class="tag">UTF-8</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/coursera/">
+                        <span class="tag">coursera</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ddk/">
+                        <span class="tag">ddk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/eclipse/">
+                        <span class="tag">eclipse</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jieba/">
+                        <span class="tag">jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/maven/">
+                        <span class="tag">maven</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/myeclipse/">
+                        <span class="tag">myeclipse</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy/">
+                        <span class="tag">scrapy</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/screen/">
+                        <span class="tag">screen</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/session/">
+                        <span class="tag">session</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/win7/">
+                        <span class="tag">win7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/word2vec/">
+                        <span class="tag">word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/xshell/">
+                        <span class="tag">xshell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/分词/">
+                        <span class="tag">分词</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/学习路线/">
+                        <span class="tag">学习路线</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/报错/">
+                        <span class="tag">报错</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/文件操作/">
+                        <span class="tag">文件操作</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器学习/">
+                        <span class="tag">机器学习</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/汽车之家/">
+                        <span class="tag">汽车之家</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/深度学习/">
+                        <span class="tag">深度学习</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/知识图谱/">
+                        <span class="tag">知识图谱</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/编码/">
+                        <span class="tag">编码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/自然语言处理/">
+                        <span class="tag">自然语言处理</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/运维/">
+                        <span class="tag">运维</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/问答系统/">
+                        <span class="tag">问答系统</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/阅读理解/">
+                        <span class="tag">阅读理解</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/面向对象/">
+                        <span class="tag">面向对象</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/驱动程序/">
+                        <span class="tag">驱动程序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/11.jpg" alt="linux环境变量的设置+关于bashrc与profile的区别">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-03T05:24:26.000Z">2019-05-03</time></div>
+                    <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="has-link-black-ter is-size-6">linux环境变量的设置+关于bashrc与profile的区别</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/02/Windows下neo4j安装使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/10.jpg" alt="Windows下neo4j安装使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-02T03:21:22.000Z">2019-05-02</time></div>
+                    <a href="/2019/05/02/Windows下neo4j安装使用/" class="has-link-black-ter is-size-6">Windows下neo4j安装使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/09.jpg" alt="实践篇（5）：基于REfO的简单知识问答">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-01T04:28:22.000Z">2019-05-01</time></div>
+                    <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="has-link-black-ter is-size-6">实践篇（5）：基于REfO的简单知识问答</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/08.jpg" alt="实践篇（4）：Apache jena SPARQL endpoint及推理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-30T03:28:25.000Z">2019-04-30</time></div>
+                    <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="has-link-black-ter is-size-6">实践篇（4）：Apache jena SPARQL endpoint及推理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/07.jpg" alt="实践篇（3）RDF查询语言SPARQL">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-29T04:28:25.000Z">2019-04-29</time></div>
+                    <a href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/" class="has-link-black-ter is-size-6">实践篇（3）RDF查询语言SPARQL</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anaconda/">
+                        <span class="tag">Anaconda</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CNN/">
+                        <span class="tag">CNN</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DevOps/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DriverSttudio3-2/">
+                        <span class="tag">DriverSttudio3.2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Editplus/">
+                        <span class="tag">Editplus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EndNote/">
+                        <span class="tag">EndNote</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GBK/">
+                        <span class="tag">GBK</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jena/">
+                        <span class="tag">Jena</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jieba/">
+                        <span class="tag">Jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keras/">
+                        <span class="tag">Keras</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LSTM/">
+                        <span class="tag">LSTM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLP/">
+                        <span class="tag">NLP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Neo4j/">
+                        <span class="tag">Neo4j</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Oracle/">
+                        <span class="tag">Oracle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Protege/">
+                        <span class="tag">Protege</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pycharm/">
+                        <span class="tag">Pycharm</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">25</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RNN/">
+                        <span class="tag">RNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorboard/">
+                        <span class="tag">Tensorboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/USB/">
+                        <span class="tag">USB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UTF-8/">
+                        <span class="tag">UTF-8</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/coursera/">
+                        <span class="tag">coursera</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ddk/">
+                        <span class="tag">ddk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/eclipse/">
+                        <span class="tag">eclipse</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jieba/">
+                        <span class="tag">jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/maven/">
+                        <span class="tag">maven</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/myeclipse/">
+                        <span class="tag">myeclipse</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy/">
+                        <span class="tag">scrapy</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/screen/">
+                        <span class="tag">screen</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/session/">
+                        <span class="tag">session</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/win7/">
+                        <span class="tag">win7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/word2vec/">
+                        <span class="tag">word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/xshell/">
+                        <span class="tag">xshell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/分词/">
+                        <span class="tag">分词</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/学习路线/">
+                        <span class="tag">学习路线</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/报错/">
+                        <span class="tag">报错</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/文件操作/">
+                        <span class="tag">文件操作</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器学习/">
+                        <span class="tag">机器学习</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/汽车之家/">
+                        <span class="tag">汽车之家</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/深度学习/">
+                        <span class="tag">深度学习</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/知识图谱/">
+                        <span class="tag">知识图谱</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/编码/">
+                        <span class="tag">编码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/自然语言处理/">
+                        <span class="tag">自然语言处理</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/运维/">
+                        <span class="tag">运维</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/问答系统/">
+                        <span class="tag">问答系统</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/阅读理解/">
+                        <span class="tag">阅读理解</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/面向对象/">
+                        <span class="tag">面向对象</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/驱动程序/">
+                        <span class="tag">驱动程序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="2018.06.06论文：12个NLP分类模型" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Qingtang&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true}});</script></body>
+</html>

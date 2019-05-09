@@ -1,0 +1,2417 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8">
+<title>python结巴分词、jieba加载停用词表 - 博客堂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
+    <meta name="description" content="python结巴分词1 jieba中文分词简介中文分词是中文NLP的第一步，一个优秀的分词系统取决于足够的语料和完善的模型，很多机构和公司也都会开发和维护自己的分词系统。">
+<meta name="keywords" content="自然语言处理,Python,分词,jieba">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python结巴分词、jieba加载停用词表">
+<meta property="og:url" content="http://xuqingtang.top/2017/09/03/python结巴分词、jieba加载停用词表/index.html">
+<meta property="og:site_name" content="博客堂">
+<meta property="og:description" content="python结巴分词1 jieba中文分词简介中文分词是中文NLP的第一步，一个优秀的分词系统取决于足够的语料和完善的模型，很多机构和公司也都会开发和维护自己的分词系统。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-07T08:03:58.239Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python结巴分词、jieba加载停用词表">
+<meta name="twitter:description" content="python结巴分词1 jieba中文分词简介中文分词是中文NLP的第一步，一个优秀的分词系统取决于足够的语料和完善的模型，很多机构和公司也都会开发和维护自己的分词系统。">
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="python结巴分词、jieba加载停用词表" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/image-banner/10.jpg" alt="python结巴分词、jieba加载停用词表">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-09-03T13:07:04.000Z">2017-09-03</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    22 分钟 读完 (大约 3259 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                python结巴分词、jieba加载停用词表
+            
+        </h1>
+        <div class="content">
+            <h1 id="python结巴分词"><a href="#python结巴分词" class="headerlink" title="python结巴分词"></a>python结巴分词</h1><h2 id="1-jieba中文分词简介"><a href="#1-jieba中文分词简介" class="headerlink" title="1 jieba中文分词简介"></a>1 jieba中文分词简介</h2><p>中文分词是中文NLP的第一步，一个优秀的分词系统取决于足够的语料和完善的模型，很多机构和公司也都会开发和维护自己的分词系统。</p>
+<a id="more"></a>
+<p>这里推荐的是一款完全开源、简单易用的分词工具，jieba中文分词。官网在这里，<a href="https://github.com/fxsjy/jieba" target="_blank" rel="noopener">https://github.com/fxsjy/jieba</a> 里面提供了详细的说明文档。虽然jieba分词的性能并不是最优秀的，但它开源免费、使用简单、功能丰富，并且支持多种编程语言实现。</p>
+<h2 id="2-中文分词的原理"><a href="#2-中文分词的原理" class="headerlink" title="2 中文分词的原理"></a>2 中文分词的原理</h2><p>中文分词的模型实现主要分类两大类：基于规则和基于统计。</p>
+<h3 id="2-1-基于规则"><a href="#2-1-基于规则" class="headerlink" title="2.1 基于规则"></a>2.1 基于规则</h3><p>基于规则是指根据一个已有的词典，采用前向最大匹配、后向最大匹配、双向最大匹配等人工设定的规则来进行分词。</p>
+<p>例如对于“上海自来水来自海上”这句话，使用前向最大匹配，即从前向后扫描，使分出来的词存在于词典中并且尽可能长，则可以得到“上海/自来水/来自/海上”。这类方法思想简单且易于实现，对数据量的要求也不高。</p>
+<p>当然，分词所使用的规则可以设计得更复杂，从而使分词效果更理想。但是由于中文博大精深、语法千变万化，很难设计足够全面而通用的规则，并且具体的上下文语境、词语之间的搭配组合也都会影响到最终的分词结果，这些挑战都使得基于规则的分词模型愈发力不从心。</p>
+<h3 id="2-2-基于统计"><a href="#2-2-基于统计" class="headerlink" title="2.2 基于统计"></a>2.2 基于统计</h3><p>基于统计是从大量人工标注语料中总结词的概率分布以及词之间的常用搭配，使用有监督学习训练分词模型。</p>
+<p>对于“上海自来水来自海上”这句话，一个最简单的统计分词想法是，尝试所有可能的分词方案，因为任何两个字之间，要么需要切分，要么无需切分。</p>
+<p>对于全部可能的分词方案，根据语料统计每种方案出现的概率，然后保留概率最大的一种。很显然，“上海/自来水/来自/海上”的出现概率比“上海自/来水/来自/海上”更高，因为“上海”和“自来水”在标注语料中出现的次数比“上海自”和“来水”更多。</p>
+<h3 id="2-3-jieba的原理"><a href="#2-3-jieba的原理" class="headerlink" title="2.3 jieba的原理"></a>2.3 jieba的原理</h3><p>jieba分词结合了基于规则和基于统计两类方法。</p>
+<p>首先基于前缀词典进行词图扫描，前缀词典是指词典中的词按照前缀包含的顺序排列，例如词典中出现了“上”，之后以“上”开头的词都会出现在这一块，例如“上海”，进而会出现“上海市”，从而形成一种层级包含结构。</p>
+<p>如果将词看作节点，词和词之间的分词符看作边，那么一种分词方案则对应着从第一个字到最后一个字的一条分词路径。因此，基于前缀词典可以快速构建包含全部可能分词结果的有向无环图，这个图中包含多条分词路径，有向是指全部的路径都始于第一个字、止于最后一个字，无环是指节点之间不构成闭环。</p>
+<p>基于标注语料，使用动态规划的方法可以找出最大概率路径，并将其作为最终的分词结果。</p>
+<h2 id="3-安装结巴jieba"><a href="#3-安装结巴jieba" class="headerlink" title="3 安装结巴jieba"></a>3 安装结巴jieba</h2><p>以下我们使用Python中的jieba分词完成一些基础NLP任务，如果对jieba分词感兴趣，希望了解更多内容，可以参考官方使用文档。首先没有jieba分词的话需要安装，使用pip即可。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install jieba</span><br></pre></td></tr></table></figure>
+<h2 id="4-jieba三种分词模式以及其应用"><a href="#4-jieba三种分词模式以及其应用" class="headerlink" title="4 jieba三种分词模式以及其应用"></a>4 jieba三种分词模式以及其应用</h2><p>jieba提供了三种分词模式：</p>
+<ul>
+<li>精确模式：试图将句子最精确地切开，适合文本分析；cut_all=True</li>
+<li>全模式：把句子中所有可以成词的词语都扫描出来, 速度非常快，但是不能解决歧义；cut_all=False</li>
+<li>搜索引擎模式：在精确模式的基础上，对长词再次切分，提高召回率，适合用于搜索引擎分词。jieba.cut_for_search()</li>
+</ul>
+<p>以下代码使用jieba实现中文分词，使用jieba.cut()函数并传入待分词的文本字符串即可，使用cut_all参数控制选择使用全模式还是精确模式，默认为精确模式。如果需要使用搜索引擎模式，使用jieba.cut_for_search()函数即可。运行以下代码之后，jieba首先会加载自带的前缀词典，然后完成相应的分词任务。</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> jieba</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(<span class="hljs-string">"我来到北京清华大学"</span>, cut_all=<span class="hljs-keyword">True</span>)</span><br><span class="line"><span class="hljs-comment"># join是split的逆操作</span></span><br><span class="line"><span class="hljs-comment"># 即使用一个拼接符将一个列表拼成字符串</span></span><br><span class="line">print(<span class="hljs-string">"/ "</span>.join(seg_list))  <span class="hljs-comment"># 全模式</span></span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(<span class="hljs-string">"我来到北京清华大学"</span>, cut_all=<span class="hljs-keyword">False</span>)</span><br><span class="line">print(<span class="hljs-string">"/ "</span>.join(seg_list))  <span class="hljs-comment"># 精确模式</span></span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(<span class="hljs-string">"他来到了网易杭研大厦"</span>)  <span class="hljs-comment"># 默认是精确模式</span></span><br><span class="line">print(<span class="hljs-string">"/ "</span>.join(seg_list))</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut_for_search(<span class="hljs-string">"小明硕士毕业于中国科学院计算所，后在日本京都大学深造"</span>)  <span class="hljs-comment"># 搜索引擎模式</span></span><br><span class="line">print(<span class="hljs-string">"/ "</span>.join(seg_list))</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">我/ 来到/ 北京/ 清华/ 清华大学/ 华大/ 大学</span><br><span class="line">我/ 来到/ 北京/ 清华大学</span><br><span class="line">他/ 来到/ 了/ 网易/ 杭研/ 大厦</span><br><span class="line">小明/ 硕士/ 毕业/ 于/ 中国/ 科学/ 学院/ 科学院/ 中国科学院/ 计算/ 计算所/ ，/ 后/ 在/ 日本/ 京都/ 大学/ 日本京都大学/ 深造</span><br></pre></td></tr></table></figure>
+<h2 id="5-jieba增强功能-加载自定义词典"><a href="#5-jieba增强功能-加载自定义词典" class="headerlink" title="5 jieba增强功能-加载自定义词典"></a>5 jieba增强功能-加载自定义词典</h2><h3 id="5-1-载入新自定义词典"><a href="#5-1-载入新自定义词典" class="headerlink" title="5.1 载入新自定义词典"></a>5.1 载入新自定义词典</h3><p>开发者可以指定自己自定义的词典，以便包含 jieba 词库里没有的词。虽然 jieba 有新词识别能力，但是自行添加新词可以保证更高的正确率</p>
+<ul>
+<li>用法： jieba.load_userdict(file_name) # file_name 为文件类对象或自定义词典的路径</li>
+<li>词典格式和 dict.txt 一样，一个词占一行；每一行分三部分：词语、词频（可省略）、词性（可省略），用空格隔开，顺序不可颠倒。file_name 若为路径或二进制方式打开的文件，则文件必须为 UTF-8 编码。</li>
+<li>词频省略时使用自动计算的能保证分出该词的词频。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">创新办 3 i</span><br><span class="line">云计算 5</span><br><span class="line">凱特琳 nz</span><br><span class="line">台中</span><br></pre></td></tr></table></figure>
+<p>用法示例：<a href="https://github.com/fxsjy/jieba/blob/master/test/test_userdict.py" target="_blank" rel="noopener">https://github.com/fxsjy/jieba/blob/master/test/test_userdict.py</a></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">之前： 李小福 / 是 / 创新 / 办 / 主任 / 也 / 是 / 云 / 计算 / 方面 / 的 / 专家 /</span><br><span class="line"></span><br><span class="line">加载自定义词库后：　李小福 / 是 / 创新办 / 主任 / 也 / 是 / 云计算 / 方面 / 的 / 专家 /</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-载入停用词表"><a href="#5-2-载入停用词表" class="headerlink" title="5.2 载入停用词表"></a>5.2 载入停用词表</h3><p>主要思想是分词过后，遍历一下停用词表，去掉停用词。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> jieba  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="hljs-comment"># jieba.load_userdict('userdict.txt')  </span></span><br><span class="line"><span class="hljs-comment"># 创建停用词list  </span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">stopwordslist</span><span class="hljs-params">(filepath)</span>:</span>  </span><br><span class="line">    stopwords = [line.strip() <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> open(filepath, <span class="hljs-string">'r'</span>, encoding=<span class="hljs-string">'utf-8'</span>).readlines()]  </span><br><span class="line">    <span class="hljs-keyword">return</span> stopwords  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="hljs-comment"># 对句子进行分词  </span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">seg_sentence</span><span class="hljs-params">(sentence)</span>:</span>  </span><br><span class="line">    sentence_seged = jieba.cut(sentence.strip())  </span><br><span class="line">    stopwords = stopwordslist(<span class="hljs-string">'./test/stopwords.txt'</span>)  <span class="hljs-comment"># 这里加载停用词的路径  </span></span><br><span class="line">    outstr = <span class="hljs-string">''</span>  </span><br><span class="line">    <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> sentence_seged:  </span><br><span class="line">        <span class="hljs-keyword">if</span> word <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> stopwords:  </span><br><span class="line">            <span class="hljs-keyword">if</span> word != <span class="hljs-string">'\t'</span>:  </span><br><span class="line">                outstr += word  </span><br><span class="line">                outstr += <span class="hljs-string">" "</span>  </span><br><span class="line">    <span class="hljs-keyword">return</span> outstr  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">inputs = open(<span class="hljs-string">'./test/input.txt'</span>, <span class="hljs-string">'r'</span>, encoding=<span class="hljs-string">'utf-8'</span>)  </span><br><span class="line">outputs = open(<span class="hljs-string">'./test/output.txt'</span>, <span class="hljs-string">'w'</span>)  </span><br><span class="line"><span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> inputs:  </span><br><span class="line">    line_seg = seg_sentence(line)  <span class="hljs-comment"># 这里的返回值是字符串  </span></span><br><span class="line">    outputs.write(line_seg + <span class="hljs-string">'\n'</span>)  </span><br><span class="line">outputs.close()  </span><br><span class="line">inputs.close()</span><br></pre></td></tr></table></figure></p>
+<h2 id="6-jieba分词的其他应用"><a href="#6-jieba分词的其他应用" class="headerlink" title="6 jieba分词的其他应用"></a>6 jieba分词的其他应用</h2><h3 id="6-1-关键词提取"><a href="#6-1-关键词提取" class="headerlink" title="6.1 关键词提取"></a>6.1 关键词提取</h3><p>jieba还实现了TF-IDF和TextRank这两种关键词提取算法，直接调用即可。</p>
+<p>当然，提取关键词的前提是中文分词，所以这里也会使用到jieba自带的前缀词典和IDF权重词典。</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> jieba.analyse</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 字符串前面加u表示使用unicode编码</span></span><br><span class="line">content = <span class="hljs-string">u'中国特色社会主义是我们党领导的伟大事业，全面推进党的建设新的伟大工程，是这一伟大事业取得胜利的关键所在。党坚强有力，事业才能兴旺发达，国家才能繁荣稳定，人民才能幸福安康。党的十八大以来，我们党坚持党要管党、从严治党，凝心聚力、直击积弊、扶正祛邪，党的建设开创新局面，党风政风呈现新气象。习近平总书记围绕从严管党治党提出一系列新的重要思想，为全面推进党的建设新的伟大工程进一步指明了方向。'</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 第一个参数：待提取关键词的文本</span></span><br><span class="line"><span class="hljs-comment"># 第二个参数：返回关键词的数量，重要性从高到低排序</span></span><br><span class="line"><span class="hljs-comment"># 第三个参数：是否同时返回每个关键词的权重</span></span><br><span class="line"><span class="hljs-comment"># 第四个参数：词性过滤，为空表示不过滤，若提供则仅返回符合词性要求的关键词</span></span><br><span class="line">keywords = jieba.analyse.extract_tags(content, topK=<span class="hljs-number">20</span>, withWeight=<span class="hljs-keyword">True</span>, allowPOS=())</span><br><span class="line"><span class="hljs-comment"># 访问提取结果</span></span><br><span class="line"><span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> keywords:</span><br><span class="line">    <span class="hljs-comment"># 分别为关键词和相应的权重</span></span><br><span class="line">    <span class="hljs-keyword">print</span> item[<span class="hljs-number">0</span>], item[<span class="hljs-number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 同样是四个参数，但allowPOS默认为('ns', 'n', 'vn', 'v')</span></span><br><span class="line"><span class="hljs-comment"># 即仅提取地名、名词、动名词、动词</span></span><br><span class="line">keywords = jieba.analyse.textrank(content, topK=<span class="hljs-number">20</span>, withWeight=<span class="hljs-keyword">True</span>, allowPOS=(<span class="hljs-string">'ns'</span>, <span class="hljs-string">'n'</span>, <span class="hljs-string">'vn'</span>, <span class="hljs-string">'v'</span>))</span><br><span class="line"><span class="hljs-comment"># 访问提取结果</span></span><br><span class="line"><span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> keywords:</span><br><span class="line">    <span class="hljs-comment"># 分别为关键词和相应的权重</span></span><br><span class="line">    <span class="hljs-keyword">print</span> item[<span class="hljs-number">0</span>], item[<span class="hljs-number">1</span>]</span><br></pre></td></tr></table></figure>
+<p>结果展示：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">才能 1.0</span><br><span class="line">管党 0.7999933934163805</span><br><span class="line">全面 0.7325692441985737</span><br><span class="line">社会主义 0.6327916888315029</span><br><span class="line">围绕 0.60594603358887</span><br><span class="line">总书记 0.5945625023471114</span><br><span class="line">凝心 0.5840883789052874</span><br><span class="line">政风 0.5792034335473362</span><br><span class="line">新气象 0.5772168490112909</span><br><span class="line">党风 0.5728262292165519</span><br><span class="line">呈现 0.5700456186486299</span><br><span class="line">推进 0.5548361394986431</span><br><span class="line">方向 0.5150324602730256</span><br><span class="line">指明 0.5113586590717408</span><br><span class="line">治党 0.5062232626208965</span><br><span class="line">局面 0.4744549207999055</span><br><span class="line">聚力 0.46596165707522896</span><br><span class="line">积弊 0.4646149902996275</span><br><span class="line">直击 0.46314922535402286</span><br><span class="line">国家 0.46179235227324805</span><br></pre></td></tr></table></figure>
+<h3 id="6-2-词性标注"><a href="#6-2-词性标注" class="headerlink" title="6.2 词性标注"></a>6.2 词性标注</h3><p>jieba在进行中文分词的同时，还可以完成词性标注任务。根据分词结果中每个词的词性，可以初步实现命名实体识别，即将标注为nr的词视为人名，将标注为ns的词视为地名等。所有标点符号都会被标注为x，所以可以根据这个去除分词结果中的标点符号。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 加载jieba.posseg并取个别名，方便调用</span><br><span class="line">import jieba.posseg as pseg</span><br><span class="line">words = pseg.cut(&quot;我爱北京天安门&quot;)</span><br><span class="line">for word, flag in words:</span><br><span class="line">    # 格式化模版并传入参数</span><br><span class="line">    print(&apos;%s, %s&apos; % (word, flag))</span><br></pre></td></tr></table></figure>
+<p>结果展示：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">我, r</span><br><span class="line">爱, v</span><br><span class="line">北京, ns</span><br><span class="line">天安门, ns</span><br></pre></td></tr></table></figure>
+<p>参考视频：<a href="http://study.163.com/course/courseLearn.htm?courseId=1003520028#/learn/video?lessonId=1004015740&amp;courseId=1003520028" target="_blank" rel="noopener">全栈数据工程师养成攻略-18-结巴分词</a></p>
+<h2 id="7-用jieba分词实战（含文件的读取与存储）"><a href="#7-用jieba分词实战（含文件的读取与存储）" class="headerlink" title="7 用jieba分词实战（含文件的读取与存储）"></a>7 用jieba分词实战（含文件的读取与存储）</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="hljs-comment">#本程序主要用于jieba分词，以及去除停用词</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> os</span><br><span class="line"><span class="hljs-keyword">import</span> jieba</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 保存文件的函数</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">savefile</span><span class="hljs-params">(savepath,content)</span>:</span></span><br><span class="line">    fp = open(savepath,<span class="hljs-string">'w'</span>,encoding=<span class="hljs-string">'utf8'</span>,errors=<span class="hljs-string">'ignore'</span>)</span><br><span class="line">    fp.write(content)</span><br><span class="line">    fp.close()</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 读取文件的函数</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">readfile</span><span class="hljs-params">(path)</span>:</span></span><br><span class="line">    fp = open(path, <span class="hljs-string">"r"</span>, encoding=<span class="hljs-string">'utf8'</span>, errors=<span class="hljs-string">'ignore'</span>)</span><br><span class="line">    content = fp.read()</span><br><span class="line">    fp.close()</span><br><span class="line">    <span class="hljs-keyword">return</span> content</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">## 去除停用词的2个函数</span></span><br><span class="line"><span class="hljs-comment"># 创建停用词list</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">stopwordslist</span><span class="hljs-params">(filepath)</span>:</span></span><br><span class="line">    stopwords = [line.strip() <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> open(filepath, <span class="hljs-string">'r'</span>, encoding=<span class="hljs-string">'utf-8'</span>).readlines()]</span><br><span class="line">    <span class="hljs-keyword">return</span> stopwords</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 对句子去除停用词</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">movestopwords</span><span class="hljs-params">(sentence)</span>:</span></span><br><span class="line">    stopwords = stopwordslist(<span class="hljs-string">'语料/hlt_stop_words.txt'</span>)  <span class="hljs-comment"># 这里加载停用词的路径</span></span><br><span class="line">    outstr = <span class="hljs-string">''</span></span><br><span class="line">    <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> sentence:</span><br><span class="line">        <span class="hljs-keyword">if</span> word <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> stopwords:</span><br><span class="line">            <span class="hljs-keyword">if</span> word != <span class="hljs-string">'\t'</span><span class="hljs-keyword">and</span><span class="hljs-string">'\n'</span>:</span><br><span class="line">                outstr += word</span><br><span class="line">                <span class="hljs-comment"># outstr += " "</span></span><br><span class="line">    <span class="hljs-keyword">return</span> outstr</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">corpus_path = <span class="hljs-string">"语料/train/"</span>  <span class="hljs-comment"># 未分词分类预料库路径</span></span><br><span class="line">seg_path = <span class="hljs-string">"语料/train_seg/"</span>  <span class="hljs-comment"># 分词后分类语料库路径</span></span><br><span class="line"></span><br><span class="line">catelist = os.listdir(corpus_path)  <span class="hljs-comment"># 获取未分词目录下所有子目录</span></span><br><span class="line"><span class="hljs-keyword">for</span> mydir <span class="hljs-keyword">in</span> catelist:</span><br><span class="line">    class_path = corpus_path + mydir + <span class="hljs-string">"/"</span>  <span class="hljs-comment"># 拼出分类子目录的路径</span></span><br><span class="line">    seg_dir = seg_path + mydir + <span class="hljs-string">"/"</span>  <span class="hljs-comment"># 拼出分词后预料分类目录</span></span><br><span class="line">    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(seg_dir):  <span class="hljs-comment"># 是否存在，不存在则创建</span></span><br><span class="line">        os.makedirs(seg_dir)</span><br><span class="line"></span><br><span class="line">    file_list = os.listdir(class_path) <span class="hljs-comment"># 列举当前目录所有文件</span></span><br><span class="line">    <span class="hljs-keyword">for</span> file_path <span class="hljs-keyword">in</span> file_list:</span><br><span class="line">        fullname = class_path + file_path <span class="hljs-comment"># 路径+文件名</span></span><br><span class="line">        print(<span class="hljs-string">"当前处理的文件是： "</span>,fullname)  <span class="hljs-comment"># 语料/train/pos/pos1.txt</span></span><br><span class="line">                        <span class="hljs-comment">#  语料/train/neg/neg1.txt</span></span><br><span class="line"></span><br><span class="line">        content = readfile(fullname).strip()  <span class="hljs-comment"># 读取文件内容</span></span><br><span class="line">        content = content.replace(<span class="hljs-string">"\n"</span>, <span class="hljs-string">""</span>).strip()  <span class="hljs-comment"># 删除换行和多余的空格</span></span><br><span class="line">        content_seg = jieba.cut(content)    <span class="hljs-comment"># jieba分词</span></span><br><span class="line">        print(<span class="hljs-string">"jieba分词后："</span>,content_seg)</span><br><span class="line">        listcontent = <span class="hljs-string">''</span></span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> content_seg:</span><br><span class="line">            listcontent += i</span><br><span class="line">            listcontent += <span class="hljs-string">" "</span></span><br><span class="line">        print(listcontent[<span class="hljs-number">0</span>:<span class="hljs-number">10</span>])</span><br><span class="line">        listcontent = movestopwords(listcontent)    <span class="hljs-comment"># 去除停用词</span></span><br><span class="line">        print(<span class="hljs-string">"去除停用词后："</span>, listcontent[<span class="hljs-number">0</span>:<span class="hljs-number">10</span>])</span><br><span class="line">        listcontent = listcontent.replace(<span class="hljs-string">"   "</span>, <span class="hljs-string">" "</span>).replace(<span class="hljs-string">"  "</span>, <span class="hljs-string">" "</span>)</span><br><span class="line">        savefile(seg_dir + file_path, <span class="hljs-string">""</span>.join(listcontent)) <span class="hljs-comment"># 保存</span></span><br></pre></td></tr></table></figure>
+<p>结果展示：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">分词前：和秦一对比就是弱爆了的技术</span><br><span class="line"></span><br><span class="line">分词后： 和 秦一 对比 就是 弱 爆 了 的 技术 ， 都 有点</span><br><span class="line"></span><br><span class="line">去除停用词后：秦 弱 爆 技术 都 点 不好意思 出 口碑</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Python/">Python</a>, <a class="has-link-grey -link" href="/tags/jieba/">jieba</a>, <a class="has-link-grey -link" href="/tags/分词/">分词</a>, <a class="has-link-grey -link" href="/tags/自然语言处理/">自然语言处理</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/09/04/零基础学习GitHub桌面版-5 github的使用技巧/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">零基础学习GitHub桌面版-5 github的使用技巧</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2017/09/03/Python 繁体中文与简体中文相互转换/">
+                <span class="level-item">Python 繁体中文与简体中文相互转换</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://xuqingtang.top/2017/09/03/python结巴分词、jieba加载停用词表/';
+        this.page.identifier = '2017/09/03/python结巴分词、jieba加载停用词表/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <figure class="image container is-128x128 has-mb-6">
+                            <img class="is-rounded" src="/images/avatar.png" alt="Qingtang">
+                        </figure>
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Qingtang
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Developer &amp; NLPer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>HeFei, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        87
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        54
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="http://github.com/xqtbox" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="http://github.com/xqtbox">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="CSDN" href="https://blog.csdn.net/u012052268">
+                
+                <i class="fas fa-pencil-alt"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Weibo" href="https://www.weibo.com/u/5890351342">
+                
+                <i class="fab fa-weibo"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="知乎" href="https://www.zhihu.com/people/xqtbox/activities">
+                
+                <i class="fab fa-zhihu"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#python结巴分词">
+        <span class="has-mr-6">1</span>
+        <span>python结巴分词</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-jieba中文分词简介">
+        <span class="has-mr-6">1.1</span>
+        <span>1 jieba中文分词简介</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-中文分词的原理">
+        <span class="has-mr-6">1.2</span>
+        <span>2 中文分词的原理</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#2-1-基于规则">
+        <span class="has-mr-6">1.2.1</span>
+        <span>2.1 基于规则</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-2-基于统计">
+        <span class="has-mr-6">1.2.2</span>
+        <span>2.2 基于统计</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-3-jieba的原理">
+        <span class="has-mr-6">1.2.3</span>
+        <span>2.3 jieba的原理</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#3-安装结巴jieba">
+        <span class="has-mr-6">1.3</span>
+        <span>3 安装结巴jieba</span>
+        </a></li><li>
+        <a class="is-flex" href="#4-jieba三种分词模式以及其应用">
+        <span class="has-mr-6">1.4</span>
+        <span>4 jieba三种分词模式以及其应用</span>
+        </a></li><li>
+        <a class="is-flex" href="#5-jieba增强功能-加载自定义词典">
+        <span class="has-mr-6">1.5</span>
+        <span>5 jieba增强功能-加载自定义词典</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#5-1-载入新自定义词典">
+        <span class="has-mr-6">1.5.1</span>
+        <span>5.1 载入新自定义词典</span>
+        </a></li><li>
+        <a class="is-flex" href="#5-2-载入停用词表">
+        <span class="has-mr-6">1.5.2</span>
+        <span>5.2 载入停用词表</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#6-jieba分词的其他应用">
+        <span class="has-mr-6">1.6</span>
+        <span>6 jieba分词的其他应用</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#6-1-关键词提取">
+        <span class="has-mr-6">1.6.1</span>
+        <span>6.1 关键词提取</span>
+        </a></li><li>
+        <a class="is-flex" href="#6-2-词性标注">
+        <span class="has-mr-6">1.6.2</span>
+        <span>6.2 词性标注</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#7-用jieba分词实战（含文件的读取与存储）">
+        <span class="has-mr-6">1.7</span>
+        <span>7 用jieba分词实战（含文件的读取与存储）</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://blog.csdn.net/u012052268" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">CSDN</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">blog.csdn.net</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Linux/">
+            <span class="level-start">
+                <span class="level-item">Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/NLP/">
+            <span class="level-start">
+                <span class="level-item">NLP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Python/">
+            <span class="level-start">
+                <span class="level-item">Python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/数据库/">
+            <span class="level-start">
+                <span class="level-item">数据库</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/机器学习/">
+            <span class="level-start">
+                <span class="level-item">机器学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/深度学习/">
+            <span class="level-start">
+                <span class="level-item">深度学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/爬虫/">
+            <span class="level-start">
+                <span class="level-item">爬虫</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/自然语言处理/">
+            <span class="level-start">
+                <span class="level-item">自然语言处理</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/运维/">
+            <span class="level-start">
+                <span class="level-item">运维</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/随笔/">
+            <span class="level-start">
+                <span class="level-item">随笔</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/驱动开发/">
+            <span class="level-start">
+                <span class="level-item">驱动开发</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Anaconda/" style="font-size: 12.73px;">Anaconda</a> <a href="/tags/CNN/" style="font-size: 11.82px;">CNN</a> <a href="/tags/DevOps/" style="font-size: 10px;">DevOps</a> <a href="/tags/DriverSttudio3-2/" style="font-size: 10px;">DriverSttudio3.2</a> <a href="/tags/Editplus/" style="font-size: 10px;">Editplus</a> <a href="/tags/EndNote/" style="font-size: 10px;">EndNote</a> <a href="/tags/GBK/" style="font-size: 10.91px;">GBK</a> <a href="/tags/Git/" style="font-size: 19.09px;">Git</a> <a href="/tags/GitHub/" style="font-size: 19.09px;">GitHub</a> <a href="/tags/Java/" style="font-size: 17.27px;">Java</a> <a href="/tags/Jena/" style="font-size: 10px;">Jena</a> <a href="/tags/Jieba/" style="font-size: 10px;">Jieba</a> <a href="/tags/Keras/" style="font-size: 10px;">Keras</a> <a href="/tags/LSTM/" style="font-size: 10px;">LSTM</a> <a href="/tags/Linux/" style="font-size: 14.55px;">Linux</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/Neo4j/" style="font-size: 10px;">Neo4j</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/Protege/" style="font-size: 10px;">Protege</a> <a href="/tags/Pycharm/" style="font-size: 11.82px;">Pycharm</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Tensorboard/" style="font-size: 10px;">Tensorboard</a> <a href="/tags/Tensorflow/" style="font-size: 14.55px;">Tensorflow</a> <a href="/tags/USB/" style="font-size: 10px;">USB</a> <a href="/tags/UTF-8/" style="font-size: 10.91px;">UTF-8</a> <a href="/tags/coursera/" style="font-size: 19.09px;">coursera</a> <a href="/tags/ddk/" style="font-size: 10px;">ddk</a> <a href="/tags/eclipse/" style="font-size: 14.55px;">eclipse</a> <a href="/tags/jieba/" style="font-size: 10px;">jieba</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/myeclipse/" style="font-size: 11.82px;">myeclipse</a> <a href="/tags/scrapy/" style="font-size: 13.64px;">scrapy</a> <a href="/tags/screen/" style="font-size: 10px;">screen</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/win7/" style="font-size: 10px;">win7</a> <a href="/tags/word2vec/" style="font-size: 10px;">word2vec</a> <a href="/tags/xshell/" style="font-size: 10px;">xshell</a> <a href="/tags/分词/" style="font-size: 10px;">分词</a> <a href="/tags/学习路线/" style="font-size: 11.82px;">学习路线</a> <a href="/tags/报错/" style="font-size: 15.45px;">报错</a> <a href="/tags/文件操作/" style="font-size: 10px;">文件操作</a> <a href="/tags/机器学习/" style="font-size: 19.09px;">机器学习</a> <a href="/tags/汽车之家/" style="font-size: 10.91px;">汽车之家</a> <a href="/tags/深度学习/" style="font-size: 17.27px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 16.36px;">爬虫</a> <a href="/tags/知识图谱/" style="font-size: 16.36px;">知识图谱</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/自然语言处理/" style="font-size: 18.18px;">自然语言处理</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/问答系统/" style="font-size: 10px;">问答系统</a> <a href="/tags/阅读理解/" style="font-size: 10px;">阅读理解</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/驱动程序/" style="font-size: 10px;">驱动程序</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/11.jpg" alt="linux环境变量的设置+关于bashrc与profile的区别">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-03T05:24:26.000Z">2019-05-03</time></div>
+                    <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="has-link-black-ter is-size-6">linux环境变量的设置+关于bashrc与profile的区别</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/02/Windows下neo4j安装使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/10.jpg" alt="Windows下neo4j安装使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-02T03:21:22.000Z">2019-05-02</time></div>
+                    <a href="/2019/05/02/Windows下neo4j安装使用/" class="has-link-black-ter is-size-6">Windows下neo4j安装使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/09.jpg" alt="实践篇（5）：基于REfO的简单知识问答">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-01T04:28:22.000Z">2019-05-01</time></div>
+                    <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="has-link-black-ter is-size-6">实践篇（5）：基于REfO的简单知识问答</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/08.jpg" alt="实践篇（4）：Apache jena SPARQL endpoint及推理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-30T03:28:25.000Z">2019-04-30</time></div>
+                    <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="has-link-black-ter is-size-6">实践篇（4）：Apache jena SPARQL endpoint及推理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/07.jpg" alt="实践篇（3）RDF查询语言SPARQL">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-29T04:28:25.000Z">2019-04-29</time></div>
+                    <a href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/" class="has-link-black-ter is-size-6">实践篇（3）RDF查询语言SPARQL</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anaconda/">
+                        <span class="tag">Anaconda</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CNN/">
+                        <span class="tag">CNN</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DevOps/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DriverSttudio3-2/">
+                        <span class="tag">DriverSttudio3.2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Editplus/">
+                        <span class="tag">Editplus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EndNote/">
+                        <span class="tag">EndNote</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GBK/">
+                        <span class="tag">GBK</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jena/">
+                        <span class="tag">Jena</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jieba/">
+                        <span class="tag">Jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keras/">
+                        <span class="tag">Keras</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LSTM/">
+                        <span class="tag">LSTM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLP/">
+                        <span class="tag">NLP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Neo4j/">
+                        <span class="tag">Neo4j</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Oracle/">
+                        <span class="tag">Oracle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Protege/">
+                        <span class="tag">Protege</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pycharm/">
+                        <span class="tag">Pycharm</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">25</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RNN/">
+                        <span class="tag">RNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorboard/">
+                        <span class="tag">Tensorboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/USB/">
+                        <span class="tag">USB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UTF-8/">
+                        <span class="tag">UTF-8</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/coursera/">
+                        <span class="tag">coursera</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ddk/">
+                        <span class="tag">ddk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/eclipse/">
+                        <span class="tag">eclipse</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jieba/">
+                        <span class="tag">jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/maven/">
+                        <span class="tag">maven</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/myeclipse/">
+                        <span class="tag">myeclipse</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy/">
+                        <span class="tag">scrapy</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/screen/">
+                        <span class="tag">screen</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/session/">
+                        <span class="tag">session</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/win7/">
+                        <span class="tag">win7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/word2vec/">
+                        <span class="tag">word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/xshell/">
+                        <span class="tag">xshell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/分词/">
+                        <span class="tag">分词</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/学习路线/">
+                        <span class="tag">学习路线</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/报错/">
+                        <span class="tag">报错</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/文件操作/">
+                        <span class="tag">文件操作</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器学习/">
+                        <span class="tag">机器学习</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/汽车之家/">
+                        <span class="tag">汽车之家</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/深度学习/">
+                        <span class="tag">深度学习</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/知识图谱/">
+                        <span class="tag">知识图谱</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/编码/">
+                        <span class="tag">编码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/自然语言处理/">
+                        <span class="tag">自然语言处理</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/运维/">
+                        <span class="tag">运维</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/问答系统/">
+                        <span class="tag">问答系统</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/阅读理解/">
+                        <span class="tag">阅读理解</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/面向对象/">
+                        <span class="tag">面向对象</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/驱动程序/">
+                        <span class="tag">驱动程序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/11.jpg" alt="linux环境变量的设置+关于bashrc与profile的区别">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-03T05:24:26.000Z">2019-05-03</time></div>
+                    <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="has-link-black-ter is-size-6">linux环境变量的设置+关于bashrc与profile的区别</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/02/Windows下neo4j安装使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/10.jpg" alt="Windows下neo4j安装使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-02T03:21:22.000Z">2019-05-02</time></div>
+                    <a href="/2019/05/02/Windows下neo4j安装使用/" class="has-link-black-ter is-size-6">Windows下neo4j安装使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/09.jpg" alt="实践篇（5）：基于REfO的简单知识问答">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-01T04:28:22.000Z">2019-05-01</time></div>
+                    <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="has-link-black-ter is-size-6">实践篇（5）：基于REfO的简单知识问答</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/08.jpg" alt="实践篇（4）：Apache jena SPARQL endpoint及推理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-30T03:28:25.000Z">2019-04-30</time></div>
+                    <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="has-link-black-ter is-size-6">实践篇（4）：Apache jena SPARQL endpoint及推理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/07.jpg" alt="实践篇（3）RDF查询语言SPARQL">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-29T04:28:25.000Z">2019-04-29</time></div>
+                    <a href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/" class="has-link-black-ter is-size-6">实践篇（3）RDF查询语言SPARQL</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anaconda/">
+                        <span class="tag">Anaconda</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CNN/">
+                        <span class="tag">CNN</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DevOps/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DriverSttudio3-2/">
+                        <span class="tag">DriverSttudio3.2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Editplus/">
+                        <span class="tag">Editplus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EndNote/">
+                        <span class="tag">EndNote</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GBK/">
+                        <span class="tag">GBK</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jena/">
+                        <span class="tag">Jena</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jieba/">
+                        <span class="tag">Jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keras/">
+                        <span class="tag">Keras</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LSTM/">
+                        <span class="tag">LSTM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLP/">
+                        <span class="tag">NLP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Neo4j/">
+                        <span class="tag">Neo4j</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Oracle/">
+                        <span class="tag">Oracle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Protege/">
+                        <span class="tag">Protege</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pycharm/">
+                        <span class="tag">Pycharm</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">25</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RNN/">
+                        <span class="tag">RNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorboard/">
+                        <span class="tag">Tensorboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/USB/">
+                        <span class="tag">USB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UTF-8/">
+                        <span class="tag">UTF-8</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/coursera/">
+                        <span class="tag">coursera</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ddk/">
+                        <span class="tag">ddk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/eclipse/">
+                        <span class="tag">eclipse</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jieba/">
+                        <span class="tag">jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/maven/">
+                        <span class="tag">maven</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/myeclipse/">
+                        <span class="tag">myeclipse</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy/">
+                        <span class="tag">scrapy</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/screen/">
+                        <span class="tag">screen</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/session/">
+                        <span class="tag">session</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/win7/">
+                        <span class="tag">win7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/word2vec/">
+                        <span class="tag">word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/xshell/">
+                        <span class="tag">xshell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/分词/">
+                        <span class="tag">分词</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/学习路线/">
+                        <span class="tag">学习路线</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/报错/">
+                        <span class="tag">报错</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/文件操作/">
+                        <span class="tag">文件操作</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器学习/">
+                        <span class="tag">机器学习</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/汽车之家/">
+                        <span class="tag">汽车之家</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/深度学习/">
+                        <span class="tag">深度学习</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/知识图谱/">
+                        <span class="tag">知识图谱</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/编码/">
+                        <span class="tag">编码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/自然语言处理/">
+                        <span class="tag">自然语言处理</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/运维/">
+                        <span class="tag">运维</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/问答系统/">
+                        <span class="tag">问答系统</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/阅读理解/">
+                        <span class="tag">阅读理解</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/面向对象/">
+                        <span class="tag">面向对象</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/驱动程序/">
+                        <span class="tag">驱动程序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="python结巴分词、jieba加载停用词表" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Qingtang&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true}});</script></body>
+</html>

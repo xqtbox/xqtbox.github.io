@@ -1,0 +1,2469 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8">
+<title>破解myeclipse10时找不到myeclipse-Common-plusgin - 博客堂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
+    <meta name="description" content="1.注册账户以及创建仓库要想使用github第一步当然是注册github账号了。之后就可以创建仓库了。步骤如下： 打开https://github.com 直接在首页上注册  点按钮注册成功之后，在页面上方用户菜单上选择 “+”-&amp;gt;New repository 创建一个新的仓库。">
+<meta name="keywords" content="Git,GitHub">
+<meta property="og:type" content="article">
+<meta property="og:title" content="破解myeclipse10时找不到myeclipse-Common-plusgin">
+<meta property="og:url" content="http://xuqingtang.top/2017/05/03/将本地的项目上传到github上面的方法教程/index.html">
+<meta property="og:site_name" content="博客堂">
+<meta property="og:description" content="1.注册账户以及创建仓库要想使用github第一步当然是注册github账号了。之后就可以创建仓库了。步骤如下： 打开https://github.com 直接在首页上注册  点按钮注册成功之后，在页面上方用户菜单上选择 “+”-&amp;gt;New repository 创建一个新的仓库。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/170548c27e1b854772.png?4.9.3">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/17095640f213924273.png?4.9.3">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/17132882066d167248.png?4.9.3">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/175108c483fb671945.png?4.9.3">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/18283539cfad664272.png?4.9.3">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/18094049ed5a347715.png?4.9.3">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/17570733fea2742062.png?4.9.3">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/1811142d4ce9788031.png?4.9.3">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/18003428276f033698.png?4.9.3">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/18040663f13e163573.png?4.9.3">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/18124918c556633334.png?4.9.3">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/18141358d223257547.png?4.9.3">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/1816524de546595658.png?4.9.3">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/1821542ecfe9083022.png?4.9.3">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/1823037aa1ed043887.png?4.9.3">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/183003b8e527974368.png?4.9.3">
+<meta property="og:image" content="http://1ke.co/files/course/2015/06-10/183203309ad2517953.png?4.9.3">
+<meta property="og:updated_time" content="2019-03-07T08:06:40.407Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="破解myeclipse10时找不到myeclipse-Common-plusgin">
+<meta name="twitter:description" content="1.注册账户以及创建仓库要想使用github第一步当然是注册github账号了。之后就可以创建仓库了。步骤如下： 打开https://github.com 直接在首页上注册  点按钮注册成功之后，在页面上方用户菜单上选择 “+”-&amp;gt;New repository 创建一个新的仓库。">
+<meta name="twitter:image" content="http://1ke.co/files/course/2015/06-10/170548c27e1b854772.png?4.9.3">
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="破解myeclipse10时找不到myeclipse-Common-plusgin" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/image-banner/07.jpg" alt="破解myeclipse10时找不到myeclipse-Common-plusgin">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-05-03T02:17:04.000Z">2017-05-03</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Git/">Git</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    19 分钟 读完 (大约 2786 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                破解myeclipse10时找不到myeclipse-Common-plusgin
+            
+        </h1>
+        <div class="content">
+            <h2 id="1-注册账户以及创建仓库"><a href="#1-注册账户以及创建仓库" class="headerlink" title="1.注册账户以及创建仓库"></a>1.注册账户以及创建仓库</h2><p>要想使用github第一步当然是注册github账号了。之后就可以创建仓库了。步骤如下：</p>
+<p>打开<a href="https://github.com" target="_blank" rel="noopener">https://github.com</a> 直接在首页上注册</p>
+<p><img src="http://1ke.co/files/course/2015/06-10/170548c27e1b854772.png?4.9.3" alt="image"></p>
+<p>点按钮注册成功之后，在页面上方用户菜单上选择 “+”-&gt;New repository 创建一个新的仓库。</p>
+<a id="more"></a>
+<p><img src="http://1ke.co/files/course/2015/06-10/17095640f213924273.png?4.9.3" alt="image"></p>
+<p>为仓库取一个名字，点击创建仓库按钮 你将成功创建一个仓库。</p>
+<p><img src="http://1ke.co/files/course/2015/06-10/17132882066d167248.png?4.9.3" alt="image"></p>
+<h2 id="2-安装git客户端"><a href="#2-安装git客户端" class="headerlink" title="2.安装git客户端"></a>2.安装git客户端</h2><p>github是服务端，要想在自己电脑上使用git我们还需要一个git客户端，</p>
+<p>windows用户请下载 <a href="http://msysgit.github.com/" target="_blank" rel="noopener">http://msysgit.github.com/</a></p>
+<p>mac用户请下载 <a href="http://code.google.com/p/tortoisegit/" target="_blank" rel="noopener">http://code.google.com/p/tortoisegit/</a></p>
+<p>一路next，安装成功后， 回到C盘，或任何文件夹下，点鼠标右键会多出一些菜单<br>如 Git Bash、Git Init Hear（新版本消失）、Git Gui ， 说明安装成功。</p>
+<h2 id="3-配置Git"><a href="#3-配置Git" class="headerlink" title="3.配置Git"></a>3.配置Git</h2><p>我们先在电脑硬盘里找一块地方存放本地仓库，比如我们把本地仓库建立在C:\MyRepository\1ke_test文件夹下（自己选择文件夹，可以在D盘，推荐在github安装目录下）</p>
+<p>进入1ke_test文件夹 鼠标右键操作如下步骤：</p>
+<h3 id="1）设定主目录"><a href="#1）设定主目录" class="headerlink" title="1）设定主目录"></a>1）设定主目录</h3><p>在本地仓库里右键选择Git Bash进入git命令行，截图效果如下：</p>
+<p><img src="http://1ke.co/files/course/2015/06-10/175108c483fb671945.png?4.9.3" alt="image"></p>
+<p>为了设定此目录为主目录！！我们先执行git init命令（github将以此文件夹为据点）</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+<p>（输入时 去掉$号）<br><img src="http://1ke.co/files/course/2015/06-10/18283539cfad664272.png?4.9.3" alt="image"></p>
+<p>为了把本地的仓库传到github，还需要配置ssh key！！！！用于建立本地到github的连接.</p>
+<h3 id="2）在本地创建ssh-key"><a href="#2）在本地创建ssh-key" class="headerlink" title="2）在本地创建ssh key"></a>2）在本地创建ssh key</h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;your_email@youremail.com&quot;</span><br></pre></td></tr></table></figure>
+<p>后面的your_email@youremail.com改为你的邮箱。我的邮箱是lilu@1ke.co，也是在github上注册的那个邮箱：<br><img src="http://1ke.co/files/course/2015/06-10/18094049ed5a347715.png?4.9.3" alt="image"></p>
+<p>直接点回车，说明会在默认文件id_rsa上生成ssh key。 </p>
+<p>然后系统要求输入密码，直接按回车表示不设密码<br><img src="http://1ke.co/files/course/2015/06-10/17570733fea2742062.png?4.9.3" alt="image"></p>
+<p>重复密码时也是直接回车，之后提示你shh key已经生成成功。</p>
+<p><img src="http://1ke.co/files/course/2015/06-10/1811142d4ce9788031.png?4.9.3" alt="image"></p>
+<p>然后我们进入提示的地址下查看ssh key文件。 我的电脑的地址是C:\Users\lilu\.ssh ，其中lilu是我的电脑的名称</p>
+<p><img src="http://1ke.co/files/course/2015/06-10/18003428276f033698.png?4.9.3" alt="image"></p>
+<p>打开id_rsa.pub，复制里面的key。里面的key是一对看不懂的字符数字组合，不用管它，直接复制。</p>
+<p>回到github网站，进入Account Settings，左边选择SSH Keys，Add SSH Key,</p>
+<p><img src="http://1ke.co/files/course/2015/06-10/18040663f13e163573.png?4.9.3" alt="image"></p>
+<p>title随便填，粘贴key。</p>
+<p><img src="http://1ke.co/files/course/2015/06-10/18124918c556633334.png?4.9.3" alt="image"></p>
+<h3 id="3）验证是否成功"><a href="#3）验证是否成功" class="headerlink" title="3）验证是否成功"></a>3）验证是否成功</h3><p>在git bash下输入</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>回车就会看到：You’ve successfully authenticated, but GitHub does not provide shell access 。这就表示已成功连上github。</p>
+<p><img src="http://1ke.co/files/course/2015/06-10/18141358d223257547.png?4.9.3" alt="image"></p>
+<h3 id="4）设置username和email"><a href="#4）设置username和email" class="headerlink" title="4）设置username和email"></a>4）设置username和email</h3><p>接下来我们要做的就是把本地仓库传到github上去，在此之前还需要设置username和email，因为github每次commit都会记录他们。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;your name&quot;</span><br><span class="line">$ git config --global user.email &quot;your_email@youremail.com&quot;</span><br></pre></td></tr></table></figure>
+<p>分别输入上述命令行 回车， 我的界面显示如下<br><img src="http://1ke.co/files/course/2015/06-10/1816524de546595658.png?4.9.3" alt="image"></p>
+<h3 id="5）连接本地与github"><a href="#5）连接本地与github" class="headerlink" title="5）连接本地与github"></a>5）连接本地与github</h3><p>进入要上传的仓库，右键git bash，添加远程地址</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin git@github.com:yourName/yourRepo.git</span><br></pre></td></tr></table></figure>
+<p>后面的yourName和yourRepo表示你再github的用户名和刚才新建的仓库，加完之后进入.git，打开config，这里会多出一个remote “origin”内容，这就是刚才添加的远程地址，也可以直接修改config来配置远程地址。</p>
+<p><img src="http://1ke.co/files/course/2015/06-10/1821542ecfe9083022.png?4.9.3" alt="image"></p>
+<p>与github上的对应</p>
+<p><img src="http://1ke.co/files/course/2015/06-10/1823037aa1ed043887.png?4.9.3" alt="image"></p>
+<h2 id="4-提交上传"><a href="#4-提交上传" class="headerlink" title="4.提交上传"></a>4.提交上传</h2><h3 id="1）在本地仓库添加一些文件"><a href="#1）在本地仓库添加一些文件" class="headerlink" title="1）在本地仓库添加一些文件"></a>1）在本地仓库添加一些文件</h3><p>接下来在本地仓库里添加一些文件，比如README</p>
+<p>在本地新建一个README文件（或者复制你的代码项目）</p>
+<p><img src="http://1ke.co/files/course/2015/06-10/183003b8e527974368.png?4.9.3" alt="image"></p>
+<h3 id="2）上传到本地缓存服务器"><a href="#2）上传到本地缓存服务器" class="headerlink" title="2）上传到本地缓存服务器"></a>2）上传到本地缓存服务器</h3><p>在命令行输入一下命令</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add README</span><br><span class="line"></span><br><span class="line">$ git commit -m &quot;first commit&quot;</span><br></pre></td></tr></table></figure>
+<p>执行界面如下</p>
+<p><img src="http://1ke.co/files/course/2015/06-10/183203309ad2517953.png?4.9.3" alt="image"></p>
+<h3 id="3）上传到github"><a href="#3）上传到github" class="headerlink" title="3）上传到github"></a>3）上传到github</h3><p>如果这是第一次上传（push）到github的这个项目里。</p>
+<p>上传之前，需要先将github上已有数据的拉取到本地，这样才能比较你上传过后的与之前的数据的区别。</p>
+<h4 id="1-拉取（pull）服务器数据"><a href="#1-拉取（pull）服务器数据" class="headerlink" title="1)拉取（pull）服务器数据"></a>1)拉取（pull）服务器数据</h4><p>指令：<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master --allow-unrelated-histories</span><br></pre></td></tr></table></figure></p>
+<p>此时，我们发现，将服务器上的readme给下载下来了。正和我们意。</p>
+<h4 id="2-上传到github"><a href="#2-上传到github" class="headerlink" title="2) 上传到github"></a>2) 上传到github</h4><p>指令：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+<p>git push命令会将本地仓库推送到远程服务器。</p>
+<p>git pull命令则相反。</p>
+<h2 id="5-常用Git命令"><a href="#5-常用Git命令" class="headerlink" title="5.常用Git命令"></a>5.常用Git命令</h2><p>查看、添加、提交、删除、找回，重置修改文件</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">git help &lt;command&gt; # 显示command的help</span><br><span class="line"></span><br><span class="line">git show # 显示某次提交的内容 git show $id</span><br><span class="line"></span><br><span class="line">git co -- &lt;file&gt; # 抛弃工作区修改</span><br><span class="line"></span><br><span class="line">git co . # 抛弃工作区修改</span><br><span class="line"></span><br><span class="line">git add &lt;file&gt; # 将工作文件修改提交到本地暂存区</span><br><span class="line"></span><br><span class="line">git add . # 将所有修改过的工作文件提交暂存区</span><br><span class="line"></span><br><span class="line">git rm &lt;file&gt; # 从版本库中删除文件</span><br><span class="line"></span><br><span class="line">git rm &lt;file&gt; --cached # 从版本库中删除文件，但不删除文件</span><br><span class="line"></span><br><span class="line">git reset &lt;file&gt; # 从暂存区恢复到工作文件</span><br><span class="line"></span><br><span class="line">git reset -- . # 从暂存区恢复到工作文件</span><br><span class="line"></span><br><span class="line">git reset --hard # 恢复最近一次提交过的状态，即放弃上次提交后的所有本次修改</span><br><span class="line"></span><br><span class="line">git ci &lt;file&gt; git ci . git ci -a # 将git add, git rm和git ci等操作都合并在一起做　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　git ci -am &quot;some comments&quot;</span><br><span class="line"></span><br><span class="line">git ci --amend # 修改最后一次提交记录</span><br><span class="line"></span><br><span class="line">git revert &lt;$id&gt; # 恢复某次提交的状态，恢复动作本身也创建次提交对象</span><br><span class="line"></span><br><span class="line">git revert HEAD # 恢复最后一次提交的状态</span><br></pre></td></tr></table></figure>
+<p>查看文件diff</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git diff &lt;file&gt; # 比较当前文件和暂存区文件差异 git diff</span><br><span class="line"></span><br><span class="line">git diff &lt;id1&gt;&lt;id2&gt; # 比较两次提交之间的差异</span><br><span class="line"></span><br><span class="line">git diff &lt;branch1&gt;..&lt;branch2&gt; # 在两个分支之间比较</span><br><span class="line"></span><br><span class="line">git diff --staged # 比较暂存区和版本库差异</span><br><span class="line"></span><br><span class="line">git diff --cached # 比较暂存区和版本库差异</span><br><span class="line"></span><br><span class="line">git diff --stat # 仅仅比较统计信息</span><br></pre></td></tr></table></figure>
+<p>查看提交记录</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git log git log &lt;file&gt; # 查看该文件每次提交记录</span><br><span class="line"></span><br><span class="line">git log -p &lt;file&gt; # 查看每次详细修改内容的diff</span><br><span class="line"></span><br><span class="line">git log -p -2 # 查看最近两次详细修改内容的diff</span><br><span class="line"></span><br><span class="line">git log --stat #查看提交统计信息</span><br></pre></td></tr></table></figure>
+<p>tig</p>
+<p><strong>Mac上可以使用tig代替diff和log，brew install tig</strong></p>
+<p>Git 本地分支管理<br>查看、切换、创建和删除分支</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">git br -r # 查看远程分支</span><br><span class="line"></span><br><span class="line">git br &lt;new_branch&gt; # 创建新的分支</span><br><span class="line"></span><br><span class="line">git br -v # 查看各个分支最后提交信息</span><br><span class="line"></span><br><span class="line">git br --merged # 查看已经被合并到当前分支的分支</span><br><span class="line"></span><br><span class="line">git br --no-merged # 查看尚未被合并到当前分支的分支</span><br><span class="line"></span><br><span class="line">git co &lt;branch&gt; # 切换到某个分支</span><br><span class="line"></span><br><span class="line">git co -b &lt;new_branch&gt; # 创建新的分支，并且切换过去</span><br><span class="line"></span><br><span class="line">git co -b &lt;new_branch&gt; &lt;branch&gt; # 基于branch创建新的new_branch</span><br><span class="line"></span><br><span class="line">git co $id # 把某次历史提交记录checkout出来，但无分支信息，切换到其他分支会自动删除</span><br><span class="line"></span><br><span class="line">git co $id -b &lt;new_branch&gt; # 把某次历史提交记录checkout出来，创建成一个分支</span><br><span class="line"></span><br><span class="line">git br -d &lt;branch&gt; # 删除某个分支</span><br><span class="line"></span><br><span class="line">git br -D &lt;branch&gt; # 强制删除某个分支 (未被合并的分支被删除的时候需要强制)</span><br></pre></td></tr></table></figure>
+<p> 分支合并和rebase</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git merge &lt;branch&gt; # 将branch分支合并到当前分支</span><br><span class="line"></span><br><span class="line">git merge origin/master --no-ff # 不要Fast-Foward合并，这样可以生成merge提交</span><br><span class="line"></span><br><span class="line">git rebase master &lt;branch&gt; # 将master rebase到branch，相当于： git co &lt;branch&gt; &amp;&amp; git rebase master &amp;&amp; git co master &amp;&amp; git merge &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>Git补丁管理(方便在多台机器上开发同步时用)</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git diff &gt; ../sync.patch # 生成补丁</span><br><span class="line"></span><br><span class="line">git apply ../sync.patch # 打补丁</span><br><span class="line"></span><br><span class="line">git apply --check ../sync.patch #测试补丁能否成功</span><br></pre></td></tr></table></figure>
+<p>Git暂存管理<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">git stash # 暂存</span><br><span class="line"></span><br><span class="line">git stash list # 列所有stash</span><br><span class="line"></span><br><span class="line">git stash apply # 恢复暂存的内容</span><br><span class="line"></span><br><span class="line">git stash drop # 删除暂存区</span><br><span class="line"></span><br><span class="line">Git远程分支管理</span><br><span class="line"></span><br><span class="line">git pull # 抓取远程仓库所有分支更新并合并到本地</span><br><span class="line"></span><br><span class="line">git pull --no-ff # 抓取远程仓库所有分支更新并合并到本地，不要快进合并</span><br><span class="line"></span><br><span class="line">git fetch origin # 抓取远程仓库更新</span><br><span class="line"></span><br><span class="line">git merge origin/master # 将远程主分支合并到本地当前分支</span><br><span class="line"></span><br><span class="line">git co --track origin/branch # 跟踪某个远程分支创建相应的本地分支</span><br><span class="line"></span><br><span class="line">git co -b &lt;local_branch&gt; origin/&lt;remote_branch&gt; # 基于远程分支创建本地分支，功能同上</span><br></pre></td></tr></table></figure></p>
+<p>git push # push所有分支</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git push origin master # 将本地主分支推到远程主分支</span><br><span class="line"></span><br><span class="line">git push -u origin master # 将本地主分支推到远程(如无远程主分支则创建，用于初始化远程仓库)</span><br><span class="line"></span><br><span class="line">git push origin &lt;local_branch&gt; # 创建远程分支， origin是远程仓库名</span><br><span class="line"></span><br><span class="line">git push origin &lt;local_branch&gt;:&lt;remote_branch&gt; # 创建远程分支</span><br><span class="line"></span><br><span class="line">git push origin :&lt;remote_branch&gt; #先删除本地分支(git br -d &lt;branch&gt;)，然后再push删除远程分支</span><br></pre></td></tr></table></figure>
+<p>Git远程仓库管理</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git remote -v # 查看远程服务器地址和仓库名称</span><br><span class="line"></span><br><span class="line">git remote show origin # 查看远程服务器仓库状态</span><br><span class="line"></span><br><span class="line">git remote add origin git@ github:robbin/robbin_site.git # 添加远程仓库地址</span><br><span class="line"></span><br><span class="line">git remote set-url origin git@ github.com:robbin/robbin_site.git # 设置远程仓库地址(用于修改远程仓库地址) git remote rm &lt;repository&gt; # 删除远程仓库</span><br></pre></td></tr></table></figure>
+<p>创建远程仓库</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">git clone --bare robbin_site robbin_site.git # 用带版本的项目创建纯版本仓库</span><br><span class="line"></span><br><span class="line">scp -r my_project.git git@ git.csdn.net:~ # 将纯仓库上传到服务器上</span><br><span class="line"></span><br><span class="line">mkdir robbin_site.git &amp;&amp; cd robbin_site.git &amp;&amp; git --bare init # 在服务器创建纯仓库</span><br><span class="line"></span><br><span class="line">git remote add origin git@ github.com:robbin/robbin_site.git # 设置远程仓库地址</span><br><span class="line"></span><br><span class="line">git push -u origin master # 客户端首次提交</span><br><span class="line"></span><br><span class="line">git push -u origin develop # 首次将本地develop分支提交到远程develop分支，并且track</span><br><span class="line"></span><br><span class="line">git remote set-head origin master # 设置远程仓库的HEAD指向master分支</span><br></pre></td></tr></table></figure>
+<p>也可以命令设置跟踪远程库和本地库<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">git branch --set-upstream master origin/master</span><br><span class="line"></span><br><span class="line">git branch --set-upstream develop origin/develop</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">此文章属转载，原文地址：http://1ke.co/course/194</span><br><span class="line"></span><br><span class="line">另附：</span><br><span class="line"> 解决  在使用git 对源代码进行push到gitHub时可能会出错，error: failed to push some refs to git。</span><br><span class="line">出现错误的主要原因是github中的README.md文件不在本地代码目录中</span><br><span class="line">可以通过如下命令进行github与本地代码合并:  git pull --rebase origin master</span><br><span class="line">重新执行之前的git push 命令，成功！</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Git/">Git</a>, <a class="has-link-grey -link" href="/tags/GitHub/">GitHub</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/05/03/ faial:refusing to merge unrelated histories/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">faial:refusing to merge unrelated histories</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2017/05/02/爬取汽车之家实战/">
+                <span class="level-item">爬取汽车之家实战</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://xuqingtang.top/2017/05/03/将本地的项目上传到github上面的方法教程/';
+        this.page.identifier = '2017/05/03/将本地的项目上传到github上面的方法教程/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <figure class="image container is-128x128 has-mb-6">
+                            <img class="is-rounded" src="/images/avatar.png" alt="Qingtang">
+                        </figure>
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Qingtang
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Developer &amp; NLPer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>HeFei, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        87
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        54
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="http://github.com/xqtbox" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="http://github.com/xqtbox">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="CSDN" href="https://blog.csdn.net/u012052268">
+                
+                <i class="fas fa-pencil-alt"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Weibo" href="https://www.weibo.com/u/5890351342">
+                
+                <i class="fab fa-weibo"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="知乎" href="https://www.zhihu.com/people/xqtbox/activities">
+                
+                <i class="fab fa-zhihu"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#1-注册账户以及创建仓库">
+        <span class="has-mr-6">1</span>
+        <span>1.注册账户以及创建仓库</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-安装git客户端">
+        <span class="has-mr-6">2</span>
+        <span>2.安装git客户端</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-配置Git">
+        <span class="has-mr-6">3</span>
+        <span>3.配置Git</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1）设定主目录">
+        <span class="has-mr-6">3.1</span>
+        <span>1）设定主目录</span>
+        </a></li><li>
+        <a class="is-flex" href="#2）在本地创建ssh-key">
+        <span class="has-mr-6">3.2</span>
+        <span>2）在本地创建ssh key</span>
+        </a></li><li>
+        <a class="is-flex" href="#3）验证是否成功">
+        <span class="has-mr-6">3.3</span>
+        <span>3）验证是否成功</span>
+        </a></li><li>
+        <a class="is-flex" href="#4）设置username和email">
+        <span class="has-mr-6">3.4</span>
+        <span>4）设置username和email</span>
+        </a></li><li>
+        <a class="is-flex" href="#5）连接本地与github">
+        <span class="has-mr-6">3.5</span>
+        <span>5）连接本地与github</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#4-提交上传">
+        <span class="has-mr-6">4</span>
+        <span>4.提交上传</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1）在本地仓库添加一些文件">
+        <span class="has-mr-6">4.1</span>
+        <span>1）在本地仓库添加一些文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#2）上传到本地缓存服务器">
+        <span class="has-mr-6">4.2</span>
+        <span>2）上传到本地缓存服务器</span>
+        </a></li><li>
+        <a class="is-flex" href="#3）上传到github">
+        <span class="has-mr-6">4.3</span>
+        <span>3）上传到github</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-拉取（pull）服务器数据">
+        <span class="has-mr-6">4.3.1</span>
+        <span>1)拉取（pull）服务器数据</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-上传到github">
+        <span class="has-mr-6">4.3.2</span>
+        <span>2) 上传到github</span>
+        </a></li></ul></li></ul></li><li>
+        <a class="is-flex" href="#5-常用Git命令">
+        <span class="has-mr-6">5</span>
+        <span>5.常用Git命令</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://blog.csdn.net/u012052268" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">CSDN</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">blog.csdn.net</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Linux/">
+            <span class="level-start">
+                <span class="level-item">Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/NLP/">
+            <span class="level-start">
+                <span class="level-item">NLP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Python/">
+            <span class="level-start">
+                <span class="level-item">Python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/数据库/">
+            <span class="level-start">
+                <span class="level-item">数据库</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/机器学习/">
+            <span class="level-start">
+                <span class="level-item">机器学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/深度学习/">
+            <span class="level-start">
+                <span class="level-item">深度学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/爬虫/">
+            <span class="level-start">
+                <span class="level-item">爬虫</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/自然语言处理/">
+            <span class="level-start">
+                <span class="level-item">自然语言处理</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">20</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/运维/">
+            <span class="level-start">
+                <span class="level-item">运维</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/随笔/">
+            <span class="level-start">
+                <span class="level-item">随笔</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/驱动开发/">
+            <span class="level-start">
+                <span class="level-item">驱动开发</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Anaconda/" style="font-size: 12.73px;">Anaconda</a> <a href="/tags/CNN/" style="font-size: 11.82px;">CNN</a> <a href="/tags/DevOps/" style="font-size: 10px;">DevOps</a> <a href="/tags/DriverSttudio3-2/" style="font-size: 10px;">DriverSttudio3.2</a> <a href="/tags/Editplus/" style="font-size: 10px;">Editplus</a> <a href="/tags/EndNote/" style="font-size: 10px;">EndNote</a> <a href="/tags/GBK/" style="font-size: 10.91px;">GBK</a> <a href="/tags/Git/" style="font-size: 19.09px;">Git</a> <a href="/tags/GitHub/" style="font-size: 19.09px;">GitHub</a> <a href="/tags/Java/" style="font-size: 17.27px;">Java</a> <a href="/tags/Jena/" style="font-size: 10px;">Jena</a> <a href="/tags/Jieba/" style="font-size: 10px;">Jieba</a> <a href="/tags/Keras/" style="font-size: 10px;">Keras</a> <a href="/tags/LSTM/" style="font-size: 10px;">LSTM</a> <a href="/tags/Linux/" style="font-size: 14.55px;">Linux</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/Neo4j/" style="font-size: 10px;">Neo4j</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/Protege/" style="font-size: 10px;">Protege</a> <a href="/tags/Pycharm/" style="font-size: 11.82px;">Pycharm</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Tensorboard/" style="font-size: 10px;">Tensorboard</a> <a href="/tags/Tensorflow/" style="font-size: 14.55px;">Tensorflow</a> <a href="/tags/USB/" style="font-size: 10px;">USB</a> <a href="/tags/UTF-8/" style="font-size: 10.91px;">UTF-8</a> <a href="/tags/coursera/" style="font-size: 19.09px;">coursera</a> <a href="/tags/ddk/" style="font-size: 10px;">ddk</a> <a href="/tags/eclipse/" style="font-size: 14.55px;">eclipse</a> <a href="/tags/jieba/" style="font-size: 10px;">jieba</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/myeclipse/" style="font-size: 11.82px;">myeclipse</a> <a href="/tags/scrapy/" style="font-size: 13.64px;">scrapy</a> <a href="/tags/screen/" style="font-size: 10px;">screen</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/win7/" style="font-size: 10px;">win7</a> <a href="/tags/word2vec/" style="font-size: 10px;">word2vec</a> <a href="/tags/xshell/" style="font-size: 10px;">xshell</a> <a href="/tags/分词/" style="font-size: 10px;">分词</a> <a href="/tags/学习路线/" style="font-size: 11.82px;">学习路线</a> <a href="/tags/报错/" style="font-size: 15.45px;">报错</a> <a href="/tags/文件操作/" style="font-size: 10px;">文件操作</a> <a href="/tags/机器学习/" style="font-size: 19.09px;">机器学习</a> <a href="/tags/汽车之家/" style="font-size: 10.91px;">汽车之家</a> <a href="/tags/深度学习/" style="font-size: 17.27px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 16.36px;">爬虫</a> <a href="/tags/知识图谱/" style="font-size: 16.36px;">知识图谱</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/自然语言处理/" style="font-size: 18.18px;">自然语言处理</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/问答系统/" style="font-size: 10px;">问答系统</a> <a href="/tags/阅读理解/" style="font-size: 10px;">阅读理解</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/驱动程序/" style="font-size: 10px;">驱动程序</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/11.jpg" alt="linux环境变量的设置+关于bashrc与profile的区别">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-03T05:24:26.000Z">2019-05-03</time></div>
+                    <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="has-link-black-ter is-size-6">linux环境变量的设置+关于bashrc与profile的区别</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/02/Windows下neo4j安装使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/10.jpg" alt="Windows下neo4j安装使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-02T03:21:22.000Z">2019-05-02</time></div>
+                    <a href="/2019/05/02/Windows下neo4j安装使用/" class="has-link-black-ter is-size-6">Windows下neo4j安装使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/09.jpg" alt="实践篇（5）：基于REfO的简单知识问答">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-01T04:28:22.000Z">2019-05-01</time></div>
+                    <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="has-link-black-ter is-size-6">实践篇（5）：基于REfO的简单知识问答</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/08.jpg" alt="实践篇（4）：Apache jena SPARQL endpoint及推理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-30T03:28:25.000Z">2019-04-30</time></div>
+                    <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="has-link-black-ter is-size-6">实践篇（4）：Apache jena SPARQL endpoint及推理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/07.jpg" alt="实践篇（3）RDF查询语言SPARQL">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-29T04:28:25.000Z">2019-04-29</time></div>
+                    <a href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/" class="has-link-black-ter is-size-6">实践篇（3）RDF查询语言SPARQL</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anaconda/">
+                        <span class="tag">Anaconda</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CNN/">
+                        <span class="tag">CNN</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DevOps/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DriverSttudio3-2/">
+                        <span class="tag">DriverSttudio3.2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Editplus/">
+                        <span class="tag">Editplus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EndNote/">
+                        <span class="tag">EndNote</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GBK/">
+                        <span class="tag">GBK</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jena/">
+                        <span class="tag">Jena</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jieba/">
+                        <span class="tag">Jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keras/">
+                        <span class="tag">Keras</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LSTM/">
+                        <span class="tag">LSTM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLP/">
+                        <span class="tag">NLP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Neo4j/">
+                        <span class="tag">Neo4j</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Oracle/">
+                        <span class="tag">Oracle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Protege/">
+                        <span class="tag">Protege</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pycharm/">
+                        <span class="tag">Pycharm</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">25</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RNN/">
+                        <span class="tag">RNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorboard/">
+                        <span class="tag">Tensorboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/USB/">
+                        <span class="tag">USB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UTF-8/">
+                        <span class="tag">UTF-8</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/coursera/">
+                        <span class="tag">coursera</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ddk/">
+                        <span class="tag">ddk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/eclipse/">
+                        <span class="tag">eclipse</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jieba/">
+                        <span class="tag">jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/maven/">
+                        <span class="tag">maven</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/myeclipse/">
+                        <span class="tag">myeclipse</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy/">
+                        <span class="tag">scrapy</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/screen/">
+                        <span class="tag">screen</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/session/">
+                        <span class="tag">session</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/win7/">
+                        <span class="tag">win7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/word2vec/">
+                        <span class="tag">word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/xshell/">
+                        <span class="tag">xshell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/分词/">
+                        <span class="tag">分词</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/学习路线/">
+                        <span class="tag">学习路线</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/报错/">
+                        <span class="tag">报错</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/文件操作/">
+                        <span class="tag">文件操作</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器学习/">
+                        <span class="tag">机器学习</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/汽车之家/">
+                        <span class="tag">汽车之家</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/深度学习/">
+                        <span class="tag">深度学习</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/知识图谱/">
+                        <span class="tag">知识图谱</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/编码/">
+                        <span class="tag">编码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/自然语言处理/">
+                        <span class="tag">自然语言处理</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/运维/">
+                        <span class="tag">运维</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/问答系统/">
+                        <span class="tag">问答系统</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/阅读理解/">
+                        <span class="tag">阅读理解</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/面向对象/">
+                        <span class="tag">面向对象</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/驱动程序/">
+                        <span class="tag">驱动程序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/11.jpg" alt="linux环境变量的设置+关于bashrc与profile的区别">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-03T05:24:26.000Z">2019-05-03</time></div>
+                    <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="has-link-black-ter is-size-6">linux环境变量的设置+关于bashrc与profile的区别</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/02/Windows下neo4j安装使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/10.jpg" alt="Windows下neo4j安装使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-02T03:21:22.000Z">2019-05-02</time></div>
+                    <a href="/2019/05/02/Windows下neo4j安装使用/" class="has-link-black-ter is-size-6">Windows下neo4j安装使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/09.jpg" alt="实践篇（5）：基于REfO的简单知识问答">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-01T04:28:22.000Z">2019-05-01</time></div>
+                    <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="has-link-black-ter is-size-6">实践篇（5）：基于REfO的简单知识问答</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/08.jpg" alt="实践篇（4）：Apache jena SPARQL endpoint及推理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-30T03:28:25.000Z">2019-04-30</time></div>
+                    <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="has-link-black-ter is-size-6">实践篇（4）：Apache jena SPARQL endpoint及推理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/07.jpg" alt="实践篇（3）RDF查询语言SPARQL">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-29T04:28:25.000Z">2019-04-29</time></div>
+                    <a href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/" class="has-link-black-ter is-size-6">实践篇（3）RDF查询语言SPARQL</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anaconda/">
+                        <span class="tag">Anaconda</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CNN/">
+                        <span class="tag">CNN</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DevOps/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DriverSttudio3-2/">
+                        <span class="tag">DriverSttudio3.2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Editplus/">
+                        <span class="tag">Editplus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EndNote/">
+                        <span class="tag">EndNote</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GBK/">
+                        <span class="tag">GBK</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jena/">
+                        <span class="tag">Jena</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jieba/">
+                        <span class="tag">Jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keras/">
+                        <span class="tag">Keras</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LSTM/">
+                        <span class="tag">LSTM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLP/">
+                        <span class="tag">NLP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Neo4j/">
+                        <span class="tag">Neo4j</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Oracle/">
+                        <span class="tag">Oracle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Protege/">
+                        <span class="tag">Protege</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pycharm/">
+                        <span class="tag">Pycharm</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">25</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RNN/">
+                        <span class="tag">RNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorboard/">
+                        <span class="tag">Tensorboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/USB/">
+                        <span class="tag">USB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UTF-8/">
+                        <span class="tag">UTF-8</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/coursera/">
+                        <span class="tag">coursera</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ddk/">
+                        <span class="tag">ddk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/eclipse/">
+                        <span class="tag">eclipse</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jieba/">
+                        <span class="tag">jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/maven/">
+                        <span class="tag">maven</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/myeclipse/">
+                        <span class="tag">myeclipse</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy/">
+                        <span class="tag">scrapy</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/screen/">
+                        <span class="tag">screen</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/session/">
+                        <span class="tag">session</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/win7/">
+                        <span class="tag">win7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/word2vec/">
+                        <span class="tag">word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/xshell/">
+                        <span class="tag">xshell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/分词/">
+                        <span class="tag">分词</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/学习路线/">
+                        <span class="tag">学习路线</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/报错/">
+                        <span class="tag">报错</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/文件操作/">
+                        <span class="tag">文件操作</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器学习/">
+                        <span class="tag">机器学习</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/汽车之家/">
+                        <span class="tag">汽车之家</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/深度学习/">
+                        <span class="tag">深度学习</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/知识图谱/">
+                        <span class="tag">知识图谱</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/编码/">
+                        <span class="tag">编码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/自然语言处理/">
+                        <span class="tag">自然语言处理</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/运维/">
+                        <span class="tag">运维</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/问答系统/">
+                        <span class="tag">问答系统</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/阅读理解/">
+                        <span class="tag">阅读理解</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/面向对象/">
+                        <span class="tag">面向对象</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/驱动程序/">
+                        <span class="tag">驱动程序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="破解myeclipse10时找不到myeclipse-Common-plusgin" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Qingtang&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true}});</script></body>
+</html>
