@@ -1,0 +1,2542 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8">
+<title>实践篇（4）：Apache jena SPARQL endpoint及推理 - 博客堂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
+    <meta name="description" content="&amp;gt; 本文主要参考SimmerChan大神文章：https://zhuanlan.zhihu.com/p/33224431  做了一些版本更新   0 前言在上一步，我们得到了.nt格式的三元组文件。并且学会了如果使用sparsql语句进行三元组查询。">
+<meta name="keywords" content="知识图谱">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实践篇（4）：Apache jena SPARQL endpoint及推理">
+<meta property="og:url" content="http://xuqingtang.top/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/index.html">
+<meta property="og:site_name" content="博客堂">
+<meta property="og:description" content="&amp;gt; 本文主要参考SimmerChan大神文章：https://zhuanlan.zhihu.com/p/33224431  做了一些版本更新   0 前言在上一步，我们得到了.nt格式的三元组文件。并且学会了如果使用sparsql语句进行三元组查询。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://pic1.zhimg.com/v2-8119594eef2838042df8fb5af0523c0c_1200x500.jpg">
+<meta property="og:image" content="http://www.flykun.com/wp-content/uploads/2015/09/jena-architect.png">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006qDjsOgy1g19h4w7nzjj30nx0ggmz5.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006qDjsOgy1g19h61bl3ej30lk0cidhl.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006qDjsOgy1g1a7kmuonzj30ik0e2ab9.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006qDjsOgy1g1a7lubhpij30wz0ii0vr.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006qDjsOgy1g1l4iz7uyoj311y0kgdlj.jpg">
+<meta property="og:updated_time" content="2019-05-09T02:38:32.618Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实践篇（4）：Apache jena SPARQL endpoint及推理">
+<meta name="twitter:description" content="&amp;gt; 本文主要参考SimmerChan大神文章：https://zhuanlan.zhihu.com/p/33224431  做了一些版本更新   0 前言在上一步，我们得到了.nt格式的三元组文件。并且学会了如果使用sparsql语句进行三元组查询。">
+<meta name="twitter:image" content="https://pic1.zhimg.com/v2-8119594eef2838042df8fb5af0523c0c_1200x500.jpg">
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="实践篇（4）：Apache jena SPARQL endpoint及推理" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/image-banner/08.jpg" alt="实践篇（4）：Apache jena SPARQL endpoint及推理">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-04-30T03:28:25.000Z">2019-04-30</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    30 分钟 读完 (大约 4467 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                实践篇（4）：Apache jena SPARQL endpoint及推理
+            
+        </h1>
+        <div class="content">
+            <center><br><br><img src="https://pic1.zhimg.com/v2-8119594eef2838042df8fb5af0523c0c_1200x500.jpg" alt="image"><br><br>&gt; 本文主要参考SimmerChan大神文章：<a href="https://zhuanlan.zhihu.com/p/33224431" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/33224431</a>  做了一些版本更新<br><br></center>
+
+
+<h1 id="0-前言"><a href="#0-前言" class="headerlink" title="0 前言"></a>0 前言</h1><p>在上一步，我们得到了.nt格式的三元组文件。并且学会了如果使用sparsql语句进行三元组查询。</p>
+<a id="more"></a>
+<p>在这篇文章我们将利用框架实现对三元组知识的查询。</p>
+<p>我们知道SPARQL是我们最常用的查询三元组的工具，那么我们需要一个平台，这个平台既可以在下层存储三元组，又可以在上层提供SPARQL endpoint接口 让我们写SPARQL语句来查询。</p>
+<p>这样一个平台就是JENA。</p>
+<h1 id="1-JENA简介"><a href="#1-JENA简介" class="headerlink" title="1 JENA简介"></a>1 JENA简介</h1><p>APACHE JENA，一款免费的JAVA开源框架，用来做语义网(Semantic Web)和数据连接(Linked Data)的应用。Jena支持的RDF格式数据，是一套NoSQL（非关系数据库）、一套可推理的图数据库。Jena框架将这类数据的存储、添加、删除、推理，查询（Sparql）等所有的操作封装进一个框架，大大的方便了做相关应用的开发和使用。</p>
+<blockquote>
+<p>参考： <a href="http://www.flykun.com/jena%E6%89%8B%E5%86%8C-%E5%85%A5%E9%97%A8/" target="_blank" rel="noopener">http://www.flykun.com/jena%E6%89%8B%E5%86%8C-%E5%85%A5%E9%97%A8/</a></p>
+</blockquote>
+<h2 id="1-1-Jena框架的架构"><a href="#1-1-Jena框架的架构" class="headerlink" title="1.1 Jena框架的架构"></a>1.1 Jena框架的架构</h2><p>Jena是一个框架，则必然有其架构，让我们从下面这个官网提供的架构图来了解Jena结构，了解其在我们应用开发中的位置，是一个非常好的开始。</p>
+<p><img src="http://www.flykun.com/wp-content/uploads/2015/09/jena-architect.png" alt="image"></p>
+<p>从这个架构图来看，应用程序的入口可以分为4个主要部分：</p>
+<ol>
+<li>The RDF API – 核心管理模块，对RDF进行添加、删除和修改；</li>
+<li>SPARQL – 查询模块，提供SPARQL语句，查询，管理RDF，类似SQL语句。</li>
+<li>Inference – 推理模块，介绍如何使用推理机对RDF进行推理。</li>
+<li>TDB – 存储模块，一个高效的硬盘存储方案，有别于内存存储，这个更加便于对大数据进行操作。</li>
+</ol>
+<h1 id="2-JENA下载安装"><a href="#2-JENA下载安装" class="headerlink" title="2 JENA下载安装"></a>2 JENA下载安装</h1><h2 id="2-1-官网下载"><a href="#2-1-官网下载" class="headerlink" title="2.1 官网下载"></a>2.1 官网下载</h2><p>在官网下载（ <a href="https://jena.apache.org/download/index.cgi" target="_blank" rel="noopener">https://jena.apache.org/download/index.cgi</a> ）。注意要同时下载apache-jena和apache-jena-fuseki<strong>两个</strong>包，下载方式如下：（建议下载3.7版本的）</p>
+<p><img src="http://ww1.sinaimg.cn/mw690/006qDjsOgy1g19h4w7nzjj30nx0ggmz5.jpg" alt=""></p>
+<h2 id="2-2-安装（解压即可）"><a href="#2-2-安装（解压即可）" class="headerlink" title="2.2 安装（解压即可）"></a>2.2 安装（解压即可）</h2><p>下载好之后分别解压到D盘，（地址无所谓，可以解压到java所在的目录，方便记忆）：</p>
+<p><img src="http://ww1.sinaimg.cn/mw690/006qDjsOgy1g19h61bl3ej30lk0cidhl.jpg" alt=""></p>
+<p>注意java版本必须高于1.8</p>
+<h1 id="3-使用jena进行查询三元组-实战"><a href="#3-使用jena进行查询三元组-实战" class="headerlink" title="3 使用jena进行查询三元组 实战"></a>3 使用jena进行查询三元组 实战</h1><h2 id="3-1-导入jena需要的三元组信息（也可以不用这一步）"><a href="#3-1-导入jena需要的三元组信息（也可以不用这一步）" class="headerlink" title="3.1 导入jena需要的三元组信息（也可以不用这一步）"></a>3.1 导入jena需要的三元组信息（也可以不用这一步）</h2><p>TDB 是Jena用于存储RDF的组件，是属于存储层面的技术。在单机情况下，它能够提供非常高的RDF存储性能。</p>
+<p>我们必须将之前得到的.nt格式的三元组转化为TDB格式的。步骤如下</p>
+<ol>
+<li>首先，拿到我们之前得到的.nt格式的三元组文件，比如：</li>
+</ol>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\Programming\d2rq-0.8.1\Hr_HG_QA.nt</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>在“apache-jena-3.7.0”文件夹下创建一个子文件夹（我这里命名为“test-tdb”）用于存放tdb数据。</p>
+</li>
+<li><p>进入“apache-jena-3.7.0”文件夹的bat目录，可以看到很多批处理文件，我们使用“<strong>tdbloader.bat</strong>”将之前我们的RDF数据以TDB的方式存储。</p>
+</li>
+<li><p>在这个文件夹按住键盘shift并点击鼠标右键 -&gt; 在此处打开命令行，输入命令如下：</p>
+</li>
+</ol>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tdbloader.bat --loc=&quot;D:\Programming\apache-jena-3.7.0\test-tdb&quot; &quot;D:\Programming\d2rq-0.8.1\Hr_HG_QA.nt&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其中，“–loc”指定tdb文件存储的位置，即刚才我们创建的文件夹；第二个参数是我们之前由Mysql数据转换得到的RDF数据。</p>
+</blockquote>
+<p>这样在整个3.1这一节，我们就得到了 jena 所需的TBD格式的三元组文件。</p>
+<h2 id="3-2-添加本体数据"><a href="#3-2-添加本体数据" class="headerlink" title="3.2 添加本体数据"></a>3.2 添加本体数据</h2><blockquote>
+<p>使用jena这样一个框架，而不是直接将rdf数据导入图数据库，其中一个主要原因是：jena支持OWL语言的推理，可以按照你自己定义的本体类型和推理规则 方便的进行简单推理。</p>
+</blockquote>
+<p>这一步我们 添加之前使用protege创建的本体文件。</p>
+<p>进入D盘“apache-jena-fuseki”文件夹，</p>
+<ol>
+<li><p>双击运行“fuseki-server.bat”，程序会为我们在当前目录自动创建“run”文件夹。</p>
+</li>
+<li><p>然后关闭命令窗。</p>
+</li>
+</ol>
+<ol>
+<li>我们之前通过protege设计得到的本体文件，按照turtle syntax 格式保存，得到hr-kg-ontology-en-turtle.owl</li>
+<li><p>使用记事本打开，一定要把</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@prefix hr_kg_ontology: &lt;http://www.hr_kg_qa.com#&gt; .</span><br></pre></td></tr></table></figure>
+<p>改为自己的前缀，与上一步的三元组的@prefix对应</p>
+</li>
+<li><p>将“hr-kg-ontology-en-turtle.owl”移动到“fuseki/run”文件夹下的“databases”文件夹中。</p>
+</li>
+<li><p>并直接将“owl”后缀名改为“ttl”。即hr-kg-ontology-en-turtle.owl.ttl</p>
+</li>
+</ol>
+<h2 id="3-3-fuseki服务器配置"><a href="#3-3-fuseki服务器配置" class="headerlink" title="3.3 fuseki服务器配置"></a>3.3 fuseki服务器配置</h2><p>在“run”文件夹下的“configuration”中，我们创建名为“fuseki_conf.ttl”的文本文件（取名没有要求），加入如下内容：  ==注意，千万别忘记修改 本体文件地址 为你本机的地址！==</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">@prefix :      &lt;http://base/#&gt; .</span><br><span class="line">@prefix tdb:   &lt;http://jena.hpl.hp.com/2008/tdb#&gt; .</span><br><span class="line">@prefix tdb2:  &lt;http://jena.apache.org/2016/tdb#&gt; .</span><br><span class="line">@prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .</span><br><span class="line">@prefix ja:    &lt;http://jena.hpl.hp.com/2005/11/Assembler#&gt; .</span><br><span class="line">@prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .</span><br><span class="line">@prefix fuseki: &lt;http://jena.apache.org/fuseki#&gt; .</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;#service1&gt; rdf:type fuseki:Service ;</span><br><span class="line">    fuseki:name                       &quot;Hr_HG_QA&quot; ;     </span><br><span class="line">    fuseki:serviceQuery               &quot;sparql&quot;, &quot;query&quot; ; </span><br><span class="line">    fuseki:serviceReadGraphStore      &quot;get&quot; ;</span><br><span class="line">	fuseki:serviceReadWriteGraphStore &quot;data&quot; ;</span><br><span class="line">	fuseki:serviceUpdate              &quot;update&quot; ;</span><br><span class="line">	fuseki:serviceUpload              &quot;upload&quot; ;</span><br><span class="line">	fuseki:dataset                   &lt;#dataset&gt; ;</span><br><span class="line">	.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;#dataset&gt; rdf:type ja:RDFDataset ;</span><br><span class="line">	ja:defaultGraph</span><br><span class="line">	# 这样做可以不抱错。</span><br><span class="line">      [ a ja:MemoryModel ;</span><br><span class="line">      # 加载本体文件</span><br><span class="line">        ja:content [ja:externalContent &lt;file:///D:/Programming/apache-jena-fuseki-3.7.0/run/databases/hr-kg-ontology-en-turtle.ttl&gt; ] ;</span><br><span class="line">        # 不用jena转换，直接加载三元组</span><br><span class="line">        ja:content [ja:externalContent &lt;file:///D:/Programming/d2rq-0.8.1/Hr_HG_QA.nt&gt; ] ;</span><br><span class="line">      ] ;</span><br><span class="line">    .</span><br><span class="line"></span><br><span class="line">&lt;#model_inf&gt; a ja:InfModel ;</span><br><span class="line"></span><br><span class="line">	#打开OWL推理机</span><br><span class="line">    ja:reasoner [ja:reasonerURL &lt;http://jena.hpl.hp.com/2003/OWLFBRuleReasoner&gt;] ;</span><br><span class="line">	</span><br><span class="line">    #关闭规则推理机，并指定规则文件路径</span><br><span class="line">    #ja:reasoner [ ja:reasonerURL &lt;http://jena.hpl.hp.com/2003/GenericRuleReasoner&gt; ; </span><br><span class="line">    #              ja:rulesFrom &lt;file:///D:/Programming/apache-jena-fuseki-3.7.0/run/databases/rules.ttl&gt; ] ;</span><br><span class="line">	.</span><br></pre></td></tr></table></figure>
+<p>==注意，千万别忘记修改 本体文件地址、三元组TDB 为你本机的地址！ 这一步可以先把推理机 那两行注销掉==</p>
+<h2 id="3-4-运行服务器检验"><a href="#3-4-运行服务器检验" class="headerlink" title="3.4 运行服务器检验"></a>3.4 运行服务器检验</h2><p>再次运行“fuseki-server.bat”，如果在命令窗中没有error则算成功。</p>
+<p>Fuseki默认的端口是3030，打开浏览器输入：</p>
+<p><a href="http://localhost:3030/" target="_blank" rel="noopener">http://localhost:3030/</a></p>
+<p>，我们可以进行SPARQL查询等操作。在Python中用SPARQLWrapper向Fuseki server发送查询请求:</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PREFIX : &lt;http://www.kgdemo.com#&gt;</span><br><span class="line">PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span><br><span class="line">PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span><br><span class="line"></span><br><span class="line">SELECT * WHERE &#123;</span><br><span class="line">?x :movieTitle &apos;功夫&apos;.</span><br><span class="line">?x ?p ?o.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>即查询电影《功夫》的所有属性。返回的结果：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">                            x                                            p                                  o      </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasGenre   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#genre/14  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasGenre   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#genre/28  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasGenre   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#genre/35  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasGenre   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#genre/80  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.w3.org/1999/02/22-rdf-syntax-ns#type   http://www.kgdemo.com#Movie  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#movieRating   7.2E0  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#movieIntroduction   1940年代的上海，自小受尽欺辱的街头混混阿星（周星驰）为了能出人头地，可谓窥见机会的缝隙就往里钻，今次他盯上行动日益猖獗的黑道势力“斧头帮”，想借之大名成就大业。　　阿星假冒“斧头帮”成员试图在一个叫“猪笼城寨”的地方对居民敲诈，不想引来真的“斧头帮”与“猪笼城寨”居民的恩怨。“猪笼城寨”原是藏龙卧虎之处，居民中有许多身怀绝技者（元华、梁小龙等），他们隐藏于此本是为远离江湖恩怨，不想麻烦自动上身，躲都躲不及。而在观战正邪两派的斗争中，阿星逐渐领悟功夫的真谛。  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#movieTitle   功夫  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#movieReleaseDate   2004-02-10  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.w3.org/1999/02/22-rdf-syntax-ns#type   http://www.w3.org/2002/07/owl#Thing  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/25251  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/57609  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/118745  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/57607  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/65975  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/78878  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/83635  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/119426  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/545277  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/576408  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/1136808  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/1173200  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/1173216  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/1173223  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/1173224  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/1287732  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.kgdemo.com#hasActor   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/1676386  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.w3.org/1999/02/22-rdf-syntax-ns#type   http://www.w3.org/2000/01/rdf-schema#Resource  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470   http://www.w3.org/2002/07/owl#sameAs   file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#movie/9470</span><br></pre></td></tr></table></figure>
+<h2 id="3-5-可能会报错："><a href="#3-5-可能会报错：" class="headerlink" title="3.5 可能会报错："></a>3.5 可能会报错：</h2><p>运行fuseki-server.bat” 命令窗中很可能会报错：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Server ERROR Exception in initialization: the loading of content into</span><br><span class="line">file:///D:/AppsPath/apache-jena-fuseki-3.8.0/run/configuration/fuseki_conf.ttl#model_inf </span><br><span class="line">was aborted because of Read-only object file</span><br></pre></td></tr></table></figure>
+<h3 id="3-5-1-原因："><a href="#3-5-1-原因：" class="headerlink" title="3.5.1 原因："></a>3.5.1 原因：</h3><p>这是由于fuseki版本升级所导致的问题：jena版本高于3.7<br>的时候 InfModel里baseModel和content属性两者不兼容。</p>
+<h3 id="3-5-2-解决办法："><a href="#3-5-2-解决办法：" class="headerlink" title="3.5.2 解决办法："></a>3.5.2 解决办法：</h3><p>两种办法，第一种重新下载jena低版本的（比如3.7）。 但这也不是长远的办法。</p>
+<p>第二种办法：<br>将content注释掉（前面加#），也就是暂时不上传本体文件，等服务器成功启动后，再手动上传本体文件，即：</p>
+<p>第一步：将content注释掉<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#本体文件的路径</span><br><span class="line">#ja:content [ja:externalContent &lt;file:///D:/Programming/apache-jena-fuseki-3.7.0/run/databases/ontology.ttl&gt;] ;</span><br></pre></td></tr></table></figure></p>
+<p>第二步：手动上传本体步骤<br><img src="http://ww1.sinaimg.cn/mw690/006qDjsOgy1g1a7kmuonzj30ik0e2ab9.jpg" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/mw690/006qDjsOgy1g1a7lubhpij30wz0ii0vr.jpg" alt=""></p>
+<p>注意 如果注释了content本体文件，并且不手动上传，则无法推理。比如：电影的“hasActor”属性是通过OWL推理机得到的，即我们原本的RDF数据里面是没有的。</p>
+<h3 id="3-5-3-解决办法2"><a href="#3-5-3-解决办法2" class="headerlink" title="3.5.3 解决办法2"></a>3.5.3 解决办法2</h3><p>使用新版本的配置方式ja:MemoryModel ; 避免了加载冲突。</p>
+<p>并且同步加载 本体和 三元组。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;#dataset&gt; rdf:type ja:RDFDataset ;</span><br><span class="line">	ja:defaultGraph</span><br><span class="line">      [ a ja:MemoryModel ;</span><br><span class="line">        ja:content [ja:externalContent &lt;file:///D:/Programming/apache-jena-fuseki-3.7.0/run/databases/hr-kg-ontology-en-turtle.ttl&gt; ] ;</span><br><span class="line">        ja:content [ja:externalContent &lt;file:///D:/Programming/d2rq-0.8.1/Hr_HG_QA.nt&gt; ] ;</span><br><span class="line">      ] ;</span><br><span class="line">    .</span><br></pre></td></tr></table></figure>
+<p>这样</p>
+<ul>
+<li>优点：不要每次都 重新加载。</li>
+<li>缺点：经过实践，发现丧失了 推理能力。</li>
+</ul>
+<p>删除tdb路径下所有prefixXXX文件，就可以启动fuseki服务。（再次启动会重新生成这些文件，不用担心）</p>
+<p><img src="http://ww1.sinaimg.cn/large/006qDjsOgy1g1l4iz7uyoj311y0kgdlj.jpg" alt=""></p>
+<ul>
+<li>优点： 可以推理</li>
+<li>但是每次都得自己删除prefixXXX</li>
+</ul>
+<blockquote>
+<p>参考：<a href="https://blog.csdn.net/u012052268/article/details/88919129" target="_blank" rel="noopener">https://blog.csdn.net/u012052268/article/details/88919129</a></p>
+</blockquote>
+<h3 id="3-5-4-解决办法3"><a href="#3-5-4-解决办法3" class="headerlink" title="3.5.4 解决办法3"></a>3.5.4 解决办法3</h3><h1 id="4-jena规则推理实战"><a href="#4-jena规则推理实战" class="headerlink" title="4 jena规则推理实战"></a>4 jena规则推理实战</h1><blockquote>
+<p>参考 :<a href="https://www.zhihu.com/question/47323119" target="_blank" rel="noopener">https://www.zhihu.com/question/47323119</a></p>
+</blockquote>
+<p>除了使用protege进行简单推理，我们还可以使用jena的推理机进行复杂规则的推理，比如要实现以下推理：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果有一个演员，出演了一部喜剧电影，那么他就是一位喜剧演员</span><br></pre></td></tr></table></figure>
+<h2 id="4-1-编写推理文件"><a href="#4-1-编写推理文件" class="headerlink" title="4.1 编写推理文件"></a>4.1 编写推理文件</h2><p>在“databases”文件夹下新建一个文本文件“rules.ttl”，填入如下内容：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@prefix : &lt;http://www.kgdemo.com#&gt; .</span><br><span class="line">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .</span><br><span class="line">@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .</span><br><span class="line">@prefix xsd: &lt;XML Schema&gt; .</span><br><span class="line">@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .</span><br><span class="line"></span><br><span class="line">[ruleComedian: (?p :hasActedIn ?m) (?m :hasGenre ?g) (?g :genreName &apos;喜剧&apos;) -&gt; (?p rdf:type :Comedian)]</span><br><span class="line">[ruleInverse: (?p :hasActedIn ?m) -&gt; (?m :hasActor ?p)]</span><br></pre></td></tr></table></figure>
+<p>在上面这个文件里我们定义了一个名为“ruleComedian”的规则，</p>
+<p>它的意思是：如果有一个演员，出演了一部喜剧电影，那么他就是一位喜剧演员。</p>
+<p>接下来，如果想让这个规则文件生效，则需要修改配置文件“fuseki_conf.ttl”：</p>
+<h2 id="4-2-配置推理机"><a href="#4-2-配置推理机" class="headerlink" title="4.2 配置推理机"></a>4.2 配置推理机</h2><p>修改配置文件“fuseki_conf.ttl中关于推理机的代码：</p>
+<p>关闭OWL推理机，开启规则推理机。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#关闭OWL推理机</span><br><span class="line">   #ja:reasoner [ja:reasonerURL &lt;http://jena.hpl.hp.com/2003/OWLFBRuleReasoner&gt;] </span><br><span class="line"></span><br><span class="line">   #开启规则推理机，并指定规则文件路径</span><br><span class="line">   ja:reasoner [ ja:reasonerURL &lt;http://jena.hpl.hp.com/2003/GenericRuleReasoner&gt; ; </span><br><span class="line">                 ja:rulesFrom &lt;file:///D:/Java/apache-jena-fuseki-3.7.0/run/databases/rules.ttl&gt; ] ;</span><br></pre></td></tr></table></figure>
+<p>我们只能启用一种推理机。前面也提到，OWL的推理功能也可以在规则推理机里面实现，因此我们定义了“ruleInverse”来表示“hasActedIn”和“hasActor”的相反关系。更多细节读者可以参考文档。</p>
+<p>也就是说，如果你习惯于用protege的规则，就不要开启这种推理机。还是用之前的owl推理机比较好。</p>
+<p>此时，我们执行如下SPARQL查询，喜剧演员有哪些：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PREFIX : &lt;http://www.kgdemo.com#&gt;</span><br><span class="line">PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span><br><span class="line">PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span><br><span class="line"></span><br><span class="line">SELECT * WHERE &#123;</span><br><span class="line">?x rdf:type :Comedian.</span><br><span class="line">?x :personName ?n.</span><br><span class="line">&#125;</span><br><span class="line">limit 10</span><br></pre></td></tr></table></figure>
+<p>查询结果：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">x                                 n      </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/111298   郑丹瑞  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/70591   陈欣健  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/116351   沈殿霞  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/116052   鲍汉琳  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/1002925   张同祖  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/62423   林正英  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/1614091   林琪欣  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/224929   陈法蓉  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/1135398   叶世荣  </span><br><span class="line">file:///D:/d2rq/d2rq-0.8.1/kg_demo_movie.nt#person/119426   元秋</span><br></pre></td></tr></table></figure>
+<h2 id="4-3-如果推理机无法使用："><a href="#4-3-如果推理机无法使用：" class="headerlink" title="4.3 如果推理机无法使用："></a>4.3 如果推理机无法使用：</h2><blockquote>
+<p>参考文献：<a href="https://blog.csdn.net/qingdujun/article/details/82501166" target="_blank" rel="noopener">https://blog.csdn.net/qingdujun/article/details/82501166</a></p>
+<p>参考文献：<a href="https://stackoverflow.com/questions/52204735/no-data-available-in-table-when-i-customize-the-rules-of-jena-fuseki" target="_blank" rel="noopener">https://stackoverflow.com/questions/52204735/no-data-available-in-table-when-i-customize-the-rules-of-jena-fuseki</a></p>
+</blockquote>
+<p>在阅读《实践篇（四）：Apache jena SPARQL endpoint及推理》 一文后， 发现最新版本 JENA FUSEKI （v3.8.0）自定义推导功能无法正常使用。</p>
+<p>造成该问题，主要两大缘由：</p>
+<p>其一，推导规则（rules.ttl）需要用逗号隔开。<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@prefix : &lt;http://www.kgdemo.com#&gt; .</span><br><span class="line">@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .</span><br><span class="line"></span><br><span class="line">[ruleComedian: (?p :hasActedIn ?m), (?m :hasGenre ?g), (?g :genreName &apos;喜剧&apos;) </span><br><span class="line">-&gt; (?p rdf:type :Comedian)]</span><br><span class="line">[ruleInverse: (?p :hasActedIn ?m) -&gt; (?m :hasActor ?p)]</span><br></pre></td></tr></table></figure></p>
+<p>其二，配置问题。以下为查阅官网后，重写的配置文件（fuseki_conf.ttl）。配置的主要解析过程为，</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service&gt;dataset&gt;defaultGraph&gt;infModel&gt;</span><br></pre></td></tr></table></figure>
+<p>也就是 根据fuseki_conf.ttl文件中的&lt;# &gt; 符号来确定的， 每两个一组，守卫照应，且每段结束的时候有一个小数点结尾。</p>
+<h1 id="5-总结"><a href="#5-总结" class="headerlink" title="5 总结"></a>5 总结</h1><p>本次实践介绍了如何使用Jena来开启endpoint服务，提供高效的查询；并介绍了如何加入推理引擎。我们是用Jena提供的命令行工具来完成上述操作。实际上，jena提供了所有工具的API接口，读者可以用Java编写程序，进行开发。相关文件已上传至<a href="http://link.zhihu.com/?target=https%3A//github.com/SimmerChan/KG-demo-for-movie" target="_blank" rel="noopener">github</a>。大家都可以按照这个学习。</p>
+<p>最后，衷心真心感谢SimmerChan的文章和代码，我和我的小伙伴都是看你的文章代码入门，多谢！</p>
+<h2 id="5-1-附件"><a href="#5-1-附件" class="headerlink" title="5.1 附件"></a>5.1 附件</h2><p>附件一：可以推理，但是每次tdb都要重新删除prefixXXX文件。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">@prefix :      &lt;http://base/#&gt; .</span><br><span class="line">@prefix tdb:   &lt;http://jena.hpl.hp.com/2008/tdb#&gt; .</span><br><span class="line">@prefix tdb2:  &lt;http://jena.apache.org/2016/tdb#&gt; .</span><br><span class="line">@prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .</span><br><span class="line">@prefix ja:    &lt;http://jena.hpl.hp.com/2005/11/Assembler#&gt; .</span><br><span class="line">@prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .</span><br><span class="line">@prefix fuseki: &lt;http://jena.apache.org/fuseki#&gt; .</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;#service1&gt; rdf:type fuseki:Service ;</span><br><span class="line">    fuseki:name                       &quot;Hr_HG_QA&quot; ;     </span><br><span class="line">    fuseki:serviceQuery               &quot;sparql&quot;, &quot;query&quot; ; </span><br><span class="line">    fuseki:serviceReadGraphStore      &quot;get&quot; ;</span><br><span class="line">	fuseki:serviceReadWriteGraphStore &quot;data&quot; ;</span><br><span class="line">	fuseki:serviceUpdate              &quot;update&quot; ;</span><br><span class="line">	fuseki:serviceUpload              &quot;upload&quot; ;</span><br><span class="line">	fuseki:dataset                   &lt;#dataset&gt; ;</span><br><span class="line">	.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;#dataset&gt; rdf:type ja:RDFDataset ;</span><br><span class="line">    ja:defaultGraph &lt;#model_inf&gt; ;</span><br><span class="line">    .</span><br><span class="line"></span><br><span class="line">&lt;#model_inf&gt; a ja:InfModel ;</span><br><span class="line"></span><br><span class="line">    #本体文件的路径</span><br><span class="line">    ja:content [ja:externalContent &lt;file:///D:/Programming/apache-jena-fuseki-3.7.0/run/databases/hr-kg-ontology-en-turtle.ttl&gt;] ;</span><br><span class="line">    </span><br><span class="line">	#打开OWL推理机</span><br><span class="line">    ja:reasoner [ja:reasonerURL &lt;http://jena.hpl.hp.com/2003/OWLFBRuleReasoner&gt;] ;</span><br><span class="line">	</span><br><span class="line">    #开启规则推理机，并指定规则文件路径</span><br><span class="line">    #ja:reasoner [ ja:reasonerURL &lt;http://jena.hpl.hp.com/2003/GenericRuleReasoner&gt; ; </span><br><span class="line">    #              ja:rulesFrom &lt;file:///D:/Programming/apache-jena-fuseki-3.7.0/run/databases/rules.ttl&gt; ] ;</span><br><span class="line">	# 基本的模型</span><br><span class="line">	ja:baseModel &lt;#tdbGraph&gt; ;</span><br><span class="line">	.</span><br><span class="line">	</span><br><span class="line">&lt;#tdbGraph&gt; rdf:type tdb:GraphTDB ;</span><br><span class="line">    tdb:dataset &lt;#tdbDataset&gt; ;</span><br><span class="line">    .</span><br><span class="line">	</span><br><span class="line">&lt;#tdbDataset&gt; rdf:type tdb:DatasetTDB ;</span><br><span class="line">    tdb:location &quot;D:/Programming/apache-jena-3.7.0/test-tdb&quot; ;</span><br><span class="line">    .</span><br></pre></td></tr></table></figure>
+<p>附件二：每次不用重新载入，但是无法推理。</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">@prefix :      &lt;http://base/#&gt; .</span><br><span class="line">@prefix tdb:   &lt;http://jena.hpl.hp.com/2008/tdb#&gt; .</span><br><span class="line">@prefix tdb2:  &lt;http://jena.apache.org/2016/tdb#&gt; .</span><br><span class="line">@prefix rdf:   &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .</span><br><span class="line">@prefix ja:    &lt;http://jena.hpl.hp.com/2005/11/Assembler#&gt; .</span><br><span class="line">@prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .</span><br><span class="line">@prefix fuseki: &lt;http://jena.apache.org/fuseki#&gt; .</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;#service1&gt; rdf:type fuseki:Service ;</span><br><span class="line">    fuseki:name                       &quot;Hr_HG_QA&quot; ;     </span><br><span class="line">    fuseki:serviceQuery               &quot;sparql&quot;, &quot;query&quot; ; </span><br><span class="line">    fuseki:serviceReadGraphStore      &quot;get&quot; ;</span><br><span class="line">	fuseki:serviceReadWriteGraphStore &quot;data&quot; ;</span><br><span class="line">	fuseki:serviceUpdate              &quot;update&quot; ;</span><br><span class="line">	fuseki:serviceUpload              &quot;upload&quot; ;</span><br><span class="line">	fuseki:dataset                   &lt;#dataset&gt; ;</span><br><span class="line">	.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;#dataset&gt; rdf:type ja:RDFDataset ;</span><br><span class="line">	ja:defaultGraph</span><br><span class="line">	# 这样做可以不抱错。</span><br><span class="line">      [ a ja:MemoryModel ;</span><br><span class="line">      # 加载本体文件</span><br><span class="line">        ja:content [ja:externalContent &lt;file:///D:/Programming/apache-jena-fuseki-3.7.0/run/databases/hr-kg-ontology-en-turtle.ttl&gt; ] ;</span><br><span class="line">        # 不用jena转换，直接加载三元组</span><br><span class="line">        ja:content [ja:externalContent &lt;file:///D:/Programming/d2rq-0.8.1/Hr_HG_QA.nt&gt; ] ;</span><br><span class="line">      ] ;</span><br><span class="line">    .</span><br><span class="line"></span><br><span class="line">&lt;#model_inf&gt; a ja:InfModel ;</span><br><span class="line"></span><br><span class="line">	#打开OWL推理机</span><br><span class="line">    ja:reasoner [ja:reasonerURL &lt;http://jena.hpl.hp.com/2003/OWLFBRuleReasoner&gt;] ;</span><br><span class="line">	</span><br><span class="line">    #关闭规则推理机，并指定规则文件路径</span><br><span class="line">    #ja:reasoner [ ja:reasonerURL &lt;http://jena.hpl.hp.com/2003/GenericRuleReasoner&gt; ; </span><br><span class="line">    #              ja:rulesFrom &lt;file:///D:/Programming/apache-jena-fuseki-3.7.0/run/databases/rules.ttl&gt; ] ;</span><br><span class="line">	.</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/知识图谱/">知识图谱</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">实践篇（5）：基于REfO的简单知识问答</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/">
+                <span class="level-item">实践篇（3）RDF查询语言SPARQL</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://xuqingtang.top/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/';
+        this.page.identifier = '2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <figure class="image container is-128x128 has-mb-6">
+                            <img class="is-rounded" src="/images/avatar.png" alt="Qingtang">
+                        </figure>
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Qingtang
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Developer &amp; NLPer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>HeFei, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        87
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        54
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="http://github.com/xqtbox" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="http://github.com/xqtbox">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="CSDN" href="https://blog.csdn.net/u012052268">
+                
+                <i class="fas fa-pencil-alt"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Weibo" href="https://www.weibo.com/u/5890351342">
+                
+                <i class="fab fa-weibo"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="知乎" href="https://www.zhihu.com/people/xqtbox/activities">
+                
+                <i class="fab fa-zhihu"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#0-前言">
+        <span class="has-mr-6">1</span>
+        <span>0 前言</span>
+        </a></li><li>
+        <a class="is-flex" href="#1-JENA简介">
+        <span class="has-mr-6">2</span>
+        <span>1 JENA简介</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-1-Jena框架的架构">
+        <span class="has-mr-6">2.1</span>
+        <span>1.1 Jena框架的架构</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#2-JENA下载安装">
+        <span class="has-mr-6">3</span>
+        <span>2 JENA下载安装</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#2-1-官网下载">
+        <span class="has-mr-6">3.1</span>
+        <span>2.1 官网下载</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-2-安装（解压即可）">
+        <span class="has-mr-6">3.2</span>
+        <span>2.2 安装（解压即可）</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#3-使用jena进行查询三元组-实战">
+        <span class="has-mr-6">4</span>
+        <span>3 使用jena进行查询三元组 实战</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#3-1-导入jena需要的三元组信息（也可以不用这一步）">
+        <span class="has-mr-6">4.1</span>
+        <span>3.1 导入jena需要的三元组信息（也可以不用这一步）</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-2-添加本体数据">
+        <span class="has-mr-6">4.2</span>
+        <span>3.2 添加本体数据</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-3-fuseki服务器配置">
+        <span class="has-mr-6">4.3</span>
+        <span>3.3 fuseki服务器配置</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-4-运行服务器检验">
+        <span class="has-mr-6">4.4</span>
+        <span>3.4 运行服务器检验</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-5-可能会报错：">
+        <span class="has-mr-6">4.5</span>
+        <span>3.5 可能会报错：</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#3-5-1-原因：">
+        <span class="has-mr-6">4.5.1</span>
+        <span>3.5.1 原因：</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-5-2-解决办法：">
+        <span class="has-mr-6">4.5.2</span>
+        <span>3.5.2 解决办法：</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-5-3-解决办法2">
+        <span class="has-mr-6">4.5.3</span>
+        <span>3.5.3 解决办法2</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-5-4-解决办法3">
+        <span class="has-mr-6">4.5.4</span>
+        <span>3.5.4 解决办法3</span>
+        </a></li></ul></li></ul></li><li>
+        <a class="is-flex" href="#4-jena规则推理实战">
+        <span class="has-mr-6">5</span>
+        <span>4 jena规则推理实战</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#4-1-编写推理文件">
+        <span class="has-mr-6">5.1</span>
+        <span>4.1 编写推理文件</span>
+        </a></li><li>
+        <a class="is-flex" href="#4-2-配置推理机">
+        <span class="has-mr-6">5.2</span>
+        <span>4.2 配置推理机</span>
+        </a></li><li>
+        <a class="is-flex" href="#4-3-如果推理机无法使用：">
+        <span class="has-mr-6">5.3</span>
+        <span>4.3 如果推理机无法使用：</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#5-总结">
+        <span class="has-mr-6">6</span>
+        <span>5 总结</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#5-1-附件">
+        <span class="has-mr-6">6.1</span>
+        <span>5.1 附件</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://blog.csdn.net/u012052268" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">CSDN</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">blog.csdn.net</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Linux/">
+            <span class="level-start">
+                <span class="level-item">Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/NLP/">
+            <span class="level-start">
+                <span class="level-item">NLP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Python/">
+            <span class="level-start">
+                <span class="level-item">Python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/数据库/">
+            <span class="level-start">
+                <span class="level-item">数据库</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/机器学习/">
+            <span class="level-start">
+                <span class="level-item">机器学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/深度学习/">
+            <span class="level-start">
+                <span class="level-item">深度学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/爬虫/">
+            <span class="level-start">
+                <span class="level-item">爬虫</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/自然语言处理/">
+            <span class="level-start">
+                <span class="level-item">自然语言处理</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">21</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/运维/">
+            <span class="level-start">
+                <span class="level-item">运维</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/随笔/">
+            <span class="level-start">
+                <span class="level-item">随笔</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/驱动开发/">
+            <span class="level-start">
+                <span class="level-item">驱动开发</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Anaconda/" style="font-size: 12.73px;">Anaconda</a> <a href="/tags/CNN/" style="font-size: 11.82px;">CNN</a> <a href="/tags/DevOps/" style="font-size: 10px;">DevOps</a> <a href="/tags/DriverSttudio3-2/" style="font-size: 10px;">DriverSttudio3.2</a> <a href="/tags/Editplus/" style="font-size: 10px;">Editplus</a> <a href="/tags/EndNote/" style="font-size: 10px;">EndNote</a> <a href="/tags/GBK/" style="font-size: 10.91px;">GBK</a> <a href="/tags/Git/" style="font-size: 19.09px;">Git</a> <a href="/tags/GitHub/" style="font-size: 19.09px;">GitHub</a> <a href="/tags/Java/" style="font-size: 17.27px;">Java</a> <a href="/tags/Jena/" style="font-size: 10px;">Jena</a> <a href="/tags/Jieba/" style="font-size: 10px;">Jieba</a> <a href="/tags/Keras/" style="font-size: 10px;">Keras</a> <a href="/tags/LSTM/" style="font-size: 10px;">LSTM</a> <a href="/tags/Linux/" style="font-size: 13.64px;">Linux</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/Neo4j/" style="font-size: 10.91px;">Neo4j</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/Protege/" style="font-size: 10px;">Protege</a> <a href="/tags/Pycharm/" style="font-size: 11.82px;">Pycharm</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Tensorboard/" style="font-size: 10px;">Tensorboard</a> <a href="/tags/Tensorflow/" style="font-size: 14.55px;">Tensorflow</a> <a href="/tags/USB/" style="font-size: 10px;">USB</a> <a href="/tags/UTF-8/" style="font-size: 10.91px;">UTF-8</a> <a href="/tags/coursera/" style="font-size: 19.09px;">coursera</a> <a href="/tags/ddk/" style="font-size: 10px;">ddk</a> <a href="/tags/eclipse/" style="font-size: 14.55px;">eclipse</a> <a href="/tags/jieba/" style="font-size: 10px;">jieba</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/myeclipse/" style="font-size: 11.82px;">myeclipse</a> <a href="/tags/scrapy/" style="font-size: 13.64px;">scrapy</a> <a href="/tags/screen/" style="font-size: 10px;">screen</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/win7/" style="font-size: 10px;">win7</a> <a href="/tags/word2vec/" style="font-size: 10px;">word2vec</a> <a href="/tags/xshell/" style="font-size: 10px;">xshell</a> <a href="/tags/分词/" style="font-size: 10px;">分词</a> <a href="/tags/学习路线/" style="font-size: 11.82px;">学习路线</a> <a href="/tags/报错/" style="font-size: 15.45px;">报错</a> <a href="/tags/文件操作/" style="font-size: 10px;">文件操作</a> <a href="/tags/机器学习/" style="font-size: 19.09px;">机器学习</a> <a href="/tags/汽车之家/" style="font-size: 10.91px;">汽车之家</a> <a href="/tags/深度学习/" style="font-size: 17.27px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 16.36px;">爬虫</a> <a href="/tags/知识图谱/" style="font-size: 17.27px;">知识图谱</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/自然语言处理/" style="font-size: 18.18px;">自然语言处理</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/问答系统/" style="font-size: 10px;">问答系统</a> <a href="/tags/阅读理解/" style="font-size: 10px;">阅读理解</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/驱动程序/" style="font-size: 10px;">驱动程序</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/11.jpg" alt="linux环境变量的设置+关于bashrc与profile的区别">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-03T05:24:26.000Z">2019-05-03</time></div>
+                    <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="has-link-black-ter is-size-6">linux环境变量的设置+关于bashrc与profile的区别</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/02/Windows下neo4j安装使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/10.jpg" alt="Windows下neo4j安装使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-02T03:21:22.000Z">2019-05-02</time></div>
+                    <a href="/2019/05/02/Windows下neo4j安装使用/" class="has-link-black-ter is-size-6">Windows下neo4j安装使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/09.jpg" alt="实践篇（5）：基于REfO的简单知识问答">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-01T04:28:22.000Z">2019-05-01</time></div>
+                    <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="has-link-black-ter is-size-6">实践篇（5）：基于REfO的简单知识问答</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/08.jpg" alt="实践篇（4）：Apache jena SPARQL endpoint及推理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-30T03:28:25.000Z">2019-04-30</time></div>
+                    <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="has-link-black-ter is-size-6">实践篇（4）：Apache jena SPARQL endpoint及推理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/07.jpg" alt="实践篇（3）RDF查询语言SPARQL">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-29T04:28:25.000Z">2019-04-29</time></div>
+                    <a href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/" class="has-link-black-ter is-size-6">实践篇（3）RDF查询语言SPARQL</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anaconda/">
+                        <span class="tag">Anaconda</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CNN/">
+                        <span class="tag">CNN</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DevOps/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DriverSttudio3-2/">
+                        <span class="tag">DriverSttudio3.2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Editplus/">
+                        <span class="tag">Editplus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EndNote/">
+                        <span class="tag">EndNote</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GBK/">
+                        <span class="tag">GBK</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jena/">
+                        <span class="tag">Jena</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jieba/">
+                        <span class="tag">Jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keras/">
+                        <span class="tag">Keras</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LSTM/">
+                        <span class="tag">LSTM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLP/">
+                        <span class="tag">NLP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Neo4j/">
+                        <span class="tag">Neo4j</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Oracle/">
+                        <span class="tag">Oracle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Protege/">
+                        <span class="tag">Protege</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pycharm/">
+                        <span class="tag">Pycharm</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">25</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RNN/">
+                        <span class="tag">RNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorboard/">
+                        <span class="tag">Tensorboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/USB/">
+                        <span class="tag">USB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UTF-8/">
+                        <span class="tag">UTF-8</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/coursera/">
+                        <span class="tag">coursera</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ddk/">
+                        <span class="tag">ddk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/eclipse/">
+                        <span class="tag">eclipse</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jieba/">
+                        <span class="tag">jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/maven/">
+                        <span class="tag">maven</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/myeclipse/">
+                        <span class="tag">myeclipse</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy/">
+                        <span class="tag">scrapy</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/screen/">
+                        <span class="tag">screen</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/session/">
+                        <span class="tag">session</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/win7/">
+                        <span class="tag">win7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/word2vec/">
+                        <span class="tag">word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/xshell/">
+                        <span class="tag">xshell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/分词/">
+                        <span class="tag">分词</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/学习路线/">
+                        <span class="tag">学习路线</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/报错/">
+                        <span class="tag">报错</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/文件操作/">
+                        <span class="tag">文件操作</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器学习/">
+                        <span class="tag">机器学习</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/汽车之家/">
+                        <span class="tag">汽车之家</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/深度学习/">
+                        <span class="tag">深度学习</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/知识图谱/">
+                        <span class="tag">知识图谱</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/编码/">
+                        <span class="tag">编码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/自然语言处理/">
+                        <span class="tag">自然语言处理</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/运维/">
+                        <span class="tag">运维</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/问答系统/">
+                        <span class="tag">问答系统</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/阅读理解/">
+                        <span class="tag">阅读理解</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/面向对象/">
+                        <span class="tag">面向对象</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/驱动程序/">
+                        <span class="tag">驱动程序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/11.jpg" alt="linux环境变量的设置+关于bashrc与profile的区别">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-03T05:24:26.000Z">2019-05-03</time></div>
+                    <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="has-link-black-ter is-size-6">linux环境变量的设置+关于bashrc与profile的区别</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/02/Windows下neo4j安装使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/10.jpg" alt="Windows下neo4j安装使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-02T03:21:22.000Z">2019-05-02</time></div>
+                    <a href="/2019/05/02/Windows下neo4j安装使用/" class="has-link-black-ter is-size-6">Windows下neo4j安装使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/09.jpg" alt="实践篇（5）：基于REfO的简单知识问答">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-01T04:28:22.000Z">2019-05-01</time></div>
+                    <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="has-link-black-ter is-size-6">实践篇（5）：基于REfO的简单知识问答</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/08.jpg" alt="实践篇（4）：Apache jena SPARQL endpoint及推理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-30T03:28:25.000Z">2019-04-30</time></div>
+                    <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="has-link-black-ter is-size-6">实践篇（4）：Apache jena SPARQL endpoint及推理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/07.jpg" alt="实践篇（3）RDF查询语言SPARQL">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-29T04:28:25.000Z">2019-04-29</time></div>
+                    <a href="/2019/04/29/实践篇（3）RDF查询语言SPARQL/" class="has-link-black-ter is-size-6">实践篇（3）RDF查询语言SPARQL</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anaconda/">
+                        <span class="tag">Anaconda</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CNN/">
+                        <span class="tag">CNN</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DevOps/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DriverSttudio3-2/">
+                        <span class="tag">DriverSttudio3.2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Editplus/">
+                        <span class="tag">Editplus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EndNote/">
+                        <span class="tag">EndNote</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GBK/">
+                        <span class="tag">GBK</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jena/">
+                        <span class="tag">Jena</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jieba/">
+                        <span class="tag">Jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keras/">
+                        <span class="tag">Keras</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LSTM/">
+                        <span class="tag">LSTM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLP/">
+                        <span class="tag">NLP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Neo4j/">
+                        <span class="tag">Neo4j</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Oracle/">
+                        <span class="tag">Oracle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Protege/">
+                        <span class="tag">Protege</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pycharm/">
+                        <span class="tag">Pycharm</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">25</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RNN/">
+                        <span class="tag">RNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorboard/">
+                        <span class="tag">Tensorboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/USB/">
+                        <span class="tag">USB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UTF-8/">
+                        <span class="tag">UTF-8</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/coursera/">
+                        <span class="tag">coursera</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ddk/">
+                        <span class="tag">ddk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/eclipse/">
+                        <span class="tag">eclipse</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jieba/">
+                        <span class="tag">jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/maven/">
+                        <span class="tag">maven</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/myeclipse/">
+                        <span class="tag">myeclipse</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy/">
+                        <span class="tag">scrapy</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/screen/">
+                        <span class="tag">screen</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/session/">
+                        <span class="tag">session</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/win7/">
+                        <span class="tag">win7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/word2vec/">
+                        <span class="tag">word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/xshell/">
+                        <span class="tag">xshell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/分词/">
+                        <span class="tag">分词</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/学习路线/">
+                        <span class="tag">学习路线</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/报错/">
+                        <span class="tag">报错</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/文件操作/">
+                        <span class="tag">文件操作</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器学习/">
+                        <span class="tag">机器学习</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/汽车之家/">
+                        <span class="tag">汽车之家</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/深度学习/">
+                        <span class="tag">深度学习</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/知识图谱/">
+                        <span class="tag">知识图谱</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/编码/">
+                        <span class="tag">编码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/自然语言处理/">
+                        <span class="tag">自然语言处理</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/运维/">
+                        <span class="tag">运维</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/问答系统/">
+                        <span class="tag">问答系统</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/阅读理解/">
+                        <span class="tag">阅读理解</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/面向对象/">
+                        <span class="tag">面向对象</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/驱动程序/">
+                        <span class="tag">驱动程序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="实践篇（4）：Apache jena SPARQL endpoint及推理" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Qingtang&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true}});</script></body>
+</html>
