@@ -1,0 +1,2476 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8">
+<title>在Keras的Embedding层中使用预训练的word2vec词向量 - 博客堂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
+    <meta name="description" content="本文的部分工作、代码、数据共享到gethub网站《使用多层级注意力机制和keras实现问题分类》：https://github.com/xqtbox/question-classification-with-multi-level-attention-mechanism-and-keras 1 准备工作1.1 什么是词向量?”词向量”（词嵌入）是将一类将词的语义映射到向量空间中去的自然语言处理技术">
+<meta name="keywords" content="自然语言处理,Keras,Word2vec,Embedding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Keras的Embedding层中使用预训练的word2vec词向量">
+<meta property="og:url" content="http://xuqingtang.top/2019/05/15/在Keras的Embedding层中使用预训练的word2vec词向量/index.html">
+<meta property="og:site_name" content="博客堂">
+<meta property="og:description" content="本文的部分工作、代码、数据共享到gethub网站《使用多层级注意力机制和keras实现问题分类》：https://github.com/xqtbox/question-classification-with-multi-level-attention-mechanism-and-keras 1 准备工作1.1 什么是词向量?”词向量”（词嵌入）是将一类将词的语义映射到向量空间中去的自然语言处理技术">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdn.net/20170404205445720?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvU2NvdGZpZWxkX21zbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="https://ask.qcloudimg.com/http-save/yehe-1654149/lklnss2gke.jpeg?imageView2/2/w/1620">
+<meta property="og:image" content="https://ask.qcloudimg.com/http-save/yehe-1654149/ou9hi0yyev.jpeg?imageView2/2/w/1620">
+<meta property="og:image" content="https://ask.qcloudimg.com/http-save/yehe-1654149/z1jhticqn5.jpeg?imageView2/2/w/1620">
+<meta property="og:updated_time" content="2019-05-15T08:05:27.810Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在Keras的Embedding层中使用预训练的word2vec词向量">
+<meta name="twitter:description" content="本文的部分工作、代码、数据共享到gethub网站《使用多层级注意力机制和keras实现问题分类》：https://github.com/xqtbox/question-classification-with-multi-level-attention-mechanism-and-keras 1 准备工作1.1 什么是词向量?”词向量”（词嵌入）是将一类将词的语义映射到向量空间中去的自然语言处理技术">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20170404205445720?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvU2NvdGZpZWxkX21zbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="在Keras的Embedding层中使用预训练的word2vec词向量" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/image-banner/12.jpg" alt="在Keras的Embedding层中使用预训练的word2vec词向量">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-05-15T05:24:26.000Z">2019-05-15</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    26 分钟 读完 (大约 3945 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                在Keras的Embedding层中使用预训练的word2vec词向量
+            
+        </h1>
+        <div class="content">
+            <p>本文的部分工作、代码、数据共享到gethub网站《使用多层级注意力机制和keras实现问题分类》：<a href="https://github.com/xqtbox/question-classification-with-multi-level-attention-mechanism-and-keras" target="_blank" rel="noopener">https://github.com/xqtbox/question-classification-with-multi-level-attention-mechanism-and-keras</a></p>
+<h1 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1 准备工作"></a>1 准备工作</h1><h2 id="1-1-什么是词向量"><a href="#1-1-什么是词向量" class="headerlink" title="1.1 什么是词向量?"></a>1.1 什么是词向量?</h2><p>”词向量”（词嵌入）是将一类将词的语义映射到向量空间中去的自然语言处理技术。即将一个词用特定的向量来表示，向量之间的距离（例如，任意两个向量之间的L2范式距离或更常用的余弦距离）一定程度上表征了的词之间的语义关系。由这些向量形成的几何空间被称为一个嵌入空间。<br><a id="more"></a></p>
+<p>传统的独热表示（ one-hot representation）仅仅将词符号化，不包含任何语义信息。必须考虑将语义融入到词表示中。</p>
+<p>解决办法将原来稀疏的巨大维度压缩嵌入到一个更小维度的空间进行分布式表示。</p>
+<p><img src="https://img-blog.csdn.net/20170404205445720?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvU2NvdGZpZWxkX21zbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"> </p>
+<p>这也是词向量又名词嵌入的缘由了。</p>
+<p>例如，“椰子”和“北极熊”是语义上完全不同的词，所以它们的词向量在一个合理的嵌入空间的距离将会非常遥远。但“厨房”和“晚餐”是相关的话，所以它们的词向量之间的距离会相对小。</p>
+<p>理想的情况下，在一个良好的嵌入空间里，从“厨房”向量到“晚餐”向量的“路径”向量会精确地捕捉这两个概念之间的语义关系。在这种情况下，“路径”向量表示的是“发生的地点”，所以你会期望“厨房”向量 - “晚餐”向量（两个词向量的差异）捕捉到“发生的地点”这样的语义关系。基本上，我们应该有向量等式：晚餐 + 发生的地点 = 厨房（至少接近）。如果真的是这样的话，那么我们可以使用这样的关系向量来回答某些问题。例如，应用这种语义关系到一个新的向量，比如“工作”，我们应该得到一个有意义的等式，工作+ 发生的地点 = 办公室，来回答“工作发生在哪里？”。</p>
+<p>词向量通过降维技术表征文本数据集中的词的共现信息。方法包括神经网络(“Word2vec”技术)，或矩阵分解。</p>
+<h2 id="1-2-获取词向量"><a href="#1-2-获取词向量" class="headerlink" title="1.2 获取词向量"></a>1.2 获取词向量</h2><p>词向量 对与中文自然语言处理任务 是基石，一般情况下 有两种获取方式：</p>
+<ul>
+<li>别人训练好的百科数据。优势：包含词语多，符合日常用语的语义；劣势：专有名词不足，占用空间大；</li>
+<li>自己训练。优势：专有名词，针对具体任务语义更准确； 劣势：泛化性差。</li>
+</ul>
+<p>步骤：</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">文本--&gt;分词</span><br><span class="line">分词--&gt;训练词向量</span><br><span class="line">训练词向量--&gt;保存词向量</span><br></pre></td></tr></table></figure>
+<p>具体代码：<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> gensim</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">## 训练自己的词向量，并保存。</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trainWord2Vec</span><span class="hljs-params">(filePath)</span>:</span></span><br><span class="line">    sentences =  gensim.models.word2vec.LineSentence(filePath) <span class="hljs-comment"># 读取分词后的 文本</span></span><br><span class="line">    model = gensim.models.Word2Vec(sentences, size=<span class="hljs-number">100</span>, window=<span class="hljs-number">5</span>, min_count=<span class="hljs-number">1</span>, workers=<span class="hljs-number">4</span>) <span class="hljs-comment"># 训练模型</span></span><br><span class="line"></span><br><span class="line">    model.save(<span class="hljs-string">'./CarComment_vord2vec_100'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">testMyWord2Vec</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-comment"># 读取自己的词向量，并简单测试一下 效果。</span></span><br><span class="line">    inp = <span class="hljs-string">'./CarComment_vord2vec_100'</span>  <span class="hljs-comment"># 读取词向量</span></span><br><span class="line">    model = gensim.models.Word2Vec.load(inp)</span><br><span class="line"></span><br><span class="line">    print(<span class="hljs-string">'空间的词向量（100维）:'</span>,model[<span class="hljs-string">'空间'</span>])</span><br><span class="line">    print(<span class="hljs-string">'打印与空间最相近的5个词语：'</span>,model.most_similar(<span class="hljs-string">'空间'</span>, topn=<span class="hljs-number">5</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    <span class="hljs-comment">#trainWord2Vec('./CarCommentAll_cut.csv')</span></span><br><span class="line">    testMyWord2Vec()</span><br><span class="line">    <span class="hljs-keyword">pass</span></span><br></pre></td></tr></table></figure></p>
+<p>这样我们就 拥有了 预训练的 词向量文件<code>CarComment_vord2vec_100</code> 。</p>
+<p>下一单元 继续讲解如何在keras中使用它。</p>
+<h1 id="2-转化词向量为keras所需格式"><a href="#2-转化词向量为keras所需格式" class="headerlink" title="2 转化词向量为keras所需格式"></a>2 转化词向量为keras所需格式</h1><p>上一步拿到了所有词语的词向量，但还需转化词向量为keras所需格式。众所周知，keras中使用预训练的词向量的层是<code>Embedding层</code>，而<code>Embedding层</code>中所需要的格式为 一个巨大的“矩阵”：第i列表示词索引为i的词的词向量</p>
+<p>所以，本单元的总体思路就是给 Embedding 层提供一个 <code>[ word : word_vector]</code> 的词典来初始化<code>Embedding层</code>中所需要的大矩阵 ，并且标记为不可训练。</p>
+<h2 id="2-1-获取所有词语word和词向量"><a href="#2-1-获取所有词语word和词向量" class="headerlink" title="2.1 获取所有词语word和词向量"></a>2.1 获取所有词语word和词向量</h2><p>首先要导入 预训练的词向量。<br><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">## 1 导入 预训练的词向量</span></span><br><span class="line">myPath = <span class="hljs-string">'./CarComment_vord2vec_100'</span> <span class="hljs-comment"># 本地词向量的地址</span></span><br><span class="line">Word2VecModel = gensim.models.Word2Vec.load(myPath) <span class="hljs-comment"># 读取词向量</span></span><br><span class="line"></span><br><span class="line">vector = Word2VecModel.wv[<span class="hljs-string">'空间'</span>]  <span class="hljs-comment"># 词语的向量，是numpy格式</span></span><br></pre></td></tr></table></figure></p>
+<p><code>gensim</code>的<code>word2vec</code>模型 把所有的单词和 词向量 都存储在了<code>Word2VecModel.wv</code>里面，讲道理直接使用这个<code>.wv</code>即可。 但是我们打印这个东西的 类型</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">print(type(Word2VecModel.wv)) <span class="hljs-comment"># 结果为：Word2VecKeyedVectors</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">for</span> i,j <span class="hljs-keyword">in</span> Word2VecModel.wv.vocab.items():</span><br><span class="line">    print(i) <span class="hljs-comment"># 此时 i 代表每个单词</span></span><br><span class="line">    print(j) <span class="hljs-comment"># j 代表封装了 词频 等信息的 gensim“Vocab”对象，例子：Vocab(count:1481, index:38, sample_int:3701260191)</span></span><br><span class="line">    <span class="hljs-keyword">break</span></span><br></pre></td></tr></table></figure>
+<p>发现它是 gensim自己封装的一种数据类型：<code>Word2VecKeyedVectors</code>，<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;class &apos;gensim.models.keyedvectors.Word2VecKeyedVectors&apos;&gt;</span><br></pre></td></tr></table></figure></p>
+<p>不能使用<code>for循环</code>迭代取单词。</p>
+<h2 id="2-2-构造“词语-词向量”字典"><a href="#2-2-构造“词语-词向量”字典" class="headerlink" title="2.2 构造“词语-词向量”字典"></a>2.2 构造“词语-词向量”字典</h2><p>第二步 构造数据：</p>
+<ul>
+<li>构造 一个list存储所有单词：vocab_list 存储所有词语。</li>
+<li>构造一个字典word_index :<code>{word : index}</code> ，key是每个词语，value是单词在字典中的序号。  在后期 tokenize（序号化） 训练集的时候就是用该词典。<br>构造包含</li>
+<li>构造一个 大向量矩阵embeddings_matrix （按照embedding层的要求）：行数 为 所有单词数，比如 10000；列数为 词向量维度，比如100。</li>
+</ul>
+<p>代码：</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">## 2 构造包含所有词语的 list，以及初始化 “词语-序号”字典 和 “词向量”矩阵</span></span><br><span class="line">vocab_list = [word <span class="hljs-keyword">for</span> word, Vocab <span class="hljs-keyword">in</span> Word2VecModel.wv.vocab.items()]<span class="hljs-comment"># 存储 所有的 词语</span></span><br><span class="line"></span><br><span class="line">word_index = &#123;<span class="hljs-string">" "</span>: <span class="hljs-number">0</span>&#125;<span class="hljs-comment"># 初始化 `[word : token]` ，后期 tokenize 语料库就是用该词典。</span></span><br><span class="line">word_vector = &#123;&#125; <span class="hljs-comment"># 初始化`[word : vector]`字典</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 初始化存储所有向量的大矩阵，留意其中多一位（首行），词向量全为 0，用于 padding补零。</span></span><br><span class="line"><span class="hljs-comment"># 行数 为 所有单词数+1 比如 10000+1 ； 列数为 词向量“维度”比如100。</span></span><br><span class="line">embeddings_matrix = np.zeros((len(vocab_list) + <span class="hljs-number">1</span>, Word2VecModel.vector_size))</span><br></pre></td></tr></table></figure>
+<h2 id="2-3-填充字典和矩阵"><a href="#2-3-填充字典和矩阵" class="headerlink" title="2.3 填充字典和矩阵"></a>2.3 填充字典和矩阵</h2><p>第三步：填充 上述步骤中 的字典 和 大矩阵</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">## 3 填充 上述 的字典 和 大矩阵</span></span><br><span class="line"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(vocab_list)):</span><br><span class="line">    <span class="hljs-comment"># print(i)</span></span><br><span class="line">    word = vocab_list[i]  <span class="hljs-comment"># 每个词语</span></span><br><span class="line">    word_index[word] = i + <span class="hljs-number">1</span> <span class="hljs-comment"># 词语：序号</span></span><br><span class="line">    word_vector[word] = Word2VecModel.wv[word] <span class="hljs-comment"># 词语：词向量</span></span><br><span class="line">    embeddings_matrix[i + <span class="hljs-number">1</span>] = Word2VecModel.wv[word]  <span class="hljs-comment"># 词向量矩阵</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-4-在-keras的Embedding层中使用-预训练词向量"><a href="#2-4-在-keras的Embedding层中使用-预训练词向量" class="headerlink" title="2.4 在 keras的Embedding层中使用 预训练词向量"></a>2.4 在 keras的Embedding层中使用 预训练词向量</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">from</span> keras.layers <span class="hljs-keyword">import</span> Embedding</span><br><span class="line"></span><br><span class="line">EMBEDDING_DIM = <span class="hljs-number">100</span> <span class="hljs-comment">#词向量维度</span></span><br><span class="line"></span><br><span class="line">embedding_layer = Embedding(input_dim = len(embeddings_matrix), <span class="hljs-comment"># 字典长度</span></span><br><span class="line">                            EMBEDDING_DIM, <span class="hljs-comment"># 词向量 长度（100）</span></span><br><span class="line">                            weights=[embeddings_matrix], <span class="hljs-comment"># 重点：预训练的词向量系数</span></span><br><span class="line">                            input_length=MAX_SEQUENCE_LENGTH, <span class="hljs-comment"># 每句话的 最大长度（必须padding） </span></span><br><span class="line">                            trainable=<span class="hljs-keyword">False</span> <span class="hljs-comment"># 是否在 训练的过程中 更新词向量</span></span><br><span class="line">                           </span><br><span class="line">                            )</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Embedding层的输入shape</li>
+</ul>
+<p>此时 输入Embedding层的数据的维度是<br>形如<code>（samples，sequence_length）</code>的2D张量，注意，此时句子中的词语word已经被转化为 index（依靠<code>word_index</code>，所以在 <code>embedding层</code>之前 往往结合 <code>input层</code>， 用于将 文本 分词 转化为数字形式）</p>
+<ul>
+<li>Embedding层的输出shape</li>
+</ul>
+<p>Embedding层把 所有输入的序列中的整数，替换为对应的词向量矩阵中对应的向量（也就是它的词向量）,比如一句话[1,2,8]将被序列[词向量第[1]行,词向量第[2]行,词向量第[8]行]代替。</p>
+<p>这样，输入一个2D张量后，我们可以得到一个3D张量：<code>(samples, sequence_length, embeddings_matrix)</code></p>
+<h2 id="2-5-不使用“预训练”而直接生成词向量"><a href="#2-5-不使用“预训练”而直接生成词向量" class="headerlink" title="*2.5 不使用“预训练”而直接生成词向量"></a>*2.5 不使用“预训练”而直接生成词向量</h2><p>我们也可以直接使用Keras自带的Embedding层训练词向量，而不用预训练的word2vec词向量。代码如下所示：</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">embedding_layer = Embedding(len(word_index) + <span class="hljs-number">1</span>, <span class="hljs-comment"># 由于 没有预训练，设置+1 </span></span><br><span class="line">                            EMBEDDING_DIM, <span class="hljs-comment"># 设置词向量的维度</span></span><br><span class="line">                            input_length=MAX_SEQUENCE_LENGTH) <span class="hljs-comment">#设置句子的最大长度</span></span><br></pre></td></tr></table></figure>
+<p>可以看出在使用 Keras的中Embedding层时候，不指定参数<code>weights=[embeddings_matrix]</code> 即可自动生成词向量。</p>
+<p>先是随机初始化，然后，在训练数据的过程中训练。</p>
+<p>在参考文献1中 做的对比实验，对于新闻文本分类任务：直接使用Keras自带的Embedding层训练词向量而不用预训练的word2vec词向量，得到0.9的准确率。</p>
+<p>使用预训练的word2vec词向量，同样的模型最后可以达到0.95的分类准确率。</p>
+<p>所以使用预训练的词向量作为特征是非常有效的。一般来说，在自然语言处理任务中，当样本数量非常少时，使用预训练的词向量是可行的（实际上，预训练的词向量引入了外部语义信息，往往对模型很有帮助）。</p>
+<h1 id="3-整体代码：在Keras模型中使用预训练的词向量"><a href="#3-整体代码：在Keras模型中使用预训练的词向量" class="headerlink" title="3 整体代码：在Keras模型中使用预训练的词向量"></a>3 整体代码：在Keras模型中使用预训练的词向量</h1><p>文本数据预处理，将每个文本样本转换为一个数字矩阵，矩阵的每一行表示一个词向量。下图梳理了处理文本数据的一般步骤。<br><img src="https://ask.qcloudimg.com/http-save/yehe-1654149/lklnss2gke.jpeg?imageView2/2/w/1620" alt="image"></p>
+<h2 id="3-1-读取数据"><a href="#3-1-读取数据" class="headerlink" title="3.1 读取数据"></a>3.1 读取数据</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">load_file</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    dataFrame_2016 = pd.read_csv(<span class="hljs-string">'data\\nlpcc2016_kbqa_traindata_zong_right.csv'</span>,encoding=<span class="hljs-string">'utf-8'</span>)</span><br><span class="line">    print(dataFrame_2016.columns) <span class="hljs-comment"># 打印列的名称</span></span><br><span class="line"></span><br><span class="line">    texts = []   <span class="hljs-comment"># 存储读取的 x</span></span><br><span class="line">    labels = []  <span class="hljs-comment"># 存储读取的y</span></span><br><span class="line">    <span class="hljs-comment"># 遍历 获取数据</span></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(dataFrame_2016)):</span><br><span class="line">        texts.append(dataFrame_2016.iloc[i].q_text) <span class="hljs-comment"># 每个元素为一句话“《机械设计基础》这本书的作者是谁？”</span></span><br><span class="line">        labels.append(dataFrame_2016.iloc[i].q_type) <span class="hljs-comment"># 每个元素为一个int 代表类别 # [2, 6, ... 3] 的形式</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">## 把类别从int 3 转换为(0,0,0,1,0,0)的形式</span></span><br><span class="line">    labels = to_categorical(np.asarray(labels)) <span class="hljs-comment"># keras的处理方法，一定要学会# 此时为[[0. 0. 1. 0. 0. 0. 0.]....] 的形式</span></span><br><span class="line">    <span class="hljs-keyword">return</span> texts, labels <span class="hljs-comment"># 总文本，总标签</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-2-句子分词"><a href="#3-2-句子分词" class="headerlink" title="3.2 句子分词"></a>3.2 句子分词</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">## 2. cut_sentence2word 句子分词</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">cut_sentence2word</span><span class="hljs-params">(texts)</span>:</span></span><br><span class="line">    texts = [jieba.lcut(Sentence.replace(<span class="hljs-string">'\n'</span>, <span class="hljs-string">''</span>)) <span class="hljs-keyword">for</span> Sentence <span class="hljs-keyword">in</span> texts] <span class="hljs-comment"># 句子分词</span></span><br><span class="line">    <span class="hljs-keyword">return</span> texts</span><br></pre></td></tr></table></figure>
+<h2 id="3-3-构造词向量字典"><a href="#3-3-构造词向量字典" class="headerlink" title="3.3 *构造词向量字典"></a>3.3 *构造词向量字典</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">## 3.获取word2vec模型， 并构造，词语index字典，词向量字典</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_word2vec_dictionaries</span><span class="hljs-params">(texts)</span>:</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_word2vec_model</span><span class="hljs-params">(texts=None)</span>:</span> <span class="hljs-comment"># 获取 预训练的词向量 模型，如果没有就重新训练一个。</span></span><br><span class="line">        <span class="hljs-keyword">if</span> os.path.exists(<span class="hljs-string">'data_word2vec/Word2vec_model_embedding_25'</span>): <span class="hljs-comment"># 如果训练好了 就加载一下不用反复训练</span></span><br><span class="line">            model = Word2Vec.load(<span class="hljs-string">'data_word2vec/Word2vec_model_embedding_25'</span>)</span><br><span class="line">            <span class="hljs-comment"># print(model['作者'])</span></span><br><span class="line">            <span class="hljs-keyword">return</span> model</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            model = Word2Vec(texts, size = EMBEDDING_LEN, window=<span class="hljs-number">7</span>, min_count=<span class="hljs-number">10</span>, workers=<span class="hljs-number">4</span>)</span><br><span class="line">            model.save(<span class="hljs-string">'data_word2vec/Word2vec_model_embedding_25'</span>) <span class="hljs-comment"># 保存模型</span></span><br><span class="line">            <span class="hljs-keyword">return</span> model</span><br><span class="line"></span><br><span class="line">    Word2VecModel = get_word2vec_model(texts) <span class="hljs-comment">#  获取 预训练的词向量 模型，如果没有就重新训练一个。</span></span><br><span class="line"></span><br><span class="line">    vocab_list = [word <span class="hljs-keyword">for</span> word, Vocab <span class="hljs-keyword">in</span> Word2VecModel.wv.vocab.items()]  <span class="hljs-comment"># 存储 所有的 词语</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    word_index = &#123;<span class="hljs-string">" "</span>: <span class="hljs-number">0</span>&#125;<span class="hljs-comment"># 初始化 `[word : token]` ，后期 tokenize 语料库就是用该词典。</span></span><br><span class="line">    word_vector = &#123;&#125; <span class="hljs-comment"># 初始化`[word : vector]`字典</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment"># 初始化存储所有向量的大矩阵，留意其中多一位（首行），词向量全为 0，用于 padding补零。</span></span><br><span class="line">    <span class="hljs-comment"># 行数 为 所有单词数+1 比如 10000+1 ； 列数为 词向量“维度”比如100。</span></span><br><span class="line">    embeddings_matrix = np.zeros((len(vocab_list) + <span class="hljs-number">1</span>, Word2VecModel.vector_size))</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">## 填充 上述 的字典 和 大矩阵</span></span><br><span class="line">    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(vocab_list)):</span><br><span class="line">        word = vocab_list[i]  <span class="hljs-comment"># 每个词语</span></span><br><span class="line">        word_index[word] = i + <span class="hljs-number">1</span>  <span class="hljs-comment"># 词语：序号</span></span><br><span class="line">        word_vector[word] = Word2VecModel.wv[word] <span class="hljs-comment"># 词语：词向量</span></span><br><span class="line">        embeddings_matrix[i + <span class="hljs-number">1</span>] = Word2VecModel.wv[word]  <span class="hljs-comment"># 词向量矩阵</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> word_index, word_vector, embeddings_matrix</span><br></pre></td></tr></table></figure>
+<h2 id="3-4-文本序号化Tokenizer"><a href="#3-4-文本序号化Tokenizer" class="headerlink" title="3.4 文本序号化Tokenizer"></a>3.4 文本序号化Tokenizer</h2><p>在上文中已经得到了每条文本的文字了，但是text-CNN等深度学习模型的输入应该是数字矩阵。可以使用Keras的Tokenizer模块实现转换。</p>
+<p>简单讲解Tokenizer如何实现转换。当我们创建了一个Tokenizer对象后，使用该对象的fit_on_texts()函数，可以将输入的文本中的每个词编号，编号是根据词频的，词频越大，编号越小。可能这时会有疑问：Tokenizer是如何判断文本的一个词呢？其实它是以空格去识别每个词。因为英文的词与词之间是以空格分隔，所以我们可以直接将文本作为函数的参数，但是当我们处理中文文本时，我们需要使用分词工具将词与词分开，并且词间使用空格分开。具体实现如下：</p>
+<p><img src="https://ask.qcloudimg.com/http-save/yehe-1654149/ou9hi0yyev.jpeg?imageView2/2/w/1620" alt="image"></p>
+<p>当然 ，也可以使用之前构建的<code>word_index</code>字典，手动 构建文本tokenizer句子：（推荐这种方法，这样序号下标与预训练词向量一致。）</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 序号化 文本，tokenizer句子，并返回每个句子所对应的词语索引</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">tokenizer</span><span class="hljs-params">(texts, word_index)</span>:</span></span><br><span class="line"></span><br><span class="line">    data = []</span><br><span class="line">    <span class="hljs-keyword">for</span> sentence <span class="hljs-keyword">in</span> texts:</span><br><span class="line">        new_txt = []</span><br><span class="line">        <span class="hljs-keyword">for</span> word <span class="hljs-keyword">in</span> sentence:</span><br><span class="line">            <span class="hljs-keyword">try</span>:</span><br><span class="line">                new_txt.append(word_index[word])  <span class="hljs-comment"># 把句子中的 词语转化为index</span></span><br><span class="line">            <span class="hljs-keyword">except</span>:</span><br><span class="line">                new_txt.append(<span class="hljs-number">0</span>)</span><br><span class="line">            </span><br><span class="line">        data.append(new_txt)</span><br><span class="line"></span><br><span class="line">    texts = sequence.pad_sequences(data, maxlen = MAX_SEQUENCE_LENGTH)  <span class="hljs-comment"># 使用kears的内置函数padding对齐句子,好处是输出numpy数组，不用自己转化了</span></span><br><span class="line">    <span class="hljs-keyword">return</span> texts</span><br></pre></td></tr></table></figure>
+<h2 id="3-5-切分数据"><a href="#3-5-切分数据" class="headerlink" title="3.5 切分数据"></a>3.5 切分数据</h2><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">## 5.切分数据</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">split_data</span><span class="hljs-params">(texts, labels)</span>:</span></span><br><span class="line">    x_train, x_test, y_train, y_test = train_test_split(texts, labels, test_size=<span class="hljs-number">0.2</span>)</span><br><span class="line">    <span class="hljs-keyword">return</span> x_train, x_test, y_train, y_test</span><br></pre></td></tr></table></figure>
+<h2 id="3-6-使用Embedding层将每个词编码转换为词向量"><a href="#3-6-使用Embedding层将每个词编码转换为词向量" class="headerlink" title="3.6 使用Embedding层将每个词编码转换为词向量"></a>3.6 使用Embedding层将每个词编码转换为词向量</h2><p>通过以上操作，已经将每个句子变成一个向量，但上文已经提及text-CNN的输入是一个数字矩阵，即每个影评样本应该是以一个矩阵，每一行代表一个词，因此，需要将词编码转换成词向量。使用Keras的Embedding层可以实现转换。</p>
+<p><img src="https://ask.qcloudimg.com/http-save/yehe-1654149/z1jhticqn5.jpeg?imageView2/2/w/1620" alt="image"></p>
+<p>需要声明一点的是Embedding层是作为模型的第一层，在训练模型的同时，得到该语料库的词向量。当然，也可以使用已经预训练好的词向量表示现有语料库中的词。</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">embedding_layer = Embedding(input_dim=len(embeddings_matrix),  <span class="hljs-comment"># 字典长度</span></span><br><span class="line">                                output_dim = EMBEDDING_LEN,  <span class="hljs-comment"># 词向量 长度（25）</span></span><br><span class="line">                                weights=[embeddings_matrix],  <span class="hljs-comment"># 重点：预训练的词向量系数</span></span><br><span class="line">                                input_length=MAX_SEQUENCE_LENGTH,  <span class="hljs-comment"># 每句话的 最大长度（必须padding） 10</span></span><br><span class="line">                                trainable=<span class="hljs-keyword">False</span>,  <span class="hljs-comment"># 是否在 训练的过程中 更新词向量</span></span><br><span class="line">                                name= <span class="hljs-string">'embedding_layer'</span></span><br><span class="line">                                )</span><br></pre></td></tr></table></figure>
+<p>然后利用 keras的建模能力，把Embedding层嵌入到 模型中去即可。后面可以接CNN或者LSTM</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><blockquote>
+<p>参考《Keras的中Embedding层 官方文档》：  <a href="https://keras-cn.readthedocs.io/en/latest/layers/embedding_layer/" target="_blank" rel="noopener">https://keras-cn.readthedocs.io/en/latest/layers/embedding_layer/</a></p>
+<p>参考1 官方文档《在Keras模型中使用预训练的词向量》：<a href="https://keras-cn-docs.readthedocs.io/zh_CN/latest/blog/word_embedding/" target="_blank" rel="noopener">https://keras-cn-docs.readthedocs.io/zh_CN/latest/blog/word_embedding/</a></p>
+<p>参考2 ：《Keras 模型中使用预训练的 gensim 词向量（word2vec） 和可视化》 <a href="https://eliyar.biz/using-pre-trained-gensim-word2vector-in-a-keras-model-and-visualizing/" target="_blank" rel="noopener">https://eliyar.biz/using-pre-trained-gensim-word2vector-in-a-keras-model-and-visualizing/</a></p>
+<p>参考3《Embedding原理和Tensorflow-tf.nn.embedding_lookup()》：<a href="https://blog.csdn.net/laolu1573/article/details/77170407" target="_blank" rel="noopener">https://blog.csdn.net/laolu1573/article/details/77170407</a></p>
+</blockquote>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Embedding/">Embedding</a>, <a class="has-link-grey -link" href="/tags/Keras/">Keras</a>, <a class="has-link-grey -link" href="/tags/Word2vec/">Word2vec</a>, <a class="has-link-grey -link" href="/tags/自然语言处理/">自然语言处理</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/">
+                <span class="level-item">linux环境变量的设置+关于bashrc与profile的区别</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://xuqingtang.top/2019/05/15/在Keras的Embedding层中使用预训练的word2vec词向量/';
+        this.page.identifier = '2019/05/15/在Keras的Embedding层中使用预训练的word2vec词向量/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <figure class="image container is-128x128 has-mb-6">
+                            <img class="is-rounded" src="/images/avatar.png" alt="Qingtang">
+                        </figure>
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Qingtang
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Developer &amp; NLPer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>HeFei, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        88
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        56
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="http://github.com/xqtbox" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="http://github.com/xqtbox">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="CSDN" href="https://blog.csdn.net/u012052268">
+                
+                <i class="fas fa-pencil-alt"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Weibo" href="https://www.weibo.com/u/5890351342">
+                
+                <i class="fab fa-weibo"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="知乎" href="https://www.zhihu.com/people/xqtbox/activities">
+                
+                <i class="fab fa-zhihu"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#1-准备工作">
+        <span class="has-mr-6">1</span>
+        <span>1 准备工作</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-1-什么是词向量">
+        <span class="has-mr-6">1.1</span>
+        <span>1.1 什么是词向量?</span>
+        </a></li><li>
+        <a class="is-flex" href="#1-2-获取词向量">
+        <span class="has-mr-6">1.2</span>
+        <span>1.2 获取词向量</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#2-转化词向量为keras所需格式">
+        <span class="has-mr-6">2</span>
+        <span>2 转化词向量为keras所需格式</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#2-1-获取所有词语word和词向量">
+        <span class="has-mr-6">2.1</span>
+        <span>2.1 获取所有词语word和词向量</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-2-构造“词语-词向量”字典">
+        <span class="has-mr-6">2.2</span>
+        <span>2.2 构造“词语-词向量”字典</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-3-填充字典和矩阵">
+        <span class="has-mr-6">2.3</span>
+        <span>2.3 填充字典和矩阵</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-4-在-keras的Embedding层中使用-预训练词向量">
+        <span class="has-mr-6">2.4</span>
+        <span>2.4 在 keras的Embedding层中使用 预训练词向量</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-5-不使用“预训练”而直接生成词向量">
+        <span class="has-mr-6">2.5</span>
+        <span>*2.5 不使用“预训练”而直接生成词向量</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#3-整体代码：在Keras模型中使用预训练的词向量">
+        <span class="has-mr-6">3</span>
+        <span>3 整体代码：在Keras模型中使用预训练的词向量</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#3-1-读取数据">
+        <span class="has-mr-6">3.1</span>
+        <span>3.1 读取数据</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-2-句子分词">
+        <span class="has-mr-6">3.2</span>
+        <span>3.2 句子分词</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-3-构造词向量字典">
+        <span class="has-mr-6">3.3</span>
+        <span>3.3 *构造词向量字典</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-4-文本序号化Tokenizer">
+        <span class="has-mr-6">3.4</span>
+        <span>3.4 文本序号化Tokenizer</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-5-切分数据">
+        <span class="has-mr-6">3.5</span>
+        <span>3.5 切分数据</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-6-使用Embedding层将每个词编码转换为词向量">
+        <span class="has-mr-6">3.6</span>
+        <span>3.6 使用Embedding层将每个词编码转换为词向量</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#参考文献">
+        <span class="has-mr-6">4</span>
+        <span>参考文献</span>
+        </a></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://blog.csdn.net/u012052268" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">CSDN</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">blog.csdn.net</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Linux/">
+            <span class="level-start">
+                <span class="level-item">Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/NLP/">
+            <span class="level-start">
+                <span class="level-item">NLP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Python/">
+            <span class="level-start">
+                <span class="level-item">Python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/数据库/">
+            <span class="level-start">
+                <span class="level-item">数据库</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/机器学习/">
+            <span class="level-start">
+                <span class="level-item">机器学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/深度学习/">
+            <span class="level-start">
+                <span class="level-item">深度学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/爬虫/">
+            <span class="level-start">
+                <span class="level-item">爬虫</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/自然语言处理/">
+            <span class="level-start">
+                <span class="level-item">自然语言处理</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">21</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/运维/">
+            <span class="level-start">
+                <span class="level-item">运维</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/随笔/">
+            <span class="level-start">
+                <span class="level-item">随笔</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/驱动开发/">
+            <span class="level-start">
+                <span class="level-item">驱动开发</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Anaconda/" style="font-size: 13px;">Anaconda</a> <a href="/tags/CNN/" style="font-size: 12px;">CNN</a> <a href="/tags/DevOps/" style="font-size: 10px;">DevOps</a> <a href="/tags/DriverSttudio3-2/" style="font-size: 10px;">DriverSttudio3.2</a> <a href="/tags/Editplus/" style="font-size: 10px;">Editplus</a> <a href="/tags/Embedding/" style="font-size: 10px;">Embedding</a> <a href="/tags/EndNote/" style="font-size: 10px;">EndNote</a> <a href="/tags/GBK/" style="font-size: 11px;">GBK</a> <a href="/tags/Git/" style="font-size: 19px;">Git</a> <a href="/tags/GitHub/" style="font-size: 19px;">GitHub</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/Jena/" style="font-size: 10px;">Jena</a> <a href="/tags/Jieba/" style="font-size: 10px;">Jieba</a> <a href="/tags/Keras/" style="font-size: 11px;">Keras</a> <a href="/tags/LSTM/" style="font-size: 10px;">LSTM</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/Neo4j/" style="font-size: 10px;">Neo4j</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/Protege/" style="font-size: 10px;">Protege</a> <a href="/tags/Pycharm/" style="font-size: 12px;">Pycharm</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Tensorboard/" style="font-size: 10px;">Tensorboard</a> <a href="/tags/Tensorflow/" style="font-size: 15px;">Tensorflow</a> <a href="/tags/USB/" style="font-size: 10px;">USB</a> <a href="/tags/UTF-8/" style="font-size: 11px;">UTF-8</a> <a href="/tags/Word2vec/" style="font-size: 10px;">Word2vec</a> <a href="/tags/coursera/" style="font-size: 19px;">coursera</a> <a href="/tags/ddk/" style="font-size: 10px;">ddk</a> <a href="/tags/eclipse/" style="font-size: 15px;">eclipse</a> <a href="/tags/jieba/" style="font-size: 10px;">jieba</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/myeclipse/" style="font-size: 12px;">myeclipse</a> <a href="/tags/scrapy/" style="font-size: 14px;">scrapy</a> <a href="/tags/screen/" style="font-size: 10px;">screen</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/win7/" style="font-size: 10px;">win7</a> <a href="/tags/word2vec/" style="font-size: 10px;">word2vec</a> <a href="/tags/xshell/" style="font-size: 10px;">xshell</a> <a href="/tags/分词/" style="font-size: 10px;">分词</a> <a href="/tags/学习路线/" style="font-size: 12px;">学习路线</a> <a href="/tags/报错/" style="font-size: 16px;">报错</a> <a href="/tags/文件操作/" style="font-size: 10px;">文件操作</a> <a href="/tags/机器学习/" style="font-size: 19px;">机器学习</a> <a href="/tags/汽车之家/" style="font-size: 11px;">汽车之家</a> <a href="/tags/深度学习/" style="font-size: 18px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 17px;">爬虫</a> <a href="/tags/知识图谱/" style="font-size: 17px;">知识图谱</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/自然语言处理/" style="font-size: 19px;">自然语言处理</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/问答系统/" style="font-size: 10px;">问答系统</a> <a href="/tags/阅读理解/" style="font-size: 10px;">阅读理解</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/驱动程序/" style="font-size: 10px;">驱动程序</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/05/15/在Keras的Embedding层中使用预训练的word2vec词向量/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/12.jpg" alt="在Keras的Embedding层中使用预训练的word2vec词向量">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-15T05:24:26.000Z">2019-05-15</time></div>
+                    <a href="/2019/05/15/在Keras的Embedding层中使用预训练的word2vec词向量/" class="has-link-black-ter is-size-6">在Keras的Embedding层中使用预训练的word2vec词向量</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/11.jpg" alt="linux环境变量的设置+关于bashrc与profile的区别">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-03T05:24:26.000Z">2019-05-03</time></div>
+                    <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="has-link-black-ter is-size-6">linux环境变量的设置+关于bashrc与profile的区别</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/02/Windows下neo4j安装使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/10.jpg" alt="Windows下neo4j安装使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-02T03:21:22.000Z">2019-05-02</time></div>
+                    <a href="/2019/05/02/Windows下neo4j安装使用/" class="has-link-black-ter is-size-6">Windows下neo4j安装使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/09.jpg" alt="实践篇（5）：基于REfO的简单知识问答">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-01T04:28:22.000Z">2019-05-01</time></div>
+                    <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="has-link-black-ter is-size-6">实践篇（5）：基于REfO的简单知识问答</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/08.jpg" alt="实践篇（4）：Apache jena SPARQL endpoint及推理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-30T03:28:25.000Z">2019-04-30</time></div>
+                    <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="has-link-black-ter is-size-6">实践篇（4）：Apache jena SPARQL endpoint及推理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anaconda/">
+                        <span class="tag">Anaconda</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CNN/">
+                        <span class="tag">CNN</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DevOps/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DriverSttudio3-2/">
+                        <span class="tag">DriverSttudio3.2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Editplus/">
+                        <span class="tag">Editplus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedding/">
+                        <span class="tag">Embedding</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EndNote/">
+                        <span class="tag">EndNote</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GBK/">
+                        <span class="tag">GBK</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jena/">
+                        <span class="tag">Jena</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jieba/">
+                        <span class="tag">Jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keras/">
+                        <span class="tag">Keras</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LSTM/">
+                        <span class="tag">LSTM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLP/">
+                        <span class="tag">NLP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Neo4j/">
+                        <span class="tag">Neo4j</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Oracle/">
+                        <span class="tag">Oracle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Protege/">
+                        <span class="tag">Protege</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pycharm/">
+                        <span class="tag">Pycharm</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">25</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RNN/">
+                        <span class="tag">RNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorboard/">
+                        <span class="tag">Tensorboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/USB/">
+                        <span class="tag">USB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UTF-8/">
+                        <span class="tag">UTF-8</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Word2vec/">
+                        <span class="tag">Word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/coursera/">
+                        <span class="tag">coursera</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ddk/">
+                        <span class="tag">ddk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/eclipse/">
+                        <span class="tag">eclipse</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jieba/">
+                        <span class="tag">jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/maven/">
+                        <span class="tag">maven</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/myeclipse/">
+                        <span class="tag">myeclipse</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy/">
+                        <span class="tag">scrapy</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/screen/">
+                        <span class="tag">screen</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/session/">
+                        <span class="tag">session</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/win7/">
+                        <span class="tag">win7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/word2vec/">
+                        <span class="tag">word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/xshell/">
+                        <span class="tag">xshell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/分词/">
+                        <span class="tag">分词</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/学习路线/">
+                        <span class="tag">学习路线</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/报错/">
+                        <span class="tag">报错</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/文件操作/">
+                        <span class="tag">文件操作</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器学习/">
+                        <span class="tag">机器学习</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/汽车之家/">
+                        <span class="tag">汽车之家</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/深度学习/">
+                        <span class="tag">深度学习</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/知识图谱/">
+                        <span class="tag">知识图谱</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/编码/">
+                        <span class="tag">编码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/自然语言处理/">
+                        <span class="tag">自然语言处理</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/运维/">
+                        <span class="tag">运维</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/问答系统/">
+                        <span class="tag">问答系统</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/阅读理解/">
+                        <span class="tag">阅读理解</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/面向对象/">
+                        <span class="tag">面向对象</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/驱动程序/">
+                        <span class="tag">驱动程序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/05/15/在Keras的Embedding层中使用预训练的word2vec词向量/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/12.jpg" alt="在Keras的Embedding层中使用预训练的word2vec词向量">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-15T05:24:26.000Z">2019-05-15</time></div>
+                    <a href="/2019/05/15/在Keras的Embedding层中使用预训练的word2vec词向量/" class="has-link-black-ter is-size-6">在Keras的Embedding层中使用预训练的word2vec词向量</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/11.jpg" alt="linux环境变量的设置+关于bashrc与profile的区别">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-03T05:24:26.000Z">2019-05-03</time></div>
+                    <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="has-link-black-ter is-size-6">linux环境变量的设置+关于bashrc与profile的区别</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/02/Windows下neo4j安装使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/10.jpg" alt="Windows下neo4j安装使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-02T03:21:22.000Z">2019-05-02</time></div>
+                    <a href="/2019/05/02/Windows下neo4j安装使用/" class="has-link-black-ter is-size-6">Windows下neo4j安装使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/09.jpg" alt="实践篇（5）：基于REfO的简单知识问答">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-01T04:28:22.000Z">2019-05-01</time></div>
+                    <a href="/2019/05/01/实践篇（5）：基于REfO的简单知识问答/" class="has-link-black-ter is-size-6">实践篇（5）：基于REfO的简单知识问答</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/08.jpg" alt="实践篇（4）：Apache jena SPARQL endpoint及推理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-04-30T03:28:25.000Z">2019-04-30</time></div>
+                    <a href="/2019/04/30/实践篇（4）：Apache jena SPARQL endpoint及推理/" class="has-link-black-ter is-size-6">实践篇（4）：Apache jena SPARQL endpoint及推理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anaconda/">
+                        <span class="tag">Anaconda</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CNN/">
+                        <span class="tag">CNN</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DevOps/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DriverSttudio3-2/">
+                        <span class="tag">DriverSttudio3.2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Editplus/">
+                        <span class="tag">Editplus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedding/">
+                        <span class="tag">Embedding</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EndNote/">
+                        <span class="tag">EndNote</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GBK/">
+                        <span class="tag">GBK</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jena/">
+                        <span class="tag">Jena</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jieba/">
+                        <span class="tag">Jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keras/">
+                        <span class="tag">Keras</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LSTM/">
+                        <span class="tag">LSTM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLP/">
+                        <span class="tag">NLP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Neo4j/">
+                        <span class="tag">Neo4j</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Oracle/">
+                        <span class="tag">Oracle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Protege/">
+                        <span class="tag">Protege</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pycharm/">
+                        <span class="tag">Pycharm</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">25</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RNN/">
+                        <span class="tag">RNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorboard/">
+                        <span class="tag">Tensorboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/USB/">
+                        <span class="tag">USB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UTF-8/">
+                        <span class="tag">UTF-8</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Word2vec/">
+                        <span class="tag">Word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/coursera/">
+                        <span class="tag">coursera</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ddk/">
+                        <span class="tag">ddk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/eclipse/">
+                        <span class="tag">eclipse</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jieba/">
+                        <span class="tag">jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/maven/">
+                        <span class="tag">maven</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/myeclipse/">
+                        <span class="tag">myeclipse</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy/">
+                        <span class="tag">scrapy</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/screen/">
+                        <span class="tag">screen</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/session/">
+                        <span class="tag">session</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/win7/">
+                        <span class="tag">win7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/word2vec/">
+                        <span class="tag">word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/xshell/">
+                        <span class="tag">xshell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/分词/">
+                        <span class="tag">分词</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/学习路线/">
+                        <span class="tag">学习路线</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/报错/">
+                        <span class="tag">报错</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/文件操作/">
+                        <span class="tag">文件操作</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器学习/">
+                        <span class="tag">机器学习</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/汽车之家/">
+                        <span class="tag">汽车之家</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/深度学习/">
+                        <span class="tag">深度学习</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/知识图谱/">
+                        <span class="tag">知识图谱</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/编码/">
+                        <span class="tag">编码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/自然语言处理/">
+                        <span class="tag">自然语言处理</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/运维/">
+                        <span class="tag">运维</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/问答系统/">
+                        <span class="tag">问答系统</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/阅读理解/">
+                        <span class="tag">阅读理解</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/面向对象/">
+                        <span class="tag">面向对象</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/驱动程序/">
+                        <span class="tag">驱动程序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="在Keras的Embedding层中使用预训练的word2vec词向量" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Qingtang&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true}});</script></body>
+</html>
