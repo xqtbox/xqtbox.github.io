@@ -1,0 +1,2763 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8">
+<title>2019-06-17问答系统项目落地调研 - 博客堂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+
+    <meta name="description" content="1 chatbot概述1.1 行业分类及目前的应用状况智能人机交互通过拟人化的交互体验逐步在智能客服、任务助理、智能家居、智能硬件、互动聊天等领域发挥巨大的作用和价值。因此，各大公司都将智能聊天机器人作为未来的入口级别的应用在对待。 包括Google、Facebook、Microsoft、Amazon、Apple等互联公司相继推出了自己的智能私人助理和机器人平台。">
+<meta name="keywords" content="问答系统,自然语言处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2019-06-17问答系统项目落地调研">
+<meta property="og:url" content="http://xuqingtang.top/2019/06/17/2019-06-17问答系统项目落地调研/index.html">
+<meta property="og:site_name" content="博客堂">
+<meta property="og:description" content="1 chatbot概述1.1 行业分类及目前的应用状况智能人机交互通过拟人化的交互体验逐步在智能客服、任务助理、智能家居、智能硬件、互动聊天等领域发挥巨大的作用和价值。因此，各大公司都将智能聊天机器人作为未来的入口级别的应用在对待。 包括Google、Facebook、Microsoft、Amazon、Apple等互联公司相继推出了自己的智能私人助理和机器人平台。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://image.woshipm.com/wp-files/2017/10/%E5%9B%BE08.png!v.jpg">
+<meta property="og:image" content="http://image.woshipm.com/wp-files/2017/10/%E5%9B%BE11A.png!v.jpg">
+<meta property="og:image" content="https://ask.qcloudimg.com/http-save/yehe-1083109/duvk72meyk.png?imageView2/2/w/1620">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1060404-148656ab68335e4c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/9481801-247b5adbcbe3c161?imageMogr2/auto-orient/strip%7CimageView2/2/w/640/format/webp">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006qDjsOly1g47nj9dbjoj30jd09edga.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006qDjsOly1g4gm4ayzqjj30jx0cmwlw.jpg">
+<meta property="og:image" content="https://res.infoq.com/articles/electricity-supplier-intelligent-assistant/zh/resources/21.png">
+<meta property="og:image" content="https://res.infoq.com/articles/electricity-supplier-intelligent-assistant/zh/resources/19.png">
+<meta property="og:image" content="https://res.infoq.com/articles/electricity-supplier-intelligent-assistant/zh/resources/23.png">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006qDjsOly1g4gm4xbbvej30jz0fh0z2.jpg">
+<meta property="og:image" content="https://chatterbot.readthedocs.io/en/stable/_images/chatterbot-process-flow.svg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006qDjsOly1g4form1ztgj30k0044wen.jpg">
+<meta property="og:updated_time" content="2019-06-28T01:38:41.017Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2019-06-17问答系统项目落地调研">
+<meta name="twitter:description" content="1 chatbot概述1.1 行业分类及目前的应用状况智能人机交互通过拟人化的交互体验逐步在智能客服、任务助理、智能家居、智能硬件、互动聊天等领域发挥巨大的作用和价值。因此，各大公司都将智能聊天机器人作为未来的入口级别的应用在对待。 包括Google、Facebook、Microsoft、Amazon、Apple等互联公司相继推出了自己的智能私人助理和机器人平台。">
+<meta name="twitter:image" content="http://image.woshipm.com/wp-files/2017/10/%E5%9B%BE08.png!v.jpg">
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="2019-06-17问答系统项目落地调研" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/image-banner/14.jpg" alt="2019-06-17问答系统项目落地调研">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-06-17T05:21:36.000Z">2019-06-17</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 小时 读完 (大约 7347 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                2019-06-17问答系统项目落地调研
+            
+        </h1>
+        <div class="content">
+            <h1 id="1-chatbot概述"><a href="#1-chatbot概述" class="headerlink" title="1 chatbot概述"></a>1 chatbot概述</h1><h2 id="1-1-行业分类及目前的应用状况"><a href="#1-1-行业分类及目前的应用状况" class="headerlink" title="1.1 行业分类及目前的应用状况"></a>1.1 行业分类及目前的应用状况</h2><p>智能人机交互通过拟人化的交互体验逐步在智能客服、任务助理、智能家居、智能硬件、互动聊天等领域发挥巨大的作用和价值。因此，各大公司都将智能聊天机器人作为未来的入口级别的应用在对待。</p>
+<p>包括Google、Facebook、Microsoft、Amazon、Apple等互联公司相继推出了自己的智能私人助理和机器人平台。</p>
+<a id="more"></a>
+<h2 id="1-2-问答实现方式"><a href="#1-2-问答实现方式" class="headerlink" title="1.2 问答实现方式"></a>1.2 问答实现方式</h2><p>目前的chatbot实现方案主要有两种，检索匹配模型和生成模型。</p>
+<ul>
+<li><strong>端到端生成模型</strong>：不需要预设问题库和知识库，是通过大量的语料数据训练，以学习语言元素的组成和表达方式，再分析组合生成回答。类似于我们学习说话的方式，自然地根据对方的话，生成回答。</li>
+<li><strong>检索匹配模型</strong>需要有一个问题库和对应的回答知识库及回答模板。在用户发出信息后，分析用户表达的内容，通过一定的匹配规则，匹配到和问题库最相近的问题，再给出相应的回答。匹配的过程中通过自然语言处理、机器学习等技术优化匹配方式，尽量给到合理的回答。检索匹配模型有两种主要实现方式：<ol>
+<li><strong>FAQ式</strong> 文本相似度计算：比如10086的在线智能客服，用户提问“如何查询话费”，那系统可以自动给出一个对应的知识“请您向10086号码发送‘HF’短信，即可查询当前话费”，而不再需要耗费高成本的人力来做解答。一般存储 问-答文本对数据。</li>
+<li><strong>任务式</strong>：规则模版-词槽匹配：“我想订一张明天从杭州到北京的机票” -&gt; 进一步填充 出发地-目的地-时间。一般存储为图结构。</li>
+</ol>
+</li>
+</ul>
+<h2 id="1-3-两种问答模式的优劣："><a href="#1-3-两种问答模式的优劣：" class="headerlink" title="1.3 两种问答模式的优劣："></a>1.3 两种问答模式的优劣：</h2><ul>
+<li><strong>生成模型</strong>的对话更灵活，更像人，但是依赖的语料数据的训练、生成的语言结构等不是特别完善，容易出现语言结构混乱语无伦次看不懂的问题；</li>
+<li>而<strong>检索匹配式</strong>，需要更多的精力去维护问答知识库，同时也会存在意图识别不准，问东答西的情况，但由于实现逻辑相较而言容易实现，且问答是可控的，不会出现语言结构错乱的问题。</li>
+</ul>
+<p>根据各自的优势，生成模型内容涉及可以很泛很广，更适用于<strong>闲聊娱乐</strong>等模式；检索匹配模型，更适用于垂直领域信息的集合和知识的汇总，在一定的领域内，建立庞大的知识体系，完成特定的<strong>业务</strong>。</p>
+<h1 id="2-框架分析"><a href="#2-框架分析" class="headerlink" title="2 框架分析"></a>2 框架分析</h1><p>本文将调研的chatbot系统分为三个层次：平台型；解析型；单一型。</p>
+<ul>
+<li><strong>平台型</strong>：大公司成熟的chatbot集成平台，可以处理任务式闲聊式。用户只需要简单配置即可生成自己的chatbot，这也是我们未来成果的愿景。 但并没有暴露代码，目前能直接供我们学习内容的很少。（eg：Wit.ai 、DialogFlow、UNIT）</li>
+<li><strong>解析型</strong>：成熟的平台，没有代码使用，但提供了论文详细解析自己的系统，便于我们学习形成自己的架构。（eg：阿里小蜜）</li>
+<li><strong>单一型</strong>：暴露出代码（框架），可以用来生成我们框架中的某一种模块。（rasa、chatterbot、anyq）</li>
+</ul>
+<h2 id="2-1-平台型"><a href="#2-1-平台型" class="headerlink" title="2.1 平台型"></a>2.1 平台型</h2><p>大公司成熟的chatbot集成平台，往往再用交互式、傻瓜式配置。用户只需要简单自定义即可生成自己的chatbot，这也是我们未来成果的愿景。 </p>
+<p>但并没有暴露代码，目前能直接供我们学习内容的很少。</p>
+<h3 id="2-1-1-Wit-ai"><a href="#2-1-1-Wit-ai" class="headerlink" title="2.1.1 Wit.ai"></a>2.1.1 Wit.ai</h3><p>Wit.ai 是 Facebook 推出的用于将自然语言转化为可处理指令的 API 平台，其目的是为了帮助开发者便捷的打造类 Siri 语音对话应用或设备。</p>
+<ul>
+<li>Step 1 注册  Wit.ai 账号</li>
+<li>Step 2 简单设定机器人名字描述等信息</li>
+<li>Step 3 创建对话情景（story）：</li>
+</ul>
+<p><img src="http://image.woshipm.com/wp-files/2017/10/%E5%9B%BE08.png!v.jpg" alt="image"></p>
+<p>整个介面就像是一个对话视窗，左边是 User says，右边是 Bot sends, Box executes 与 Jump。</p>
+<ol>
+<li>User says： 顾名思义就是定义 User 会说的话，并且你可以设定 User 的句子中，有哪些关键字是你需要的、哪些文字是代表什麽含意，在 Wit.ai 的世界中，这样的东西叫做 Entity，后面会再度说明。</li>
+<li>Bot sends： 就是机器人要回覆的句子，这边可以带入一些参数，像是 user 所提及的一些关键字，或是机器人向外呼叫 API 所得到的结果。</li>
+<li>Box executes： 就是让你定义机器人要执行的 function，真正的实作不会在这边，这边只是定义名称，以及要接收的 context 与 吐回的变数名称。</li>
+<li>Jump： 则是让你能够在满足设定</li>
+</ol>
+<ul>
+<li>Step 4 定义使用者语句</li>
+</ul>
+<p>下来我们先定义 User 可能会对我们的机器人说的话，像是使用者可能会跟机器人打招呼，我们就可以在对话框的 User says 输入 Hello，并且 highlight 起来以后设定 Entity，Enity 在 Wit.ai 裡面，就是用来让系统判断使用者输入句子时，哪些关键字是要抽取出来做处理的，你可以依照该关键字的特型来设定相对应的 Entity 类别。<br>这边我们就自定义一个 Entity 名称叫做 greeting。</p>
+<p>用户表达同一意图的说法可能是无限的。<br> 可以在Understanding这个地方你有三种方式可以用来训练你的机器人：</p>
+<ol>
+<li><p>定义更多keywords: 要完全符合你预先设定的关键字才会触发。</p>
+</li>
+<li><p>free-text: 如果你想要撷取使用者句子中的某段文字，而该段文字并不是特定的关键字时，就要设定 free-text，</p>
+</li>
+<li><p>trait: 如果你想设定的 意图 不是靠句子中几个关键字能够辨别，而是需要整个句子来判定的话，就要设定成 trait。</p>
+</li>
+</ol>
+<ul>
+<li>Step 5 定义机器人回覆语句</li>
+</ul>
+<p>当机器人收到 greeting 的 Entity 后，可以让用相同的 entity value 回覆，并加上简单的介绍。<br>点选下方的 Bot sends，对话框就会出现机器人的部分，你可以在裡面输入机器人的回覆语句，想要的变数可以用{ }包起来，这边我们直接使用 greeting 这个 entity，这样就能用同样的 Entity 去回覆。</p>
+<ul>
+<li>多轮问答：</li>
+</ul>
+<p>如果我们的机器人需要做一个包含两个问题的调查，根据第一个问题答案的不同，机器人会额外询问一个附加问题。这样的例子，就叫做基于流的对话。</p>
+<p>我们利用 bookmark 进行处理：当第一个 intent 为 no 时，我们使用 Jump 跳转到 question-2 的 bookmark，直接开始第二个问题的询问；当第二个 intent 为 no 时，我们同样利用 Jump 跳转到 end 的 bookmark，结束询问。补全了整个对话过程。</p>
+<p><img src="http://image.woshipm.com/wp-files/2017/10/%E5%9B%BE11A.png!v.jpg" alt="image"></p>
+<blockquote>
+<p>参考：<a href="http://www.woshipm.com/pd/829819.html" target="_blank" rel="noopener">http://www.woshipm.com/pd/829819.html</a></p>
+<p>参考：<a href="https://blog.techbridge.cc/2016/07/02/ChatBot-with-Wit/" target="_blank" rel="noopener">https://blog.techbridge.cc/2016/07/02/ChatBot-with-Wit/</a></p>
+</blockquote>
+<h3 id="2-1-2-谷歌Dialogflow"><a href="#2-1-2-谷歌Dialogflow" class="headerlink" title="2.1.2 谷歌Dialogflow"></a>2.1.2 谷歌Dialogflow</h3><p>DialogFlow 是Google 提供的自然语言处理服务, 能够将文字转换成电脑看得懂的结构性资料, 再传递给后端介接的Web Service处理。</p>
+<ul>
+<li>建立一个的意图</li>
+</ul>
+<p>将相关的对话都映射到这个意图上</p>
+<p><img src="https://ask.qcloudimg.com/http-save/yehe-1083109/duvk72meyk.png?imageView2/2/w/1620" alt="image"></p>
+<p>DialogFlow 背后的NLP引擎, 会将我们刚刚定义的相关语句训练出一个模型, 当未来有类似的句子时, 就会分析出FindHotel的意图出来</p>
+<ul>
+<li>建立action</li>
+</ul>
+<p>透过这个action, 当使用者没有特别表明目的地的时候呢, action就会被执行起来反问使用者 where are you looking for</p>
+<h3 id="2-1-3-科大讯飞AIUI平台"><a href="#2-1-3-科大讯飞AIUI平台" class="headerlink" title="2.1.3 科大讯飞AIUI平台"></a>2.1.3 科大讯飞AIUI平台</h3><p>AIUI 是科大讯飞2015年推出的一套以语音为核心的人机交互解决方案，意在使应用和设备能够快速具备能听会说，能理解会思考的能力。</p>
+<p>接入了 AIUI 的应用和设备 可以轻松实现查询天气、播放音视频资源、设置闹钟以及控制智能家居等能力。</p>
+<blockquote>
+<p>成功案例：海底捞智能客服:<br>海底捞接入科大讯飞AIUI技术，用户可以通过电话与人工智能直接交互，高效准确的完成订餐预约，甚至点餐服务，上线后平均每家门店减少1位人工客服，节省成本1000万元/年，截止18年初已上线全国150家门店，AI客服服务占比高达85%，极大的节省了人力成本。</p>
+</blockquote>
+<h4 id="AIUI开放平台结构"><a href="#AIUI开放平台结构" class="headerlink" title="AIUI开放平台结构"></a>AIUI开放平台结构</h4><p>在AIUI开放平台上，可以看做由“应用+技能”两部分组成，其中“技能”除了自己创建的外，还有一个“技能商店”，可以选中他人已经制作好的技能，添加到自己的应用中。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1060404-148656ab68335e4c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp" alt="image"></p>
+<p>所以 ，应用可以理解为技能的一个壳，应用装上了不同的技能，就能实现不同的能力</p>
+<p>技能是AIUI开放平台的核心，这里先简单带下，下面细讲</p>
+<p>技能能实现不同的功能，实际是识别出了用户不同的意图，然后根据不同的意图做出不同的反应。</p>
+<h4 id="AIUI开放平台优点"><a href="#AIUI开放平台优点" class="headerlink" title="AIUI开放平台优点"></a>AIUI开放平台优点</h4><ul>
+<li>优点1：模块化逻辑清晰</li>
+<li><p>优点2：针对狭隘的封闭域对话，可快速搭建</p>
+</li>
+<li><p>缺点1： 模糊匹配，而非真“学习”，效果不佳</p>
+</li>
+<li>缺点2：人力成本高</li>
+</ul>
+<blockquote>
+<p>参考1：<a href="https://www.jianshu.com/p/3e9f5a223cbc" target="_blank" rel="noopener">https://www.jianshu.com/p/3e9f5a223cbc</a></p>
+<p>参考2：<a href="https://www.jianshu.com/p/b548671e0541?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation" target="_blank" rel="noopener">https://www.jianshu.com/p/b548671e0541?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation</a></p>
+<p>参考3：<a href="https://doc.iflyos.cn/studio/guide/create.html#%E5%88%9B%E5%BB%BA%E6%8A%80%E8%83%BD-2" target="_blank" rel="noopener">https://doc.iflyos.cn/studio/guide/create.html#%E5%88%9B%E5%BB%BA%E6%8A%80%E8%83%BD-2</a></p>
+</blockquote>
+<h3 id="2-1-4-百度UNIT平台"><a href="#2-1-4-百度UNIT平台" class="headerlink" title="2.1.4 百度UNIT平台"></a>2.1.4 百度UNIT平台</h3><p>要在百度的UNIT创建一个可用的chatbot，主要有6大步骤</p>
+<ol>
+<li>创建场景：根据业务需要创建场景，一个场景即一个可对外输出使用的功能例如“控制电视场景”、“办理信用卡场景”等</li>
+<li><p>创建技能：技能是功能的最小单位，用于识别用户意图。例如“控制电视”的场景中，技能（或意图）可以是“切换频道”，“调整音量”，“开关机”</p>
+<ul>
+<li>添加词槽的过程：<br><img src="https://upload-images.jianshu.io/upload_images/9481801-247b5adbcbe3c161?imageMogr2/auto-orient/strip%7CimageView2/2/w/640/format/webp" alt="image"></li>
+</ul>
+</li>
+<li><p>准备训练数据：技能创建好之后，只是一个空壳还是“控制电视”的场景，我们只是脑中想好了一个功能是“切换频道”，但是需要准备好数据，让machine去学习，什么是“切换频道”</p>
+</li>
+<li>训练技能：当技能空壳创建好后，数据也准备好了，扔进去一锅乱炖即可，训练技能</li>
+<li><p>验证技能：当machine训练好后，我们要看下machine学的好不好，需要考考他，互动下例如发出“切换CCTV5”，结果执行了“关机”，你就一脸懵逼了，这时候就要再调整，再训练……</p>
+<ul>
+<li>验证技能有“体验模式”和“学习模式”两种</li>
+<li>体验模式就是和chatbot瞎聊，对话内容不会加入到“对话样本集”中的“默认集”</li>
+<li>学习模式，即与chatbot对话内容会加入到“对话样本集”中的“默认集</li>
+</ul>
+</li>
+<li><p>发布场景：训练好技能，就可以发布上线了。可以通过百度云调用，也可以使用DuerOS使用。</p>
+</li>
+</ol>
+<h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><ol>
+<li>“真·Machine Learning”：使用对话样本集训练数据，真正的使用NN去train，最终表现结果不错.</li>
+<li>支持多轮对话，操作简单:通过响应条件与或非的设定，再加上词槽的澄清，使得创建一个多轮对话变得很简单。</li>
+<li>支持企业自研模式：<br><img src="http://ww1.sinaimg.cn/large/006qDjsOly1g47nj9dbjoj30jd09edga.jpg" alt=""></li>
+</ol>
+<blockquote>
+<p>参考：<a href="https://www.jianshu.com/p/a1111e2a00c2" target="_blank" rel="noopener">https://www.jianshu.com/p/a1111e2a00c2</a></p>
+<p>参考：<a href="https://www.jianshu.com/p/c5be75ef9420?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation" target="_blank" rel="noopener">https://www.jianshu.com/p/c5be75ef9420?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation</a></p>
+</blockquote>
+<h2 id="2-2-解析型"><a href="#2-2-解析型" class="headerlink" title="2.2 解析型"></a>2.2 解析型</h2><h3 id="2-2-1-阿里小蜜"><a href="#2-2-1-阿里小蜜" class="headerlink" title="2.2.1 阿里小蜜"></a>2.2.1 阿里小蜜</h3><blockquote>
+<p><a href="https://www.alixiaomi.com/" target="_blank" rel="noopener">https://www.alixiaomi.com/</a></p>
+</blockquote>
+<p>2015年7月，阿里推出了自己的智能私人助理-阿里小蜜，一个围绕着电子商务领域中的服务、导购以及任务助理为核心的智能人机交互产品。</p>
+<p>在去年的双十一期间，阿里小蜜整体智能服务量达到643万，智能服务在整个服务量(总服务量=智能服务量+在线人工服务量+电话服务量)占比达到95%，成为了双十一期间服务的绝对主力。</p>
+<p>2018年初, 阿里公开展示了自己的智能助手小蜜的设计结构。<a href="https://arxiv.org/abs/1801.05032" target="_blank" rel="noopener">《AliMe Assist: An Intelligent Assistant for Creating an Innovative E-commerce Experience》</a> 作为类似客服助手的大型对话问答系统, 小蜜整合了任务型模块与开放聊天模块, 并围绕自身的应用场景, 构建了的工业级智能对话系统.</p>
+<p><strong>意图识别</strong>：识别语言的真实意图，将意图进行分类并进行意图属性抽取。意图决定了后续的领域识别流程，在阿里小蜜的对话体系中我们按照业务场景进行了<strong>3种典型问题类型的划分</strong>，并且依据3种类型会采用不同的匹配流程和方法：</p>
+<ul>
+<li><strong>问答型</strong>：例如“密码忘记怎么办？”→ 采用基于知识图谱构建+检索模型匹配方式</li>
+<li><strong>任务型</strong>：例如“我想订一张明天从杭州到北京的机票”→ 意图决策+slots filling的匹配方式</li>
+<li><strong>语聊型</strong>：例如“我心情不好”→ 检索模型与Deep Learning相结合的方式</li>
+</ul>
+<p>通过一系列判别策略串联.分配到哪个服务中. </p>
+<p><img src="http://ww1.sinaimg.cn/large/006qDjsOly1g4gm4ayzqjj30jx0cmwlw.jpg" alt=""></p>
+<p>下面分别介绍，三种模式：</p>
+<h4 id="2-2-1-1-任务型：意图决策-slot-filling的匹配方式"><a href="#2-2-1-1-任务型：意图决策-slot-filling的匹配方式" class="headerlink" title="2.2.1.1 任务型：意图决策+slot filling的匹配方式"></a>2.2.1.1 任务型：意图决策+slot filling的匹配方式</h4><p>任务型属于 <strong>助手服务</strong>(assistance service) 该模块用于处理”<strong>用户目标明确, 属性固定</strong>“的任务。</p>
+<p>此类任务一般只需要用户确定类型的信息, 如”订飞机票”只要用户给出&lt;出发地, 目的地, 时间&gt;此类属性. </p>
+<p>对用户输入的处理也只需要识别出用户需求所含的属性, 并让用户补充属性的值填充即可. </p>
+<p>针对应用场景, 小蜜团队设计了基于<strong>字典</strong>(dictionaries)和<strong>样式</strong>(patterns)的<strong>填槽</strong>模块(slot-filling engine), 可以识别出15种不同的属性.</p>
+<p><strong>技术：意图决策+slot filling</strong></p>
+<p>流程：</p>
+<ul>
+<li><p>首先按照任务领域进行本体知识的构建,例如机票的领域本体知识场景如下：</p>
+</li>
+<li><p>在问答匹配过程中结合上下文模型和领域数据模型不断在Query中进行slot属性的提取，并循环进行本体意图树的不断填充和修改，直到必选意图树填充完整后进行输出</p>
+</li>
+</ul>
+<p><img src="https://res.infoq.com/articles/electricity-supplier-intelligent-assistant/zh/resources/21.png" alt="image"></p>
+<h4 id="2-2-1-2-问答型：基于知识图谱构建-检索模型匹配方式"><a href="#2-2-1-2-问答型：基于知识图谱构建-检索模型匹配方式" class="headerlink" title="2.2.1.2 问答型：基于知识图谱构建+检索模型匹配方式"></a>2.2.1.2 问答型：基于知识图谱构建+检索模型匹配方式</h4><p>用户服务(customer service) 如果用户需要的是寻找某种信息或某种解决办法, 比如”忘记登陆密码怎么办”. 此类需求的核心是知识图谱技术, 通过抽取实体, 关系查询等技术找到需求对应的答案.</p>
+<ol>
+<li>提问预处理：分词、指代消解、纠错等基本文本处理流程；</li>
+<li>检索召回：通过检索的方式在候选数据中召回可能的匹配候选数据；</li>
+<li>计算：通过Query结合上下文模型与候选数据进行计算，采用文本之间的距离计算方式(余弦相似度、编辑距离)以及分类模型相结合的方式进行计算；</li>
+<li>最终根据返回的候选集打分阈值进行最终的产品流程设计</li>
+</ol>
+<p><img src="https://res.infoq.com/articles/electricity-supplier-intelligent-assistant/zh/resources/19.png" alt="image"></p>
+<h4 id="2-2-1-3-语聊型：检索模型与Deep-Learning结合"><a href="#2-2-1-3-语聊型：检索模型与Deep-Learning结合" class="headerlink" title="2.2.1.3 语聊型：检索模型与Deep Learning结合"></a>2.2.1.3 语聊型：检索模型与Deep Learning结合</h4><p>以上两个模块能覆盖绝大多数的用户请求(95%), 但出现特殊情况, 比如知识图谱中不含盖的实体时, 系统就需要调用聊天服务处理了. </p>
+<p>智能聊天的特点：非面向目标，语义意图不明确，通常期待的是语义相关性和渐进性，对准确率要求相对较低。</p>
+<p>面向open domain的聊天机器人目前无论在学术界还是在工业界都是一大难题，通常在目前这个阶段我们有两种方式来做对话设计：</p>
+<p>一种是学术界非常火爆的Deep Learning生成模型方式，通过Encoder-Decoder模型通过LSTM的方式进行Sequence to Sequence生成。另外一种方式就是通过传统的检索模型的方式来构建语聊的问答匹配。</p>
+<ul>
+<li>生成式模型</li>
+</ul>
+<p>优点：通过深层语义方式进行答案生成，答案不受语料库规模限制</p>
+<p>缺点：模型的可解释性不强，且难以保证一致性和合理性回答</p>
+<ul>
+<li>检索模型</li>
+</ul>
+<p>优点：答案在预设的语料库中，可控，匹配模型相对简单，可解释性强</p>
+<p>缺点：在一定程度上缺乏一些语义性，且有固定语料库的局限性</p>
+<p>因此在阿里小蜜的聊天引擎中，我们结合了两者各自的优势，将两个模型进行了融合形成了阿里小蜜聊天引擎的核心。</p>
+<p>流程：</p>
+<ul>
+<li>先通过传统的检索模型检索出候选集数据</li>
+<li>然后通过Seq2Seq Model对候选集进行Rerank，重排序后超过制定的阈值就进行输出，不到阈值就通过Seq2Seq Model进行答案生成</li>
+</ul>
+<p><img src="https://res.infoq.com/articles/electricity-supplier-intelligent-assistant/zh/resources/23.png" alt="image"></p>
+<h4 id="2-2-1-4-小蜜的整体流程"><a href="#2-2-1-4-小蜜的整体流程" class="headerlink" title="2.2.1.4 小蜜的整体流程"></a>2.2.1.4 小蜜的整体流程</h4><p><img src="http://ww1.sinaimg.cn/large/006qDjsOly1g4gm4xbbvej30jz0fh0z2.jpg" alt=""></p>
+<ol>
+<li>首先, 用户输入q(text/voice)被传给<strong>规则解析</strong>模块(business rule parser), 规则解析模块是由大量的样式(patterns)组成的前缀树匹配结构(trie-based), 用于判断q是否能被助手服务处理. 如果能匹配出确定的样式,  则传给<strong>填槽模</strong>块处理。输出答案。</li>
+<li>如果规则解析模块没有检查到样式, 则进入<strong>意图分类模块</strong>(intention classifier), 该模块由FastText+单层CNN这种相对简单的深度网络模型构成。 这里判断用户是否需要直接连接人工服务(service staff), 若不需要则进入下面的用户服务判别处理流程.</li>
+<li>这部分先由语义解析模块处理, 由语义匹配寻找知识图谱(KG)中的实体(entity), 由KG中的实体关系寻找用户问题q对应的回答(answer)并返回; 假如没找到回答, 可以检查该问题q之前的上下文信息(context), 与q合并后再传给语义解析模块循环执行; </li>
+<li>如果匹配不到KG实体, 就将q传给聊天服务中的检索模块, 检索到匹配度高于threshold的回复就返回, 否则就接人工服务. 此外, 如果语义解析模块找不到语义标签, 就直接转到聊天服务部分. </li>
+</ol>
+<p>这个图非常重要，也是区别于阿里与其他妖艳贱货的地方，公开了详细的<strong>整体问答架构</strong>流程，而不是对一个小细节繁复讲解。 可供我们学习的地方很多。</p>
+<blockquote>
+<p>参考：<a href="https://zhuanlan.zhihu.com/p/46457853" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/46457853</a></p>
+</blockquote>
+<h2 id="2-3-单一型（本文重点）"><a href="#2-3-单一型（本文重点）" class="headerlink" title="2.3 单一型（本文重点）"></a>2.3 单一型（本文重点）</h2><p>调研了一些暴露出代码的开源框架（基于python），可以用来生成我们框架中的某一种模块。</p>
+<h3 id="2-3-1-ChatterBot-❤❤❤"><a href="#2-3-1-ChatterBot-❤❤❤" class="headerlink" title="2.3.1 ChatterBot ❤❤❤"></a>2.3.1 ChatterBot ❤❤❤</h3><blockquote>
+<p>8K+ star： <a href="https://github.com/gunthercox/ChatterBot" target="_blank" rel="noopener">https://github.com/gunthercox/ChatterBot</a></p>
+</blockquote>
+<p>ChatterBot是一个Python库，使用一系列机器学习算法来生成不同类型的回答。 （主要是 <strong>匹配式</strong>）</p>
+<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install chatterbot</span><br></pre></td></tr></table></figure>
+<p>程序通过搜索与输入匹配的最接近的匹配已知语句来选择最接近的匹配响应，然后从选择对该语句的已知响应中选择响应。</p>
+<p><img src="https://chatterbot.readthedocs.io/en/stable/_images/chatterbot-process-flow.svg" alt="image"></p>
+<p>每个部分都设计了不同的“适配器”(Adapter)。</p>
+<ul>
+<li>机器人应答逻辑 =&gt; Logic Adapters</li>
+<li><p>Closest Match Adapter  字符串模糊匹配(编辑距离)</p>
+</li>
+<li><p>Closest Meaning Adapter    借助nltk的WordNet，近义词评估</p>
+</li>
+<li>Time Logic Adapter 处理涉及时间的提问</li>
+<li>Mathematical Evaluation Adapter 涉及数学运算</li>
+</ul>
+<p>可以同时使用多个逻辑适配器来处理，机器人将返回最高计算置信度值的回应；如果多个适配器返回相同的置信度，那么选择适配器列表中第一个适配器。 同样，也可以定义自己的逻辑适配器，通过继承LogicAdapter基类，重写相关方法返回指定的值就可以实现。</p>
+<p>经过实验，这个框架主要对问题文本 使用<strong>相似度匹配</strong>，找出库中预定好的答案。  比较适合，<strong>知识问答类</strong>的情形。</p>
+<blockquote>
+<p>参考：<a href="https://kantai235.github.io/2017/03/16/ChatterBotTeaching/" target="_blank" rel="noopener">https://kantai235.github.io/2017/03/16/ChatterBotTeaching/</a></p>
+<p>参考：<a href="https://cloud.tencent.com/developer/article/1337627" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1337627</a></p>
+<p>参考：自定义适配器：<a href="https://zhuanlan.zhihu.com/p/35066208" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/35066208</a></p>
+</blockquote>
+<h3 id="2-3-2-rasa-❤❤❤"><a href="#2-3-2-rasa-❤❤❤" class="headerlink" title="2.3.2 rasa ❤❤❤"></a>2.3.2 rasa ❤❤❤</h3><p>使用rasa_nlu 理解用户的意图（预定义好） ，纯任务型对话。</p>
+<ul>
+<li>意图识别</li>
+<li>实体识别</li>
+</ul>
+<blockquote>
+<p>参考：<a href="https://www.jianshu.com/p/7f8ca4ac16e7" target="_blank" rel="noopener">https://www.jianshu.com/p/7f8ca4ac16e7</a></p>
+</blockquote>
+<p>使用rasa_core 根据模版回答问题：（可以填槽）</p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class ActionSearchConsume(Action):</span><br><span class="line">    def name(self):</span><br><span class="line">        return &apos;action_search_consume&apos;</span><br><span class="line"></span><br><span class="line">    def run(self, dispatcher, tracker, domain):</span><br><span class="line">        item = tracker.get_slot(&quot;item&quot;)</span><br><span class="line">        item = extract_item(item)</span><br><span class="line">        if item is None:</span><br><span class="line">            dispatcher.utter_message(&quot;您好，我现在只会查话费和流量&quot;)</span><br><span class="line">            dispatcher.utter_message(&quot;你可以这样问我：“帮我查话费”&quot;)</span><br><span class="line">            return []</span><br><span class="line"></span><br><span class="line">        time = tracker.get_slot(&quot;time&quot;)</span><br><span class="line">        if time is None:</span><br><span class="line">            dispatcher.utter_message(&quot;您想查询哪个月的消费？&quot;)</span><br><span class="line">            return []</span><br><span class="line">        # query database here using item and time as key. but you may normalize time format first.</span><br><span class="line">        dispatcher.utter_message(&quot;好，请稍等&quot;)</span><br><span class="line">        if item == &quot;流量&quot;:</span><br><span class="line">            dispatcher.utter_message(&quot;您好，您&#123;&#125;共使用&#123;&#125;二百八十兆，剩余三十兆。&quot;.format(time, item))</span><br><span class="line">        else:</span><br><span class="line">            dispatcher.utter_message(&quot;您好，您&#123;&#125;共消费二十八元。&quot;.format(time))</span><br><span class="line">        return []</span><br></pre></td></tr></table></figure>
+<p>这个框架的主要优点：</p>
+<ul>
+<li>便捷的意图识别。（预定好意图类别）</li>
+<li>便捷的训练数据生成工具。（根据你给的例子，自动生成训练数据！超级好用）❤❤❤</li>
+<li>可以识别填槽类问题，用于任务式问答（订票之类的）</li>
+</ul>
+<blockquote>
+<p>对话管理：<a href="https://www.jianshu.com/p/515385a7c7f0" target="_blank" rel="noopener">https://www.jianshu.com/p/515385a7c7f0</a></p>
+<p>rasa中文：<a href="https://jverson.com/2018/09/11/rasa-nlu/" target="_blank" rel="noopener">https://jverson.com/2018/09/11/rasa-nlu/</a></p>
+<h3 id="2-3-3-DeepQA-❤"><a href="#2-3-3-DeepQA-❤" class="headerlink" title="2.3.3 DeepQA ❤"></a>2.3.3 DeepQA ❤</h3></blockquote>
+<p>DeepQA项目试图重现神经会话模型的结果（又名谷歌聊天机器人），它采用了RNN（seq2seq模型）判刑预测，使用Python和TensorFlow实现。</p>
+<p>如果需要自研 闲聊对话系统，可以参考这个。 但是需要大量中文对话数据，在数据来源方面，没有调研。 </p>
+<h3 id="2-4-DeepPavlov❤❤❤❤"><a href="#2-4-DeepPavlov❤❤❤❤" class="headerlink" title="2.4 DeepPavlov❤❤❤❤"></a>2.4 DeepPavlov❤❤❤❤</h3><blockquote>
+<p>3.2K star <a href="https://github.com/deepmipt/DeepPavlov" target="_blank" rel="noopener">https://github.com/deepmipt/DeepPavlov</a>  </p>
+</blockquote>
+<p>开源的对话 AI 库，建立在 TensorFlow 和 Keras 上。<br>DeepPavlov框架层次：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006qDjsOly1g4form1ztgj30k0044wen.jpg" alt=""></p>
+<ul>
+<li>Agent<br>同用户直接交互的代理，直接接收用户输入的纯文本信息（raw text）</li>
+<li>Skill<br>领域技能，如基于意图-词槽的任务型技能，基于Seq2Seq的闲聊技能，基于知识图谱的知识问答技能；</li>
+<li>Skill Manager<br>确定用户query，选择使用哪些skill，并确定将哪一个skill的召回结果作为最终的回复；</li>
+<li>Component<br>Skill实现的组成部分，如针对任务型技能，包括数据预处理component、意图识别component、slotfilling component等；</li>
+</ul>
+<p><strong>DeepPavlov内置的skill主要包括：</strong></p>
+<ol>
+<li>任务型skill（Goal-Oriented Dialogue Bot）<br>基于意图/词槽/对话管理等component实现的问答skill。</li>
+<li>规则型skill（Pattern Matching）<br>基于自定义规则实现问答skill。</li>
+<li>Seq2Seq skill（Sequence-To-Sequence Dialogue Bot）<br>基于Seq2Seq实现问答skill。</li>
+<li>阅读理解skill（Open-Domain Question Answering）<br>基于阅读理解实现问答skill。相对于阅读理解component（Context Question Answering），skill还包含在多个召回结果中进行排序的能力。</li>
+</ol>
+<p><strong>DeepPavlov内置的基本能力主要包括：</strong></p>
+<ul>
+<li>数据预处理component（Data processors）<br>主要提供包括分词、嵌入向量化等预处理能力（主要基于俄文和英文）。</li>
+<li>阅读理解component（Context Question Answering）<br>相对于阅读理解skill（Open-Domain Question Answering），component不包含对多个召回结果进行排序（rank）的能力。具体的处理场景示例如下，</li>
+<li><p>分类component（Classification）<br>分类组件，可以用来做场景和意图的分类。</p>
+</li>
+<li><p>命名实体识别component（Named Entity Recognition）<br>NER能力组件。</p>
+</li>
+<li>相似度计算component（Neural Ranking）<br>通过基于孪生网络完成相似度计算，实现在标准问答库中标准答复的查找。</li>
+<li>词槽填充component（Slot filling）<br>在NER的基础上，增加了词表限制。</li>
+<li>*拼写纠错component（Spelling Correction）<br>提供了两种纠错方法： levenshtein_corrector ：基于编辑距离；brillmoore：基于统计模型</li>
+<li>TF-IDF排序component（TF-IDF Ranking）<br>基于TF-IDF的文档召回排序。</li>
+</ul>
+<p>按照介绍所说，这个框架可以覆盖任务式（填槽skill）、问答式（相似度计算skill）、闲聊式（端到端训练技术）。直接就是一个复合框架。</p>
+<p>下一步计划是对这个项目试用调研。</p>
+<blockquote>
+<p>参考：<a href="https://zhuanlan.zhihu.com/p/58133705" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/58133705</a></p>
+</blockquote>
+<h1 id="3-总结"><a href="#3-总结" class="headerlink" title="3 总结"></a>3 总结</h1><h2 id="3-1-希望达到了效果"><a href="#3-1-希望达到了效果" class="headerlink" title="3.1 希望达到了效果"></a>3.1 希望达到了效果</h2><p>我们客服的问答系统 需要达到的效果：</p>
+<ul>
+<li>能简单闲聊，比如：你好，有什么可以帮你？（占比10%）</li>
+<li>能回答知识性问题，比如：怎么修改云闪付手机号？（占比40%）</li>
+<li>能回答规则类问题，比如：我云闪付电费交不了怎么办？需要填槽省份信息、错误代码信息等。（50%）</li>
+</ul>
+<h2 id="3-2-需要的模式"><a href="#3-2-需要的模式" class="headerlink" title="3.2 需要的模式"></a>3.2 需要的模式</h2><p>因此，我们的系统需要像阿里的架构一样，包含多种问答模式，满足不同需求。</p>
+<ol>
+<li>首先使用 规则模版 解决规则类问题。（使用rasa填槽）</li>
+<li>解决不了的，使用相似度匹配的完成知识类问答。（可以使用chatterbot）</li>
+<li>相似度信度低于 阈值，可以使用谷歌DeepQA生成式、可以使用RASA闲聊意图、可以自己配置一些问答数据在chatterbot中。</li>
+</ol>
+<h2 id="3-3-集成的方法"><a href="#3-3-集成的方法" class="headerlink" title="3.3 集成的方法"></a>3.3 集成的方法</h2><p>如何将三种问答模型 结合起来？ 可行的办法：</p>
+<ol>
+<li>单独编写一个框架，把上述三种QA封装成三个模块。</li>
+<li>利用chatterbot，可以自定义模块的特性。  把 rasa（结构化QA）和 闲聊（Seq2Seq生成式） 封装为两个接口。</li>
+<li>使用DeepPavlov 直接包含三种模式。</li>
+</ol>
+<p>下一步计划，调研DeepPavlov的可用性。</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/自然语言处理/">自然语言处理</a>, <a class="has-link-grey -link" href="/tags/问答系统/">问答系统</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/06/2019-06-06三亚旅游攻略/">
+                <span class="level-item">2019-06-06三亚旅游攻略</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://xuqingtang.top/2019/06/17/2019-06-17问答系统项目落地调研/';
+        this.page.identifier = '2019/06/17/2019-06-17问答系统项目落地调研/';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'xqtbox' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered">
+                <div>
+                    
+                        <figure class="image container is-128x128 has-mb-6">
+                            <img class="is-rounded" src="/images/avatar.png" alt="Qingtang">
+                        </figure>
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        Qingtang
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Developer &amp; NLPer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>HeFei, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        90
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        13
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        57
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="http://github.com/xqtbox" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="http://github.com/xqtbox">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="CSDN" href="https://blog.csdn.net/u012052268">
+                
+                <i class="fas fa-pencil-alt"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Weibo" href="https://www.weibo.com/u/5890351342">
+                
+                <i class="fab fa-weibo"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="知乎" href="https://www.zhihu.com/people/xqtbox/activities">
+                
+                <i class="fab fa-zhihu"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+<div class="card widget" id="toc">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                目录
+            </h3>
+            <ul class="menu-list"><li>
+        <a class="is-flex" href="#1-chatbot概述">
+        <span class="has-mr-6">1</span>
+        <span>1 chatbot概述</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#1-1-行业分类及目前的应用状况">
+        <span class="has-mr-6">1.1</span>
+        <span>1.1 行业分类及目前的应用状况</span>
+        </a></li><li>
+        <a class="is-flex" href="#1-2-问答实现方式">
+        <span class="has-mr-6">1.2</span>
+        <span>1.2 问答实现方式</span>
+        </a></li><li>
+        <a class="is-flex" href="#1-3-两种问答模式的优劣：">
+        <span class="has-mr-6">1.3</span>
+        <span>1.3 两种问答模式的优劣：</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#2-框架分析">
+        <span class="has-mr-6">2</span>
+        <span>2 框架分析</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#2-1-平台型">
+        <span class="has-mr-6">2.1</span>
+        <span>2.1 平台型</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#2-1-1-Wit-ai">
+        <span class="has-mr-6">2.1.1</span>
+        <span>2.1.1 Wit.ai</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-1-2-谷歌Dialogflow">
+        <span class="has-mr-6">2.1.2</span>
+        <span>2.1.2 谷歌Dialogflow</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-1-3-科大讯飞AIUI平台">
+        <span class="has-mr-6">2.1.3</span>
+        <span>2.1.3 科大讯飞AIUI平台</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-1-4-百度UNIT平台">
+        <span class="has-mr-6">2.1.4</span>
+        <span>2.1.4 百度UNIT平台</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#2-2-解析型">
+        <span class="has-mr-6">2.2</span>
+        <span>2.2 解析型</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#2-2-1-阿里小蜜">
+        <span class="has-mr-6">2.2.1</span>
+        <span>2.2.1 阿里小蜜</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#2-3-单一型（本文重点）">
+        <span class="has-mr-6">2.3</span>
+        <span>2.3 单一型（本文重点）</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#2-3-1-ChatterBot-❤❤❤">
+        <span class="has-mr-6">2.3.1</span>
+        <span>2.3.1 ChatterBot ❤❤❤</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-3-2-rasa-❤❤❤">
+        <span class="has-mr-6">2.3.2</span>
+        <span>2.3.2 rasa ❤❤❤</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-3-3-DeepQA-❤">
+        <span class="has-mr-6">2.3.3</span>
+        <span>2.3.3 DeepQA ❤</span>
+        </a></li><li>
+        <a class="is-flex" href="#2-4-DeepPavlov❤❤❤❤">
+        <span class="has-mr-6">2.3.4</span>
+        <span>2.4 DeepPavlov❤❤❤❤</span>
+        </a></li></ul></li></ul></li><li>
+        <a class="is-flex" href="#3-总结">
+        <span class="has-mr-6">3</span>
+        <span>3 总结</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#3-1-希望达到了效果">
+        <span class="has-mr-6">3.1</span>
+        <span>3.1 希望达到了效果</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-2-需要的模式">
+        <span class="has-mr-6">3.2</span>
+        <span>3.2 需要的模式</span>
+        </a></li><li>
+        <a class="is-flex" href="#3-3-集成的方法">
+        <span class="has-mr-6">3.3</span>
+        <span>3.3 集成的方法</span>
+        </a></li></ul></li></ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://blog.csdn.net/u012052268" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">CSDN</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">blog.csdn.net</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Git/">
+            <span class="level-start">
+                <span class="level-item">Git</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Linux/">
+            <span class="level-start">
+                <span class="level-item">Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/NLP/">
+            <span class="level-start">
+                <span class="level-item">NLP</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Python/">
+            <span class="level-start">
+                <span class="level-item">Python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/数据库/">
+            <span class="level-start">
+                <span class="level-item">数据库</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/机器学习/">
+            <span class="level-start">
+                <span class="level-item">机器学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/深度学习/">
+            <span class="level-start">
+                <span class="level-item">深度学习</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/爬虫/">
+            <span class="level-start">
+                <span class="level-item">爬虫</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/自然语言处理/">
+            <span class="level-start">
+                <span class="level-item">自然语言处理</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">22</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/运维/">
+            <span class="level-start">
+                <span class="level-item">运维</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/随笔/">
+            <span class="level-start">
+                <span class="level-item">随笔</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/驱动开发/">
+            <span class="level-start">
+                <span class="level-item">驱动开发</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Anaconda/" style="font-size: 12.73px;">Anaconda</a> <a href="/tags/CNN/" style="font-size: 11.82px;">CNN</a> <a href="/tags/DevOps/" style="font-size: 10px;">DevOps</a> <a href="/tags/DriverSttudio3-2/" style="font-size: 10px;">DriverSttudio3.2</a> <a href="/tags/Editplus/" style="font-size: 10px;">Editplus</a> <a href="/tags/Embedding/" style="font-size: 10px;">Embedding</a> <a href="/tags/EndNote/" style="font-size: 10px;">EndNote</a> <a href="/tags/GBK/" style="font-size: 10.91px;">GBK</a> <a href="/tags/Git/" style="font-size: 18.18px;">Git</a> <a href="/tags/GitHub/" style="font-size: 18.18px;">GitHub</a> <a href="/tags/Java/" style="font-size: 17.27px;">Java</a> <a href="/tags/Jena/" style="font-size: 10px;">Jena</a> <a href="/tags/Jieba/" style="font-size: 10px;">Jieba</a> <a href="/tags/Keras/" style="font-size: 10.91px;">Keras</a> <a href="/tags/LSTM/" style="font-size: 10px;">LSTM</a> <a href="/tags/Linux/" style="font-size: 14.55px;">Linux</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/Neo4j/" style="font-size: 10px;">Neo4j</a> <a href="/tags/Oracle/" style="font-size: 10px;">Oracle</a> <a href="/tags/Protege/" style="font-size: 10px;">Protege</a> <a href="/tags/Pycharm/" style="font-size: 11.82px;">Pycharm</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/RNN/" style="font-size: 10px;">RNN</a> <a href="/tags/Tensorboard/" style="font-size: 10px;">Tensorboard</a> <a href="/tags/Tensorflow/" style="font-size: 14.55px;">Tensorflow</a> <a href="/tags/USB/" style="font-size: 10px;">USB</a> <a href="/tags/UTF-8/" style="font-size: 10.91px;">UTF-8</a> <a href="/tags/Word2vec/" style="font-size: 10px;">Word2vec</a> <a href="/tags/coursera/" style="font-size: 18.18px;">coursera</a> <a href="/tags/ddk/" style="font-size: 10px;">ddk</a> <a href="/tags/eclipse/" style="font-size: 14.55px;">eclipse</a> <a href="/tags/jieba/" style="font-size: 10px;">jieba</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/myeclipse/" style="font-size: 11.82px;">myeclipse</a> <a href="/tags/scrapy/" style="font-size: 13.64px;">scrapy</a> <a href="/tags/screen/" style="font-size: 10px;">screen</a> <a href="/tags/session/" style="font-size: 10px;">session</a> <a href="/tags/win7/" style="font-size: 10px;">win7</a> <a href="/tags/word2vec/" style="font-size: 10px;">word2vec</a> <a href="/tags/xshell/" style="font-size: 10px;">xshell</a> <a href="/tags/分词/" style="font-size: 10px;">分词</a> <a href="/tags/学习路线/" style="font-size: 11.82px;">学习路线</a> <a href="/tags/报错/" style="font-size: 15.45px;">报错</a> <a href="/tags/文件操作/" style="font-size: 10px;">文件操作</a> <a href="/tags/旅行/" style="font-size: 10px;">旅行</a> <a href="/tags/机器学习/" style="font-size: 18.18px;">机器学习</a> <a href="/tags/汽车之家/" style="font-size: 10.91px;">汽车之家</a> <a href="/tags/深度学习/" style="font-size: 17.27px;">深度学习</a> <a href="/tags/爬虫/" style="font-size: 16.36px;">爬虫</a> <a href="/tags/知识图谱/" style="font-size: 16.36px;">知识图谱</a> <a href="/tags/编码/" style="font-size: 10px;">编码</a> <a href="/tags/自然语言处理/" style="font-size: 19.09px;">自然语言处理</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/问答系统/" style="font-size: 10.91px;">问答系统</a> <a href="/tags/阅读理解/" style="font-size: 10px;">阅读理解</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tags/驱动程序/" style="font-size: 10px;">驱动程序</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/06/17/2019-06-17问答系统项目落地调研/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/14.jpg" alt="2019-06-17问答系统项目落地调研">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-17T05:21:36.000Z">2019-06-17</time></div>
+                    <a href="/2019/06/17/2019-06-17问答系统项目落地调研/" class="has-link-black-ter is-size-6">2019-06-17问答系统项目落地调研</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/06/06/2019-06-06三亚旅游攻略/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/13.jpg" alt="2019-06-06三亚旅游攻略">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-06T05:21:26.000Z">2019-06-06</time></div>
+                    <a href="/2019/06/06/2019-06-06三亚旅游攻略/" class="has-link-black-ter is-size-6">2019-06-06三亚旅游攻略</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/随笔/">随笔</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/15/在Keras的Embedding层中使用预训练的word2vec词向量/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/12.jpg" alt="在Keras的Embedding层中使用预训练的word2vec词向量">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-15T05:24:26.000Z">2019-05-15</time></div>
+                    <a href="/2019/05/15/在Keras的Embedding层中使用预训练的word2vec词向量/" class="has-link-black-ter is-size-6">在Keras的Embedding层中使用预训练的word2vec词向量</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/11.jpg" alt="linux环境变量的设置+关于bashrc与profile的区别">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-03T05:24:26.000Z">2019-05-03</time></div>
+                    <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="has-link-black-ter is-size-6">linux环境变量的设置+关于bashrc与profile的区别</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/02/Windows下neo4j安装使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/10.jpg" alt="Windows下neo4j安装使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-02T03:21:22.000Z">2019-05-02</time></div>
+                    <a href="/2019/05/02/Windows下neo4j安装使用/" class="has-link-black-ter is-size-6">Windows下neo4j安装使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anaconda/">
+                        <span class="tag">Anaconda</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CNN/">
+                        <span class="tag">CNN</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DevOps/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DriverSttudio3-2/">
+                        <span class="tag">DriverSttudio3.2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Editplus/">
+                        <span class="tag">Editplus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedding/">
+                        <span class="tag">Embedding</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EndNote/">
+                        <span class="tag">EndNote</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GBK/">
+                        <span class="tag">GBK</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jena/">
+                        <span class="tag">Jena</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jieba/">
+                        <span class="tag">Jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keras/">
+                        <span class="tag">Keras</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LSTM/">
+                        <span class="tag">LSTM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLP/">
+                        <span class="tag">NLP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Neo4j/">
+                        <span class="tag">Neo4j</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Oracle/">
+                        <span class="tag">Oracle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Protege/">
+                        <span class="tag">Protege</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pycharm/">
+                        <span class="tag">Pycharm</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">25</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RNN/">
+                        <span class="tag">RNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorboard/">
+                        <span class="tag">Tensorboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/USB/">
+                        <span class="tag">USB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UTF-8/">
+                        <span class="tag">UTF-8</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Word2vec/">
+                        <span class="tag">Word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/coursera/">
+                        <span class="tag">coursera</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ddk/">
+                        <span class="tag">ddk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/eclipse/">
+                        <span class="tag">eclipse</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jieba/">
+                        <span class="tag">jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/maven/">
+                        <span class="tag">maven</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/myeclipse/">
+                        <span class="tag">myeclipse</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy/">
+                        <span class="tag">scrapy</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/screen/">
+                        <span class="tag">screen</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/session/">
+                        <span class="tag">session</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/win7/">
+                        <span class="tag">win7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/word2vec/">
+                        <span class="tag">word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/xshell/">
+                        <span class="tag">xshell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/分词/">
+                        <span class="tag">分词</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/学习路线/">
+                        <span class="tag">学习路线</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/报错/">
+                        <span class="tag">报错</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/文件操作/">
+                        <span class="tag">文件操作</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/旅行/">
+                        <span class="tag">旅行</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器学习/">
+                        <span class="tag">机器学习</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/汽车之家/">
+                        <span class="tag">汽车之家</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/深度学习/">
+                        <span class="tag">深度学习</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/知识图谱/">
+                        <span class="tag">知识图谱</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/编码/">
+                        <span class="tag">编码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/自然语言处理/">
+                        <span class="tag">自然语言处理</span>
+                        <span class="tag is-grey">14</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/运维/">
+                        <span class="tag">运维</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/问答系统/">
+                        <span class="tag">问答系统</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/阅读理解/">
+                        <span class="tag">阅读理解</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/面向对象/">
+                        <span class="tag">面向对象</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/驱动程序/">
+                        <span class="tag">驱动程序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/06/17/2019-06-17问答系统项目落地调研/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/14.jpg" alt="2019-06-17问答系统项目落地调研">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-17T05:21:36.000Z">2019-06-17</time></div>
+                    <a href="/2019/06/17/2019-06-17问答系统项目落地调研/" class="has-link-black-ter is-size-6">2019-06-17问答系统项目落地调研</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/06/06/2019-06-06三亚旅游攻略/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/13.jpg" alt="2019-06-06三亚旅游攻略">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-06-06T05:21:26.000Z">2019-06-06</time></div>
+                    <a href="/2019/06/06/2019-06-06三亚旅游攻略/" class="has-link-black-ter is-size-6">2019-06-06三亚旅游攻略</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/随笔/">随笔</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/15/在Keras的Embedding层中使用预训练的word2vec词向量/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/12.jpg" alt="在Keras的Embedding层中使用预训练的word2vec词向量">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-15T05:24:26.000Z">2019-05-15</time></div>
+                    <a href="/2019/05/15/在Keras的Embedding层中使用预训练的word2vec词向量/" class="has-link-black-ter is-size-6">在Keras的Embedding层中使用预训练的word2vec词向量</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/11.jpg" alt="linux环境变量的设置+关于bashrc与profile的区别">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-03T05:24:26.000Z">2019-05-03</time></div>
+                    <a href="/2019/05/03/linux环境变量的设置+关于bashrc与profile的区别/" class="has-link-black-ter is-size-6">linux环境变量的设置+关于bashrc与profile的区别</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/05/02/Windows下neo4j安装使用/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/image-banner/10.jpg" alt="Windows下neo4j安装使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-02T03:21:22.000Z">2019-05-02</time></div>
+                    <a href="/2019/05/02/Windows下neo4j安装使用/" class="has-link-black-ter is-size-6">Windows下neo4j安装使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/自然语言处理/">自然语言处理</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2015/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2015</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anaconda/">
+                        <span class="tag">Anaconda</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CNN/">
+                        <span class="tag">CNN</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DevOps/">
+                        <span class="tag">DevOps</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DriverSttudio3-2/">
+                        <span class="tag">DriverSttudio3.2</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Editplus/">
+                        <span class="tag">Editplus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Embedding/">
+                        <span class="tag">Embedding</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EndNote/">
+                        <span class="tag">EndNote</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GBK/">
+                        <span class="tag">GBK</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GitHub/">
+                        <span class="tag">GitHub</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jena/">
+                        <span class="tag">Jena</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Jieba/">
+                        <span class="tag">Jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Keras/">
+                        <span class="tag">Keras</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/LSTM/">
+                        <span class="tag">LSTM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NLP/">
+                        <span class="tag">NLP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Neo4j/">
+                        <span class="tag">Neo4j</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Oracle/">
+                        <span class="tag">Oracle</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Protege/">
+                        <span class="tag">Protege</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pycharm/">
+                        <span class="tag">Pycharm</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Python/">
+                        <span class="tag">Python</span>
+                        <span class="tag is-grey">25</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RNN/">
+                        <span class="tag">RNN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorboard/">
+                        <span class="tag">Tensorboard</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tensorflow/">
+                        <span class="tag">Tensorflow</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/USB/">
+                        <span class="tag">USB</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/UTF-8/">
+                        <span class="tag">UTF-8</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Word2vec/">
+                        <span class="tag">Word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/coursera/">
+                        <span class="tag">coursera</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ddk/">
+                        <span class="tag">ddk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/eclipse/">
+                        <span class="tag">eclipse</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/jieba/">
+                        <span class="tag">jieba</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/maven/">
+                        <span class="tag">maven</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/myeclipse/">
+                        <span class="tag">myeclipse</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/scrapy/">
+                        <span class="tag">scrapy</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/screen/">
+                        <span class="tag">screen</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/session/">
+                        <span class="tag">session</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/win7/">
+                        <span class="tag">win7</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/word2vec/">
+                        <span class="tag">word2vec</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/xshell/">
+                        <span class="tag">xshell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/分词/">
+                        <span class="tag">分词</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/学习路线/">
+                        <span class="tag">学习路线</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/报错/">
+                        <span class="tag">报错</span>
+                        <span class="tag is-grey">7</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/文件操作/">
+                        <span class="tag">文件操作</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/旅行/">
+                        <span class="tag">旅行</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/机器学习/">
+                        <span class="tag">机器学习</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/汽车之家/">
+                        <span class="tag">汽车之家</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/深度学习/">
+                        <span class="tag">深度学习</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/爬虫/">
+                        <span class="tag">爬虫</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/知识图谱/">
+                        <span class="tag">知识图谱</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/编码/">
+                        <span class="tag">编码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/自然语言处理/">
+                        <span class="tag">自然语言处理</span>
+                        <span class="tag is-grey">14</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/运维/">
+                        <span class="tag">运维</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/问答系统/">
+                        <span class="tag">问答系统</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/阅读理解/">
+                        <span class="tag">阅读理解</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/面向对象/">
+                        <span class="tag">面向对象</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/驱动程序/">
+                        <span class="tag">驱动程序</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="2019-06-17问答系统项目落地调研" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Qingtang&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Follow me on GitHub" href="https://github.com/xqtbox">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+    <script src="/js/clipboard.js" defer></script>
+    
+
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","width":100,"height":150},"mobile":{"show":true}});</script></body>
+</html>
